@@ -3,23 +3,14 @@ import * as Icons from "react-icons/md";
 import { IconContext } from "react-icons";
 import AddBlock from "./AddBlock";
 import DropBlock from "./DropBlock";
-import Block from "../General/Block";
 import "./NavBar.css";
 
 function NavBar() {
   const [dropBlocks, setDropBlocks] = useState([]);
-  const [dropdownMenu, setDropdownMenu] = useState(false);
   const [sideBar, setSideBar] = useState(true);
-
-  const showDropdownMenu = () => {
-    console.log(dropdownMenu);
-    setDropdownMenu(true);
-  };
-
   const showSideBar = () => {
     setSideBar(!sideBar);
   };
-
   const addFolder = () => {
     let dropBlocksArray = [...dropBlocks];
     dropBlocksArray.push({

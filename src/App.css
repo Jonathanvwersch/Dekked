@@ -20,15 +20,19 @@ p.p2 {
 svg.icon{
   height:16px;
   width:16px;
-color: #2C2C31;  
+color: #2C2C31; 
+ -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 
-.DropdownMenu {
-    position:absolute;
+.DropdownMenu{
     display: flex;
     flex-direction: column;
-    padding: 0px;
     width:100%;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 2px;
@@ -36,5 +40,6 @@ color: #2C2C31;
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
 
 }
+
 
 

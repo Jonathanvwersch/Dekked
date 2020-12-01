@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import * as Icons from "react-icons/md";
 import "./DropBlock.css";
 import Block from "../General/Block";
+import {AddBinderData} from "./AddBinderData"
 
 function DropBlock({ type }) {
   const outside = useRef();
+  const [position, setPosition] = useState("upper")
   const [dropdownMenu, setDropdownMenu] = useState(false);
 
   const outsideClick = (e) => {
@@ -14,18 +16,24 @@ function DropBlock({ type }) {
     setDropdownMenu(false);
   };
 
-  const showDropdownMenu = () => {
-    console.log(dropdownMenu);
+  const showDropdownMenu = (e) => {
     setDropdownMenu(!dropdownMenu);
+
+    if ((window.innerHeight) - (e.clientY) > 170 )
+      setPosition("upper");
+
+    else 
+      setPosition("lower")
   };
 
   useEffect(() => {
     const getClick = document.addEventListener("click", outsideClick);
 
     return () => {
-      getClick();
+      getClick()
     };
   }, []);
+
 
   return (
     <div className="DropBlock" ref={outside}>
@@ -37,12 +45,10 @@ function DropBlock({ type }) {
         className="icon dots"
       ></Icons.MdMoreHoriz>
       {dropdownMenu ? (
-        <div className="DropdownMenu">
-          <Block action="folder" icon="MdAdd" />
-          <Block action="folder" icon="MdAdd" />
-          <Block action="folder" icon="MdAdd" />
-          <Block action="folder" icon="MdAdd" />
-          <Block action="folder" icon="MdAdd" />
+        <div className={`DropdownMenu ${position}`}>
+          {AddBinderData.map((item, index) => {
+            return <Block item= {item} key={index} />
+          })}
         </div>
       ) : null}
     </div>
