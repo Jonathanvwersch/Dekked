@@ -1,0 +1,193 @@
+.navBar {
+  background: #F5F5F4;
+  width: 220px; 
+  position:relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 1000ms;
+  border-right: 1.5px solid #DEDEDE;
+
+
+}
+
+
+.navBar.active {
+  left: 0;
+  transition: 500ms;
+}
+
+.icon.doubleChevronLeft{
+    fill:orange;
+}
+
+
+.icon:hover {
+  color: #00B6CE;
+  cursor:pointer;
+}
+
+.icon.hamburger{
+   height:20px;
+   width:20px;
+   margin: 22px 0px 0px 16px; 
+}
+
+.top {
+  position:absolute;
+  display:flex;
+  height:60px; 
+  top:0;
+  width: 100%;
+  border-bottom: 1.5px solid #DEDEDE;
+}
+
+.top .profile{
+  display:flex;
+  height:28px;
+  justify-content: flex-start;
+  margin:16px;
+  flex-direction: row;
+  place-items:center;
+}
+
+.top .profile .avatar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: #00B6CE;
+  border-radius:100px;
+  width:28px;
+  height:28px;
+  margin-right:8px;
+}
+
+.top .profile .avatar .p1{
+  color:white;
+
+}
+
+svg.icon.chevronDoubleLeft {
+      margin-top:26px;
+      position:absolute;
+      right:0;
+      margin-right:10px; 
+      height:8px;
+      width:10px;
+}
+
+div.collapse {
+  height:16px;
+  width:16px;
+}
+
+div.collapse:hover svg > path:nth-of-type(1){
+  fill: #00B6CE;
+}
+
+div.collapse:hover svg > path:nth-of-type(2){
+  fill: #00B6CE;
+}
+
+.icon.dropDownArrow.down
+{
+  margin-left:12px;
+}
+
+.workspace{
+  display:flex;
+  flex-direction:column;
+  position:absolute;
+  margin-top:60px;
+  height:calc(100% - 100px);
+  width:100%;
+  overflow-y:auto;
+
+}
+
+.workspace .title {
+  width:100%;
+  height:30px;
+}
+
+.workspace .title .p2 {
+  color:#989796;
+  padding-left:16px;
+  margin-top:8px;
+  
+}
+
+/* width */
+.workspace::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.workspace::-webkit-scrollbar-track {
+  background: #DEDEDE; 
+}
+ 
+/* Handle */
+.workspace::-webkit-scrollbar-thumb {
+  background: #C6C5C2; 
+}
+
+/* Handle on hover */
+.workspace::-webkit-scrollbar-thumb:hover {
+  background: #B6B5B2; 
+}
+
+.navBar .dropBlocks {
+
+}
+
+.navBar .DropdownMenu {
+  position:absolute;
+  top:0;
+  margin-top:23px;
+  right:calc(-100% + 24px);
+  z-index:1;
+}
+
+.AddBlock {
+  position:absolute;
+  display:flex;
+  justify-content:flex-start;
+  bottom:0;
+  width:100%;
+  height:40px;
+  place-items:center;
+  border-top:1.5px solid #DEDEDE;
+  background:#f5f5f4;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.AddBlock .icon.plus{
+  margin: 8px 8px 8px 16px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+.AddBlock .icon.plus:hover{
+  color:#2C2C31;
+ 
+}
+
+.AddBlock:hover{
+  background-color:#E1E1E0;
+   cursor:pointer;
+}
+

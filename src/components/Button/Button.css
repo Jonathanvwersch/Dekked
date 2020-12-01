@@ -1,0 +1,60 @@
+.Button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 16px;
+    border-radius:5px;
+    cursor: pointer;
+}
+
+.Button.primary{
+    background: #00B6CE;
+    color: white;
+    border:0px;
+}
+
+.Button.secondary{
+    background: white;
+    color: #2C2C31;
+    border: 0.5px solid #C6CFC2;
+}
+
+.Button.tertiary{
+    background: #DB524B;
+    color:white;
+    border:0px;
+}
+
+.Button.inactive {
+    background:#C6C5C2;
+    border:0px;
+    color:white;
+    cursor:auto;
+}
+
+.Button:active,
+.Button:focus {
+    outline:none;
+}
+
+.Button.primary:hover {
+    background:#00A7BE;
+    outline:none;
+}
+
+.Button.secondary:hover {
+    background:#EBEBEB;
+    outline:none;
+}
+
+.Button.tertiary:hover {
+    background:#C94B45;
+    outline:none;
+}
+
+.Button.inactive:hover {
+    outline:none;
+}
+
+
