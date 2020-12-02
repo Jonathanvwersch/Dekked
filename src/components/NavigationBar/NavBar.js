@@ -1,22 +1,33 @@
 import React, { useState } from "react";
 import * as Icons from "react-icons/md";
-import { IconContext } from "react-icons";
 import AddBlock from "./AddBlock";
 import DropBlock from "./DropBlock";
 import "./NavBar.css";
 
 function NavBar() {
-  const [dropBlocks, setDropBlocks] = useState([]);
+  const [folderBlocks, setFolderBlocks] = useState([]);
   const [sideBar, setSideBar] = useState(true);
+
   const showSideBar = () => {
     setSideBar(!sideBar);
   };
+
   const addFolder = () => {
-    let dropBlocksArray = [...dropBlocks];
-    dropBlocksArray.push({
-      dropBlock: <DropBlock type="folder" />,
-    });
-    setDropBlocks(dropBlocksArray);
+    const newFolder = {
+      folderBlock: (
+        <DropBlock
+          type="folder"
+          handleDelete={() => deleteFolder(folderBlocks.length)}
+        />
+      ),
+    };
+    setFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
+  };
+
+  const deleteFolder = (e) => {
+    setFolderBlocks((folderBlocks) =>
+      folderBlocks.filter((folderBlock, index) => index !== e)
+    );
   };
 
   return (
@@ -55,11 +66,13 @@ function NavBar() {
           <div className="title">
             <p className="p2">Workspace</p>
           </div>
-          {dropBlocks.map((dropBlock, index) => (
-            <div key={index} className="dropBlocks">
-              {dropBlock.dropBlock}
-            </div>
-          ))}
+          <div className="folderBlocks">
+            {folderBlocks.map((folderBlock, index) => (
+              <div key={index} className="folderBlock">
+                {folderBlock.folderBlock}
+              </div>
+            ))}
+          </div>
         </div>
         <AddBlock onButtonClick={addFolder} />
       </nav>

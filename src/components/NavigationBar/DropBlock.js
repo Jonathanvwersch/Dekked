@@ -2,41 +2,37 @@ import React, { useState, useRef, useEffect } from "react";
 import * as Icons from "react-icons/md";
 import "./DropBlock.css";
 import Block from "../General/Block";
-import {AddBinderData} from "./AddBinderData"
+import { AddBinderData } from "./AddBinderData";
 
-function DropBlock({ type }) {
-  const outside = useRef();
-  const [position, setPosition] = useState("upper")
+function DropBlock({ type, handleDelete }) {
+  const [position, setPosition] = useState("upper");
   const [dropdownMenu, setDropdownMenu] = useState(false);
-
-  const outsideClick = (e) => {
-    if (outside.current.contains(e.target)) {
-      return;
-    }
-    setDropdownMenu(false);
-  };
 
   const showDropdownMenu = (e) => {
     setDropdownMenu(!dropdownMenu);
 
-    if ((window.innerHeight) - (e.clientY) > 170 )
-      setPosition("upper");
+    if (window.innerHeight - e.clientY > 170) setPosition("upper");
+    else setPosition("lower");
+  };
 
-    else 
-      setPosition("lower")
+  const closeDropdownMenu = (e) => {
+    setDropdownMenu(false);
   };
 
   useEffect(() => {
-    const getClick = document.addEventListener("click", outsideClick);
+    if (dropdownMenu) {
+      document.addEventListener("click", closeDropdownMenu);
+    } else {
+      document.removeEventListener("click", closeDropdownMenu);
+    }
 
     return () => {
-      getClick()
+      document.removeEventListener("click", closeDropdownMenu);
     };
-  }, []);
-
+  }, [dropdownMenu]);
 
   return (
-    <div className="DropBlock" ref={outside}>
+    <div className="DropBlock">
       <Icons.MdArrowDropDown className="icon dropDownArrow" />
       <img className={`icon ${type}`} alt={type}></img>
       <p className="p2">Untitled</p>
@@ -47,7 +43,7 @@ function DropBlock({ type }) {
       {dropdownMenu ? (
         <div className={`DropdownMenu ${position}`}>
           {AddBinderData.map((item, index) => {
-            return <Block item= {item} key={index} />
+            return <Block item={item} handleDelete={handleDelete} />;
           })}
         </div>
       ) : null}
