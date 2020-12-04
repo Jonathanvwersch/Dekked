@@ -69,6 +69,10 @@
     cursor: pointer;
 }
 
+.DropBlock:active {
+    background:#D8D8D7;
+}
+
 .DropBlock:hover .icon.dots{
     opacity:1;
 }

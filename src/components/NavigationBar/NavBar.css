@@ -1,22 +1,35 @@
-.navBar {
+.dekked-sidebar-container {
+  flex-grow:0;
+  flex-shrink:0;
+  pointer-events:none;
+  position:relative;
+  z-index:99;
   background: #F5F5F4;
   width: 220px; 
+  cursor:default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+}
+
+.dekked-sidebar{
+  display:flex;
+  flex-direction:column;
+  height:100%;
   position:relative;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: -100%;
-  transition: 1000ms;
+  pointer-events:auto;
+  max-height:100%;
+  width:220px;
+  left:-100%;
+  opacity:1;
+  transition: box-shadow 300ms ease-in 0s;
   border-right: 1.5px solid #DEDEDE;
-}
 
-.navBar.active {
-  left: 0;
-  transition: 500ms;
 }
-
 .icon.doubleChevronLeft{
     fill:orange;
 }
@@ -33,7 +46,7 @@
    margin: 22px 0px 0px 16px; 
 }
 
-.top {
+.sidebar-top {
   position:absolute;
   display:flex;
   height:60px; 
@@ -42,7 +55,7 @@
   border-bottom: 1.5px solid #DEDEDE;
 }
 
-.top .profile{
+.sidebar-top .profile{
   display:flex;
   height:28px;
   justify-content: flex-start;
@@ -51,7 +64,7 @@
   place-items:center;
 }
 
-.top .profile .avatar{
+.sidebar-top .profile .avatar{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -62,7 +75,7 @@
   margin-right:8px;
 }
 
-.top .profile .avatar .p1{
+.sidebar-top .profile .avatar .p1{
   color:white;
 
 }
@@ -112,33 +125,7 @@ div.collapse:hover svg > path:nth-of-type(2){
   color:#989796;
   padding-left:16px;
   margin-top:8px;
-   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  
-}
-
-/* width */
-.workspace::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-.workspace::-webkit-scrollbar-track {
-  background: #DEDEDE; 
-}
  
-/* Handle */
-.workspace::-webkit-scrollbar-thumb {
-  background: #C6C5C2; 
-}
-
-/* Handle on hover */
-.workspace::-webkit-scrollbar-thumb:hover {
-  background: #B6B5B2; 
 }
 
 .AddBlock {
@@ -151,22 +138,10 @@ div.collapse:hover svg > path:nth-of-type(2){
   place-items:center;
   border-top:1.5px solid #DEDEDE;
   background:#f5f5f4;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .AddBlock .icon.plus{
   margin: 8px 8px 8px 16px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 
 }
 

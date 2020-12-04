@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 
 const CHILD_STYLE = {
   position: "fixed",
-  left: 0,
-  top: 0,
-  width: "100vh",
+  top: "0px",
+  left: "0px",
+  width: "100vw",
   height: "100vh",
 };
 
@@ -18,33 +18,15 @@ const OVERLAY_STYLE = {
 export default function Portal({ children, state, handleState }) {
   return createPortal(
     <>
-      <div onClick={handleState} style={OVERLAY_STYLE}>
-        {state ? (
+      {state ? (
+        <div style={OVERLAY_STYLE}>
           <div>
-            <div style={CHILD_STYLE} />
+            <div style={CHILD_STYLE} onClick={handleState}></div>
             <div>{children}</div>
           </div>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </>,
-    document.getElementById("portal")
+    document.getElementById("dekked-overlay-container")
   );
 }
-
-// const childRef = useRef(null);
-
-// const handleClickOutside = (e) => {
-//   if (childRef.current.contains(e.target)) {
-//     returnhandleState;
-//   }
-// };
-
-// useEffect(
-//   (e) => {
-//     document.addEventListener("click", handleClickOutside, true);
-//     return () => {
-//       document.removeEventListener("click", handleClickOutside, true);
-//     };
-//   },
-//   [childRef]
-// );

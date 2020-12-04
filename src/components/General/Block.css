@@ -23,6 +23,10 @@
     cursor:pointer;
 }
 
+.Block:active{
+    background:#E0E0E0;
+}
+
 .Block .icon{
     margin-left:16px;
     margin-right:8px;

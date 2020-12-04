@@ -1,11 +1,28 @@
-import React, { useState } from "react";
-import * as Icons from "react-icons/md";
+import React from "react";
 import "./Block.css"
 
-const Block = ({item}) => {
-    const mdIcon = Icons[item.icon];
+const Block = ({item, handleDelete, handleRename}) => {
+    let buttonClick;
+    switch (item.action) {
+        case "Add binder":
+            break;
+
+        case "Icon colour":
+            break;
+        
+        case "Rename":
+            buttonClick = handleRename
+            break;
+
+        case "Delete":
+            buttonClick = handleDelete
+            break;
+        
+        default:
+            break;
+    }
     return (
-    <div className="Block">
+    <div onClick={buttonClick}className="Block">
         {item.icon}
         <p className="p2">{item.action}</p>
     </div>
