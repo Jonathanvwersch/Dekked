@@ -81,20 +81,5 @@
      background:#E1E1E0;
 }
 
-.DropBlock .DropdownMenu.upper {
-    position:absolute;
-    top:0;
-    margin-top:23px;
-    right:calc(-100% + 24px);
-    z-index:1;
-}
-
-.DropBlock .DropdownMenu.lower {
-    position:absolute;
-    top:calc((-100% * 4) + 7px);
-    right:calc(-100% + 24px);
-    z-index:1;
-}
-
 
 

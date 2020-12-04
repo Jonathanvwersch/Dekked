@@ -15,20 +15,12 @@ function NavBar() {
   const addFolder = () => {
     const newFolder = {
       folderBlock: (
-        <DropBlock
-          type="folder"
-          handleDelete={() => deleteFolder(folderBlocks.length)}
-        />
+        <DropBlock type="folder"/>
       ),
     };
     setFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
   };
 
-  const deleteFolder = (e) => {
-    setFolderBlocks((folderBlocks) =>
-      folderBlocks.filter((folderBlock, index) => index !== e)
-    );
-  };
 
   return (
     <>

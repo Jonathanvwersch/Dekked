@@ -10,10 +10,7 @@
   left: -100%;
   transition: 1000ms;
   border-right: 1.5px solid #DEDEDE;
-
-
 }
-
 
 .navBar.active {
   left: 0;
@@ -71,12 +68,12 @@
 }
 
 svg.icon.chevronDoubleLeft {
-      margin-top:26px;
-      position:absolute;
-      right:0;
-      margin-right:10px; 
-      height:8px;
-      width:10px;
+  margin-top:26px;
+  position:absolute;
+  right:0;
+  margin-right:10px; 
+  height:8px;
+  width:10px;
 }
 
 div.collapse {
@@ -102,9 +99,8 @@ div.collapse:hover svg > path:nth-of-type(2){
   flex-direction:column;
   margin-top:60px;
   height:calc(100% - 100px);
-  width:100%;
-
-
+  width:100%; 
+  overflow-y:auto;
 }
 
 .workspace .title {
@@ -183,6 +179,7 @@ div.collapse:hover svg > path:nth-of-type(2){
   background-color:#E1E1E0;
    cursor:pointer;
 }
+
 
 
 
