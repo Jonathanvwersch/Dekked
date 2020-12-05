@@ -5,18 +5,16 @@ import "./NavBar.css";
 
 function NavBar() {
   const [folderBlocks, setFolderBlocks] = useState([]);
-  const [sideBar, setSideBar] = useState(true);
 
-  const deleteFolderBlock = (index) => {
-    let folderBlocksArray = [...folderBlocks];
-    folderBlocksArray.splice(index, 1);
-    setFolderBlocks(folderBlocksArray);
+  const deleteFolderBlock = (id) => {
+    const array = folderBlocks.filter((item) => item.id !== id);
+    setFolderBlocks(array);
   };
 
   const addFolder = () => {
     const newFolderBlock = {
       type: "folder",
-      name: "Untitled",
+      id: Math.random(),
     };
     setFolderBlocks((folderBlocks) => [...folderBlocks, newFolderBlock]);
   };
@@ -73,13 +71,13 @@ function NavBar() {
                   <p className="p2">Workspace</p>
                 </div>
                 <div className="folderBlocks">
-                  {folderBlocks.map((data, index) => (
-                    <div key={index} className="folderBlock">
+                  {folderBlocks.map((item, index) => (
+                    <div key={item.id} className="folderBlock">
                       <DropBlock
-                        type={data.type}
-                        name={data.name}
-                        key={index}
-                        handleDelete={() => deleteFolderBlock(index)}
+                        type={item.type}
+                        key={item.id}
+                        id={item.id}
+                        handleDelete={() => deleteFolderBlock(item.id)}
                       />
                     </div>
                   ))}
@@ -101,6 +99,6 @@ function NavBar() {
 
 export default NavBar;
 
-{
-  /* <Icons.MdMenu className="icon hamburger" onClick={showSideBar} />; */
-}
+// {
+//   /* <Icons.MdMenu className="icon hamburger" onClick={showSideBar} />; */
+// }

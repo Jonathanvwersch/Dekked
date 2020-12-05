@@ -3,6 +3,13 @@ html.dekked-html, body.dekked-body, #dekked-app {
     position:relative;
   overflow:hidden;
   background-color:transparent;
+  
+}
+::selection {
+  background: #CCDDE8; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #CCDDE8;  /* Gecko Browsers */
 }
 
 * {
