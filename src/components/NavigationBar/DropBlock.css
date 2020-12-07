@@ -1,16 +1,3 @@
-.icon.folder {
-   content:url("../../custom-icons/folder.svg");
-}
-
-.icon.binder {
-   content:url("../../custom-icons/binder.svg");
-}
-
-.icon.studyset {
-   content:url("../../custom-icons/studyset.svg");
-}
-
-
 .DropBlock {
     position:relative;
     display:flex;
@@ -21,11 +8,6 @@
     height:30px;
 
 }
-
-.DropBlock img.icon{
-    margin-right:8px;
-}
-
 .DropBlock .icon{
     margin-right:8px;
 }
@@ -78,7 +60,6 @@
 
 .DropBlock .DropdownMenu {
      background:#E1E1E0;
+     overflow-y:hidden;
 }
-
-
 

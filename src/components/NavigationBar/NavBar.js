@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./NavBar.css";
+import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
 
 function NavBar() {
   const [folderBlocks, setFolderBlocks] = useState([]);
@@ -44,26 +45,12 @@ function NavBar() {
                     <p className="p1">J</p>
                   </div>
                   <p className="p3">Jane Doe</p>
-                  <Icons.MdArrowDropDown className="icon dropDownArrow down" />
+                  <div className="icon dropDownArrow down">
+                    <Icons.MdArrowDropDown />
+                  </div>
                 </div>
-                <div className="collapse">
-                  <svg
-                    className="icon chevronDoubleLeft"
-                    width="11"
-                    height="8"
-                    viewBox="0 0 11 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.2735 7.06L2.22016 4L5.2735 0.94L4.3335 0L0.333496 4L4.3335 8L5.2735 7.06Z"
-                      fill="#2C2C31"
-                    />
-                    <path
-                      d="M10.2134 7.06L7.1601 4L10.2134 0.94L9.27344 0L5.27344 4L9.27344 8L10.2134 7.06Z"
-                      fill="#2C2C31"
-                    />
-                  </svg>
+                <div className="icon chevronDoubleLeft">
+                  <ChevronDoubleLeftIcon />
                 </div>
               </div>
               <div className="workspace">
@@ -85,7 +72,9 @@ function NavBar() {
               </div>
               <div className="sidebar-bottom">
                 <div onClick={addFolder} className="AddBlock">
-                  <Icons.MdAdd className="icon plus" />
+                  <div className="icon plus">
+                    <Icons.MdAdd />
+                  </div>
                   <p className="p1">Add folder</p>
                 </div>
               </div>

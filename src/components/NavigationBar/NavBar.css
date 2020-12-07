@@ -30,22 +30,11 @@
   border-right: 1.5px solid #DEDEDE;
 
 }
-.icon.doubleChevronLeft{
-    fill:orange;
-}
-
 
 .icon:hover {
   color: #00B6CE;
   cursor:pointer;
 }
-
-.icon.hamburger{
-   height:20px;
-   width:20px;
-   margin: 22px 0px 0px 16px; 
-}
-
 .sidebar-top {
   position:absolute;
   display:flex;
@@ -80,25 +69,29 @@
 
 }
 
-svg.icon.chevronDoubleLeft {
-  margin-top:26px;
+.dekked-sidebar-container .icon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:16px;
+  width:16px;
+  
+}
+
+.sidebar-top .icon.chevronDoubleLeft
+{
   position:absolute;
   right:0;
   margin-right:10px; 
-  height:8px;
-  width:10px;
+  margin-top:22px;
+
 }
 
-div.collapse {
-  height:16px;
-  width:16px;
-}
-
-div.collapse:hover svg > path:nth-of-type(1){
+.sidebar-top .icon.chevronDoubleLeft:hover path:nth-of-type(1){
   fill: #00B6CE;
 }
 
-div.collapse:hover svg > path:nth-of-type(2){
+.sidebar-top .icon.chevronDoubleLeft:hover path:nth-of-type(2){
   fill: #00B6CE;
 }
 
@@ -128,7 +121,7 @@ div.collapse:hover svg > path:nth-of-type(2){
  
 }
 
-.AddBlock {
+.AddBlock{
   position:absolute;
   display:flex;
   justify-content:flex-start;
@@ -140,20 +133,22 @@ div.collapse:hover svg > path:nth-of-type(2){
   background:#f5f5f4;
 }
 
-.AddBlock .icon.plus{
-  margin: 8px 8px 8px 16px;
+.sidebar-bottom .icon.plus{
+  margin:8px 16px;
 
 }
 
-.AddBlock .icon.plus:hover{
+.sidebar-bottom .icon.plus:hover{
   color:#2C2C31;
  
 }
 
 .AddBlock:hover{
   background-color:#E1E1E0;
-   cursor:pointer;
+  cursor:pointer;
 }
+
+
 
 
 

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Icons from "react-icons/md";
 import "./DropBlock.css";
+import ColourPicker from "./ColourPicker";
 import Block from "../General/Block";
 import { AddBinderData } from "./AddBinderData";
 import Portal from "../General/Portal";
+import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
+import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 
 function DropBlock({ type, handleDelete, id }) {
   const ref = useRef(null);
@@ -11,6 +14,42 @@ function DropBlock({ type, handleDelete, id }) {
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [height, setHeight] = useState(window.innerHeight);
   const [editableName, setEditableName] = useState(false);
+  const [colourPicker, setColourPicker] = useState(false);
+  const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState();
+  const [iconColour, setIconColour] = useState("#2C2C31");
+  const heightOfDropdownMenu = 30 * AddBinderData.length;
+  const heightOfSketchPicker = 220;
+
+  const positionComponents = (e, itemHeight) => {
+    const rect = e.target.getBoundingClientRect();
+    let bottomValue = height - rect.y;
+    let topValue = rect.y + window.scrollY;
+    setYPositionofDropdownMenu(topValue);
+
+    if (
+      bottomValue < 1.1 * heightOfSketchPicker &&
+      topValue > heightOfSketchPicker
+    )
+      setYPositionofDropdownMenu(topValue - heightOfSketchPicker - 10);
+
+    if (bottomValue < 1.4 * itemHeight && topValue > itemHeight) {
+      topValue = rect.y - itemHeight - 10;
+    }
+
+    setCoords({
+      left: rect.x + rect.width / 2,
+      top: topValue,
+    });
+  };
+
+  const handleColourPicker = () => {
+    const newCoords = {
+      left: coords.left,
+      top: yPositionOfDropdownMenu,
+    };
+    setCoords(newCoords);
+    setColourPicker((prevState) => !prevState);
+  };
 
   const handleRename = () => {
     setEditableName((prevValue) => !prevValue);
@@ -20,18 +59,26 @@ function DropBlock({ type, handleDelete, id }) {
     }, 0);
   };
 
+  const handleDropdownMenu = (e) => {
+    positionComponents(e, heightOfDropdownMenu);
+    setDropdownMenu((prevState) => !prevState);
+  };
+
   useEffect(() => {
     const updateEditableName = (e) => {
-      document.querySelector(`p[id="${id}"]`).addEventListener(
-        "blur",
-        function (e) {
-          this.scrollLeft = "0px";
-        },
-        true
-      );
+      let fileName = document.querySelector(`p[id="${id}"]`);
+      if (fileName) {
+        fileName.addEventListener(
+          "blur",
+          function (e) {
+            this.scrollLeft = "0px";
+          },
+          true
+        );
+      }
       if (editableName === true) {
         if (!ref.current.contains(e.target)) {
-          setEditableName(false);
+          setEditableName((prevValue) => !prevValue);
         }
       }
     };
@@ -58,14 +105,20 @@ function DropBlock({ type, handleDelete, id }) {
       <div className="icon dropDownArrow">
         <Icons.MdArrowDropDown />
       </div>
-      <img className={`icon ${type}`} alt={type}></img>
+      <div className={`icon ${type}`}>
+        {type === "folder" ? (
+          <FolderIcon fill={iconColour} />
+        ) : (
+          <BinderIcon stroke={iconColour} />
+        )}
+      </div>
       <p
         ref={ref}
         id={id}
         spellCheck="false"
         onKeyPress={(e) => {
           if (e.key === "Enter") {
-            setEditableName(false);
+            e.preventDefault();
           }
         }}
         contentEditable={editableName}
@@ -74,18 +127,7 @@ function DropBlock({ type, handleDelete, id }) {
       <Icons.MdMoreHoriz
         className="icon dots"
         onClick={(e) => {
-          const rect = e.target.getBoundingClientRect();
-          let bottomValue = height - rect.y;
-          let topValue = rect.y + window.scrollY;
-
-          if (bottomValue < 185) topValue = rect.y - 135;
-
-          setCoords({
-            left: rect.x + rect.width / 2,
-            top: topValue,
-            bottom: bottomValue,
-          });
-          setDropdownMenu((prevState) => !prevState);
+          handleDropdownMenu(e);
         }}
       ></Icons.MdMoreHoriz>
       {dropdownMenu ? (
@@ -103,12 +145,26 @@ function DropBlock({ type, handleDelete, id }) {
                 <Block
                   handleDelete={handleDelete}
                   handleRename={handleRename}
+                  handleColourPicker={handleColourPicker}
                   item={item}
                   id={`${item} Block ${index}`}
                   key={`${item} Block ${index}`}
                 />
               );
             })}
+          </div>
+        </Portal>
+      ) : null}
+      {colourPicker ? (
+        <Portal state={colourPicker} handleState={handleColourPicker}>
+          <div
+            style={{ ...styles.popover, ...coords }}
+            className="colourPicker"
+          >
+            <ColourPicker
+              iconColour={iconColour}
+              setIconColour={setIconColour}
+            ></ColourPicker>
           </div>
         </Portal>
       ) : null}

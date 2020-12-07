@@ -100,4 +100,11 @@ color: #2C2C31;
     height:100%;
 }
 
+.icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:16px;
+    height:16px;
+}
 
