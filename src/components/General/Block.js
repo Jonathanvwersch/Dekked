@@ -1,10 +1,11 @@
 import React from "react";
 import "./Block.css"
 
-const Block = ({item, handleDelete, handleRename, handleColourPicker}) => {
+const Block = ({item, handleDelete, handleRename, handleColourPicker, handleAddBinder}) => {
     let buttonClick;
     switch (item.action) {
         case "Add binder":
+            buttonClick=handleAddBinder
             break;
 
         case "Icon colour":

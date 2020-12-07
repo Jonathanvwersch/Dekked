@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import {createStore} from 'redux'
 
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

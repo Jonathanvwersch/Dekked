@@ -6,18 +6,36 @@ import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chev
 
 function NavBar() {
   const [folderBlocks, setFolderBlocks] = useState([]);
-
-  const deleteFolderBlock = (id) => {
-    const array = folderBlocks.filter((item) => item.id !== id);
-    setFolderBlocks(array);
-  };
+  const [showBinderBlocks, setShowBinderBlocks] = useState(false);
 
   const addFolder = () => {
     const newFolderBlock = {
       type: "folder",
       id: Math.random(),
+      binders: [],
     };
     setFolderBlocks((folderBlocks) => [...folderBlocks, newFolderBlock]);
+  };
+
+  const deleteBlock = (id, type, folderIndex, binderIndex) => {
+    let array = folderBlocks.filter((folderBlock) => folderBlock.id !== id);
+    if (type === "binder") {
+      return;
+    }
+
+    setFolderBlocks(array);
+  };
+
+  const addBinderBlock = (index) => {
+    const newBinderBlock = {
+      type: "binder",
+      id: Math.random(),
+      studySet: [],
+    };
+    const newFolderBlocksArray = folderBlocks.slice(); //copy the array
+    newFolderBlocksArray[index].binders.push(newBinderBlock);
+    setFolderBlocks(newFolderBlocksArray);
+    setShowBinderBlocks((prevState) => !prevState);
   };
 
   return (
@@ -58,14 +76,36 @@ function NavBar() {
                   <p className="p2">Workspace</p>
                 </div>
                 <div className="folderBlocks">
-                  {folderBlocks.map((item, index) => (
-                    <div key={item.id} className="folderBlock">
+                  {folderBlocks.map((folder, folderIndex) => (
+                    <div key={folder.id} className="folderBlock">
                       <DropBlock
-                        type={item.type}
-                        key={item.id}
-                        id={item.id}
-                        handleDelete={() => deleteFolderBlock(item.id)}
+                        type={folder.type}
+                        key={folder.id}
+                        id={folder.id}
+                        handleDelete={() => deleteBlock(folder.id, folder.type)}
+                        handleAddBinder={() => addBinderBlock(folderIndex)}
+                        setShowBinderBlocks={setShowBinderBlocks}
                       />
+                      <div></div>
+                      {showBinderBlocks
+                        ? folder.binders.map((binder, binderIndex) => (
+                            <div className="binderBlock">
+                              <DropBlock
+                                type={binder.type}
+                                key={binder.id}
+                                id={binder.id}
+                                handleDelete={() =>
+                                  deleteBlock(
+                                    binder.id,
+                                    binder.type,
+                                    folderIndex,
+                                    binderIndex
+                                  )
+                                }
+                              />
+                            </div>
+                          ))
+                        : null}
                     </div>
                   ))}
                 </div>
@@ -75,7 +115,9 @@ function NavBar() {
                   <div className="icon plus">
                     <Icons.MdAdd />
                   </div>
-                  <p className="p1">Add folder</p>
+                  <div className="addFolder">
+                    <p className="p1">Add folder</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,7 +129,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-// {
-//   /* <Icons.MdMenu className="icon hamburger" onClick={showSideBar} />; */
-// }

@@ -11,11 +11,15 @@
 .DropBlock .icon{
     margin-right:8px;
 }
+.DropBlock .icon.dropDownArrow.down{
+     margin-left:16px;
+}
 
-.DropBlock .icon.dropDownArrow{
+.DropBlock .icon.dropDownArrow.right{
     margin-left:16px;
     transform:rotate(-90deg);  
 }
+
 
 .DropBlock .icon.dots{
     position:absolute;

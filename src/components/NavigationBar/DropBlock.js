@@ -3,13 +3,18 @@ import * as Icons from "react-icons/md";
 import "./DropBlock.css";
 import ColourPicker from "./ColourPicker";
 import Block from "../General/Block";
-import { AddBinderData } from "./AddBinderData";
+import { FolderData, BinderData, StudySetData } from "./DropdownMenuData";
 import Portal from "../General/Portal";
 import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 
-function DropBlock({ type, handleDelete, id }) {
-  const ref = useRef(null);
+function DropBlock({
+  type,
+  handleDelete,
+  handleAddBinder,
+  id,
+  setShowBinderBlocks,
+}) {
   const [coords, setCoords] = useState({});
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [height, setHeight] = useState(window.innerHeight);
@@ -17,7 +22,11 @@ function DropBlock({ type, handleDelete, id }) {
   const [colourPicker, setColourPicker] = useState(false);
   const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState();
   const [iconColour, setIconColour] = useState("#2C2C31");
-  const heightOfDropdownMenu = 30 * AddBinderData.length;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const ref = useRef(null);
+
+  const heightOfDropdownMenu = 30 * FolderData.length;
   const heightOfSketchPicker = 220;
 
   const positionComponents = (e, itemHeight) => {
@@ -40,6 +49,10 @@ function DropBlock({ type, handleDelete, id }) {
       left: rect.x + rect.width / 2,
       top: topValue,
     });
+  };
+
+  const handleIsOpen = () => {
+    setIsOpen((prevState) => !prevState);
   };
 
   const handleColourPicker = () => {
@@ -102,7 +115,15 @@ function DropBlock({ type, handleDelete, id }) {
 
   return (
     <div className="DropBlock">
-      <div className="icon dropDownArrow">
+      <div
+        className={
+          isOpen ? "icon dropDownArrow down" : "icon dropDownArrow right"
+        }
+        onClick={() => {
+          setShowBinderBlocks((prevState) => !prevState);
+          handleIsOpen();
+        }}
+      >
         <Icons.MdArrowDropDown />
       </div>
       <div className={`icon ${type}`}>
@@ -140,12 +161,13 @@ function DropBlock({ type, handleDelete, id }) {
             className="DropdownMenu"
             style={{ ...styles.popover, ...coords }}
           >
-            {AddBinderData.map((item, index) => {
+            {FolderData.map((item, index) => {
               return (
                 <Block
                   handleDelete={handleDelete}
                   handleRename={handleRename}
                   handleColourPicker={handleColourPicker}
+                  handleAddBinder={handleAddBinder}
                   item={item}
                   id={`${item} Block ${index}`}
                   key={`${item} Block ${index}`}
