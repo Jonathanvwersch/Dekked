@@ -27,7 +27,11 @@
 }
 
 .DropBlock .icon.studySet.dropDownArrow.right{
-     margin-left:32px;
+    display:none;
+}
+
+.DropBlock .icon.studySet{
+    margin-left:56px;
 }
 
 .DropBlock .icon.dots{

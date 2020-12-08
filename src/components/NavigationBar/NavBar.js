@@ -13,8 +13,17 @@ function NavBar() {
       type: "folder",
       id: Math.random(),
       binders: [],
+      isOpen: false,
     };
     setFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
+  };
+
+  const openFolderBlock = (folderIndex) => {
+    const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[folderIndex].isOpen = !newFolderBlocksArray[
+      folderIndex
+    ].isOpen;
+    setFolderBlocks(newFolderBlocksArray);
   };
 
   const addBinder = (folderIndex) => {
@@ -22,10 +31,19 @@ function NavBar() {
       type: "binder",
       id: Math.random(),
       studySets: [],
+      isOpen: false,
     };
-
     const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[folderIndex].isOpen = true;
     newFolderBlocksArray[folderIndex].binders.push(newBinder);
+    setFolderBlocks(newFolderBlocksArray);
+  };
+
+  const openBinderBlock = (folderIndex, binderIndex) => {
+    const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[folderIndex].binders[
+      binderIndex
+    ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
     setFolderBlocks(newFolderBlocksArray);
   };
 
@@ -38,13 +56,24 @@ function NavBar() {
     newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
       newStudySet
     );
+
+    newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
     setFolderBlocks(newFolderBlocksArray);
   };
 
-  const deleteBlock = (id, type, folderIndex, binderIndex) => {
-    let array = folderBlocks.filter((folderBlock) => folderBlock.id !== id);
-    if (type === "binder") {
-      return;
+  const deleteBlock = (id, type, folderIndex, binderIndex, studySetIndex) => {
+    let array;
+    if (type === "folder")
+      array = folderBlocks.filter((folderBlock) => folderBlock.id !== id);
+    else if (type === "binder") {
+      array = folderBlocks.slice();
+      array[folderIndex].binders.splice(binderIndex, 1);
+    } else if (type === "studySet") {
+      array = folderBlocks.slice();
+      array[folderIndex].binders[binderIndex].studySets.splice(
+        studySetIndex,
+        1
+      );
     }
 
     setFolderBlocks(array);
@@ -96,33 +125,63 @@ function NavBar() {
                         id={folder.id}
                         handleDelete={() => deleteBlock(folder.id, folder.type)}
                         handleAddItem={() => addBinder(folderIndex)}
+                        isExpanded={() => openFolderBlock(folderIndex)}
                         dropdownMenudata={FolderData}
-
                       />
                       <div></div>
-                      {folder.binders.map((binder, binderIndex) => (
-                        <div key={binder.id} className="binderBlock">
-                          <DropBlock
-                            type={binder.type}
-                            key={binder.id}
-                            id={binder.id}
-                            handleAddItem={() =>
-                              addStudySet(folderIndex, binderIndex)
-                            }
-                            dropdownMenudata={BinderData}
-                          />
-                          {binder.studySets.map((studySet, studySetIndex) => (
-                            <div key={studySet.id} className="studySetBlock">
+                      {folder.isOpen
+                        ? folder.binders.map((binder, binderIndex) => (
+                            <div key={binder.id} className="binderBlock">
                               <DropBlock
-                                type={studySet.type}
-                                key={studySet.id}
-                                id={studySet.id}
-                                dropdownMenudata={StudySetData}
+                                type={binder.type}
+                                key={binder.id}
+                                id={binder.id}
+                                handleDelete={() =>
+                                  deleteBlock(
+                                    binder.id,
+                                    binder.type,
+                                    folderIndex,
+                                    binderIndex
+                                  )
+                                }
+                                folderIndex={folderIndex}
+                                handleAddItem={() =>
+                                  addStudySet(folderIndex, binderIndex)
+                                }
+                                isExpanded={() =>
+                                  openBinderBlock(folderIndex, binderIndex)
+                                }
+                                dropdownMenudata={BinderData}
                               />
+                              {binder.isOpen
+                                ? binder.studySets.map(
+                                    (studySet, studySetIndex) => (
+                                      <div
+                                        key={studySet.id}
+                                        className="studySetBlock"
+                                      >
+                                        <DropBlock
+                                          type={studySet.type}
+                                          key={studySet.id}
+                                          id={studySet.id}
+                                          handleDelete={() =>
+                                            deleteBlock(
+                                              studySet.id,
+                                              studySet.type,
+                                              folderIndex,
+                                              binderIndex,
+                                              studySetIndex
+                                            )
+                                          }
+                                          dropdownMenudata={StudySetData}
+                                        />
+                                      </div>
+                                    )
+                                  )
+                                : null}
                             </div>
-                          ))}
-                        </div>
-                      ))}
+                          ))
+                        : null}
                     </div>
                   ))}
                 </div>

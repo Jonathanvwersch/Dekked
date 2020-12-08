@@ -10,7 +10,6 @@ const ColourPicker = ({ iconColour, setIconColour }) => {
   const handleChange = (colour) => {
     setColour({ background: colour });
     setIconColour(colour.hex);
-    console.log(colour.hex);
   };
 
   const defaultColors = [

@@ -13,6 +13,7 @@ function DropBlock({
   handleDelete,
   handleAddItem,
   id,
+  isExpanded,
   dropdownMenudata,
 }) {
   const [coords, setCoords] = useState({});
@@ -122,8 +123,8 @@ function DropBlock({
             : `icon ${type} dropDownArrow right`
         }
         onClick={() => {
-          // setShowBinderBlocks((prevState) => !prevState);
           handleIsOpen();
+          isExpanded();
         }}
       >
         {type !== "studySet" ? <Icons.MdArrowDropDown /> : null}
@@ -172,7 +173,7 @@ function DropBlock({
                   handleRename={handleRename}
                   handleColourPicker={handleColourPicker}
                   handleAddItem={handleAddItem}
-                  setDropdownArrow={setIsOpen}
+                  showDropBlocks={isExpanded}
                   item={item}
                   id={`${item} Block ${index}`}
                   key={`${item} Block ${index}`}
