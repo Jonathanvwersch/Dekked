@@ -144,7 +144,7 @@ function DropBlock({
         spellCheck="false"
         onKeyPress={(e) => {
           if (e.key === "Enter") {
-            e.preventDefault();
+            setEditableName((prevValue) => !prevValue);
           }
         }}
         contentEditable={editableName}
