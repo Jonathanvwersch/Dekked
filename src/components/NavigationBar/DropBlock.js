@@ -174,6 +174,7 @@ function DropBlock({
                   handleColourPicker={handleColourPicker}
                   handleAddItem={handleAddItem}
                   showDropBlocks={isExpanded}
+                  setDropdownArrow={setIsOpen}
                   item={item}
                   id={`${item} Block ${index}`}
                   key={`${item} Block ${index}`}

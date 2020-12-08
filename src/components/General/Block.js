@@ -1,15 +1,15 @@
 import React from "react";
 import "./Block.css"
 
-const Block = ({item, handleDelete, handleRename, handleColourPicker, handleAddItem}) => {
+const Block = ({item, handleDelete, handleRename, handleColourPicker, handleAddItem, setDropdownArrow}) => {
     let buttonClick;
     switch (item.action) {
         case "Add binder":
-            buttonClick = () => {handleAddItem()}
+            buttonClick = () => {handleAddItem(); setDropdownArrow(true)}
             break;
 
         case "Add study set":
-            buttonClick = () => {handleAddItem()}
+            buttonClick = () => {handleAddItem(); setDropdownArrow(true)}
             break;
             
         case "Icon colour":
