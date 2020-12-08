@@ -5,9 +5,6 @@ const Block = ({item, handleDelete, handleRename, handleColourPicker, handleAddI
     let buttonClick;
     switch (item.action) {
         case "Add binder":
-            buttonClick = () => {handleAddItem(); setDropdownArrow(true)}
-            break;
-
         case "Add study set":
             buttonClick = () => {handleAddItem(); setDropdownArrow(true)}
             break;
@@ -28,7 +25,7 @@ const Block = ({item, handleDelete, handleRename, handleColourPicker, handleAddI
             break;
     }
     return (
-    <div onClick={buttonClick}className="Block">
+    <div onClick={buttonClick} className="Block">
         {item.icon}
         <p className="p2">{item.action}</p>
     </div>

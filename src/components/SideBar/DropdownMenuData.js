@@ -3,10 +3,16 @@ import * as Icons from "react-icons/md";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
 
+// declare global variables
+const ADDBINDER = "Add binder"
+const ADDSTUDYSET = "Add study set"
+const ICONRECOLOUR = "Icon colour"
+const RENAME = "Rename"
+const DELETE = "Delete"
 
 export const FolderData = [
   {
-    action: "Add binder",
+    action: ADDBINDER,
     icon: (
       <div className="icon binder">
         <BinderIcon stroke="#2C2C31" />
@@ -15,7 +21,7 @@ export const FolderData = [
   },
 
   {
-    action: "Icon colour",
+    action: ICONRECOLOUR,
     icon: (
       <div className="icon colourChange">
         <Icons.MdFormatPaint />
@@ -23,7 +29,7 @@ export const FolderData = [
     ),
   },
   {
-    action: "Rename",
+    action: RENAME,
     icon: (
       <div className="icon rename">
         <Icons.MdModeEdit />
@@ -31,7 +37,7 @@ export const FolderData = [
     ),
   },
   {
-    action: "Delete",
+    action: DELETE,
     icon: (
       <div className="icon delete">
         <Icons.MdDeleteForever />
@@ -42,7 +48,7 @@ export const FolderData = [
 
 export const BinderData = [
   {
-    action: "Add study set",
+    action: ADDSTUDYSET,
     icon: (
       <div className="icon studySet">
         <StudySetIcon stroke="#2C2C31" />
@@ -51,7 +57,7 @@ export const BinderData = [
   },
 
   {
-    action: "Icon colour",
+    action: ICONRECOLOUR,
     icon: (
       <div className="icon colourChange">
         <Icons.MdFormatPaint />
@@ -59,7 +65,7 @@ export const BinderData = [
     ),
   },
   {
-    action: "Rename",
+    action: RENAME,
     icon: (
       <div className="icon rename">
         <Icons.MdModeEdit />
@@ -67,7 +73,7 @@ export const BinderData = [
     ),
   },
   {
-    action: "Delete",
+    action: DELETE,
     icon: (
       <div className="icon delete">
         <Icons.MdDeleteForever />
@@ -78,7 +84,7 @@ export const BinderData = [
 
 export const StudySetData = [
   {
-    action: "Icon colour",
+    action: ICONRECOLOUR,
     icon: (
       <div className="icon colourChange">
         <Icons.MdFormatPaint />
@@ -86,7 +92,7 @@ export const StudySetData = [
     ),
   },
   {
-    action: "Rename",
+    action: RENAME,
     icon: (
       <div className="icon rename">
         <Icons.MdModeEdit />
@@ -94,7 +100,7 @@ export const StudySetData = [
     ),
   },
   {
-    action: "Delete",
+    action: DELETE,
     icon: (
       <div className="icon delete">
         <Icons.MdDeleteForever />

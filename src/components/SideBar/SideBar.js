@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
-import "./NavBar.css";
+import "./SideBar.css";
 import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
 import { FolderData, BinderData, StudySetData } from "./DropdownMenuData";
 

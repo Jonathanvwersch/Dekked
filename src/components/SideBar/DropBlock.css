@@ -6,34 +6,11 @@
     flex-direction:row;
     width:100%;
     height:30px;
-
 }
+
 .DropBlock .icon{
     margin-right:8px;
 }
-.DropBlock .icon.folder.dropDownArrow.right{
-    transform:rotate(-90deg);  
-}
-.DropBlock .icon.folder.dropDownArrow{
-     margin-left:16px;
-}
-
-.DropBlock .icon.binder.dropDownArrow.right{
-     transform:rotate(-90deg); 
-}
-
-.DropBlock .icon.binder.dropDownArrow{
-     margin-left:24px;
-}
-
-.DropBlock .icon.studySet.dropDownArrow.right{
-    display:none;
-}
-
-.DropBlock .icon.studySet{
-    margin-left:56px;
-}
-
 .DropBlock .icon.dots{
     position:absolute;
     right:0;
@@ -74,8 +51,30 @@
     margin-right:28px;
 }
 
-.DropBlock .DropdownMenu {
-     background:#E1E1E0;
-     overflow-y:hidden;
+/* Style folder dropblocks */
+.DropBlock .icon.folder.dropDownArrow.right{
+    transform:rotate(-90deg);  
+}
+
+.DropBlock .icon.folder.dropDownArrow{
+     margin-left:16px;
+}
+
+/* Style binder dropblocks */
+.DropBlock .icon.binder.dropDownArrow.right{
+     transform:rotate(-90deg); 
+}
+
+.DropBlock .icon.binder.dropDownArrow{
+     margin-left:24px;
+}
+
+/* Style study set dropblocks */
+.DropBlock .icon.studySet{
+    margin-left:56px;
+}
+
+.DropBlock .icon.studySet.dropDownArrow{
+    display:none;
 }
 

@@ -16,33 +16,33 @@ function DropBlock({
   isExpanded,
   dropdownMenudata,
 }) {
-  const [coords, setCoords] = useState({});
-  const [dropdownMenu, setDropdownMenu] = useState(false);
-  const [height, setHeight] = useState(window.innerHeight);
-  const [editableName, setEditableName] = useState(false);
-  const [colourPicker, setColourPicker] = useState(false);
-  const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState();
-  const [iconColour, setIconColour] = useState("#2C2C31");
-  const [isOpen, setIsOpen] = useState(false);
+  const [coords, setCoords] = useState({}); // Set mouse coordinates
+  const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
+  const [height, setHeight] = useState(window.innerHeight); // Get height of window at all times for positioning portal components
+  const [editableName, setEditableName] = useState(false); // Set name of dropblock to be editable so that you can rename block
+  const [colourPicker, setColourPicker] = useState(false); // Set visibility of colour picker component
+  const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState(); // Set y position of dropdown menu
+  const [iconColour, setIconColour] = useState("#2C2C31"); // Set colour of icons (necessary to change colours using colour picker)
+  const [isOpen, setIsOpen] = useState(false); // Set dropdown arrows (open is a down arrow, closed is a right arrow)
 
-  const ref = useRef(null);
+  const ref = useRef(null); // Reference name of block to deactivate focus after renaming block
 
-  const heightOfDropdownMenu = 30 * dropdownMenudata.length;
-  const heightOfSketchPicker = 220;
+  const heightOfDropdownMenu = 30 * dropdownMenudata.length; // Value is necessary to position dropdown menu based on mouse coordinates
+  const heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
 
+  // Position portal components based on mouse coordinates
   const positionComponents = (e, itemHeight) => {
     const rect = e.target.getBoundingClientRect();
-    let bottomValue = height - rect.y;
-    let topValue = rect.y + window.scrollY;
+    let bottomValue = height - rect.y; // distance from mouse click to bottom of window
+    let topValue = rect.y + window.scrollY; // distance from mouse click to top of window
     setYPositionofDropdownMenu(topValue);
 
     if (
-      bottomValue < 1.1 * heightOfSketchPicker &&
-      topValue > heightOfSketchPicker
+      bottomValue < 1.1 * heightOfColourPicker &&
+      topValue > heightOfColourPicker
     )
-      setYPositionofDropdownMenu(topValue - heightOfSketchPicker - 10);
-
-    if (bottomValue < 1.4 * itemHeight && topValue > itemHeight) {
+      setYPositionofDropdownMenu(topValue - heightOfColourPicker - 10);
+    else if (bottomValue < 1.4 * itemHeight && topValue > itemHeight) {
       topValue = rect.y - itemHeight - 10;
     }
 
@@ -52,6 +52,7 @@ function DropBlock({
     });
   };
 
+  // Set orientation of dropdown arrow
   const handleIsOpen = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -67,6 +68,7 @@ function DropBlock({
 
   const handleRename = () => {
     setEditableName((prevValue) => !prevValue);
+    // Focus in on name of dropblock when being renamed (i.e. show text cursor)
     var div = document.querySelector(`p[id="${id}"]`);
     setTimeout(function () {
       div.focus();
@@ -80,6 +82,7 @@ function DropBlock({
 
   useEffect(() => {
     const updateEditableName = (e) => {
+      // When user clicks away from name, make sure the beginning of the name is shown
       let fileName = document.querySelector(`p[id="${id}"]`);
       if (fileName) {
         fileName.addEventListener(
@@ -90,6 +93,7 @@ function DropBlock({
           true
         );
       }
+      // If user clicks outside of name of dropblock, turn off editability of name
       if (editableName === true) {
         if (!ref.current.contains(e.target)) {
           setEditableName((prevValue) => !prevValue);
@@ -103,6 +107,7 @@ function DropBlock({
     };
   }, [editableName]);
 
+  // Get window dimensions on each rerender to calculate position of portal components
   useEffect(() => {
     const updateWindowDimensions = () => {
       const newHeight = window.innerHeight;

@@ -1,3 +1,5 @@
+/* General stylings */
+
 .dekked-sidebar-container {
   flex-grow:0;
   flex-shrink:0;
@@ -28,13 +30,22 @@
   opacity:1;
   transition: box-shadow 300ms ease-in 0s;
   border-right: 1.5px solid #DEDEDE;
-
 }
 
-.icon:hover {
+.dekked-sidebar-container .icon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:16px;
+  width:16px;
+}
+
+.dekked-sidebar-container .icon:hover {
   color: #00B6CE;
   cursor:pointer;
 }
+
+/* Style Top Profile Section of Sidebar */
 .sidebar-top {
   position:absolute;
   display:flex;
@@ -66,16 +77,6 @@
 
 .sidebar-top .profile .avatar .p1{
   color:white;
-
-}
-
-.dekked-sidebar-container .icon {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:16px;
-  width:16px;
-  
 }
 
 .sidebar-top .icon.chevronDoubleLeft
@@ -84,7 +85,6 @@
   right:0;
   margin-right:10px; 
   margin-top:22px;
-
 }
 
 .sidebar-top .icon.chevronDoubleLeft:hover path:nth-of-type(1){
@@ -99,6 +99,9 @@
 {
   margin-left:12px;
 }
+
+
+/* Style Workspace Section of Sidebar */
 
 .workspace{
   display:flex;
@@ -118,45 +121,6 @@
   color:#989796;
   padding-left:16px;
   margin-top:8px;
- 
-}
-
-.AddBlock{
-  position:absolute;
-  display:flex;
-  justify-content:flex-start;
-  width:100%;
-  height:40px;
-  place-items:center;
-  border-top:1.5px solid #DEDEDE;
-  background:#f5f5f4;
-}
-
-.sidebar-bottom .icon.plus{
-  margin-right:16px;
-  margin-left:16px;
-
-}
-
-.sidebar-bottom .addFolder{
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-}
-
-.sidebar-bottom .icon.plus:hover{
-  color:#2C2C31;
- 
-}
-
-.AddBlock:hover{
-  background-color:#E1E1E0;
-  cursor:pointer;
-}
-.AddBlock:active {
-    background:#D8D8D7;
 }
 
 .noBinders {
@@ -187,6 +151,46 @@
   color:#989796;
   margin-left:48px;  
 }
+
+/* Style Bottom Section of Sidebar */
+
+.AddBlock{
+  position:absolute;
+  display:flex;
+  justify-content:flex-start;
+  width:100%;
+  height:40px;
+  place-items:center;
+  border-top:1.5px solid #DEDEDE;
+  background:#f5f5f4;
+}
+
+.sidebar-bottom .icon.plus{
+  margin-right:16px;
+  margin-left:16px;
+}
+
+.sidebar-bottom .addFolder{
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.sidebar-bottom .icon.plus:hover{
+  color:#2C2C31;
+}
+
+.AddBlock:hover{
+  background-color:#E1E1E0;
+  cursor:pointer;
+}
+
+.AddBlock:active {
+  background:#D8D8D7;
+}
+
+
 
 
 

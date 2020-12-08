@@ -1,3 +1,5 @@
+/* Overlay container used to render all popovers and modals */
+
 import React from "react";
 import { createPortal } from "react-dom";
 
