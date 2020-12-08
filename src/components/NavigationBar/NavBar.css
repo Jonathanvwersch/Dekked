@@ -155,7 +155,9 @@
   background-color:#E1E1E0;
   cursor:pointer;
 }
-
+.AddBlock:active {
+    background:#D8D8D7;
+}
 
 
 

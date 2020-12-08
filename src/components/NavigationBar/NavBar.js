@@ -3,18 +3,42 @@ import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./NavBar.css";
 import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
+import { FolderData, BinderData, StudySetData } from "./DropdownMenuData";
 
 function NavBar() {
   const [folderBlocks, setFolderBlocks] = useState([]);
-  const [showBinderBlocks, setShowBinderBlocks] = useState(false);
 
   const addFolder = () => {
-    const newFolderBlock = {
+    const newFolder = {
       type: "folder",
       id: Math.random(),
       binders: [],
     };
-    setFolderBlocks((folderBlocks) => [...folderBlocks, newFolderBlock]);
+    setFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
+  };
+
+  const addBinder = (folderIndex) => {
+    const newBinder = {
+      type: "binder",
+      id: Math.random(),
+      studySets: [],
+    };
+
+    const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[folderIndex].binders.push(newBinder);
+    setFolderBlocks(newFolderBlocksArray);
+  };
+
+  const addStudySet = (folderIndex, binderIndex) => {
+    const newStudySet = {
+      type: "studySet",
+      id: Math.random(),
+    };
+    const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
+      newStudySet
+    );
+    setFolderBlocks(newFolderBlocksArray);
   };
 
   const deleteBlock = (id, type, folderIndex, binderIndex) => {
@@ -24,18 +48,6 @@ function NavBar() {
     }
 
     setFolderBlocks(array);
-  };
-
-  const addBinderBlock = (index) => {
-    const newBinderBlock = {
-      type: "binder",
-      id: Math.random(),
-      studySet: [],
-    };
-    const newFolderBlocksArray = folderBlocks.slice(); //copy the array
-    newFolderBlocksArray[index].binders.push(newBinderBlock);
-    setFolderBlocks(newFolderBlocksArray);
-    setShowBinderBlocks((prevState) => !prevState);
   };
 
   return (
@@ -83,29 +95,34 @@ function NavBar() {
                         key={folder.id}
                         id={folder.id}
                         handleDelete={() => deleteBlock(folder.id, folder.type)}
-                        handleAddBinder={() => addBinderBlock(folderIndex)}
-                        setShowBinderBlocks={setShowBinderBlocks}
+                        handleAddItem={() => addBinder(folderIndex)}
+                        dropdownMenudata={FolderData}
+
                       />
                       <div></div>
-                      {showBinderBlocks
-                        ? folder.binders.map((binder, binderIndex) => (
-                            <div className="binderBlock">
+                      {folder.binders.map((binder, binderIndex) => (
+                        <div key={binder.id} className="binderBlock">
+                          <DropBlock
+                            type={binder.type}
+                            key={binder.id}
+                            id={binder.id}
+                            handleAddItem={() =>
+                              addStudySet(folderIndex, binderIndex)
+                            }
+                            dropdownMenudata={BinderData}
+                          />
+                          {binder.studySets.map((studySet, studySetIndex) => (
+                            <div key={studySet.id} className="studySetBlock">
                               <DropBlock
-                                type={binder.type}
-                                key={binder.id}
-                                id={binder.id}
-                                handleDelete={() =>
-                                  deleteBlock(
-                                    binder.id,
-                                    binder.type,
-                                    folderIndex,
-                                    binderIndex
-                                  )
-                                }
+                                type={studySet.type}
+                                key={studySet.id}
+                                id={studySet.id}
+                                dropdownMenudata={StudySetData}
                               />
                             </div>
-                          ))
-                        : null}
+                          ))}
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>

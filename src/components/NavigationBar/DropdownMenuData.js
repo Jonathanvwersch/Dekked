@@ -1,6 +1,8 @@
 import React from "react";
 import * as Icons from "react-icons/md";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
+import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
+
 
 export const FolderData = [
   {
@@ -40,10 +42,10 @@ export const FolderData = [
 
 export const BinderData = [
   {
-    action: "Add binder",
+    action: "Add study set",
     icon: (
-      <div className="icon binder">
-        <BinderIcon stroke="#2C2C31" />
+      <div className="icon studySet">
+        <StudySetIcon stroke="#2C2C31" />
       </div>
     ),
   },
@@ -75,15 +77,6 @@ export const BinderData = [
 ];
 
 export const StudySetData = [
-  {
-    action: "Add binder",
-    icon: (
-      <div className="icon binder">
-        <BinderIcon stroke="#2C2C31" />
-      </div>
-    ),
-  },
-
   {
     action: "Icon colour",
     icon: (

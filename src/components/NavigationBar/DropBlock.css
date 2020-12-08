@@ -11,22 +11,30 @@
 .DropBlock .icon{
     margin-right:8px;
 }
-.DropBlock .icon.dropDownArrow.down{
+.DropBlock .icon.folder.dropDownArrow.right{
+    transform:rotate(-90deg);  
+}
+.DropBlock .icon.folder.dropDownArrow{
      margin-left:16px;
 }
 
-.DropBlock .icon.dropDownArrow.right{
-    margin-left:16px;
-    transform:rotate(-90deg);  
+.DropBlock .icon.binder.dropDownArrow.right{
+     transform:rotate(-90deg); 
 }
 
+.DropBlock .icon.binder.dropDownArrow{
+     margin-left:24px;
+}
+
+.DropBlock .icon.studySet.dropDownArrow.right{
+     margin-left:32px;
+}
 
 .DropBlock .icon.dots{
     position:absolute;
     right:0;
     margin-right:8px;
     opacity:0;
-
 }
 
 .DropBlock p{
