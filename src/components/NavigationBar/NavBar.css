@@ -159,6 +159,38 @@
     background:#D8D8D7;
 }
 
+.noBinders {
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  color:#989796;
+  width:100%;
+  height:30px;
+}
+
+.noBinders p {
+  color:#989796;
+  margin-left:40px;
+
+}
+
+.noStudySets {
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  color:#989796;
+  width:100%;
+  height:30px;
+}
+
+.noStudySets p {
+  color:#989796;
+  margin-left:48px;  
+}
+
+
+
+
 
 
 

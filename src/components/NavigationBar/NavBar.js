@@ -128,9 +128,13 @@ function NavBar() {
                         isExpanded={() => openFolderBlock(folderIndex)}
                         dropdownMenudata={FolderData}
                       />
-                      <div></div>
-                      {folder.isOpen
-                        ? folder.binders.map((binder, binderIndex) => (
+                      {folder.isOpen ? (
+                        folder.binders.length === 0 ? (
+                          <div className="noBinders">
+                            <p className="p2">No binders inside</p>
+                          </div>
+                        ) : (
+                          folder.binders.map((binder, binderIndex) => (
                             <div key={binder.id} className="binderBlock">
                               <DropBlock
                                 type={binder.type}
@@ -153,8 +157,13 @@ function NavBar() {
                                 }
                                 dropdownMenudata={BinderData}
                               />
-                              {binder.isOpen
-                                ? binder.studySets.map(
+                              {binder.isOpen ? (
+                                binder.studySets.length === 0 ? (
+                                  <div className="noStudySets">
+                                    <p className="p2">No study sets inside</p>
+                                  </div>
+                                ) : (
+                                  binder.studySets.map(
                                     (studySet, studySetIndex) => (
                                       <div
                                         key={studySet.id}
@@ -178,10 +187,12 @@ function NavBar() {
                                       </div>
                                     )
                                   )
-                                : null}
+                                )
+                              ) : null}
                             </div>
                           ))
-                        : null}
+                        )
+                      ) : null}
                     </div>
                   ))}
                 </div>
