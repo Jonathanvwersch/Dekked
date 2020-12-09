@@ -1,9 +1,9 @@
 .colourPicker .block-picker
 {
-    color:white!important;
+    color:var(--white)!important;
     border-radius:2px!important;
     box-shadow:none!important;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: var(--drop-shadow);
 }
 
 .colourPicker .block-picker div
@@ -16,12 +16,12 @@
 }
 
 .colourPicker input{
-    color: #2C2C31!important;
+    color: var(--main-black)!important;
     font-size: 12px!important;
-    border-radius:2px!important;
-    border: 0.5px #C6C5C2!important;
+    border-radius:var(general-border-radius)!important;
+    border: 0.5px var(--grey-2) !important;
     font-family: 'DM Sans', sans-serif!important;
     -webkit-font-smoothing: antialiased!important;
     -moz-osx-font-smoothing: grayscale!important;
-    background:#f5f5f4;
+    background:var(--off-beige);
 }

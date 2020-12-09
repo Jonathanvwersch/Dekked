@@ -1,0 +1,12 @@
+.dekked-top-bar {
+    width:100%;
+    max-width:100vw;
+    height:60px;
+    opacity:1;
+    position:relative;
+}
+
+.dekked-top-bar .icon{
+    cursor:pointer;
+}
+

@@ -1,6 +1,31 @@
+* {
+    --primary-color: #00B6CE;
+    --primary-color-hover: #00A7BE;
+    --primary-color-clicked: #00A0B5;
+    --main-black: #2c2c31;
+    --white: #ffffff;
+    --white-hover: #EBEBEB;
+    --white-clicked: #E0E0E0;
+    --off-beige: #F5F5F4;
+    --off-beige-hover: #E1E1E0;
+    --off-beige-clicked: #D8D8D7;
+    --red: #DB524B;
+    --red-hover: #C94B45;
+    --red-clicked: #C14842;
+    --grey-1: #989796;
+    --grey-1-hover: #8C8B8A;
+    --grey-2: #C6C5C2;
+    --grey-2-hover: #B6B5B2;
+    --grey-3: #DEDEDE;
+    --grey-3-hover:#CCCCCC;
+    --highlight: #CCDDE8;
+    --drop-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    --general-border-radius: 2px;
+}
+
 html.dekked-html, body.dekked-body, #dekked-app {
-   height:100vh;
-    position:relative;
+  height:100vh;
+  position:relative;
   overflow:hidden;
   background-color:transparent;
   
@@ -12,50 +37,10 @@ html.dekked-html, body.dekked-body, #dekked-app {
   background: #CCDDE8;  /* Gecko Browsers */
 }
 
-* {
-    box-sizing:border-box;
-    
-}
 
 *, *:focus {
-    outline: 0;
+  outline: 0;
 }
-
-p{
-    color: #2C2C31;
-}
-
-
-p.p3 {
-    font-size:10px;
-    
-}
-
-p.p1 {
-    font-size:14px;
-}
-
-p.p2 {
-    font-size:12px;
-}
-
-svg.icon{
-  height:16px;
-  width:16px;
-color: #2C2C31; 
-}
-
-
-.DropdownMenu{
-    display: flex;
-    flex-direction: column;
-    width:220px;  
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    border-radius: 2px;
-    background:white;
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-}
-
 
 #dekked-app-container {
     width:100vw;
@@ -74,6 +59,34 @@ color: #2C2C31;
     z-index:999;
     pointer-events:none;
     overflow:hidden;
+}
+
+p{
+    color: #2C2C31;
+}
+
+p.p1 {
+    font-size:14px;
+}
+
+p.p2 {
+    font-size:12px;
+}
+
+p.p3 {
+    font-size:10px; 
+}
+
+
+
+.DropdownMenu{
+  display: flex;
+  flex-direction: column;
+  width:220px;  
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 2px;
+  background:white;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
 }
 
 /* width */
@@ -106,5 +119,6 @@ color: #2C2C31;
     justify-content:center;
     width:16px;
     height:16px;
+    color: var(--main-black);
 }
 

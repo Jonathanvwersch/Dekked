@@ -4,9 +4,18 @@ import DropBlock from "./DropBlock";
 import "./SideBar.css";
 import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
 import { FolderData, BinderData, StudySetData } from "./DropdownMenuData";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { showSideBar } from "../../actions";
 
 function NavBar() {
+  const SideBarReducer = useSelector((state) => state.SideBarReducer);
   const [folderBlocks, setFolderBlocks] = useState([]);
+  const dispatch = useDispatch();
+
+  const dispatchSideBar = () => {
+    dispatch(showSideBar());
+  };
 
   const addFolder = () => {
     const newFolder = {
@@ -81,136 +90,156 @@ function NavBar() {
 
   return (
     <>
-      <div className="dekked-sidebar-container">
-        <div style={{ height: "100%" }}>
-          <div
-            style={{
-              position: "absolute",
-              top: "0px",
-              left: "0px",
-              bottom: "0px",
-              display: "flex",
-              flexDirection: "column",
-              width: "0px",
-              overflow: "visible",
-              zIndex: "9",
-              pointerEvents: "none",
-            }}
-          >
-            <div className="dekked-sidebar">
-              <div className="sidebar-top">
-                <div className="profile">
-                  <div className="avatar">
-                    <p className="p1">J</p>
-                  </div>
-                  <p className="p3">Jane Doe</p>
-                  <div className="icon dropDownArrow down">
-                    <Icons.MdArrowDropDown />
-                  </div>
-                </div>
-                <div className="icon chevronDoubleLeft">
-                  <ChevronDoubleLeftIcon />
-                </div>
-              </div>
-              <div className="workspace">
-                <div className="title">
-                  <p className="p2">Workspace</p>
-                </div>
-                <div className="folderBlocks">
-                  {folderBlocks.map((folder, folderIndex) => (
-                    <div key={folder.id} className="folderBlock">
-                      <DropBlock
-                        type={folder.type}
-                        key={folder.id}
-                        id={folder.id}
-                        handleDelete={() => deleteBlock(folder.id, folder.type)}
-                        handleAddItem={() => addBinder(folderIndex)}
-                        isExpanded={() => openFolderBlock(folderIndex)}
-                        dropdownMenudata={FolderData}
-                      />
-                      {folder.isOpen ? (
-                        folder.binders.length === 0 ? (
-                          <div className="noBinders">
-                            <p className="p2">No binders inside</p>
-                          </div>
-                        ) : (
-                          folder.binders.map((binder, binderIndex) => (
-                            <div key={binder.id} className="binderBlock">
-                              <DropBlock
-                                type={binder.type}
-                                key={binder.id}
-                                id={binder.id}
-                                handleDelete={() =>
-                                  deleteBlock(
-                                    binder.id,
-                                    binder.type,
-                                    folderIndex,
-                                    binderIndex
-                                  )
-                                }
-                                folderIndex={folderIndex}
-                                handleAddItem={() =>
-                                  addStudySet(folderIndex, binderIndex)
-                                }
-                                isExpanded={() =>
-                                  openBinderBlock(folderIndex, binderIndex)
-                                }
-                                dropdownMenudata={BinderData}
-                              />
-                              {binder.isOpen ? (
-                                binder.studySets.length === 0 ? (
-                                  <div className="noStudySets">
-                                    <p className="p2">No study sets inside</p>
-                                  </div>
-                                ) : (
-                                  binder.studySets.map(
-                                    (studySet, studySetIndex) => (
-                                      <div
-                                        key={studySet.id}
-                                        className="studySetBlock"
-                                      >
-                                        <DropBlock
-                                          type={studySet.type}
-                                          key={studySet.id}
-                                          id={studySet.id}
-                                          handleDelete={() =>
-                                            deleteBlock(
-                                              studySet.id,
-                                              studySet.type,
-                                              folderIndex,
-                                              binderIndex,
-                                              studySetIndex
-                                            )
-                                          }
-                                          dropdownMenudata={StudySetData}
-                                        />
-                                      </div>
-                                    )
-                                  )
-                                )
-                              ) : null}
-                            </div>
-                          ))
-                        )
-                      ) : null}
+      {SideBarReducer ? (
+        <div className="dekked-sidebar-container">
+          <div style={{ height: "100%" }}>
+            <div
+              style={{
+                position: "absolute",
+                top: "0px",
+                left: "0px",
+                bottom: "0px",
+                display: "flex",
+                flexDirection: "column",
+                width: "0px",
+                overflow: "visible",
+                zIndex: "9",
+                pointerEvents: "none",
+              }}
+            >
+              <div className="dekked-sidebar">
+                <div className="sidebar-top">
+                  <div className="profile">
+                    <div className="avatar">
+                      <p className="p1">J</p>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="sidebar-bottom">
-                <div onClick={addFolder} className="AddBlock">
-                  <div className="icon plus">
-                    <Icons.MdAdd />
+                    <p className="p3">Jane Doe</p>
+                    <div className="icon dropDownArrow down">
+                      <Icons.MdArrowDropDown />
+                    </div>
                   </div>
-                  <div className="addFolder">
-                    <p className="p1">Add folder</p>
+                  <div
+                    className="icon chevronDoubleLeft"
+                    onClick={dispatchSideBar}
+                  >
+                    <ChevronDoubleLeftIcon />
+                  </div>
+                </div>
+                <div className="workspace">
+                  <div className="title">
+                    <p className="p2">Workspace</p>
+                  </div>
+                  <div className="folderBlocks">
+                    {folderBlocks.map((folder, folderIndex) => (
+                      <Link to={`/${folder.id}`}>
+                        <div key={folder.id} className="folderBlock">
+                          <DropBlock
+                            type={folder.type}
+                            key={folder.id}
+                            id={folder.id}
+                            handleDelete={() =>
+                              deleteBlock(folder.id, folder.type)
+                            }
+                            handleAddItem={() => addBinder(folderIndex)}
+                            isExpanded={() => openFolderBlock(folderIndex)}
+                            dropdownMenudata={FolderData}
+                          />
+                          {folder.isOpen ? (
+                            folder.binders.length === 0 ? (
+                              <div className="noBinders">
+                                <p className="p2">No binders inside</p>
+                              </div>
+                            ) : (
+                              folder.binders.map((binder, binderIndex) => (
+                                <Link to={`/${binder.id}`}>
+                                  <div key={binder.id} className="binderBlock">
+                                    <DropBlock
+                                      type={binder.type}
+                                      key={binder.id}
+                                      id={binder.id}
+                                      handleDelete={() =>
+                                        deleteBlock(
+                                          binder.id,
+                                          binder.type,
+                                          folderIndex,
+                                          binderIndex
+                                        )
+                                      }
+                                      folderIndex={folderIndex}
+                                      handleAddItem={() =>
+                                        addStudySet(folderIndex, binderIndex)
+                                      }
+                                      isExpanded={() =>
+                                        openBinderBlock(
+                                          folderIndex,
+                                          binderIndex
+                                        )
+                                      }
+                                      dropdownMenudata={BinderData}
+                                    />
+                                    {binder.isOpen ? (
+                                      binder.studySets.length === 0 ? (
+                                        <div className="noStudySets">
+                                          <p className="p2">
+                                            No study sets inside
+                                          </p>
+                                        </div>
+                                      ) : (
+                                        binder.studySets.map(
+                                          (studySet, studySetIndex) => (
+                                            <Link to={`/${studySet.id}`}>
+                                              <div
+                                                key={studySet.id}
+                                                className="studySetBlock"
+                                              >
+                                                <DropBlock
+                                                  type={studySet.type}
+                                                  key={studySet.id}
+                                                  id={studySet.id}
+                                                  handleDelete={() =>
+                                                    deleteBlock(
+                                                      studySet.id,
+                                                      studySet.type,
+                                                      folderIndex,
+                                                      binderIndex,
+                                                      studySetIndex
+                                                    )
+                                                  }
+                                                  dropdownMenudata={
+                                                    StudySetData
+                                                  }
+                                                />
+                                              </div>
+                                            </Link>
+                                          )
+                                        )
+                                      )
+                                    ) : null}
+                                  </div>
+                                </Link>
+                              ))
+                            )
+                          ) : null}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <div className="sidebar-bottom">
+                  <div onClick={addFolder} className="AddBlock">
+                    <div className="icon plus">
+                      <Icons.MdAdd />
+                    </div>
+                    <div className="addFolder">
+                      <p className="p1">Add folder</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 }

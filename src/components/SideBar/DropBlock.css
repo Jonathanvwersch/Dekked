@@ -19,7 +19,7 @@
 }
 
 .DropBlock p{
-   text-overflow:ellipsis;
+    text-overflow:ellipsis;
     overflow:hidden;
     white-space:nowrap;
     margin-right:16px;
@@ -31,16 +31,16 @@
 }
 
 .DropBlock p:empty:before {
-  content: 'Untitled';
+    content: 'Untitled';
 }
     
 .DropBlock:hover {
-    background:#E1E1E0;
+    background: var(--white-hover);
     cursor: pointer;
 }
 
 .DropBlock:active {
-    background:#D8D8D7;
+    background:var(--white-clicked);
 }
 
 .DropBlock:hover .icon.dots{
