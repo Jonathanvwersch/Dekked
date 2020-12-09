@@ -1,10 +1,11 @@
 import React from "react";
 import "./TopBar.css";
 import * as Icons from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { showSideBar } from "../../actions";
 
 function TopBar() {
+  const SideBarReducer = useSelector((state) => state.SideBarReducer);
   const dispatch = useDispatch();
 
   const dispatchSideBar = () => {
@@ -28,9 +29,11 @@ function TopBar() {
             paddingLeft: "16px",
           }}
         >
-          <div className="icon hamburgerMenu" onClick={dispatchSideBar}>
-            <Icons.MdMenu />
-          </div>
+          {!SideBarReducer ? (
+            <div className="icon hamburgerMenu" onClick={dispatchSideBar}>
+              <Icons.MdMenu />
+            </div>
+          ) : null}
         </div>
       </div>
       <div style={{ width: "100%", userSelect: "none" }}></div>

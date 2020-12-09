@@ -33,14 +33,18 @@
 .DropBlock p:empty:before {
     content: 'Untitled';
 }
+
+.DropBlock {
+    background:inherit;
+}
     
 .DropBlock:hover {
-    background: var(--white-hover);
+    background: var(--off-beige-hover);
     cursor: pointer;
 }
 
 .DropBlock:active {
-    background:var(--white-clicked);
+    background:var(--off-beige-clicked);
 }
 
 .DropBlock:hover .icon.dots{

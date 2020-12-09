@@ -4,7 +4,7 @@ import DropBlock from "./DropBlock";
 import "./SideBar.css";
 import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
 import { FolderData, BinderData, StudySetData } from "./DropdownMenuData";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { showSideBar } from "../../actions";
 
@@ -131,8 +131,13 @@ function NavBar() {
                   </div>
                   <div className="folderBlocks">
                     {folderBlocks.map((folder, folderIndex) => (
-                      <Link to={`/${folder.id}`}>
-                        <div key={folder.id} className="folderBlock">
+                      <div key={folder.id} className="folderBlock">
+                        <NavLink
+                          to={`/${folder.id}`}
+                          activeStyle={{
+                            background: "var(--off-beige-clicked)",
+                          }}
+                        >
                           <DropBlock
                             type={folder.type}
                             key={folder.id}
@@ -151,8 +156,19 @@ function NavBar() {
                               </div>
                             ) : (
                               folder.binders.map((binder, binderIndex) => (
-                                <Link to={`/${binder.id}`}>
-                                  <div key={binder.id} className="binderBlock">
+                                <div
+                                  key={binder.id}
+                                  style={{
+                                    background: "var(--off-beige)",
+                                  }}
+                                  className="binderBlock"
+                                >
+                                  <NavLink
+                                    to={`/${binder.id}`}
+                                    activeStyle={{
+                                      background: "var(--off-beige-clicked)",
+                                    }}
+                                  >
                                     <DropBlock
                                       type={binder.type}
                                       key={binder.id}
@@ -187,10 +203,19 @@ function NavBar() {
                                       ) : (
                                         binder.studySets.map(
                                           (studySet, studySetIndex) => (
-                                            <Link to={`/${studySet.id}`}>
-                                              <div
-                                                key={studySet.id}
-                                                className="studySetBlock"
+                                            <div
+                                              key={studySet.id}
+                                              className="studySetBlock"
+                                              style={{
+                                                background: "var(--off-beige)",
+                                              }}
+                                            >
+                                              <NavLink
+                                                to={`/${studySet.id}`}
+                                                activeStyle={{
+                                                  background:
+                                                    "var(--off-beige-clicked)",
+                                                }}
                                               >
                                                 <DropBlock
                                                   type={studySet.type}
@@ -209,19 +234,19 @@ function NavBar() {
                                                     StudySetData
                                                   }
                                                 />
-                                              </div>
-                                            </Link>
+                                              </NavLink>
+                                            </div>
                                           )
                                         )
                                       )
                                     ) : null}
-                                  </div>
-                                </Link>
+                                  </NavLink>
+                                </div>
                               ))
                             )
                           ) : null}
-                        </div>
-                      </Link>
+                        </NavLink>
+                      </div>
                     ))}
                   </div>
                 </div>

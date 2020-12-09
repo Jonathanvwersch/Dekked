@@ -10,3 +10,7 @@
     cursor:pointer;
 }
 
+.dekked-top-bar .icon:hover{
+    color:var(--primary-color);
+}
+
