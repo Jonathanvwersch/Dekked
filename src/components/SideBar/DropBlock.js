@@ -14,7 +14,7 @@ function DropBlock({
   handleAddItem,
   id,
   isExpanded,
-  dropdownMenudata,
+  dropBlockMenuData,
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
@@ -27,7 +27,7 @@ function DropBlock({
 
   const ref = useRef(null); // Reference name of block to deactivate focus after renaming block
 
-  const heightOfDropdownMenu = 30 * dropdownMenudata.length; // Value is necessary to position dropdown menu based on mouse coordinates
+  const heightOfDropdownMenu = 30 * dropBlockMenuData.length; // Value is necessary to position dropdown menu based on mouse coordinates
   const heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
 
   // Position portal components based on mouse coordinates
@@ -38,11 +38,12 @@ function DropBlock({
     setYPositionofDropdownMenu(topValue);
 
     if (
-      bottomValue < 1.1 * heightOfColourPicker &&
+      bottomValue < 1.5 * heightOfColourPicker &&
       topValue > heightOfColourPicker
     )
       setYPositionofDropdownMenu(topValue - heightOfColourPicker - 10);
-    else if (bottomValue < 1.4 * itemHeight && topValue > itemHeight) {
+
+    if (bottomValue < 1.4 * itemHeight && topValue > itemHeight) {
       topValue = rect.y - itemHeight - 10;
     }
 
@@ -66,11 +67,10 @@ function DropBlock({
     setColourPicker((prevState) => !prevState);
   };
 
-  const handleRename = () => {
-    setEditableName((prevValue) => !prevValue);
-    // Focus in on name of dropblock when being renamed (i.e. show text cursor)
+  const handleRename = () => {    // Focus in on name of dropblock when being renamed (i.e. show text cursor)
     var div = document.querySelector(`p[id="${id}"]`);
     setTimeout(function () {
+          setEditableName((prevValue) => !prevValue);
       div.focus();
     }, 0);
   };
@@ -105,7 +105,7 @@ function DropBlock({
     return () => {
       document.removeEventListener("click", updateEditableName);
     };
-  }, [editableName]);
+  }, [editableName, id]);
 
   // Get window dimensions on each rerender to calculate position of portal components
   useEffect(() => {
@@ -124,8 +124,8 @@ function DropBlock({
       <div
         className={
           isOpen
-            ? `icon ${type} dropDownArrow down`
-            : `icon ${type} dropDownArrow right`
+            ? `icon active ${type} dropDownArrow down`
+            : `icon active ${type} dropDownArrow right`
         }
         onClick={() => {
           handleIsOpen();
@@ -147,7 +147,7 @@ function DropBlock({
         ref={ref}
         id={id}
         spellCheck="false"
-        onKeyPress={(e) => {
+        onKeyDown={(e) => {
           if (e.key === "Enter") {
             setEditableName((prevValue) => !prevValue);
           }
@@ -156,7 +156,7 @@ function DropBlock({
         className="p2"
       ></p>
       <Icons.MdMoreHoriz
-        className="icon dots"
+        className="icon active dots"
         onClick={(e) => {
           handleDropdownMenu(e);
         }}
@@ -167,11 +167,11 @@ function DropBlock({
           handleState={() => setDropdownMenu((prevState) => !prevState)}
         >
           <div
-            onClick={() => setDropdownMenu((prevState) => !prevState)}
+            onClick = {() => setDropdownMenu((prevState) => !prevState)}
             className="DropdownMenu"
             style={{ ...styles.popover, ...coords }}
           >
-            {dropdownMenudata.map((item, index) => {
+            {dropBlockMenuData.map((item, index) => {
               return (
                 <Block
                   handleDelete={handleDelete}

@@ -6,7 +6,7 @@ const Button = ({type, action}) =>
 {
     return (
         <React.Fragment>
-            <button disabled className={`Button ${type}`}>
+            <button className={`Button ${type}`}>
                 {action}
             </button>
         </React.Fragment>

@@ -1,5 +1,5 @@
 import React from "react";
-import StudyQueueBubble from "../General/StudyQueueBubble";
+import StudyQueue from "../General/StudyQueue";
 import TopBar from "./TopBar";
 
 function MainFrame() {
@@ -21,7 +21,7 @@ function MainFrame() {
         <div style={{ width: "100%", maxWidth: "100vw", zIndex: "9" }}>
         <TopBar/>
         </div>
-        <StudyQueueBubble/>
+        <StudyQueue/>
       </div>
     </>
   );

@@ -48,11 +48,6 @@
   width:16px;
 }
 
-.dekked-sidebar-container .icon:hover {
-  color: var(--primary-color);
-  cursor:pointer;
-}
-
 /* Style Top Profile Section of Sidebar */
 .sidebar-top {
   position:absolute;
@@ -106,6 +101,15 @@
 .icon.dropDownArrow.down
 {
   margin-left:12px;
+}
+
+.settingsMenu {
+  border-radius: var(--general-border-radius);
+  width: 220px;
+  filter: var(--drop-shadow);
+  position:absolute;  
+  top:38px;
+  left:108px;
 }
 
 

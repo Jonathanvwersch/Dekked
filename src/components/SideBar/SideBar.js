@@ -3,14 +3,20 @@ import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./SideBar.css";
 import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
-import { FolderData, BinderData, StudySetData } from "./DropdownMenuData";
+import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
+import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { showSideBar } from "../../actions";
+import Portal from "../General/Portal";
+import Block from "../General/Block";
+import Settings from "../Settings/Settings";
 
 function NavBar() {
   const SideBarReducer = useSelector((state) => state.SideBarReducer);
   const [folderBlocks, setFolderBlocks] = useState([]);
+  const [profileMenu, setProfileMenu] = useState(false);
+  const [settingsPage, setSettingsPage] = useState(false);
   const dispatch = useDispatch();
 
   const dispatchSideBar = () => {
@@ -88,6 +94,10 @@ function NavBar() {
     setFolderBlocks(array);
   };
 
+  const handleSettings = () => {
+    setSettingsPage((prevState) => !prevState);
+  };
+
   return (
     <>
       {SideBarReducer ? (
@@ -114,9 +124,47 @@ function NavBar() {
                       <p className="p1">J</p>
                     </div>
                     <p className="p3">Jane Doe</p>
-                    <div className="icon dropDownArrow down">
+                    <div
+                      className="icon active dropDownArrow down"
+                      onClick={setProfileMenu}
+                    >
                       <Icons.MdArrowDropDown />
                     </div>
+                    {profileMenu ? (
+                      <Portal
+                        state={profileMenu}
+                        handleState={() =>
+                          setProfileMenu((prevState) => !prevState)
+                        }
+                      >
+                        <div
+                          className="settingsMenu"
+                          onClick={() =>
+                            setProfileMenu((prevState) => !prevState)
+                          }
+                        >
+                          {ProfileData.map((item, index) => {
+                            return (
+                              <Block
+                                item={item}
+                                key={`${item} Block ${index}`}
+                                handleSettings={handleSettings}
+                              />
+                            );
+                          })}
+                        </div>
+                      </Portal>
+                    ) : null}
+                    {settingsPage ? (
+                      <Portal
+                        state={settingsPage}
+                        handleState={handleSettings}
+                        lightbox={true}
+                        center={true}
+                      >
+                        <Settings />
+                      </Portal>
+                    ) : null}
                   </div>
                   <div
                     className="icon chevronDoubleLeft"
@@ -147,7 +195,7 @@ function NavBar() {
                             }
                             handleAddItem={() => addBinder(folderIndex)}
                             isExpanded={() => openFolderBlock(folderIndex)}
-                            dropdownMenudata={FolderData}
+                            dropBlockMenuData={FolderData}
                           />
                           {folder.isOpen ? (
                             folder.binders.length === 0 ? (
@@ -191,7 +239,7 @@ function NavBar() {
                                           binderIndex
                                         )
                                       }
-                                      dropdownMenudata={BinderData}
+                                      dropBlockMenuData={BinderData}
                                     />
                                     {binder.isOpen ? (
                                       binder.studySets.length === 0 ? (
@@ -230,7 +278,7 @@ function NavBar() {
                                                       studySetIndex
                                                     )
                                                   }
-                                                  dropdownMenudata={
+                                                  dropBlockMenuData={
                                                     StudySetData
                                                   }
                                                 />

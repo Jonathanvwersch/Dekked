@@ -11,20 +11,55 @@ const CHILD_STYLE = {
   height: "100vh",
 };
 
+const CHILD_STYLE_LIGHTBOX = {
+  position: "fixed",
+  top: "0px",
+  left: "0px",
+  width: "100vw",
+  height: "100vh",
+  background: "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+};
+
 const OVERLAY_STYLE = {
   pointerEvents: "auto",
   position: "relative",
   zIndex: 0,
 };
 
-export default function Portal({ children, state, handleState }) {
+const OVERLAY_STYLE_CENTER = {
+  pointerEvents: "auto",
+  position: "relative",
+  zIndex: 0,
+  top: "0px",
+  left: "0px",
+  width: "100vw",
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const CENTER = {
+  position: "relative",
+};
+
+export default function Portal({
+  children,
+  state,
+  handleState,
+  lightbox,
+  center,
+}) {
   return createPortal(
     <>
       {state ? (
-        <div style={OVERLAY_STYLE}>
+        <div style={center ? OVERLAY_STYLE_CENTER : OVERLAY_STYLE}>
           <div>
-            <div style={CHILD_STYLE} onClick={handleState}></div>
-            <div>{children}</div>
+            <div
+              style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
+              onClick={handleState}
+            ></div>
+            <div style={center ? CENTER : null}>{children}</div>
           </div>
         </div>
       ) : null}

@@ -122,3 +122,13 @@ p.p3 {
     color: var(--main-black);
 }
 
+.icon.active:hover {
+  color: var(--primary-color);
+  cursor:pointer;
+}
+
+.icon.active:active {
+  color: var(--primary-color-hover);
+}
+
+

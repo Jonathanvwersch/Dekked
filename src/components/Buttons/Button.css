@@ -6,55 +6,63 @@
     padding: 4px 16px;
     border-radius:5px;
     cursor: pointer;
+    font-size:12px;
+     font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .Button.primary{
-    background: #00B6CE;
-    color: white;
+    background: var(--primary-color);
+    color: var(--white);
     border:0px;
 }
 
 .Button.secondary{
-    background: white;
-    color: #2C2C31;
-    border: 0.5px solid #C6CFC2;
+    background: var(--white);
+    color: var(--main-black);
+    border: 0.5px solid var(--grey-2);
 }
 
 .Button.tertiary{
-    background: #DB524B;
-    color:white;
+    background: var(--red);
+    color:var(--white);
     border:0px;
 }
 
 .Button.inactive {
-    background:#C6C5C2;
+    background:var(--grey-2);
     border:0px;
-    color:white;
+    color:var(--white);
     cursor:auto;
 }
 
 .Button:active,
+.Button:hover,
 .Button:focus {
     outline:none;
 }
 
 .Button.primary:hover {
-    background:#00A7BE;
-    outline:none;
+    background:var(--primary-color-hover);
 }
 
 .Button.secondary:hover {
-    background:#EBEBEB;
-    outline:none;
+    background:var(--white-hover);
 }
 
 .Button.tertiary:hover {
-    background:#C94B45;
-    outline:none;
+    background:var(--red-hover);
 }
 
-.Button.inactive:hover {
-    outline:none;
+.Button.primary:active {
+    background:var(--primary-color-clicked);
 }
 
+.Button.secondary:active {
+    background:var(--white-clicked);
+}
 
+.Button.tertiary:active{
+    background:var(--red-clicked);
+}
