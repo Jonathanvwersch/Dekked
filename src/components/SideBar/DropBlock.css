@@ -11,7 +11,9 @@
 .DropBlock .icon{
     margin-right:8px;
 }
+
 .DropBlock .icon.dots{
+    will-change: opacity;
     position:absolute;
     right:0;
     margin-right:8px;

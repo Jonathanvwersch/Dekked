@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./SideBar.css";
-import { ReactComponent as ChevronDoubleLeftIcon } from "../../custom-icons/chevronDoubleLeft.svg";
+import { Icon, InlineIcon } from "@iconify/react";
+import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
@@ -12,11 +13,12 @@ import Portal from "../General/Portal";
 import Block from "../General/Block";
 import Settings from "../Settings/Settings";
 
-function NavBar() {
+function SideBar() {
   const SideBarReducer = useSelector((state) => state.SideBarReducer);
   const [folderBlocks, setFolderBlocks] = useState([]);
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
+
   const dispatch = useDispatch();
 
   const dispatchSideBar = () => {
@@ -34,10 +36,10 @@ function NavBar() {
   };
 
   const openFolderBlock = (folderIndex) => {
-    const newFolderBlocksArray = folderBlocks.slice();
+    const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
     newFolderBlocksArray[folderIndex].isOpen = !newFolderBlocksArray[
       folderIndex
-    ].isOpen;
+    ].isOpen; // Invert folder block's open status
     setFolderBlocks(newFolderBlocksArray);
   };
 
@@ -138,7 +140,7 @@ function NavBar() {
                         }
                       >
                         <div
-                          className="settingsMenu"
+                          className="dropdownMenu settingsMenu"
                           onClick={() =>
                             setProfileMenu((prevState) => !prevState)
                           }
@@ -161,16 +163,17 @@ function NavBar() {
                         handleState={handleSettings}
                         lightbox={true}
                         center={true}
+                        close={true}
                       >
-                        <Settings />
+                        <Settings handleState={handleSettings} />
                       </Portal>
                     ) : null}
                   </div>
                   <div
-                    className="icon chevronDoubleLeft"
+                    className="icon active chevronDoubleLeft"
                     onClick={dispatchSideBar}
                   >
-                    <ChevronDoubleLeftIcon />
+                    <Icon icon={chevronDoubleLeft} />
                   </div>
                 </div>
                 <div className="workspace">
@@ -195,6 +198,7 @@ function NavBar() {
                             }
                             handleAddItem={() => addBinder(folderIndex)}
                             isExpanded={() => openFolderBlock(folderIndex)}
+                            isOpen={folder.isOpen}
                             dropBlockMenuData={FolderData}
                           />
                           {folder.isOpen ? (
@@ -239,6 +243,7 @@ function NavBar() {
                                           binderIndex
                                         )
                                       }
+                                      isOpen={binder.isOpen}
                                       dropBlockMenuData={BinderData}
                                     />
                                     {binder.isOpen ? (
@@ -317,4 +322,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default SideBar;

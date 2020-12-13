@@ -39,8 +39,8 @@
 }
 
 .studyQueueBubble .icon.StudyQueue {
-    width:24px;
-    height:24px;
+    width:24px!important;
+    height:24px!important;
 }
 
 .notificationBubble {
@@ -71,6 +71,7 @@
     position:fixed;
     right:84px;
     bottom:84px;
+    user-select:none;
 }
 
 .studyQueue .header {

@@ -1,0 +1,78 @@
+
+/* Title Styling */
+
+#title {
+    border-bottom: 0.5px solid var(--grey-3);
+    display:flex;
+    justify-content:flex-start;
+
+}
+
+#title h3{
+    padding-bottom:8px;
+}
+
+/* Avatar Styling */
+
+#avatar-container{
+    border-bottom: 0.5px solid var(--grey-3);
+    padding-top:16px;
+    padding-bottom:16px;
+}
+#avatar-button{
+    padding-top:16px;
+}
+
+#avatar {
+    width: 54px;
+    height: 54px;
+    background: var(--primary-color);
+    border-radius: 100%;
+    margin-right:15px;
+}
+
+#avatar-button {
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    justify-content:flex-start;
+}
+
+/* Personal Info Styling */
+
+#personal-info {
+    padding-top:16px;
+    padding-bottom:16px;
+    border-bottom: 0.5px solid var(--grey-3);
+}
+
+#input {
+    padding-top:16px;
+    display:flex;
+    flex-direction:column;
+}
+
+#input p{
+    color:var(--grey-1);
+}
+
+#last-name {
+    padding-top:8px;
+
+}
+
+input {
+    width:100%;
+}
+
+/* Password Styling */
+
+#password {
+    padding-top:16px;
+    padding-bottom:16px;
+}
+
+#password-title {
+    padding-bottom:8px;
+}
+

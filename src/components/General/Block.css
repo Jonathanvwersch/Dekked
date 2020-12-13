@@ -6,7 +6,6 @@
     flex-direction:row;
     width:100%;
     height:30px;
-    background-color:var(--white);
     padding:0;
 }
 
@@ -16,15 +15,24 @@
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none; 
 }
 
 .Block:hover{
-    background:var(--off-beige-hover);
+    background:var(--white-hover);
     cursor:pointer;
 }
 
 .Block:active{
+    background:var(--white-clicked);
+}
+
+.Block.off-beige:hover{
+    background:var(--off-beige-hover);
+    cursor:pointer;
+}
+
+.Block.off-beige:active{
     background:var(--off-beige-clicked);
 }
 

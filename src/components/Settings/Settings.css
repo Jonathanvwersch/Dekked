@@ -1,25 +1,92 @@
-.dekked-settings-container {
-   
-    width:100vw;
-    height:100vh;
-    position:fixed;
-    top:0px;
-    left:0px;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-    opacity:1;
-}
+/* General Styling */
 
-.dekked-settings {
-    z-index:1;
+.dekked-settings-container {
     filter:var(--drop-shadow);
-    border-radius:2px;
-    background:var(--white);
     width:850px;
     max-width: calc(100vw - 100px);
     height:calc(100vh - 100px);
     max-height: 600px;
+    overflow:hidden;
+}
 
+.dekked-settings {
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:row;
+}
+
+/* Sidebar Styling */
+
+.dekked-settings-sidebar {
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    width:200px;
+    border-right: 0.5px solid var(--grey-3);
+    background-color:var(--off-beige);
+    border-radius: var(--general-border-radius) 0 0 var(--general-border-radius);
+    user-select:none;
+    flex-grow:0;
+    flex-shrink:0;
+}
+
+.dekked-settings-sidebar .title {
+    height:30px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    
+}
+
+.dekked-settings-sidebar .title p {
+    color: var(--grey-1);  
+    margin-left:16px; 
+}
+
+/* Mainframe Styling */
+
+.dekked-settings-mainFrame-container {
+    height:100%;
+    flex-grow:1;
+    z-index:1;
+    position:relative;
+}
+
+.dekked-settings-mainFrame{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+    background:var(--white);
+    border-radius: 0 var(--general-border-radius) var(--general-border-radius) 0;
+
+}
+
+.dekked-settings-mainFrame .icon.active.close {
+    position:absolute;
+    right:0;
+    margin: 8px 8px 0px 0px;
+}
+
+.dekked-settings-mainFrame .content {
+    flex-grow:1;
+    padding: 36px 60px 36px 60px;
+    margin-bottom: 0px;
+    margin-right:0px;
+    overflow:auto;
+}
+
+#save-changes {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:flex-start;
+    border-top: 0.5px solid var(--grey-3);
+    height:60px;
+}
+
+#save-changes-button {
+    margin-left:60px;
 }

@@ -2,6 +2,8 @@
 
 import React from "react";
 import { createPortal } from "react-dom";
+import { MdClose } from "react-icons/md";
+import "./Portal.css";
 
 const CHILD_STYLE = {
   position: "fixed",
@@ -12,24 +14,14 @@ const CHILD_STYLE = {
 };
 
 const CHILD_STYLE_LIGHTBOX = {
-  position: "fixed",
-  top: "0px",
-  left: "0px",
-  width: "100vw",
-  height: "100vh",
+  position: "absolute",
+  inset: "0px",
   background: "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
-};
-
-const OVERLAY_STYLE = {
-  pointerEvents: "auto",
-  position: "relative",
-  zIndex: 0,
 };
 
 const OVERLAY_STYLE_CENTER = {
   pointerEvents: "auto",
-  position: "relative",
-  zIndex: 0,
+  position: "fixed ",
   top: "0px",
   left: "0px",
   width: "100vw",
@@ -49,17 +41,33 @@ export default function Portal({
   handleState,
   lightbox,
   center,
+  level,
+  close,
 }) {
   return createPortal(
     <>
       {state ? (
-        <div style={center ? OVERLAY_STYLE_CENTER : OVERLAY_STYLE}>
-          <div>
+        <div
+          className="portal"
+          style={{
+            pointerEvents: "auto",
+            position: "relative",
+            zIndex: level ? level : "0",
+          }}
+        >
+          <div style={center && OVERLAY_STYLE_CENTER}>
             <div
               style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
               onClick={handleState}
             ></div>
-            <div style={center ? CENTER : null}>{children}</div>
+            <div style={center ? CENTER : null}>
+              {children}
+              {close ? (
+                <div onClick={handleState} className="icon active close">
+                  <MdClose />
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       ) : null}

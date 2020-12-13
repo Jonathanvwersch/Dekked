@@ -5,17 +5,19 @@
     align-items: center;
     padding: 4px 16px;
     border-radius:5px;
-    cursor: pointer;
-    font-size:12px;
-     font-family: 'DM Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    height:22px;
+    cursor: pointer;    
+    user-select:none;
 }
 
 .Button.primary{
     background: var(--primary-color);
     color: var(--white);
     border:0px;
+}
+
+.Button.primary p{
+    color: var(--white);
 }
 
 .Button.secondary{
@@ -26,15 +28,21 @@
 
 .Button.tertiary{
     background: var(--red);
-    color:var(--white);
     border:0px;
+}
+
+.Button.tertiary p{
+    color: var(--white);
 }
 
 .Button.inactive {
     background:var(--grey-2);
     border:0px;
-    color:var(--white);
     cursor:auto;
+}
+
+.Button.inactive p{
+    color: var(--white);
 }
 
 .Button:active,

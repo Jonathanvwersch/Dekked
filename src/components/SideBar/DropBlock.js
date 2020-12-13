@@ -14,6 +14,7 @@ function DropBlock({
   handleAddItem,
   id,
   isExpanded,
+  isOpen,
   dropBlockMenuData,
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
@@ -23,7 +24,6 @@ function DropBlock({
   const [colourPicker, setColourPicker] = useState(false); // Set visibility of colour picker component
   const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState(); // Set y position of dropdown menu
   const [iconColour, setIconColour] = useState("#2C2C31"); // Set colour of icons (necessary to change colours using colour picker)
-  const [isOpen, setIsOpen] = useState(false); // Set dropdown arrows (open is a down arrow, closed is a right arrow)
 
   const ref = useRef(null); // Reference name of block to deactivate focus after renaming block
 
@@ -51,11 +51,6 @@ function DropBlock({
       left: rect.x + rect.width / 2,
       top: topValue,
     });
-  };
-
-  // Set orientation of dropdown arrow
-  const handleIsOpen = () => {
-    setIsOpen((prevState) => !prevState);
   };
 
   const handleColourPicker = () => {
@@ -120,7 +115,7 @@ function DropBlock({
   }, []);
 
   return (
-    <div className="DropBlock">
+    <div role="button" className="DropBlock">
       <div
         className={
           isOpen
@@ -128,7 +123,6 @@ function DropBlock({
             : `icon active ${type} dropDownArrow right`
         }
         onClick={() => {
-          handleIsOpen();
           isExpanded();
         }}
       >
@@ -168,7 +162,7 @@ function DropBlock({
         >
           <div
             onClick = {() => setDropdownMenu((prevState) => !prevState)}
-            className="DropdownMenu"
+            className="dropdownMenu"
             style={{ ...styles.popover, ...coords }}
           >
             {dropBlockMenuData.map((item, index) => {
@@ -179,7 +173,6 @@ function DropBlock({
                   handleColourPicker={handleColourPicker}
                   handleAddItem={handleAddItem}
                   showDropBlocks={isExpanded}
-                  setDropdownArrow={setIsOpen}
                   item={item}
                   id={`${item} Block ${index}`}
                   key={`${item} Block ${index}`}
