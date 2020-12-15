@@ -6,11 +6,3 @@
     position:relative;
 }
 
-.dekked-top-bar .icon{
-    cursor:pointer;
-}
-
-.dekked-top-bar .icon:hover{
-    color:var(--primary-color);
-}
-

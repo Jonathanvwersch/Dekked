@@ -1,12 +1,12 @@
 import React from "react";
 import "./Block.css"
 
-const Block = ({item, colour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount}) => {
+const Block = ({item, backgroundColour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount}) => {
     let buttonClick;
     switch (item.action) {
         case "Add binder":
         case "Add study set":
-            buttonClick = () => {handleAddItem()}
+            buttonClick = handleAddItem
             break;
             
         case "Icon colour":
@@ -33,7 +33,7 @@ const Block = ({item, colour, handleDelete, handleRename, handleColourPicker, ha
             break;
     }
     return (
-    <div role="button" onClick={buttonClick} className={`Block ${colour}`}>
+    <div role="button" onClick={buttonClick} className={`Block ${backgroundColour}`}>
         {item.icon}
         <p className="p2">{item.action}</p>
     </div>

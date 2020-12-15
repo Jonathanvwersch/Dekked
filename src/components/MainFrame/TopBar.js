@@ -1,16 +1,9 @@
 import React from "react";
 import "./TopBar.css";
 import * as Icons from "react-icons/md";
-import { useSelector, useDispatch } from "react-redux";
-import { showSideBar } from "../../actions";
 
-function TopBar() {
-  const SideBarReducer = useSelector((state) => state.SideBarReducer);
-  const dispatch = useDispatch();
 
-  const dispatchSideBar = () => {
-    dispatch(showSideBar());
-  };
+function TopBar({sidebar, handleSidebar}) {
 
   return (
     <>
@@ -29,8 +22,8 @@ function TopBar() {
             paddingLeft: "16px",
           }}
         >
-          {!SideBarReducer ? (
-            <div className="icon hamburgerMenu" onClick={dispatchSideBar}>
+          {!sidebar ? (
+            <div className="icon active hamburgerMenu" onClick={handleSidebar}>
               <Icons.MdMenu />
             </div>
           ) : null}

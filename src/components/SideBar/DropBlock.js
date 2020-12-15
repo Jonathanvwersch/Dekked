@@ -16,6 +16,11 @@ function DropBlock({
   isExpanded,
   isOpen,
   dropBlockMenuData,
+  handleNameChange,
+  folderIndex, 
+  binderIndex, 
+  studySetIndex,
+  handleIconColour
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
@@ -60,6 +65,7 @@ function DropBlock({
     };
     setCoords(newCoords);
     setColourPicker((prevState) => !prevState);
+    handleIconColour(type, folderIndex, binderIndex, studySetIndex, iconColour)
   };
 
   const handleRename = () => {    // Focus in on name of dropblock when being renamed (i.e. show text cursor)
@@ -72,7 +78,7 @@ function DropBlock({
 
   const handleDropdownMenu = (e) => {
     positionComponents(e, heightOfDropdownMenu);
-    setDropdownMenu((prevState) => !prevState);
+    setDropdownMenu((prevState) => !prevState);    
   };
 
   useEffect(() => {
@@ -97,9 +103,15 @@ function DropBlock({
     };
     document.addEventListener("click", updateEditableName);
 
+    // Store new name in variable
+    const blockName = document.querySelector(`p[id="${id}"]`);
+    const blockNameText = blockName.textContent;
+    handleNameChange(type, folderIndex, binderIndex, studySetIndex, blockNameText);
+
     return () => {
       document.removeEventListener("click", updateEditableName);
     };
+    
   }, [editableName, id]);
 
   // Get window dimensions on each rerender to calculate position of portal components

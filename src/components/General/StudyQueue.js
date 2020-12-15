@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./StudyQueue.css";
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import bookshelfIcon from '@iconify/icons-mdi/bookshelf';
 import Portal from "./Portal";
 import Button from "../../components/Buttons/Button";

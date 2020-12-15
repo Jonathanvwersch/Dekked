@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Buttons/Button";
 import Block from "../General/Block";
 import Account from "./Account";
@@ -20,7 +20,7 @@ function Settings({ handleState }) {
             >
               {SettingsData.map((item, index) => (
                 <Block
-                  colour="off-beige"
+                  backgroundColour="off-beige"
                   item={item}
                   key={`${item} Block ${index}`}
                 />

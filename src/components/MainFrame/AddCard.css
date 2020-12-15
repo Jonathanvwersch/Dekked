@@ -1,0 +1,16 @@
+
+#addCard {
+    height:188px;
+    width:170px;
+    border-radius: var(--general-border-radius);
+    background: var(--off-beige);
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+#addCard .icon {
+    width:80px;
+    height:80px;
+}

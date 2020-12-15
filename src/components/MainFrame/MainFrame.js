@@ -2,7 +2,7 @@ import React from "react";
 import StudyQueue from "../General/StudyQueue";
 import TopBar from "./TopBar";
 
-function MainFrame() {
+function MainFrame({sidebar, handleSidebar, folderBlocks, handleFolderBlocks}) {
   return (
     <>
       <div
@@ -19,7 +19,7 @@ function MainFrame() {
         }}
       >
         <div style={{ width: "100%", maxWidth: "100vw", zIndex: "9" }}>
-        <TopBar/>
+        <TopBar sidebar={sidebar} handleSidebar={handleSidebar}/>
         </div>
         <StudyQueue/>
       </div>
