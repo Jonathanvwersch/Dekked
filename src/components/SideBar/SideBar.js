@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
@@ -7,11 +7,18 @@ import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
+
 import Portal from "../General/Portal";
 import Block from "../General/Block";
 import Settings from "../Settings/Settings";
 
-function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
+function Sidebar({
+  sidebar,
+  handleSidebar,
+  folderBlocks,
+  handleFolderBlocks,
+  handleNameChange,
+}) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
 
@@ -20,12 +27,11 @@ function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
       name: "",
       type: "folder",
       id: Math.random(),
-      iconColour: "",
+      iconColour: "#2C2C31",
       isOpen: false,
       binders: [],
     };
     handleFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
-    console.log(folderBlocks);
   };
 
   const openFolderBlock = (folderIndex) => {
@@ -41,7 +47,7 @@ function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
       name: "",
       type: "binder",
       id: Math.random(),
-      iconColour: "",
+      iconColour: "#2C2C31",
       isOpen: false,
       studySets: [],
     };
@@ -64,7 +70,7 @@ function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
       name: "",
       type: "studySet",
       id: Math.random(),
-      iconColour: "",
+      iconColour: "#2C2C31",
     };
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
@@ -77,6 +83,7 @@ function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
 
   const deleteBlock = (id, type, folderIndex, binderIndex, studySetIndex) => {
     let array;
+
     if (type === "folder")
       array = folderBlocks.filter((folderBlock) => folderBlock.id !== id);
     else if (type === "binder") {
@@ -89,32 +96,15 @@ function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
         1
       );
     }
-
     handleFolderBlocks(array);
+
+    if (folderBlocks.length === 1) 
+       addFolder();
+    
   };
 
   const handleSettings = () => {
     setSettingsPage((prevState) => !prevState);
-  };
-
-  const handleNameChange = (
-    type,
-    folderIndex,
-    binderIndex,
-    studySetIndex,
-    blockName
-  ) => {
-    const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder") {
-      newFolderBlocksArray[folderIndex].name = blockName;
-    } else if (type === "binder") {
-      newFolderBlocksArray[folderIndex].binders[binderIndex].name = blockName;
-    } else if (type === "studySet") {
-      newFolderBlocksArray[folderIndex].binders[binderIndex].studySets[
-        studySetIndex
-      ].name = blockName;
-    }
-    handleFolderBlocks(newFolderBlocksArray);
   };
 
   const handleIconColour = (
@@ -143,222 +133,227 @@ function Sidebar({ sidebar, handleSidebar, folderBlocks, handleFolderBlocks }) {
     <>
       {sidebar ? (
         <div className="dekked-sidebar-container">
-          <div style={{ height: "100%" }}>
-            <div
-              style={{
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                bottom: "0px",
-                display: "flex",
-                flexDirection: "column",
-                width: "0px",
-                overflow: "visible",
-                zIndex: "9",
-                pointerEvents: "none",
-              }}
-            >
-              <div className="dekked-sidebar">
-                <div className="sidebar-top">
-                  <div className="profile">
-                    <div className="avatar">
-                      <p className="p1">J</p>
-                    </div>
-                    <p className="p3">Jane Doe</p>
-                    <div
-                      className="icon active dropDownArrow down"
-                      onClick={setProfileMenu}
-                    >
-                      <Icons.MdArrowDropDown />
-                    </div>
-                    {profileMenu ? (
-                      <Portal
-                        state={profileMenu}
-                        handleState={() =>
-                          setProfileMenu((prevState) => !prevState)
-                        }
-                      >
-                        <div
-                          className="dropdownMenu settingsMenu"
-                          onClick={() =>
-                            setProfileMenu((prevState) => !prevState)
-                          }
-                        >
-                          {ProfileData.map((item, index) => {
-                            return (
-                              <Block
-                                item={item}
-                                key={`${item} Block ${index}`}
-                                handleSettings={handleSettings}
-                              />
-                            );
-                          })}
-                        </div>
-                      </Portal>
-                    ) : null}
-                    {settingsPage ? (
-                      <Portal
-                        state={settingsPage}
-                        handleState={handleSettings}
-                        lightbox={true}
-                        center={true}
-                        close={true}
-                      >
-                        <Settings handleState={handleSettings} />
-                      </Portal>
-                    ) : null}
-                  </div>
-                  <div
-                    className="icon active chevronDoubleLeft"
-                    onClick={handleSidebar}
+          <div className="dekked-sidebar">
+            <div className="sidebar-top">
+              <div className="profile">
+                <div className="avatar">
+                  <p className="p1">J</p>
+                </div>
+                <p className="p3">Jane Doe</p>
+                <div
+                  className="icon active dropDownArrow down"
+                  onClick={setProfileMenu}
+                >
+                  <Icons.MdArrowDropDown />
+                </div>
+                {profileMenu ? (
+                  <Portal
+                    state={profileMenu}
+                    handleState={() =>
+                      setProfileMenu((prevState) => !prevState)
+                    }
                   >
-                    <Icon icon={chevronDoubleLeft} />
-                  </div>
-                </div>
-                <div className="workspace">
-                  <div className="title">
-                    <p className="p2">Workspace</p>
-                  </div>
-                  <div className="folderBlocks">
-                    {folderBlocks.map((folder, folderIndex) => (
-                      <div key={folder.id} className="folderBlock">
-                        <NavLink
-                          to={`/${folder.id}`}
-                          activeStyle={{
-                            background: "var(--off-beige-clicked)",
-                          }}
-                        >
-                          <DropBlock
-                            type={folder.type}
-                            folderIndex={folderIndex}
-                            key={folder.id}
-                            id={folder.id}
-                            handleDelete={() =>
-                              deleteBlock(folder.id, folder.type)
-                            }
-                            handleAddItem={() => addBinder(folderIndex)}
-                            isExpanded={() => openFolderBlock(folderIndex)}
-                            isOpen={folder.isOpen}
-                            dropBlockMenuData={FolderData}
-                            handleNameChange={handleNameChange}
-                            handleIconColour={handleIconColour}
+                    <div
+                      className="dropdownMenu settingsMenu"
+                      onClick={() => setProfileMenu((prevState) => !prevState)}
+                    >
+                      {ProfileData.map((item, index) => {
+                        return (
+                          <Block
+                            item={item}
+                            key={`${item} Block ${index}`}
+                            handleSettings={handleSettings}
                           />
-                        </NavLink>
-                        {folder.isOpen ? (
-                          folder.binders.length === 0 ? (
-                            <div className="noBinders">
-                              <p className="p2">No binders inside</p>
-                            </div>
-                          ) : (
-                            folder.binders.map((binder, binderIndex) => (
-                              <div
+                        );
+                      })}
+                    </div>
+                  </Portal>
+                ) : null}
+                {settingsPage ? (
+                  <Portal
+                    state={settingsPage}
+                    handleState={handleSettings}
+                    lightbox={true}
+                    center={true}
+                    close={true}
+                  >
+                    <Settings handleState={handleSettings} />
+                  </Portal>
+                ) : null}
+              </div>
+              <div
+                className="icon active chevronDoubleLeft"
+                onClick={handleSidebar}
+              >
+                <Icon icon={chevronDoubleLeft} />
+              </div>
+            </div>
+            <div className="workspace">
+              <div className="title">
+                <p className="p2">Workspace</p>
+              </div>
+              <div className="folderBlocks">
+                {folderBlocks.map((folder, folderIndex) => (
+                  <div key={folder.id} className="folderBlock">
+                    <NavLink
+                      activeStyle={{
+                        background: "var(--off-beige-clicked)",
+                        fontWeight: "700",
+                      }}
+                      to={{
+                        pathname: `/${folder.type}/${folder.id}/${folder.name.replace(/\s/g, "-")}`,
+                        state: {
+                          type: folder.type,
+                          name: folder.name,
+                          folderIndex: folderIndex,
+                        },
+                      }}
+                    >
+                      <DropBlock
+                        name={folder.name}
+                        type={folder.type}
+                        folderIndex={folderIndex}
+                        key={folder.id}
+                        id={folder.id}
+                        handleDelete={() => deleteBlock(folder.id, folder.type)}
+                        handleAddItem={() => addBinder(folderIndex)}
+                        isExpanded={() => openFolderBlock(folderIndex)}
+                        isOpen={folder.isOpen}
+                        dropBlockMenuData={FolderData}
+                        handleNameChange={handleNameChange}
+                        handleIconColour={handleIconColour}
+                      />
+                    </NavLink>
+                    {folder.isOpen ? (
+                      folder.binders.length === 0 ? (
+                        <div className="noBinders">
+                          <p className="p2">No binders inside</p>
+                        </div>
+                      ) : (
+                        folder.binders.map((binder, binderIndex) => (
+                          <div
+                            key={binder.id}
+                            style={{
+                              background: "var(--off-beige)",
+                            }}
+                            className="binderBlock"
+                          >
+                            <NavLink
+                              activeStyle={{
+                                background: "var(--off-beige-clicked)",
+                                fontWeight: "700",
+                              }}
+                              to={{
+                                pathname: `/${binder.type}/${binder.id}/${binder.name.replace(/\s/g, "-")}`,
+                                state: {
+                                  type: binder.type,
+                                  name: binder.name,
+                                  folderIndex: folderIndex,
+                                  binderIndex: binderIndex,
+                                },
+                              }}
+                            >
+                              <DropBlock
+                                name={binder.name}
+                                type={binder.type}
                                 key={binder.id}
-                                style={{
-                                  background: "var(--off-beige)",
-                                }}
-                                className="binderBlock"
-                              >
-                                <NavLink
-                                  to={`/${binder.id}`}
-                                  activeStyle={{
-                                    background: "var(--off-beige-clicked)",
-                                  }}
-                                >
-                                  <DropBlock
-                                    type={binder.type}
-                                    key={binder.id}
-                                    id={binder.id}
-                                    handleDelete={() =>
-                                      deleteBlock(
-                                        binder.id,
-                                        binder.type,
-                                        folderIndex,
-                                        binderIndex
-                                      )
-                                    }
-                                    folderIndex={folderIndex}
-                                    binderIndex={binderIndex}
-                                    handleAddItem={() =>
-                                      addStudySet(folderIndex, binderIndex)
-                                    }
-                                    isExpanded={() =>
-                                      openBinderBlock(folderIndex, binderIndex)
-                                    }
-                                    isOpen={binder.isOpen}
-                                    handleNameChange={handleNameChange}
-                                    dropBlockMenuData={BinderData}
-                                    handleIconColour={handleIconColour}
-                                  />
-                                </NavLink>
-                                {binder.isOpen ? (
-                                  binder.studySets.length === 0 ? (
-                                    <div className="noStudySets">
-                                      <p className="p2">No study sets inside</p>
-                                    </div>
-                                  ) : (
-                                    binder.studySets.map(
-                                      (studySet, studySetIndex) => (
-                                        <div
-                                          key={studySet.id}
-                                          className="studySetBlock"
-                                          style={{
-                                            background: "var(--off-beige)",
-                                          }}
-                                        >
-                                          <NavLink
-                                            to={`/${studySet.id}`}
-                                            activeStyle={{
-                                              background:
-                                                "var(--off-beige-clicked)",
-                                            }}
-                                          >
-                                            <DropBlock
-                                              type={studySet.type}
-                                              key={studySet.id}
-                                              id={studySet.id}
-                                              folderIndex={folderIndex}
-                                              binderIndex={binderIndex}
-                                              studySetIndex={studySetIndex}
-                                              handleDelete={() =>
-                                                deleteBlock(
-                                                  studySet.id,
-                                                  studySet.type,
-                                                  folderIndex,
-                                                  binderIndex,
-                                                  studySetIndex
-                                                )
-                                              }
-                                              dropBlockMenuData={StudySetData}
-                                              handleNameChange={
-                                                handleNameChange
-                                              }
-                                              handleIconColour={
-                                                handleIconColour
-                                              }
-                                            />
-                                          </NavLink>
-                                        </div>
-                                      )
-                                    )
+                                id={binder.id}
+                                handleDelete={() =>
+                                  deleteBlock(
+                                    binder.id,
+                                    binder.type,
+                                    folderIndex,
+                                    binderIndex
                                   )
-                                ) : null}
-                              </div>
-                            ))
-                          )
-                        ) : null}
-                      </div>
-                    ))}
+                                }
+                                folderIndex={folderIndex}
+                                binderIndex={binderIndex}
+                                handleAddItem={() =>
+                                  addStudySet(folderIndex, binderIndex)
+                                }
+                                isExpanded={() =>
+                                  openBinderBlock(folderIndex, binderIndex)
+                                }
+                                isOpen={binder.isOpen}
+                                handleNameChange={handleNameChange}
+                                dropBlockMenuData={BinderData}
+                                handleIconColour={handleIconColour}
+                              />
+                            </NavLink>
+                            {binder.isOpen ? (
+                              binder.studySets.length === 0 ? (
+                                <div className="noStudySets">
+                                  <p className="p2">No study sets inside</p>
+                                </div>
+                              ) : (
+                                binder.studySets.map(
+                                  (studySet, studySetIndex) => (
+                                    <div
+                                      key={studySet.id}
+                                      className="studySetBlock"
+                                      style={{
+                                        background: "var(--off-beige)",
+                                      }}
+                                    >
+                                      <NavLink
+                                        activeStyle={{
+                                          background:
+                                            "var(--off-beige-clicked)",
+                                          fontWeight: "700",
+                                        }}
+                                        to={{
+                                          pathname: `/${studySet.type}/${studySet.id}/${studySet.name.replace(/\s/g, "-")}`,
+                                          state: {
+                                            type: studySet.type,
+                                            name: studySet.name,
+                                            folderIndex: folderIndex,
+                                            binderIndex: binderIndex,
+                                            studySetIndex: studySetIndex,
+                                          },
+                                        }}
+                                      >
+                                        <DropBlock
+                                          name={studySet.name}
+                                          type={studySet.type}
+                                          key={studySet.id}
+                                          id={studySet.id}
+                                          folderIndex={folderIndex}
+                                          binderIndex={binderIndex}
+                                          studySetIndex={studySetIndex}
+                                          handleDelete={() =>
+                                            deleteBlock(
+                                              studySet.id,
+                                              studySet.type,
+                                              folderIndex,
+                                              binderIndex,
+                                              studySetIndex
+                                            )
+                                          }
+                                          dropBlockMenuData={StudySetData}
+                                          handleNameChange={handleNameChange}
+                                          handleIconColour={handleIconColour}
+                                        />
+                                      </NavLink>
+                                    </div>
+                                  )
+                                )
+                              )
+                            ) : null}
+                          </div>
+                        ))
+                      )
+                    ) : null}
                   </div>
+                ))}
+              </div>
+            </div>
+            <div onClick={addFolder} className="sidebar-bottom">
+              <div className="addBlock">
+                <div className="icon plus">
+                  <Icons.MdAdd />
                 </div>
-                <div className="sidebar-bottom">
-                  <div onClick={addFolder} className="AddBlock">
-                    <div className="icon plus">
-                      <Icons.MdAdd />
-                    </div>
-                    <div className="addFolder">
-                      <p className="p1">Add folder</p>
-                    </div>
-                  </div>
+                <div className="addFolder">
+                  <p className="p1">Add folder</p>
                 </div>
               </div>
             </div>

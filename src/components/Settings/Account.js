@@ -12,32 +12,32 @@ function Account() {
   return (
     <>
       <div className="account">
-        <div id="title">
+        <div id="account-title">
           <h3>Account</h3>
         </div>
-        <div id="avatar-container">
+        <div id="account-avatar-container">
           <p className="p1">Avatar</p>
-          <div id="avatar-button">
-            <div id="avatar"></div>
+          <div id="account-avatar-button">
+            <div id="account-avatar"></div>
             <Button type="secondary" action="Upload" />
           </div>
         </div>
-        <div id="personal-info">
+        <div id="account-personal-info">
           <p className="p1">Personal Info</p>
 
-          <div id="input">
-            <div id="first-name">
+          <div id="account-input">
+            <div id="account-first-name">
               <p className="p3">First name</p>
               <input type="text"></input>
             </div>
-            <div id="last-name">
+            <div id="account-last-name">
               <p className="p3">Last name</p>
               <input type="text"></input>
             </div>
           </div>
         </div>
-        <div id="password">
-          <div id="password-title">
+        <div id="account-password">
+          <div id="account-password-title">
             <p className="p1">Password</p>
           </div>
           <Button

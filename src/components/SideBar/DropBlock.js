@@ -17,14 +17,13 @@ function DropBlock({
   isOpen,
   dropBlockMenuData,
   handleNameChange,
-  folderIndex, 
-  binderIndex, 
+  folderIndex,
+  binderIndex,
   studySetIndex,
-  handleIconColour
+  handleIconColour,
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
-  const [height, setHeight] = useState(window.innerHeight); // Get height of window at all times for positioning portal components
   const [editableName, setEditableName] = useState(false); // Set name of dropblock to be editable so that you can rename block
   const [colourPicker, setColourPicker] = useState(false); // Set visibility of colour picker component
   const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState(); // Set y position of dropdown menu
@@ -38,8 +37,8 @@ function DropBlock({
   // Position portal components based on mouse coordinates
   const positionComponents = (e, itemHeight) => {
     const rect = e.target.getBoundingClientRect();
-    let bottomValue = height - rect.y; // distance from mouse click to bottom of window
-    let topValue = rect.y + window.scrollY; // distance from mouse click to top of window
+    let bottomValue = window.innerHeight - rect.y; // distance from mouse click to bottom of window
+    let topValue = rect.y; // distance from mouse click to top of window
     setYPositionofDropdownMenu(topValue);
 
     if (
@@ -65,20 +64,32 @@ function DropBlock({
     };
     setCoords(newCoords);
     setColourPicker((prevState) => !prevState);
-    handleIconColour(type, folderIndex, binderIndex, studySetIndex, iconColour)
+    handleIconColour(type, folderIndex, binderIndex, studySetIndex, iconColour);
   };
 
-  const handleRename = () => {    // Focus in on name of dropblock when being renamed (i.e. show text cursor)
+  // const blockName = document.querySelector(`p[id="${id}"]`);
+  // const blockNameText = blockName.textContent;
+  //     handleNameChange(
+  //       type,
+  //       folderIndex,
+  //       binderIndex,
+  //       studySetIndex,
+  //       blockNameText
+  //)
+
+
+  const handleRename = () => {
+    // Focus in on name of dropblock when being renamed (i.e. show text cursor)
     var div = document.querySelector(`p[id="${id}"]`);
     setTimeout(function () {
-          setEditableName((prevValue) => !prevValue);
+      setEditableName((prevValue) => !prevValue);
       div.focus();
     }, 0);
   };
 
   const handleDropdownMenu = (e) => {
     positionComponents(e, heightOfDropdownMenu);
-    setDropdownMenu((prevState) => !prevState);    
+    setDropdownMenu((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -94,6 +105,7 @@ function DropBlock({
           true
         );
       }
+
       // If user clicks outside of name of dropblock, turn off editability of name
       if (editableName === true) {
         if (!ref.current.contains(e.target)) {
@@ -103,28 +115,10 @@ function DropBlock({
     };
     document.addEventListener("click", updateEditableName);
 
-    // Store new name in variable
-    const blockName = document.querySelector(`p[id="${id}"]`);
-    const blockNameText = blockName.textContent;
-    handleNameChange(type, folderIndex, binderIndex, studySetIndex, blockNameText);
-
     return () => {
       document.removeEventListener("click", updateEditableName);
     };
-    
-  }, [editableName, id]);
-
-  // Get window dimensions on each rerender to calculate position of portal components
-  useEffect(() => {
-    const updateWindowDimensions = () => {
-      const newHeight = window.innerHeight;
-      setHeight(newHeight);
-    };
-
-    window.addEventListener("resize", updateWindowDimensions);
-
-    return () => window.removeEventListener("resize", updateWindowDimensions);
-  }, []);
+  }, [editableName]);
 
   return (
     <div role="button" className="DropBlock">
@@ -173,7 +167,7 @@ function DropBlock({
           handleState={() => setDropdownMenu((prevState) => !prevState)}
         >
           <div
-            onClick = {() => setDropdownMenu((prevState) => !prevState)}
+            onClick={() => setDropdownMenu((prevState) => !prevState)}
             className="dropdownMenu"
             style={{ ...styles.popover, ...coords }}
           >

@@ -10,6 +10,14 @@
     cursor:pointer;
 }
 
+#addCard:hover .icon{
+    color: var(--primary-color);
+}
+
+#addCard:active .icon{
+    color: var(--primary-color-hover);
+}
+
 #addCard .icon {
     width:80px;
     height:80px;

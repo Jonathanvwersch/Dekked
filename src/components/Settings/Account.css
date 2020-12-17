@@ -1,29 +1,29 @@
 
 /* Title Styling */
 
-#title {
+#account-title {
     border-bottom: 0.5px solid var(--grey-3);
     display:flex;
     justify-content:flex-start;
 
 }
 
-#title h3{
+#account-title h3{
     padding-bottom:8px;
 }
 
 /* Avatar Styling */
 
-#avatar-container{
+#account-avatar-container{
     border-bottom: 0.5px solid var(--grey-3);
     padding-top:16px;
     padding-bottom:16px;
 }
-#avatar-button{
+#account-avatar-button{
     padding-top:16px;
 }
 
-#avatar {
+#account-avatar {
     width: 54px;
     height: 54px;
     background: var(--primary-color);
@@ -31,7 +31,7 @@
     margin-right:15px;
 }
 
-#avatar-button {
+#account-avatar-button {
     display:flex;
     align-items:center;
     justify-content:space-around;
@@ -40,23 +40,23 @@
 
 /* Personal Info Styling */
 
-#personal-info {
+#account-personal-info {
     padding-top:16px;
     padding-bottom:16px;
     border-bottom: 0.5px solid var(--grey-3);
 }
 
-#input {
+#account-input {
     padding-top:16px;
     display:flex;
     flex-direction:column;
 }
 
-#input p{
+#account-input p{
     color:var(--grey-1);
 }
 
-#last-name {
+#account-last-name {
     padding-top:8px;
 
 }
@@ -67,12 +67,12 @@ input {
 
 /* Password Styling */
 
-#password {
+#account-password {
     padding-top:16px;
     padding-bottom:16px;
 }
 
-#password-title {
+#account-password-title {
     padding-bottom:8px;
 }
 
