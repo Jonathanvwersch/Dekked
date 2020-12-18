@@ -7,6 +7,11 @@
     background: var(--white);
     position:relative;
     user-select: none;
+    cursor:pointer;
+}
+
+#card:hover {
+    box-shadow: 0 0 0 0.5pt var(--primary-color);
 }
 
 #card-thumbnail {
@@ -42,8 +47,15 @@
 #card-date p {
     padding-left:4px;
     color:var(--grey-1);
+    max-width:118px;
+}
+
+#card-name p {
+    max-width:138px;
 }
 
 #card p{
     text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
 }

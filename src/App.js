@@ -18,8 +18,24 @@ function App() {
       type: "folder",
       id: Math.random(),
       iconColour: "#2C2C31",
-      isOpen: false,
-      binders: [],
+      isOpen: true,
+      binders: [
+        {
+          name: "Getting Started",
+          type: "binder",
+          id: Math.random(),
+          iconColour: "#2C2C31",
+          isOpen: true,
+          studySets: [
+            {
+              name: "Tutorial",
+              type: "studySet",
+              id: Math.random(),
+              iconColour: "#2C2C31",
+            },
+          ],
+        },
+      ],
     },
   ]);
 
@@ -37,6 +53,7 @@ function App() {
     const newFolderBlocksArray = folderBlocks.slice();
     if (type === "folder") {
       newFolderBlocksArray[folderIndex].name = blockName;
+      console.log("hello");
     } else if (type === "binder") {
       newFolderBlocksArray[folderIndex].binders[binderIndex].name = blockName;
     } else if (type === "studySet") {
@@ -51,36 +68,37 @@ function App() {
     setSidebar((prevState) => !prevState);
   };
 
-
   return (
     <>
-        <Sidebar
-          sidebar={sidebar}
-          handleSidebar={handleSidebar}
-          folderBlocks={folderBlocks}
-          handleFolderBlocks={handleFolderBlocks}
-          handleNameChange={handleNameChange}
-        />
+      <Sidebar
+        sidebar={sidebar}
+        handleSidebar={handleSidebar}
+        folderBlocks={folderBlocks}
+        handleFolderBlocks={handleFolderBlocks}
+        handleNameChange={handleNameChange}
+      />
 
-        <Switch>
-          <Route path="/">
-            <MainFrame
-              folderBlocks={folderBlocks}
-              sidebar={sidebar}
-              handleSidebar={handleSidebar}
-              handleNameChange={handleNameChange}
-              handleFolderBlocks={handleFolderBlocks}
-            />
-            <Redirect
-              to={{
-              pathname:`/${folderBlocks[0].type}/${folderBlocks[0].id}/${folderBlocks[0].name.replace(/\s/g, "-")}`,
-              state: { type: folderBlocks[0].type,
-                       name: folderBlocks[0].name,
-                       folderIndex:0,
-                      }}}
-            />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route path="/">
+          <MainFrame
+            folderBlocks={folderBlocks}
+            sidebar={sidebar}
+            handleSidebar={handleSidebar}
+            handleNameChange={handleNameChange}
+            handleFolderBlocks={handleFolderBlocks}
+          />
+          <Redirect
+            to={{
+              pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
+              state: {
+                type: folderBlocks[0].type,
+                name: folderBlocks[0].name,
+                folderIndex: 0,
+              },
+            }}
+          />
+        </Route>
+      </Switch>
     </>
   );
 }

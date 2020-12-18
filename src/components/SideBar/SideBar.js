@@ -201,7 +201,7 @@ function Sidebar({
                         fontWeight: "700",
                       }}
                       to={{
-                        pathname: `/${folder.type}/${folder.id}/${folder.name.replace(/\s/g, "-")}`,
+                        pathname: `/${folder.type}/${folder.id}`,
                         state: {
                           type: folder.type,
                           name: folder.name,
@@ -222,6 +222,8 @@ function Sidebar({
                         dropBlockMenuData={FolderData}
                         handleNameChange={handleNameChange}
                         handleIconColour={handleIconColour}
+                        folderBlocks={folderBlocks}
+
                       />
                     </NavLink>
                     {folder.isOpen ? (
@@ -244,7 +246,7 @@ function Sidebar({
                                 fontWeight: "700",
                               }}
                               to={{
-                                pathname: `/${binder.type}/${binder.id}/${binder.name.replace(/\s/g, "-")}`,
+                                pathname: `/${binder.type}/${binder.id}`,
                                 state: {
                                   type: binder.type,
                                   name: binder.name,
@@ -278,6 +280,7 @@ function Sidebar({
                                 handleNameChange={handleNameChange}
                                 dropBlockMenuData={BinderData}
                                 handleIconColour={handleIconColour}
+                                folderBlocks={folderBlocks}
                               />
                             </NavLink>
                             {binder.isOpen ? (
@@ -302,7 +305,7 @@ function Sidebar({
                                           fontWeight: "700",
                                         }}
                                         to={{
-                                          pathname: `/${studySet.type}/${studySet.id}/${studySet.name.replace(/\s/g, "-")}`,
+                                          pathname: `/${studySet.type}/${studySet.id}`,
                                           state: {
                                             type: studySet.type,
                                             name: studySet.name,
@@ -332,6 +335,8 @@ function Sidebar({
                                           dropBlockMenuData={StudySetData}
                                           handleNameChange={handleNameChange}
                                           handleIconColour={handleIconColour}
+                                          folderBlocks={folderBlocks}
+
                                         />
                                       </NavLink>
                                     </div>

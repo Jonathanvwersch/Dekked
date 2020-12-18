@@ -21,6 +21,7 @@ function DropBlock({
   binderIndex,
   studySetIndex,
   handleIconColour,
+  folderBlocks,
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
@@ -29,7 +30,7 @@ function DropBlock({
   const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState(); // Set y position of dropdown menu
   const [iconColour, setIconColour] = useState("#2C2C31"); // Set colour of icons (necessary to change colours using colour picker)
 
-  const ref = useRef(null); // Reference name of block to deactivate focus after renaming block
+  const nameRef = useRef(null); // Reference name of block to deactivate focus after renaming block
 
   const heightOfDropdownMenu = 30 * dropBlockMenuData.length; // Value is necessary to position dropdown menu based on mouse coordinates
   const heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
@@ -67,17 +68,6 @@ function DropBlock({
     handleIconColour(type, folderIndex, binderIndex, studySetIndex, iconColour);
   };
 
-  // const blockName = document.querySelector(`p[id="${id}"]`);
-  // const blockNameText = blockName.textContent;
-  //     handleNameChange(
-  //       type,
-  //       folderIndex,
-  //       binderIndex,
-  //       studySetIndex,
-  //       blockNameText
-  //)
-
-
   const handleRename = () => {
     // Focus in on name of dropblock when being renamed (i.e. show text cursor)
     var div = document.querySelector(`p[id="${id}"]`);
@@ -86,6 +76,22 @@ function DropBlock({
       div.focus();
     }, 0);
   };
+
+  useEffect(() => {
+    if (editableName === false) {
+      if (type === "folder") {
+        nameRef.current.innerText = folderBlocks[folderIndex].name;
+      } else if (type === "binder") {
+        nameRef.current.innerText =
+          folderBlocks[folderIndex].binders[binderIndex].name;
+      } else if (type === "studySet") {
+        nameRef.current.innerText =
+          folderBlocks[folderIndex].binders[binderIndex].studySets[
+            studySetIndex
+          ].name;
+      }
+    }
+  }, [folderBlocks]);
 
   const handleDropdownMenu = (e) => {
     positionComponents(e, heightOfDropdownMenu);
@@ -108,7 +114,7 @@ function DropBlock({
 
       // If user clicks outside of name of dropblock, turn off editability of name
       if (editableName === true) {
-        if (!ref.current.contains(e.target)) {
+        if (!nameRef.current.contains(e.target)) {
           setEditableName((prevValue) => !prevValue);
         }
       }
@@ -144,13 +150,22 @@ function DropBlock({
         )}
       </div>
       <p
-        ref={ref}
+        ref={nameRef}
         id={id}
         spellCheck="false"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             setEditableName((prevValue) => !prevValue);
           }
+          setTimeout(function () {
+            handleNameChange(
+              type,
+              folderIndex,
+              binderIndex,
+              studySetIndex,
+              nameRef.current.innerText
+            );
+          }, 100);
         }}
         contentEditable={editableName}
         className="p2"
