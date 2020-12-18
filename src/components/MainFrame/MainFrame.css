@@ -22,6 +22,14 @@
     
 }
 
+.dekked-page-content {
+   padding-left: calc(75px + env(safe-area-inset-left));
+    padding-right: calc(75px + env(safe-area-inset-right));
+    max-width:100%;
+    width:1000px;
+    padding-bottom:15vh;
+    padding-top:60px;
+}
 
 .dekked-page-content-container .page-header{
     padding-left: calc(75px + env(safe-area-inset-left));
@@ -50,18 +58,4 @@
 
 .dekked-page-content-container .page-header h2 {
     cursor:text;
-}
-
-.dekked-page-content {
-    
-    display:grid;
-    grid-template-columns: repeat(4,1fr );
-    grid-column-gap: 56.67px;
-    grid-row-gap: 42px;
-    padding-left: calc(75px + env(safe-area-inset-left));
-    padding-right: calc(75px + env(safe-area-inset-right));
-    max-width:100%;
-    width:1000px;
-    padding-bottom:15vh;
-    padding-top:60px;
 }

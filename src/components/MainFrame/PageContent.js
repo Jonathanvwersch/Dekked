@@ -11,8 +11,15 @@ function PageContent({ folderBlocks, handleNameChange, handleFolderBlocks }) {
 
   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
-      titleRef.current.innerText =
-        folderBlocks[location.state.folderIndex].name;
+      if (location.state.type === "folder") {
+        titleRef.current.innerText =
+          folderBlocks[location.state.folderIndex].name;
+      } else {
+        titleRef.current.innerText =
+          folderBlocks[location.state.folderIndex].binders[
+            location.state.binderIndex
+          ].name;
+      }
     }
   }, [folderBlocks, location.state]);
 
@@ -73,7 +80,9 @@ function PageContent({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                 }
               }}
             ></h2>
-            <p className="p2">
+          </div>
+          <div id="button-quantity">
+            <p className="p2 quantity">
               {location.state
                 ? location.state.type === "folder"
                   ? `${
@@ -86,6 +95,7 @@ function PageContent({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                     } study set(s)`
                 : null}
             </p>
+            <Button type="primary" action="Study" />
           </div>
         </div>
       </div>

@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Button from "../Buttons/Button";
 import StudyQueue from "../General/StudyQueue";
 import PageContent from "./PageContent";
 import TopBar from "./TopBar";
+import { useLocation, withRouter } from "react-router";
+import "./MainFrame.css";
 
 function MainFrame({
   sidebar,
@@ -14,6 +17,9 @@ function MainFrame({
   const [frameWidth, setFrameWidth] = useState(
     window.innerWidth - (sidebar ? expandedSidebarWidth : 0)
   );
+
+  const titleRef = useRef();
+  let location = useLocation();
 
   useEffect(() => {
     if (sidebar) setFrameWidth(window.innerWidth - expandedSidebarWidth);
@@ -32,6 +38,24 @@ function MainFrame({
       return window.removeEventListener("resize", updateWindowDimensions);
     };
   });
+  useEffect(() => {
+    if (location.state && document.activeElement !== titleRef.current) {
+      if (location.state.type === "folder") {
+        titleRef.current.innerText =
+          folderBlocks[location.state.folderIndex].name;
+      } else if (location.state.type === "binder") {
+        titleRef.current.innerText =
+          folderBlocks[location.state.folderIndex].binders[
+            location.state.binderIndex
+          ].name;
+      } else {
+        titleRef.current.innerText =
+          folderBlocks[location.state.folderIndex].binders[
+            location.state.binderIndex
+          ].studySets[location.state.studySetIndex].name;
+      }
+    }
+  }, [folderBlocks, location.state]);
 
   return (
     <>
@@ -52,15 +76,63 @@ function MainFrame({
         <div style={{ width: "100%", maxWidth: "100vw", zIndex: "9" }}>
           <TopBar sidebar={sidebar} handleSidebar={handleSidebar} />
         </div>
-        <PageContent
+        <div className="dekked-page-content-container">
+          <div className="page-header-container">
+            <div className="page-header">
+              <div className="page-title">
+                <h2
+                  contentEditable={true}
+                  ref={titleRef}
+                  spellCheck={false}
+                  onKeyDown={(e) => {
+                    if (location.state) {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                      }
+                      setTimeout(function () {
+                        handleNameChange(
+                          location.state.type,
+                          location.state.folderIndex,
+                          location.state.binderIndex,
+                          location.state.studySetIndex,
+                          titleRef.current.innerText
+                        );
+                      }, 100);
+                    }
+                  }}
+                ></h2>
+              </div>
+              <div id="button-quantity">
+                <p className="p2 quantity">
+                  {location.state
+                    ? location.state.type === "folder"
+                      ? `${
+                          folderBlocks[location.state.folderIndex].binders
+                            .length
+                        } binder(s)`
+                      : `${
+                          folderBlocks[location.state.folderIndex].binders[
+                            location.state.binderIndex
+                          ].studySets.length
+                        } study set(s)`
+                    : null}
+                </p>
+                <Button type="primary" action="Study" />
+              </div>
+            </div>
+          </div>
+
+          <div className="dekked-page-content"></div>
+        </div>
+        {/* <PageContent
           folderBlocks={folderBlocks}
           handleFolderBlocks={handleFolderBlocks}
           handleNameChange={handleNameChange}
-        />
+        /> */}
         <StudyQueue />
       </div>
     </>
   );
 }
 
-export default MainFrame;
+export default withRouter(MainFrame);
