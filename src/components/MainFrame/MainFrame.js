@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Button from "../Buttons/Button";
 import StudyQueue from "../General/StudyQueue";
-import PageContent from "./PageContent";
 import TopBar from "./TopBar";
 import { useLocation, withRouter } from "react-router";
 import "./MainFrame.css";
+import FolderBinderHome from "./FolderBinderHome";
 
 function MainFrame({
   sidebar,
@@ -48,7 +48,7 @@ function MainFrame({
           folderBlocks[location.state.folderIndex].binders[
             location.state.binderIndex
           ].name;
-      } else {
+      } else if (location.state.type === "studySet") {
         titleRef.current.innerText =
           folderBlocks[location.state.folderIndex].binders[
             location.state.binderIndex
@@ -122,13 +122,18 @@ function MainFrame({
             </div>
           </div>
 
-          <div className="dekked-page-content"></div>
+          <div className="dekked-page-content">
+            {location.state ? (
+              location.state.type === "folder" ||
+              location.state.type === "binder" ? (
+                <FolderBinderHome
+                  folderBlocks={folderBlocks}
+                  handleFolderBlocks={handleFolderBlocks}
+                />
+              ) : null
+            ) : null}
+          </div>
         </div>
-        {/* <PageContent
-          folderBlocks={folderBlocks}
-          handleFolderBlocks={handleFolderBlocks}
-          handleNameChange={handleNameChange}
-        /> */}
         <StudyQueue />
       </div>
     </>

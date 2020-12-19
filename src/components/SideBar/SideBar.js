@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
@@ -7,6 +7,7 @@ import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 
 import Portal from "../General/Portal";
 import Block from "../General/Block";
@@ -80,6 +81,7 @@ function Sidebar({
     newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
     handleFolderBlocks(newFolderBlocksArray);
   };
+  
 
   const deleteBlock = (id, type, folderIndex, binderIndex, studySetIndex) => {
     let array;
@@ -97,10 +99,7 @@ function Sidebar({
       );
     }
     handleFolderBlocks(array);
-
-    if (folderBlocks.length === 1) 
-       addFolder();
-    
+    if (folderBlocks.length === 1) addFolder();
   };
 
   const handleSettings = () => {
@@ -223,7 +222,6 @@ function Sidebar({
                         handleNameChange={handleNameChange}
                         handleIconColour={handleIconColour}
                         folderBlocks={folderBlocks}
-
                       />
                     </NavLink>
                     {folder.isOpen ? (
@@ -336,7 +334,6 @@ function Sidebar({
                                           handleNameChange={handleNameChange}
                                           handleIconColour={handleIconColour}
                                           folderBlocks={folderBlocks}
-
                                         />
                                       </NavLink>
                                     </div>
@@ -369,4 +366,4 @@ function Sidebar({
   );
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

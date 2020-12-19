@@ -7,6 +7,8 @@ import Portal from "../General/Portal";
 import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
+import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 
 function DropBlock({
   type,
@@ -187,7 +189,28 @@ function DropBlock({
             style={{ ...styles.popover, ...coords }}
           >
             {dropBlockMenuData.map((item, index) => {
-              return (
+              return item.action === "Delete" ? (
+                <NavLink
+                  to={{
+                    pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
+                    state: {
+                      type: "folder",
+                      folderIndex: "0",
+                    },
+                  }}
+                >
+                  <Block
+                    handleDelete={handleDelete}
+                    handleRename={handleRename}
+                    handleColourPicker={handleColourPicker}
+                    handleAddItem={handleAddItem}
+                    showDropBlocks={isExpanded}
+                    item={item}
+                    id={`${item} Block ${index}`}
+                    key={`${item} Block ${index}`}
+                  />
+                </NavLink>
+              ) : (
                 <Block
                   handleDelete={handleDelete}
                   handleRename={handleRename}
@@ -227,4 +250,4 @@ const styles = {
   },
 };
 
-export default DropBlock;
+export default withRouter(DropBlock);

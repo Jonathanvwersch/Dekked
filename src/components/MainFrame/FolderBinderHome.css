@@ -1,0 +1,6 @@
+.dekked-folder-binder-home {
+    display:grid;
+    grid-template-columns: repeat(4,1fr );
+    grid-column-gap: 56.67px;
+    grid-row-gap: 42px;
+}

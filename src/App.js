@@ -5,7 +5,6 @@ import {
   Switch,
   Route,
   Redirect,
-  withRouter,
 } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
@@ -70,37 +69,39 @@ function App() {
 
   return (
     <>
-      <Sidebar
-        sidebar={sidebar}
-        handleSidebar={handleSidebar}
-        folderBlocks={folderBlocks}
-        handleFolderBlocks={handleFolderBlocks}
-        handleNameChange={handleNameChange}
-      />
+      <Router>
+        <Sidebar
+          sidebar={sidebar}
+          handleSidebar={handleSidebar}
+          folderBlocks={folderBlocks}
+          handleFolderBlocks={handleFolderBlocks}
+          handleNameChange={handleNameChange}
+        />
 
-      <Switch>
-        <Route path="/">
-          <MainFrame
-            folderBlocks={folderBlocks}
-            sidebar={sidebar}
-            handleSidebar={handleSidebar}
-            handleNameChange={handleNameChange}
-            handleFolderBlocks={handleFolderBlocks}
-          />
-          <Redirect
-            to={{
-              pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
-              state: {
-                type: folderBlocks[0].type,
-                name: folderBlocks[0].name,
-                folderIndex: 0,
-              },
-            }}
-          />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route path="/">
+            <MainFrame
+              folderBlocks={folderBlocks}
+              sidebar={sidebar}
+              handleSidebar={handleSidebar}
+              handleNameChange={handleNameChange}
+              handleFolderBlocks={handleFolderBlocks}
+            />
+            <Redirect
+              to={{
+                pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
+                state: {
+                  type: folderBlocks[0].type,
+                  name: folderBlocks[0].name,
+                  folderIndex: 0,
+                },
+              }}
+            />
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }
 
-export default withRouter(App);
+export default App;

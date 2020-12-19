@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Card.css";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
@@ -12,7 +12,7 @@ function Card({ name, type, iconColour }) {
   };
 
   return (
-    <div id="card">
+    <div id="card" role="button">
       <div id="card-thumbnail"></div>
       <div id="card-description">
         <div id="card-name">
