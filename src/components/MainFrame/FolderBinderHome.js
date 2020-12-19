@@ -67,7 +67,7 @@ function FolderBinderHome({ folderBlocks, handleFolderBlocks }) {
                   }}
                 >
                   <Card
-                    key={index}
+                    key={Math.random()}
                     name={item.name ? item.name : "Untitled"}
                     type={item.type}
                     iconColour={item.iconColour}

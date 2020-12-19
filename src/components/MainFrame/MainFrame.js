@@ -74,7 +74,7 @@ function MainFrame({
         }}
       >
         <div style={{ width: "100%", maxWidth: "100vw", zIndex: "9" }}>
-          <TopBar sidebar={sidebar} handleSidebar={handleSidebar} />
+          <TopBar folderBlocks={folderBlocks} sidebar={sidebar} handleSidebar={handleSidebar} />
         </div>
         <div className="dekked-page-content-container">
           <div className="page-header-container">
