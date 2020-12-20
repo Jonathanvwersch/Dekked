@@ -1,0 +1,37 @@
+.toolbar {
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: flex-start;
+    height:16px;
+}
+
+.toolbar .icon{
+    margin-right: 8px;
+}
+
+.toolbar .icon.blockType{
+    margin-right: 0px!important;
+}
+
+.toolbar .switchBlock {
+    display:flex;
+    align-items:center;
+    flex-direction: row;
+}
+
+.toolbar .switchBlock:hover .icon{
+    color:var(--primary-color);
+}
+
+
+.toolbar .switchBlock:active .icon{
+    color:var(--primary-color-hover);
+}
+
+.toolbar #divider{
+    height:16px;
+    width:1px;
+    margin-right: 8px;
+    background-color: var(--main-black);
+}

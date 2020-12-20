@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
-import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
-import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
+import { ReactComponent as BinderIcon } from "../../../custom-icons/binder.svg";
+import { ReactComponent as StudySetIcon } from "../../../custom-icons/studyset.svg";
 
 function Card({ name, type, iconColour }) {
   let date = new Date();
