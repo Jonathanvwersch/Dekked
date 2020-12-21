@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
@@ -141,7 +141,7 @@ function Sidebar({
                 <p className="p3">Jane Doe</p>
                 <div
                   className="icon active dropDownArrow down"
-                  onClick={setProfileMenu}
+                  onClick={() => setProfileMenu((prevState) => !prevState)}
                 >
                   <Icons.MdArrowDropDown />
                 </div>
