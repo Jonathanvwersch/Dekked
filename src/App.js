@@ -90,14 +90,11 @@ function App() {
             />
             <Redirect
               to={{
-                pathname: `/${folderBlocks[0].binders[0].studySets[0].type}/${folderBlocks[0].binders[0].studySets[0].tab}/${folderBlocks[0].binders[0].studySets[0].id}`,
+                pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
                 state: {
-                  type: folderBlocks[0].binders[0].studySets[0].type,
-                  name: folderBlocks[0].binders[0].studySets[0].name,
+                  type: folderBlocks[0].type,
+                  name: folderBlocks[0].name,
                   folderIndex: 0,
-                  binderIndex: 0,
-                  studySetIndex: 0,
-                  tab: folderBlocks[0].binders[0].studySets[0].tab,
                 },
               }}
             />

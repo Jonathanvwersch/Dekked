@@ -13,6 +13,7 @@ function StudySetFlashcards({ folderBlocks, handleFolderBlocks }) {
   };
   useEffect(() => {
     handleTab();
+    console.log(location.state);
   }, [location.state]);
   return null;
 }

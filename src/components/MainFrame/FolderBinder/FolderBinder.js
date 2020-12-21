@@ -149,13 +149,14 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
                   ].studySets.map((item, index) => (
                     <NavLink
                       to={{
-                        pathname: `/${item.type}/${item.id}`,
+                        pathname: `/${item.type}/${item.tab}/${item.id}`,
                         state: {
                           type: item.type,
                           name: item.name,
                           folderIndex: location.state.folderIndex,
                           binderIndex: location.state.binderIndex,
                           studySetIndex: index,
+                          tab: item.tab
                         },
                       }}
                     >

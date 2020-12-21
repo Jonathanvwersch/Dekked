@@ -15,7 +15,6 @@ function MainFrame({
   handleFolderBlocks,
   handleNameChange,
 }) {
-  const titleRef = useRef();
   const expandedSidebarWidth = 220;
   const [frameWidth, setFrameWidth] = useState(
     window.innerWidth - (sidebar ? expandedSidebarWidth : 0)
