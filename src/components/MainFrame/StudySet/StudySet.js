@@ -5,6 +5,7 @@ import Toolbar from "../StudySet/Toolbar";
 import { NavLink } from "react-router-dom";
 import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
+import Button from "../../Buttons/Button";
 
 function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
   let location = useLocation();
@@ -104,28 +105,39 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                   ) : null}
                 </div>
               </div>
-              <div className="dekked-page-title">
-                <h2
-                  contentEditable={true}
-                  ref={titleRef}
-                  spellCheck={false}
-                  onKeyDown={(e) => {
-                    if (location.state) {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
+              <div className="dekked-studyset-page-title-container">
+                <div classname="dekked-studyset-page-title">
+                  <h2
+                    contentEditable={true}
+                    ref={titleRef}
+                    spellCheck={false}
+                    onKeyDown={(e) => {
+                      if (location.state) {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                        }
+                        setTimeout(function () {
+                          handleNameChange(
+                            location.state.type,
+                            location.state.folderIndex,
+                            location.state.binderIndex,
+                            location.state.studySetIndex,
+                            titleRef.current.innerText
+                          );
+                        }, 100);
                       }
-                      setTimeout(function () {
-                        handleNameChange(
-                          location.state.type,
-                          location.state.folderIndex,
-                          location.state.binderIndex,
-                          location.state.studySetIndex,
-                          titleRef.current.innerText
-                        );
-                      }, 100);
-                    }
-                  }}
-                ></h2>
+                    }}
+                  ></h2>
+                </div>
+
+                {location.state.tab === "flashcards" ? (
+                  <div className="dekked-studyset-page-buttons">
+                    <div style={{ marginRight: "32px" }}>
+                      <Button type="secondary" action="Add flashcard" />
+                    </div>
+                    <Button type="primary" action="Study" />
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>

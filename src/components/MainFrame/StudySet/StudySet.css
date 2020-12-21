@@ -43,8 +43,15 @@
     width:1000px;
 }
 
-.dekked-studySet .dekked-page-title{
+.dekked-studySet .dekked-studyset-page-title-container{
     margin-top: 28px;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.dekked-studySet .dekked-studyset-page-buttons {
+    display:flex;
 }
 
 .dekked-studySet  .dekked-page-header h2:empty:before {
