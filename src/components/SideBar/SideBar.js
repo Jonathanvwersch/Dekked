@@ -72,6 +72,7 @@ function Sidebar({
       type: "studySet",
       id: Math.random(),
       iconColour: "#2C2C31",
+      tab: "notes"
     };
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
@@ -81,7 +82,6 @@ function Sidebar({
     newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
     handleFolderBlocks(newFolderBlocksArray);
   };
-  
 
   const deleteBlock = (id, type, folderIndex, binderIndex, studySetIndex) => {
     let array;
@@ -231,13 +231,7 @@ function Sidebar({
                         </div>
                       ) : (
                         folder.binders.map((binder, binderIndex) => (
-                          <div
-                            key={binder.id}
-                            style={{
-                              background: "var(--off-beige)",
-                            }}
-                            className="binderBlock"
-                          >
+                          <div key={binder.id} className="binderBlock">
                             <NavLink
                               activeStyle={{
                                 background: "var(--off-beige-clicked)",
@@ -292,9 +286,6 @@ function Sidebar({
                                     <div
                                       key={studySet.id}
                                       className="studySetBlock"
-                                      style={{
-                                        background: "var(--off-beige)",
-                                      }}
                                     >
                                       <NavLink
                                         activeStyle={{
@@ -303,13 +294,14 @@ function Sidebar({
                                           fontWeight: "700",
                                         }}
                                         to={{
-                                          pathname: `/${studySet.type}/${studySet.id}`,
+                                          pathname: `/${studySet.type}/${studySet.tab}/${studySet.id}`,
                                           state: {
                                             type: studySet.type,
                                             name: studySet.name,
                                             folderIndex: folderIndex,
                                             binderIndex: binderIndex,
                                             studySetIndex: studySetIndex,
+                                            tab: studySet.tab
                                           },
                                         }}
                                       >

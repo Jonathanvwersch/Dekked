@@ -1,16 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./FolderBinderHome.css";
+import React, { useEffect, useRef } from "react";
+import "./FolderBinder.css";
 import AddCard from "./AddCard";
 import { useLocation, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import Button from "../../Buttons/Button";
 
-function FolderBinderHome({
-  folderBlocks,
-  handleFolderBlocks,
-  handleNameChange,
-}) {
+function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
   let location = useLocation();
   const titleRef = useRef();
 
@@ -35,6 +31,7 @@ function FolderBinderHome({
       type: "studySet",
       id: Math.random(),
       iconColour: "#2C2C31",
+      tab: "notes",
     };
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
@@ -65,7 +62,7 @@ function FolderBinderHome({
   }, [folderBlocks, location.state]);
 
   return (
-    <div className="dekked-folder-binder-home">
+    <div className="dekked-folder-binder">
       {location.state ? (
         <>
           <div className="dekked-page-header-container">
@@ -112,20 +109,44 @@ function FolderBinderHome({
               </div>
             </div>
           </div>
-          <div className="dekked-page-content">
-            <AddCard
-              handleClick={() => {
-                location.state.type === "folder"
-                  ? addBinder(location.state.folderIndex)
-                  : addStudySet(
-                      location.state.folderIndex,
-                      location.state.binderIndex
-                    );
-              }}
-            />
-            {location.state.type === "folder"
-              ? folderBlocks[location.state.folderIndex].binders.map(
-                  (item, index) => (
+          <div className="dekked-page-content-container">
+            <div className="dekked-page-content">
+              <AddCard
+                handleClick={() => {
+                  location.state.type === "folder"
+                    ? addBinder(location.state.folderIndex)
+                    : addStudySet(
+                        location.state.folderIndex,
+                        location.state.binderIndex
+                      );
+                }}
+              />
+              {location.state.type === "folder"
+                ? folderBlocks[location.state.folderIndex].binders.map(
+                    (item, index) => (
+                      <NavLink
+                        to={{
+                          pathname: `/${item.type}/${item.id}`,
+                          state: {
+                            type: item.type,
+                            name: item.name,
+                            folderIndex: location.state.folderIndex,
+                            binderIndex: index,
+                          },
+                        }}
+                      >
+                        <Card
+                          key={Math.random()}
+                          name={item.name ? item.name : "Untitled"}
+                          type={item.type}
+                          iconColour={item.iconColour}
+                        />
+                      </NavLink>
+                    )
+                  )
+                : folderBlocks[location.state.folderIndex].binders[
+                    location.state.binderIndex
+                  ].studySets.map((item, index) => (
                     <NavLink
                       to={{
                         pathname: `/${item.type}/${item.id}`,
@@ -133,7 +154,8 @@ function FolderBinderHome({
                           type: item.type,
                           name: item.name,
                           folderIndex: location.state.folderIndex,
-                          binderIndex: index,
+                          binderIndex: location.state.binderIndex,
+                          studySetIndex: index,
                         },
                       }}
                     >
@@ -144,31 +166,8 @@ function FolderBinderHome({
                         iconColour={item.iconColour}
                       />
                     </NavLink>
-                  )
-                )
-              : folderBlocks[location.state.folderIndex].binders[
-                  location.state.binderIndex
-                ].studySets.map((item, index) => (
-                  <NavLink
-                    to={{
-                      pathname: `/${item.type}/${item.id}`,
-                      state: {
-                        type: item.type,
-                        name: item.name,
-                        folderIndex: location.state.folderIndex,
-                        binderIndex: location.state.binderIndex,
-                        studySetIndex: index,
-                      },
-                    }}
-                  >
-                    <Card
-                      key={Math.random()}
-                      name={item.name ? item.name : "Untitled"}
-                      type={item.type}
-                      iconColour={item.iconColour}
-                    />
-                  </NavLink>
-                ))}
+                  ))}
+            </div>
           </div>
         </>
       ) : null}
@@ -176,4 +175,4 @@ function FolderBinderHome({
   );
 }
 
-export default withRouter(FolderBinderHome);
+export default withRouter(FolderBinder);

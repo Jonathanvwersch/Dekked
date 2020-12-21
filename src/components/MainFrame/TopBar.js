@@ -10,8 +10,6 @@ import { NavLink } from "react-router-dom";
 function TopBar({ sidebar, handleSidebar, folderBlocks }) {
   let location = useLocation();
 
-  console.log(location);
-
   return (
     <>
       <div className="dekked-top-bar-container">

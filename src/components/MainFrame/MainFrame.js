@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import Button from "../Buttons/Button";
 import StudyQueue from "../General/StudyQueue";
 import TopBar from "./TopBar";
 import { useLocation, withRouter } from "react-router";
 import "./MainFrame.css";
-import FolderBinderHome from "./FolderBinder/FolderBinderHome";
+import FolderBinder from "./FolderBinder/FolderBinder";
+import Toolbar from "./StudySet/Toolbar";
+import { NavLink } from "react-router-dom";
+import StudySet from "./StudySet/StudySet";
 
 function MainFrame({
   sidebar,
@@ -13,12 +15,12 @@ function MainFrame({
   handleFolderBlocks,
   handleNameChange,
 }) {
+  const titleRef = useRef();
   const expandedSidebarWidth = 220;
   const [frameWidth, setFrameWidth] = useState(
     window.innerWidth - (sidebar ? expandedSidebarWidth : 0)
   );
 
-  const titleRef = useRef();
   let location = useLocation();
 
   useEffect(() => {
@@ -61,16 +63,22 @@ function MainFrame({
             handleSidebar={handleSidebar}
           />
         </div>
-        <div className="dekked-page-content-container">
+        <div className="dekked-main-page">
           {location.state ? (
             location.state.type === "folder" ||
             location.state.type === "binder" ? (
-              <FolderBinderHome
+              <FolderBinder
                 folderBlocks={folderBlocks}
                 handleFolderBlocks={handleFolderBlocks}
                 handleNameChange={handleNameChange}
               />
-            ) : null
+            ) : (
+              <StudySet
+                folderBlocks={folderBlocks}
+                handleNameChange={handleNameChange}
+                handleFolderBlocks={handleFolderBlocks}
+              />
+            )
           ) : null}
         </div>
         <StudyQueue />
