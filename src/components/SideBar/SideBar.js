@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as Icons from "react-icons/md";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
