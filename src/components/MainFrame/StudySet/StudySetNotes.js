@@ -4,7 +4,6 @@ import "./StudySetNotes.css";
 
 function StudySetNotes({ folderBlocks, handleFolderBlocks }) {
   let location = useLocation();
-  console.log(location);
 
   const handleTab = () => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -17,7 +16,7 @@ function StudySetNotes({ folderBlocks, handleFolderBlocks }) {
     handleTab();
   }, [location.state]);
 
-  return null;
+  return <></>;
 }
 
 export default StudySetNotes;

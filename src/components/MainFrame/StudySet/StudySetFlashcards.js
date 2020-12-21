@@ -1,8 +1,14 @@
 import "./StudySetFlashcards.css";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router";
+import Flashcard from "./Flashcard";
 
-function StudySetFlashcards({ folderBlocks, handleFolderBlocks }) {
+function StudySetFlashcards({
+  folderBlocks,
+  handleFolderBlocks,
+  flashcards,
+  deleteFlashcard,
+}) {
   let location = useLocation();
   const handleTab = () => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -13,9 +19,18 @@ function StudySetFlashcards({ folderBlocks, handleFolderBlocks }) {
   };
   useEffect(() => {
     handleTab();
-    console.log(location.state);
   }, [location.state]);
-  return null;
+  return (
+    <>
+      {flashcards.map((item, index) => (
+        <Flashcard
+          deleteFlashcard={() => {
+            deleteFlashcard(index);
+          }}
+        />
+      ))}
+    </>
+  );
 }
 
 export default StudySetFlashcards;

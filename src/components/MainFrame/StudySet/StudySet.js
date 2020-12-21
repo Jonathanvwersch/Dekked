@@ -1,15 +1,42 @@
 import "./StudySet.css";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import Toolbar from "../StudySet/Toolbar";
 import { NavLink } from "react-router-dom";
 import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
 import Button from "../../Buttons/Button";
+import PulloutTab from "./PulloutTab";
+import LinkedFlashcard from "./LinkedFlashcard";
 
 function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
   let location = useLocation();
   const titleRef = useRef();
+
+  const [flashcards, setFlashcards] = useState([]);
+  const [linkedFlashcard, setLinkedFlashcard] = useState(false);
+
+  const handleFlashcards = (newFlashcardsArray) => {
+    setFlashcards(newFlashcardsArray);
+  };
+
+  const addFlashcard = () => {
+    console.log("addFlashcard called");
+    const newFlashcard = {
+      id: Math.random(),
+    };
+    handleFlashcards((flashcards) => [...flashcards, newFlashcard]);
+  };
+
+  const deleteFlashcard = (index) => {
+    let flashcardsArray = flashcards.slice();
+    flashcardsArray.splice(index, 1);
+    setFlashcards(flashcardsArray);
+  };
+
+  const showLinkedFlashcard = () => {
+    setLinkedFlashcard((prevState) => !prevState);
+  };
 
   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
@@ -105,40 +132,49 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                   ) : null}
                 </div>
               </div>
-              <div className="dekked-studyset-page-title-container">
-                <div classname="dekked-studyset-page-title">
-                  <h2
-                    contentEditable={true}
-                    ref={titleRef}
-                    spellCheck={false}
-                    onKeyDown={(e) => {
-                      if (location.state) {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                        }
-                        setTimeout(function () {
-                          handleNameChange(
-                            location.state.type,
-                            location.state.folderIndex,
-                            location.state.binderIndex,
-                            location.state.studySetIndex,
-                            titleRef.current.innerText
-                          );
-                        }, 100);
+              <div className="dekked-studyset-page-title">
+                <h2
+                  contentEditable={true}
+                  ref={titleRef}
+                  spellCheck={false}
+                  onKeyDown={(e) => {
+                    if (location.state) {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
                       }
-                    }}
-                  ></h2>
-                </div>
-
-                {location.state.tab === "flashcards" ? (
+                      setTimeout(function () {
+                        handleNameChange(
+                          location.state.type,
+                          location.state.folderIndex,
+                          location.state.binderIndex,
+                          location.state.studySetIndex,
+                          titleRef.current.innerText
+                        );
+                      }, 100);
+                    }
+                  }}
+                ></h2>
+              </div>
+              {location.state.tab === "flashcards" ? (
+                <div id="button-quantity">
+                  <p
+                    className="p2"
+                    style={{ color: "var(--grey-2)", userSelect: "none" }}
+                  >
+                    {`${flashcards.length} flashcard(s)`}
+                  </p>
                   <div className="dekked-studyset-page-buttons">
                     <div style={{ marginRight: "32px" }}>
-                      <Button type="secondary" action="Add flashcard" />
+                      <Button
+                        handleClick={addFlashcard}
+                        type="secondary"
+                        action="Add flashcard"
+                      />
                     </div>
                     <Button type="primary" action="Study" />
                   </div>
-                ) : null}
-              </div>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -153,10 +189,20 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                 <StudySetFlashcards
                   handleFolderBlocks={handleFolderBlocks}
                   folderBlocks={folderBlocks}
+                  flashcards={flashcards}
+                  handleFlashcards={handleFlashcards}
+                  deleteFlashcard={deleteFlashcard}
                 />
               )}
             </div>
           </div>
+          {location.state.tab === "notes" ? (
+            <>
+              <div className="linkedFlashcard">
+                <LinkedFlashcard />
+              </div>
+            </>
+          ) : null}
         </>
       ) : null}
     </div>

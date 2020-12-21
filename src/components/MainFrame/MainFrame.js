@@ -4,8 +4,7 @@ import TopBar from "./TopBar";
 import { useLocation, withRouter } from "react-router";
 import "./MainFrame.css";
 import FolderBinder from "./FolderBinder/FolderBinder";
-import Toolbar from "./StudySet/Toolbar";
-import { NavLink } from "react-router-dom";
+
 import StudySet from "./StudySet/StudySet";
 
 function MainFrame({

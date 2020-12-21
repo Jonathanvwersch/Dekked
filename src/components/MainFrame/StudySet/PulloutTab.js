@@ -1,10 +1,10 @@
 import React from "react";
 import "./PulloutTab.css";
-import { ReactComponent as LogoIcon } from "../../custom-icons/logo.svg";
+import { ReactComponent as LogoIcon } from "../../../custom-icons/logo.svg";
 
-function PulloutTab() {
+function PulloutTab({handleClick}) {
   return (
-    <div className="pulloutTab">
+    <div onClick={handleClick} className="pulloutTab">
       <div className="icon active logo">
         <LogoIcon />
       </div>
