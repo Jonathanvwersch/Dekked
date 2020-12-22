@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
 import Button from "../../Buttons/Button";
-import PulloutTab from "./PulloutTab";
 import LinkedFlashcard from "./LinkedFlashcard";
 
 function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
@@ -181,10 +180,12 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
           <div className="dekked-page-content-container">
             <div className="dekked-page-content">
               {location.state.tab === "notes" ? (
-                <StudySetNotes
-                  handleFolderBlocks={handleFolderBlocks}
-                  folderBlocks={folderBlocks}
-                />
+                <>
+                  <StudySetNotes
+                    handleFolderBlocks={handleFolderBlocks}
+                    folderBlocks={folderBlocks}
+                  />
+                </>
               ) : (
                 <StudySetFlashcards
                   handleFolderBlocks={handleFolderBlocks}
@@ -195,14 +196,12 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                 />
               )}
             </div>
-          </div>
-          {location.state.tab === "notes" ? (
-            <>
+            {location.state.tab === "notes" ? (
               <div className="linkedFlashcard">
                 <LinkedFlashcard />
               </div>
-            </>
-          ) : null}
+            ) : null}
+          </div>
         </>
       ) : null}
     </div>

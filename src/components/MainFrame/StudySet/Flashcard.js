@@ -13,7 +13,7 @@ function Flashcard({deleteFlashcard}) {
           </div>
         </div>
         <div className="flashcard-text">
-          <div className="flashcard-front"></div>
+          <div contentEditable={true}className="flashcard-front"></div>
           <div className="flashcard-back"></div>
         </div>
       </div>

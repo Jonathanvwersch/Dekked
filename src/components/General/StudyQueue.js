@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./StudyQueue.css";
-import { Icon } from '@iconify/react';
-import bookshelfIcon from '@iconify/icons-mdi/bookshelf';
+import { Icon } from "@iconify/react";
+import bookshelfIcon from "@iconify/icons-mdi/bookshelf";
 import Portal from "./Portal";
 import Button from "../Buttons/Button";
 
@@ -21,13 +21,15 @@ function StudyQueue() {
               </b>
             </div>
           ) : null}
-          <div className="studyQueueBubble">
-            <div
+          <div
+            className="studyQueueBubble"
+            onClick={() => setStudyQueue((prevState) => !prevState)}
+          >
+            <Icon
               className="icon StudyQueue"
-              onClick={() => setStudyQueue((prevState) => !prevState)}
-            >
-              <Icon icon={bookshelfIcon} style={{color: 'white', fontSize: '24px'}} />
-            </div>
+              icon={bookshelfIcon}
+              style={{ color: "white", fontSize: "24px" }}
+            />
           </div>
           {studyQueue ? (
             <Portal

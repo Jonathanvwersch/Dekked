@@ -141,7 +141,7 @@ function Sidebar({
                 <p className="p3">Jane Doe</p>
                 <div
                   className="icon active dropDownArrow down"
-                  onClick={() => setProfileMenu((prevState) => !prevState)}
+                  onClick={() => setProfileMenu(true)}
                 >
                   <Icons.MdArrowDropDown />
                 </div>
@@ -149,12 +149,12 @@ function Sidebar({
                   <Portal
                     state={profileMenu}
                     handleState={() =>
-                      setProfileMenu((prevState) => !prevState)
+                      setProfileMenu(false)
                     }
                   >
                     <div
                       className="dropdownMenu settingsMenu"
-                      onClick={() => setProfileMenu((prevState) => !prevState)}
+                      onClick={() => setProfileMenu(false)}
                     >
                       {ProfileData.map((item, index) => {
                         return (

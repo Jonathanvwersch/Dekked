@@ -76,6 +76,7 @@ function MainFrame({
                 handleNameChange={handleNameChange}
                 handleFolderBlocks={handleFolderBlocks}
               />
+              
             )
           ) : null}
         </div>
