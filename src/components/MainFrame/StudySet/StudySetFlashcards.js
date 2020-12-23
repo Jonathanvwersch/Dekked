@@ -10,7 +10,6 @@ function StudySetFlashcards({
   deleteFlashcard,
 }) {
   let location = useLocation();
-  console.log(location);
 
   const handleTab = () => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -29,6 +28,7 @@ function StudySetFlashcards({
           deleteFlashcard={() => {
             deleteFlashcard(index);
           }}
+          index={index}
         />
       ))}
     </>

@@ -70,8 +70,8 @@
   margin-right:8px;
 }
 
-.sidebar-top .profile .avatar .p1{
-  color:var(--white);
+.sidebar-top .profile .p1.avatar{
+  color:white;
 }
 
 .sidebar-top .profile .p3{
@@ -115,11 +115,8 @@
   align-items:center;
   width:100%;
   height:30px;
-}
-
-.workspace .title .p2 {
   color:var(--grey-1);
-  margin-left:16px;
+  padding-left:16px;
 }
 
 .noBinders {
@@ -131,12 +128,8 @@
   height:30px;
   cursor:default;
   background: var(--off-beige);
-}
-
-.noBinders p {
   color:var(--grey-1);
-  margin-left:40px;
-
+  padding-left:40px;
 }
 
 .noStudySets {
@@ -148,13 +141,11 @@
   height:30px;
   cursor:default;
   background: var(--off-beige);
-
-}
-
-.noStudySets p {
   color:var(--grey-1);
-  margin-left:48px;  
+  padding-left:48px;  
+
 }
+
 
 /* Style Bottom Section of Sidebar */
 

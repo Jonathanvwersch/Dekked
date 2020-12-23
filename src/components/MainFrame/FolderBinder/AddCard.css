@@ -1,5 +1,5 @@
 
-#addCard {
+#dekked-addCard {
     height:188px;
     width:170px;
     border-radius: var(--general-border-radius);
@@ -10,15 +10,15 @@
     cursor:pointer;
 }
 
-#addCard:hover .icon{
+#dekked-addCard :hover .icon{
     color: var(--primary-color);
 }
 
-#addCard:active .icon{
+#dekked-addCard :active .icon{
     color: var(--primary-color-hover);
 }
 
-#addCard .icon {
+#dekked-addCard .icon {
     width:80px;
     height:80px;
 }

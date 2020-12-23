@@ -82,6 +82,10 @@ p {
     margin:0;
 }
 
+.p1.bold,.p2.bold,.p3.bold {
+  font-weight:700
+}
+
 h1{
   font-size:53px;
   color:var(--main-black);
@@ -183,3 +187,6 @@ input {
   color: var(--grey-2);
 }
 
+a {
+    text-decoration: none;
+}

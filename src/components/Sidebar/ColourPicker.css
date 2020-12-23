@@ -1,6 +1,6 @@
 .colourPicker .block-picker
 {
-    color:var(--white)!important;
+    color:white!important;
     border-radius:2px!important;
     box-shadow:none!important;
     filter: var(--drop-shadow);
@@ -21,7 +21,10 @@
     border-radius:var(general-border-radius)!important;
     border: 0.5px var(--grey-2) !important;
     font-family: 'DM Sans', sans-serif!important;
-    -webkit-font-smoothing: antialiased!important;
-    -moz-osx-font-smoothing: grayscale!important;
     background:var(--off-beige);
+}
+
+.colourPicker {
+    position: absolute;
+    transform: translate(0, 15px);
 }

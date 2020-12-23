@@ -5,6 +5,7 @@ import { useLocation, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import Button from "../../Buttons/Button";
+import { v4 as uuidv4 } from "uuid";
 
 function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
   let location = useLocation();
@@ -14,7 +15,7 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
     const newBinder = {
       name: "",
       type: "binder",
-      id: Math.random(),
+      id: uuidv4(),
       iconColour: "#2C2C31",
       isOpen: false,
       studySets: [],
@@ -29,7 +30,7 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
     const newStudySet = {
       name: "",
       type: "studySet",
-      id: Math.random(),
+      id: uuidv4(),
       iconColour: "#2C2C31",
       tab: "notes",
     };
@@ -62,55 +63,54 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
   }, [folderBlocks, location.state]);
 
   return (
-    <div className="dekked-folder-binder">
+    <div className="dekked-folderBinder">
       {location.state ? (
         <>
-          <div className="dekked-page-header-container">
-            <div className="dekked-page-header">
-              <div className="dekked-page-title">
-                <h2
-                  contentEditable={true}
-                  ref={titleRef}
-                  spellCheck={false}
-                  onKeyDown={(e) => {
-                    if (location.state) {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                      }
-                      setTimeout(function () {
-                        handleNameChange(
-                          location.state.type,
-                          location.state.folderIndex,
-                          location.state.binderIndex,
-                          location.state.studySetIndex,
-                          titleRef.current.innerText
-                        );
-                      }, 100);
+          <div className="dekked-pageHeaderContainer">
+            <div className="dekked-pageHeader">
+              <h2
+                className="dekked-page-title"
+                contentEditable={true}
+                ref={titleRef}
+                spellCheck={false}
+                onKeyDown={(e) => {
+                  if (location.state) {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
                     }
-                  }}
-                ></h2>
-              </div>
-              <div id="button-quantity">
+                    setTimeout(function () {
+                      handleNameChange(
+                        location.state.type,
+                        location.state.folderIndex,
+                        location.state.binderIndex,
+                        location.state.studySetIndex,
+                        titleRef.current.innerText
+                      );
+                    }, 100);
+                  }
+                }}
+              ></h2>
+              <div className="buttonQuantity">
                 <p className="p2 quantity">
                   {location.state
                     ? location.state.type === "folder"
                       ? `${
                           folderBlocks[location.state.folderIndex].binders
                             .length
-                        } binder(s)`
+                        } Binder(s)`
                       : `${
                           folderBlocks[location.state.folderIndex].binders[
                             location.state.binderIndex
                           ].studySets.length
-                        } study set(s)`
+                        } Study set(s)`
                     : null}
                 </p>
                 <Button type="primary" action="Study" />
               </div>
             </div>
           </div>
-          <div className="dekked-page-content-container">
-            <div className="dekked-page-content">
+          <div className="dekked-pageContentContainer">
+            <div className="dekked-pageContent">
               <AddCard
                 handleClick={() => {
                   location.state.type === "folder"
@@ -136,7 +136,7 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
                         }}
                       >
                         <Card
-                          key={Math.random()}
+                          key={uuidv4()}
                           name={item.name ? item.name : "Untitled"}
                           type={item.type}
                           iconColour={item.iconColour}
@@ -156,12 +156,12 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
                           folderIndex: location.state.folderIndex,
                           binderIndex: location.state.binderIndex,
                           studySetIndex: index,
-                          tab: item.tab
+                          tab: item.tab,
                         },
                       }}
                     >
                       <Card
-                        key={Math.random()}
+                        key={uuidv4()}
                         name={item.name ? item.name : "Untitled"}
                         type={item.type}
                         iconColour={item.iconColour}

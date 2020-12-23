@@ -7,7 +7,7 @@ import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
+import { v4 as uuidv4 } from "uuid";
 
 import Portal from "../General/Portal";
 import Block from "../General/Block";
@@ -27,7 +27,7 @@ function Sidebar({
     const newFolder = {
       name: "",
       type: "folder",
-      id: Math.random(),
+      id: uuidv4(),
       iconColour: "#2C2C31",
       isOpen: false,
       binders: [],
@@ -47,7 +47,7 @@ function Sidebar({
     const newBinder = {
       name: "",
       type: "binder",
-      id: Math.random(),
+      id: uuidv4(),
       iconColour: "#2C2C31",
       isOpen: false,
       studySets: [],
@@ -70,9 +70,9 @@ function Sidebar({
     const newStudySet = {
       name: "",
       type: "studySet",
-      id: Math.random(),
+      id: uuidv4(),
       iconColour: "#2C2C31",
-      tab: "notes"
+      tab: "notes",
     };
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
@@ -135,22 +135,18 @@ function Sidebar({
           <div className="dekked-sidebar">
             <div className="sidebar-top">
               <div className="profile">
-                <div className="avatar">
-                  <p className="p1">J</p>
-                </div>
+                <p className="p1 avatar">J</p>
                 <p className="p3">Jane Doe</p>
-                <div
+
+                <Icons.MdArrowDropDown
                   className="icon active dropDownArrow down"
                   onClick={() => setProfileMenu(true)}
-                >
-                  <Icons.MdArrowDropDown />
-                </div>
+                />
+
                 {profileMenu ? (
                   <Portal
                     state={profileMenu}
-                    handleState={() =>
-                      setProfileMenu(false)
-                    }
+                    handleState={() => setProfileMenu(false)}
                   >
                     <div
                       className="dropdownMenu settingsMenu"
@@ -180,55 +176,54 @@ function Sidebar({
                   </Portal>
                 ) : null}
               </div>
-              <div
+              <Icon
                 className="icon active chevronDoubleLeft"
                 onClick={handleSidebar}
-              >
-                <Icon icon={chevronDoubleLeft} />
-              </div>
+                icon={chevronDoubleLeft}
+              />
             </div>
             <div className="workspace">
-              <div className="title">
-                <p className="p2">Workspace</p>
-              </div>
+              <p className="p2 title">Workspace</p>
               <div className="folderBlocks">
                 {folderBlocks.map((folder, folderIndex) => (
                   <div key={folder.id} className="folderBlock">
-                    <NavLink
-                      activeStyle={{
-                        background: "var(--off-beige-clicked)",
-                        fontWeight: "700",
-                      }}
-                      to={{
-                        pathname: `/${folder.type}/${folder.id}`,
-                        state: {
-                          type: folder.type,
-                          name: folder.name,
-                          folderIndex: folderIndex,
-                        },
-                      }}
-                    >
-                      <DropBlock
-                        name={folder.name}
-                        type={folder.type}
-                        folderIndex={folderIndex}
-                        key={folder.id}
-                        id={folder.id}
-                        handleDelete={() => deleteBlock(folder.id, folder.type)}
-                        handleAddItem={() => addBinder(folderIndex)}
-                        isExpanded={() => openFolderBlock(folderIndex)}
-                        isOpen={folder.isOpen}
-                        dropBlockMenuData={FolderData}
-                        handleNameChange={handleNameChange}
-                        handleIconColour={handleIconColour}
-                        folderBlocks={folderBlocks}
-                      />
-                    </NavLink>
+                    <>
+                      <NavLink
+                        activeStyle={{
+                          background: "var(--off-beige-clicked)",
+                          fontWeight: "700",
+                        }}
+                        to={{
+                          pathname: `/${folder.type}/${folder.id}`,
+                          state: {
+                            type: folder.type,
+                            name: folder.name,
+                            folderIndex: folderIndex,
+                          },
+                        }}
+                      >
+                        <DropBlock
+                          name={folder.name}
+                          type={folder.type}
+                          folderIndex={folderIndex}
+                          key={folder.id}
+                          id={folder.id}
+                          handleDelete={() =>
+                            deleteBlock(folder.id, folder.type)
+                          }
+                          handleAddItem={() => addBinder(folderIndex)}
+                          isExpanded={() => openFolderBlock(folderIndex)}
+                          isOpen={folder.isOpen}
+                          dropBlockMenuData={FolderData}
+                          handleNameChange={handleNameChange}
+                          handleIconColour={handleIconColour}
+                          folderBlocks={folderBlocks}
+                        />
+                      </NavLink>
+                    </>
                     {folder.isOpen ? (
                       folder.binders.length === 0 ? (
-                        <div className="noBinders">
-                          <p className="p2">No binders inside</p>
-                        </div>
+                        <p className="p2 noBinders">No binders inside</p>
                       ) : (
                         folder.binders.map((binder, binderIndex) => (
                           <div key={binder.id} className="binderBlock">
@@ -277,9 +272,9 @@ function Sidebar({
                             </NavLink>
                             {binder.isOpen ? (
                               binder.studySets.length === 0 ? (
-                                <div className="noStudySets">
-                                  <p className="p2">No study sets inside</p>
-                                </div>
+                                <p className="p2 noStudySets">
+                                  No study sets inside
+                                </p>
                               ) : (
                                 binder.studySets.map(
                                   (studySet, studySetIndex) => (
@@ -301,7 +296,7 @@ function Sidebar({
                                             folderIndex: folderIndex,
                                             binderIndex: binderIndex,
                                             studySetIndex: studySetIndex,
-                                            tab: studySet.tab
+                                            tab: studySet.tab,
                                           },
                                         }}
                                       >
@@ -341,14 +336,10 @@ function Sidebar({
                 ))}
               </div>
             </div>
-            <div onClick={addFolder} className="sidebar-bottom">
+            <div className="sidebar-bottom" onClick={addFolder}>
               <div className="addBlock">
-                <div className="icon plus">
-                  <Icons.MdAdd />
-                </div>
-                <div className="addFolder">
-                  <p className="p1">Add folder</p>
-                </div>
+                <Icons.MdAdd className="icon plus" />
+                <p className="p1 addFolder">Add folder</p>
               </div>
             </div>
           </div>
@@ -358,4 +349,4 @@ function Sidebar({
   );
 }
 
-export default withRouter(Sidebar);
+export default Sidebar;

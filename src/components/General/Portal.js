@@ -48,7 +48,7 @@ export default function Portal({
     <>
       {state ? (
         <div
-          className="portal"
+          className="dekked-overlay"
           style={{
             pointerEvents: "auto",
             position: "relative",
@@ -63,9 +63,7 @@ export default function Portal({
             <div style={center ? CENTER : null}>
               {children}
               {close ? (
-                <div onClick={handleState} className="icon active close">
-                  <MdClose />
-                </div>
+                <MdClose onClick={handleState} className="icon active close" />
               ) : null}
             </div>
           </div>

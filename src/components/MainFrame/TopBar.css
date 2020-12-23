@@ -1,4 +1,4 @@
-.dekked-top-bar-container {
+.dekked-topBarContainer {
     width:100%;
     max-width:100vw;
     height:60px;
@@ -6,7 +6,7 @@
     position:relative;
 }
 
-.dekked-top-bar {
+.dekked-topBar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -19,11 +19,11 @@
     padding-left: 16px;
 }
 
-.dekked-top-bar .icon.hamburgerMenu{
+.dekked-topBar .icon.hamburgerMenu{
     margin-right:24px;
 }
 
-.dekked-top-bar .breadcrumbs {
+.dekked-topBar .breadcrumbs {
     display:flex;
     align-items: center;
     height:100%;
@@ -33,20 +33,20 @@
 
 }
 
-.dekked-top-bar .breadcrumbs .icon {
+.dekked-topBar .breadcrumbs .icon {
     margin-right:4px;
     cursor:auto;
 }
 
-.dekked-top-bar p:hover {
+.dekked-topBar p:hover {
     color:var(--primary-color);
 }
 
-.dekked-top-bar p:active {
+.dekked-topBar p:active {
     color:var(--primary-color-hover);
 }
 
-.dekked-top-bar p{
+.dekked-topBar p{
     text-overflow:ellipsis;
     max-width:120px;
     overflow:hidden;
@@ -54,7 +54,7 @@
     cursor:pointer;
 }
 
-.dekked-top-bar #slash{
+.dekked-topBar #slash{
     margin-left: 8px;
     margin-right: 8px;
     color: var(--grey-2);

@@ -1,16 +1,14 @@
-.linked-flashcard-container {
+.linkedFlashcardContainer {
     position:fixed;
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding-left: calc(75px + env(safe-area-inset-left));
-    padding-right: calc(75px + env(safe-area-inset-right));
-    width: 1000px;
+    width: 100%;
     max-width:100%;
     z-index:10000;
 }
 
-.linked-flashcard-tab {
+.linkedFlashcardTab {
     cursor:pointer;
     display: flex;
     justify-content:center;
@@ -23,17 +21,17 @@
 }
 
 
-.linked-flashcard-container .linked-flashcard {
+.linkedFlashcardContainer .linkedFlashcard {
     background: var(--off-beige);
     border-radius: 5px; 
     padding: 16px 32px;
-    justify-content:center;
+    display:flex;
     flex-direction:column;
     height:240px;
     width:100%;
 }
 
-.linked-flashcard-container .linked-flashcard-text{
+.linkedFlashcardContainer .linkedFlashcardText{
     width:100%;
     display:flex;
     justify-content:space-between;
@@ -41,7 +39,7 @@
     margin-bottom:10px;
 }
 
-.linked-flashcard-text .linked-flashcard-front, .linked-flashcard-back{
+.linkedFlashcardText .linkedFlashcardFront, .linkedFlashcardBack{
     background-color:var(--white);
     height:150px;
     width:48%;

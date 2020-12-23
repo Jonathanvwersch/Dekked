@@ -7,34 +7,37 @@ import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
 import Button from "../../Buttons/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
+import { v4 as uuidv4 } from "uuid";
 
-function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
+function StudySet({
+  folderBlocks,
+  handleNameChange,
+  handleFolderBlocks,
+  sidebar,
+}) {
   let location = useLocation();
   const titleRef = useRef();
 
   const [flashcards, setFlashcards] = useState([]);
-  const [linkedFlashcard, setLinkedFlashcard] = useState(false);
 
   const handleFlashcards = (newFlashcardsArray) => {
     setFlashcards(newFlashcardsArray);
   };
 
   const addFlashcard = () => {
-    console.log("addFlashcard called");
     const newFlashcard = {
-      id: Math.random(),
+      id: uuidv4(),
     };
-    handleFlashcards((flashcards) => [...flashcards, newFlashcard]);
+    let flashcardsArray = flashcards.slice();
+    flashcardsArray.unshift(newFlashcard);
+    handleFlashcards(flashcardsArray);
+    console.log(flashcards);
   };
 
   const deleteFlashcard = (index) => {
     let flashcardsArray = flashcards.slice();
     flashcardsArray.splice(index, 1);
     setFlashcards(flashcardsArray);
-  };
-
-  const showLinkedFlashcard = () => {
-    setLinkedFlashcard((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -60,11 +63,15 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
     <div className="dekked-studySet">
       {location.state ? (
         <>
-          <div className="dekked-page-header-container">
-            <div className="dekked-page-header">
-              <div className="toolbar-tab">
-                <Toolbar type="full" />
-                <div id="studySet-switcher">
+          <div className="dekked-pageHeaderContainer">
+            <div className="dekked-pageHeader">
+              <div className="toolbarTab">
+                {location.state && location.state.tab === "notes" ? (
+                  <Toolbar type="full" />
+                ) : (
+                  <div></div>
+                )}
+                <div id="studySetSwitcher">
                   {location.state ? (
                     <>
                       <NavLink
@@ -131,7 +138,7 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                   ) : null}
                 </div>
               </div>
-              <div className="dekked-studyset-page-title">
+              <div className="dekked-studySetPageTitle">
                 <h2
                   contentEditable={true}
                   ref={titleRef}
@@ -155,14 +162,14 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
                 ></h2>
               </div>
               {location.state.tab === "flashcards" ? (
-                <div id="button-quantity">
+                <div className="buttonQuantity">
                   <p
                     className="p2"
                     style={{ color: "var(--grey-2)", userSelect: "none" }}
                   >
-                    {`${flashcards.length} flashcard(s)`}
+                    {`${flashcards.length} Flashcard(s)`}
                   </p>
-                  <div className="dekked-studyset-page-buttons">
+                  <div className="dekked-studySetPageButtons">
                     <div style={{ marginRight: "32px" }}>
                       <Button
                         handleClick={addFlashcard}
@@ -177,8 +184,8 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
             </div>
           </div>
 
-          <div className="dekked-page-content-container">
-            <div className="dekked-page-content">
+          <div className="dekked-pageContentContainer">
+            <div className="dekked-pageContent">
               {location.state.tab === "notes" ? (
                 <>
                   <StudySetNotes
@@ -198,7 +205,7 @@ function StudySet({ folderBlocks, handleNameChange, handleFolderBlocks }) {
             </div>
             {location.state.tab === "notes" ? (
               <div className="linkedFlashcard">
-                <LinkedFlashcard />
+                <LinkedFlashcard sidebar={sidebar} />
               </div>
             ) : null}
           </div>

@@ -15,7 +15,7 @@ const SMALLHEADING = "Small Heading";
 const BULLETEDLIST = "Bulleted List";
 const NUMBEREDLIST = "Numbered List";
 
- const TextBlockData = [
+ const TextBlockDataFull = [
   {
     action: BODY,
     icon: <MdTextFields className="icon body" />,
@@ -47,4 +47,4 @@ const NUMBEREDLIST = "Numbered List";
   },
 ];
 
-export default TextBlockData
+export default TextBlockDataFull

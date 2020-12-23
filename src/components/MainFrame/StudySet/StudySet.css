@@ -3,7 +3,7 @@
     width:100%;
 }
 
-.dekked-studySet .dekked-page-header-container {
+.dekked-studySet .dekked-pageHeaderContainer {
     width:100%;
     display:flex;
     align-items:center;
@@ -13,57 +13,58 @@
     margin-top:23px;   
 }
 
-.dekked-studySet .dekked-page-content-container {
+.dekked-studySet .dekked-pageContentContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
     width:100%;
 }
 
-.dekked-studySet .dekked-page-content {
-    padding-left: calc(75px + env(safe-area-inset-left));
-    padding-right: calc(75px + env(safe-area-inset-right));
+.dekked-studySet .dekked-pageContent {
+    padding-left: calc(79px + env(safe-area-inset-left));
+    padding-right: calc(79px + env(safe-area-inset-right));
     max-width:100%;
-    width:1000px;
+    width:100%;
     padding-bottom:42vh;
     padding-top:32px;
 }
 
-.dekked-studySet .dekked-page-header{
-    padding-left: calc(75px + env(safe-area-inset-left));
-    padding-right: calc(75px + env(safe-area-inset-right));
+.dekked-studySet .dekked-pageHeader{
+    padding-left: calc(79px + env(safe-area-inset-left));
+    padding-right: calc(79px + env(safe-area-inset-right));
     max-width:100%;
-    width:1000px;
+    width:100%;
 }
 
-.dekked-studySet .dekked-studyset-page-buttons {
+.dekked-studySet .dekked-studySetPageButtons {
     display:flex;
 }
 
-.dekked-studySet  .dekked-page-header h2:empty:before {
+.dekked-studySet  .dekked-pageHeader h2:empty:before {
     content: 'Untitled';
     color:var(--grey-2);
-}
-
-.dekked-studySet .dekked-page-header h2 {
     cursor:text;
 }
 
-.dekked-studySet .toolbar-tab {
+.dekked-studySet .dekkedPageHeader h2 {
+    cursor:text;
+}
+
+.dekked-studySet .toolbarTab {
     display:flex;
     align-items:center;
     justify-content:space-between;
     margin-bottom:26px;
 }
 
-.dekked-studySet #studySet-switcher{
+.dekked-studySet #studySetSwitcher{
     display:flex;
     flex-direction:row;
     align-items:center;
     user-select: none;  
 }
 
-.dekked-studySet #button-quantity{
+.buttonQuantity{
     margin-top:14px;
     display:flex;
     justify-content:space-between;
@@ -74,9 +75,4 @@
     display:flex;
     align-items:center;
     flex-direction:column;
-    width:100%;
-
-    max-width: 100%;
-   
- 
 }

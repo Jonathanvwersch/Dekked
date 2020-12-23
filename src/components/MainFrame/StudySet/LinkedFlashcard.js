@@ -4,29 +4,52 @@ import { ReactComponent as LogoIcon } from "../../../custom-icons/logo.svg";
 import Toolbar from "./Toolbar";
 import Button from "../../Buttons/Button";
 
-function LinkedFlashcard() {
+function LinkedFlashcard({ sidebar }) {
   const [position, setPosition] = useState(true);
   const [iconColour, setIconColour] = useState("var(--main-black)");
   return (
     <div
-      className="linked-flashcard-container"
-      style={{ bottom: position ? "-240px" : "0px" }}
+      className="linkedFlashcardContainer"
+      style={{
+        bottom: position ? "-240px" : "0px",
+        paddingLeft: sidebar
+          ? "calc(189px + env(safe-area-inset-left))"
+          : "calc(79px + env(safe-area-inset-left))",
+        paddingRight: sidebar
+          ? "calc(189px + env(safe-area-inset-right))"
+          : "calc(79px + env(safe-area-inset-right))",
+      }}
     >
       <div
         onClick={() => setPosition((prevValue) => !prevValue)}
-        className="linked-flashcard-tab"
+        className="linkedFlashcardTab"
         onMouseOver={() => setIconColour("var(--primary-color)")}
         onMouseOut={() => setIconColour("var(--main-black)")}
       >
         <LogoIcon className="icon active logo" stroke={iconColour} />
       </div>
-      <div className="linked-flashcard">
-        <Toolbar />
-        <div className="linked-flashcard-text">
-          <div className="linked-flashcard-front"></div>
-          <div className="linked-flashcard-back"></div>
+      <div className="linkedFlashcard">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <Toolbar />
+          <div></div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="linkedFlashcardText">
+          <div className="linkedFlashcardFront"></div>
+          <div className="linkedFlashcardBack"></div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
           <div></div>
           <Button type="primary" action="Save" />
         </div>

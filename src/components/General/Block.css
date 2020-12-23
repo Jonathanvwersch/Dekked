@@ -1,4 +1,4 @@
-.Block {
+.dekked-block {
     position:relative;
     display:flex;
     justify-content:flex-start;
@@ -6,41 +6,34 @@
     flex-direction:row;
     width:100%;
     height:30px;
-    padding:0;
-}
-
-.Block p {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    padding:0;    
     user-select: none; 
 }
 
-.Block:hover{
+
+.dekked-block:hover{
     background:var(--white-hover);
     cursor:pointer;
 }
 
-.Block:active{
+.dekked-block:active{
     background:var(--white-clicked);
 }
 
-.Block.off-beige:hover{
+.dekked-block.off-beige:hover{
     background:var(--off-beige-hover);
     cursor:pointer;
 }
 
-.Block.off-beige:active{
+.dekked-block.off-beige:active{
     background:var(--off-beige-clicked);
 }
 
-.Block .icon{
+.dekked-block .icon{
     margin-left:16px;
     margin-right:8px;
 }
 
-.Block .icon:hover {
+.dekked-block .icon:hover {
     color: var(--main-black);
 }

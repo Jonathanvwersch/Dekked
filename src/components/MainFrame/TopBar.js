@@ -9,11 +9,12 @@ import { NavLink } from "react-router-dom";
 
 function TopBar({ sidebar, handleSidebar, folderBlocks }) {
   let location = useLocation();
+  console.log(location.state);
 
   return (
     <>
-      <div className="dekked-top-bar-container">
-        <div className="dekked-top-bar">
+      <div className="dekked-topBarContainer">
+        <div className="dekked-topBar">
           {!sidebar ? (
             <div className="icon active hamburgerMenu" onClick={handleSidebar}>
               <Icons.MdMenu />
@@ -23,11 +24,11 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
             {location.state ? (
               <>
                 <>
-                  <div className="icon">
-                    <FolderIcon
-                      fill={folderBlocks[location.state.folderIndex].iconColour}
-                    />
-                  </div>
+                  <FolderIcon
+                    className="icon"
+                    fill={folderBlocks[location.state.folderIndex].iconColour}
+                  />
+
                   <NavLink
                     to={{
                       pathname: `/${
@@ -37,6 +38,7 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                         type: folderBlocks[location.state.folderIndex].type,
                         folderIndex: location.state.folderIndex,
                         name: location.state.name,
+                        tab: location.state.tab,
                       },
                     }}
                   >
@@ -50,19 +52,16 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                 {location.state.type === "binder" ||
                 location.state.type === "studySet" ? (
                   <>
-                    <span id="slash">
-                      /
-                    </span>
+                    <span id="slash">/</span>
 
-                    <div className="icon">
-                      <BinderIcon
-                        stroke={
-                          folderBlocks[location.state.folderIndex].binders[
-                            location.state.binderIndex
-                          ].iconColour
-                        }
-                      />
-                    </div>
+                    <BinderIcon
+                      className="icon"
+                      stroke={
+                        folderBlocks[location.state.folderIndex].binders[
+                          location.state.binderIndex
+                        ].iconColour
+                      }
+                    />
                     <NavLink
                       to={{
                         pathname: `/${
@@ -82,6 +81,7 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                           folderIndex: location.state.folderIndex,
                           binderIndex: location.state.binderIndex,
                           name: location.state.name,
+                          tab: location.state.tab,
                         },
                       }}
                     >
@@ -97,25 +97,27 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                     </NavLink>
                     {location.state.type === "studySet" ? (
                       <>
-                        <span id="slash">
-                          /
-                        </span>
-                        <div className="icon">
-                          <StudySetIcon
-                            stroke={
-                              folderBlocks[location.state.folderIndex].binders[
-                                location.state.binderIndex
-                              ].studySets[location.state.studySetIndex]
-                                .iconColour
-                            }
-                          />
-                        </div>
+                        <span id="slash">/</span>
+
+                        <StudySetIcon
+                          className="icon"
+                          stroke={
+                            folderBlocks[location.state.folderIndex].binders[
+                              location.state.binderIndex
+                            ].studySets[location.state.studySetIndex].iconColour
+                          }
+                        />
+
                         <NavLink
                           to={{
                             pathname: `/${
                               folderBlocks[location.state.folderIndex].binders[
                                 location.state.binderIndex
                               ].studySets[location.state.studySetIndex].type
+                            }/${
+                              folderBlocks[location.state.folderIndex].binders[
+                                location.state.binderIndex
+                              ].studySets[location.state.studySetIndex].tab
                             }/${
                               folderBlocks[location.state.folderIndex].binders[
                                 location.state.binderIndex
@@ -130,6 +132,7 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                               binderIndex: location.state.binderIndex,
                               studySetIndex: location.state.studySetIndex,
                               name: location.state.name,
+                              tab: location.state.tab,
                             },
                           }}
                         >

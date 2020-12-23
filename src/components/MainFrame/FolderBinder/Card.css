@@ -1,5 +1,5 @@
 
-#card {
+#dekked-card {
     height:188px;
     width:170px;
     border: 0.5px solid var(--grey-3);
@@ -10,18 +10,18 @@
     cursor:pointer;
 }
 
-#card:hover {
+#dekked-card:hover {
     box-shadow: 0 0 0 0.5pt var(--primary-color);
 }
 
-#card-thumbnail {
+#cardThumbnail {
     z-index:0;
     display:flex;
     align-items:center;
     justify-content: center;
 }
 
-#card-description {
+#cardDescription {
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -37,24 +37,24 @@
     padding: 12px 16px 12px 16px;
 }
 
-#card-date {
+#cardDate {
     padding-top:6px;
     display:flex;
     flex-direction: row;
     align-items:center;
 }
 
-#card-date p {
+#cardDate p {
     padding-left:4px;
     color:var(--grey-1);
     max-width:118px;
 }
 
-#card-name p {
+#cardName {
     max-width:138px;
 }
 
-#card p{
+#dekked-card p{
     text-overflow:ellipsis;
     overflow:hidden;
     white-space:nowrap;

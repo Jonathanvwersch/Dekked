@@ -1,6 +1,6 @@
 .studyQueue-container {
     position:fixed;
-    right:32px;
+    right:16px;
     bottom:32px;
     z-index: 100;
 }
@@ -21,8 +21,8 @@
     justify-content: center;
     border-radius:100%;
     background:var(--primary-color);
-    width:36px;
-    height:36px;
+    width:38px;
+    height:38px;
     filter:var(--drop-shadow);
     z-index:101;
     position:absolute;
@@ -58,7 +58,7 @@
     background: var(--main-black);
 }
 .notificationBubble p {
-    color:var(--white);
+    color:white;
 }
 
 .studyQueue {
@@ -66,11 +66,11 @@
     border-radius: var(--general-border-radius);
     width:220px;
     height:280px;
-    background: var(--white);
+    background: white;
     display:flex;
     flex-direction:column;
     position:fixed;
-    right:84px;
+    right:60px;
     bottom:72px;
     user-select:none;
 }

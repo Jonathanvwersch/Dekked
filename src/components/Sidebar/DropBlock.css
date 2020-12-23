@@ -1,4 +1,4 @@
-.DropBlock {
+.dekked-dropBlock {
     position:relative;
     display:flex;
     justify-content:flex-start;
@@ -8,11 +8,16 @@
     height:30px;
 }
 
-.DropBlock .icon{
+.dropdownMenu.dropBlocks {
+    position: absolute;
+    transform: translate(0, 15px);
+}
+
+.dekked-dropBlock .icon{
     margin-right:8px;
 }
 
-.DropBlock .icon.dots{
+.dekked-dropBlock .icon.dots{
     will-change: opacity;
     position:absolute;
     right:0;
@@ -20,71 +25,68 @@
     opacity:0;
 }
 
-.DropBlock p{
+.dekked-dropBlock p{
     text-overflow:ellipsis;
     overflow:hidden;
     white-space:nowrap;
     margin-right:16px;
 }
 
-.DropBlock p[contenteditable=true]
+.dekked-dropBlock p[contenteditable=true]
 {
     text-overflow:clip;
 }
 
-.DropBlock p:empty:before {
+.dekked-dropBlock p:empty:before {
     content: 'Untitled';
 }
 
-.DropBlock {
+.dekked-dropBlock {
     background:inherit;
 }
     
-.DropBlock:hover {
+.dekked-dropBlock:hover {
     background: var(--off-beige-hover);
     cursor: pointer;
 }
 
-.DropBlock:active {
+.dekked-dropBlock:active {
     background:var(--off-beige-clicked);
 }
 
-.DropBlock:hover .icon.dots{
+.dekked-dropBlock:hover .icon.dots{
     opacity:1;
 }
 
-.DropBlock:hover p{
+.dekked-dropBlock:hover p{
     margin-right:28px;
 }
 
 /* Style folder dropblocks */
-.DropBlock .icon.folder.dropDownArrow.right{
+.dekked-dropBlock .icon.folder.dropDownArrow.right{
     transform:rotate(-90deg);  
 }
 
-.DropBlock .icon.folder.dropDownArrow{
+.dekked-dropBlock .icon.folder.dropDownArrow{
      margin-left:16px;
 }
 
 /* Style binder dropblocks */
-.DropBlock .icon.binder.dropDownArrow.right{
+.dekked-dropBlock .icon.binder.dropDownArrow.right{
      transform:rotate(-90deg); 
 }
 
-.DropBlock .icon.binder.dropDownArrow{
+.dekked-dropBlock .icon.binder.dropDownArrow{
      margin-left:24px;
 }
 
 /* Style study set dropblocks */
-.DropBlock .icon.studySet{
+.dekked-dropBlock .icon.studySet{
     margin-left:56px;
 }
 
-.DropBlock .icon.studySet.dropDownArrow{
+.dekked-dropBlock .icon.studySet.dropDownArrow{
     display:none;
 }
 
-a {
-    text-decoration: none;
-}
 

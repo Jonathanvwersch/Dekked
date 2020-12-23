@@ -33,7 +33,7 @@ const Block = ({item, backgroundColour, handleDelete, handleRename, handleColour
             break;
     }
     return (
-    <div role="button" onClick={buttonClick} className={`Block ${backgroundColour}`}>
+    <div role="button" onClick={buttonClick} className={`dekked-block ${backgroundColour}`}>
         {item.icon}
         <p className="p2">{item.action}</p>
     </div>

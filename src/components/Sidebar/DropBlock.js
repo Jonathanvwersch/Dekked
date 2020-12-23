@@ -8,7 +8,8 @@ import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
 import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function DropBlock({
   type,
@@ -79,7 +80,13 @@ function DropBlock({
     }, 0);
   };
 
+  const handleDropdownMenu = (e) => {
+    positionComponents(e, heightOfDropdownMenu);
+    setDropdownMenu((prevState) => !prevState);
+  };
+
   useEffect(() => {
+    // Set name of dropblock using data from folder block
     if (editableName === false) {
       if (type === "folder") {
         nameRef.current.innerText = folderBlocks[folderIndex].name;
@@ -93,12 +100,14 @@ function DropBlock({
           ].name;
       }
     }
-  }, [folderBlocks]);
-
-  const handleDropdownMenu = (e) => {
-    positionComponents(e, heightOfDropdownMenu);
-    setDropdownMenu((prevState) => !prevState);
-  };
+  }, [
+    folderBlocks,
+    editableName,
+    studySetIndex,
+    binderIndex,
+    folderIndex,
+    type,
+  ]);
 
   useEffect(() => {
     const updateEditableName = (e) => {
@@ -126,10 +135,10 @@ function DropBlock({
     return () => {
       document.removeEventListener("click", updateEditableName);
     };
-  }, [editableName]);
+  }, [editableName, id]);
 
   return (
-    <div role="button" className="DropBlock">
+    <div role="button" className="dekked-dropBlock">
       <div
         className={
           isOpen
@@ -179,14 +188,11 @@ function DropBlock({
         }}
       ></Icons.MdMoreHoriz>
       {dropdownMenu ? (
-        <Portal
-          state={dropdownMenu}
-          handleState={() => setDropdownMenu((prevState) => !prevState)}
-        >
+        <Portal state={dropdownMenu} handleState={() => setDropdownMenu(false)}>
           <div
-            onClick={() => setDropdownMenu((prevState) => !prevState)}
-            className="dropdownMenu"
-            style={{ ...styles.popover, ...coords }}
+            onClick={() => setDropdownMenu(false)}
+            className="dropdownMenu dropBlocks"
+            style={{ ...coords }}
           >
             {dropBlockMenuData.map((item, index) => {
               return item.action === "Delete" ? (
@@ -206,8 +212,8 @@ function DropBlock({
                     handleAddItem={handleAddItem}
                     showDropBlocks={isExpanded}
                     item={item}
-                    id={`${item} Block ${index}`}
-                    key={`${item} Block ${index}`}
+                    id={uuidv4()}
+                    key={uuidv4()}
                   />
                 </NavLink>
               ) : (
@@ -218,8 +224,8 @@ function DropBlock({
                   handleAddItem={handleAddItem}
                   showDropBlocks={isExpanded}
                   item={item}
-                  id={`${item} Block ${index}`}
-                  key={`${item} Block ${index}`}
+                  id={uuidv4()}
+                  key={uuidv4()}
                 />
               );
             })}
@@ -228,11 +234,8 @@ function DropBlock({
       ) : null}
       {colourPicker ? (
         <Portal state={colourPicker} handleState={handleColourPicker}>
-          <div
-            style={{ ...styles.popover, ...coords }}
-            className="colourPicker"
-          >
-            <ColourPicker
+          <div style={{ ...coords }} className="colourPicker">
+            <ColourPicker 
               iconColour={iconColour}
               setIconColour={setIconColour}
             ></ColourPicker>
@@ -242,12 +245,4 @@ function DropBlock({
     </div>
   );
 }
-
-const styles = {
-  popover: {
-    position: "absolute",
-    transform: "translate(0, 15px)",
-  },
-};
-
-export default withRouter(DropBlock);
+export default DropBlock;

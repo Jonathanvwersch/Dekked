@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import StudyQueue from "../General/StudyQueue";
 import TopBar from "./TopBar";
 import { useLocation, withRouter } from "react-router";
@@ -43,14 +43,6 @@ function MainFrame({
       <div
         className="dekked-frame"
         style={{
-          flexGrow: "1",
-          flexShrink: "1",
-          display: "flex",
-          flexDirection: "column",
-          background: "white",
-          zIndex: "1",
-          height: "100vh",
-          maxHeight: "100%",
           width: `${frameWidth}px`,
         }}
       >
@@ -61,7 +53,7 @@ function MainFrame({
             handleSidebar={handleSidebar}
           />
         </div>
-        <div className="dekked-main-page">
+        <div className="dekked-mainPage">
           {location.state ? (
             location.state.type === "folder" ||
             location.state.type === "binder" ? (
@@ -72,6 +64,7 @@ function MainFrame({
               />
             ) : (
               <StudySet
+                sidebar={sidebar}
                 folderBlocks={folderBlocks}
                 handleNameChange={handleNameChange}
                 handleFolderBlocks={handleFolderBlocks}

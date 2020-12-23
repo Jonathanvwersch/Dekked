@@ -8,6 +8,9 @@ import {
 } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 function App() {
   const [sidebar, setSidebar] = useState(true);
@@ -15,21 +18,21 @@ function App() {
     {
       name: "Welcome to Dekked",
       type: "folder",
-      id: Math.random(),
+      id: uuidv4(),
       iconColour: "#2C2C31",
       isOpen: true,
       binders: [
         {
           name: "Getting Started",
           type: "binder",
-          id: Math.random(),
+          id: uuidv4(),
           iconColour: "#2C2C31",
           isOpen: true,
           studySets: [
             {
               name: "Tutorial",
               type: "studySet",
-              id: Math.random(),
+              id: uuidv4(),
               iconColour: "#2C2C31",
               tab: "notes"
             },

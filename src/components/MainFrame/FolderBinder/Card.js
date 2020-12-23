@@ -12,20 +12,16 @@ function Card({ name, type, iconColour }) {
   };
 
   return (
-    <div id="card" role="button">
-      <div id="card-thumbnail"></div>
-      <div id="card-description">
-        <div id="card-name">
-          <p className="p2">{name}</p>
-        </div>
-        <div id="card-date">
-          <div className={`icon ${type}`}>
+    <div id="dekked-card" role="button">
+      <div id="cardThumbnail"></div>
+      <div id="cardDescription">
+          <p className="p2 cardName">{name} </p>
+        <div id="cardDate">
             {type === "binder" ? (
-              <BinderIcon stroke={iconColour} />
+              <BinderIcon className={`icon ${type}`} stroke={iconColour} />
             ) : (
-              <StudySetIcon stroke={iconColour} />
+              <StudySetIcon className={`icon ${type}`} stroke={iconColour} />
             )}
-          </div>
           <p className="p3">Created {date.toLocaleString("en-US", options)}</p>
         </div>
       </div>

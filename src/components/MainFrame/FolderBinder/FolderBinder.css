@@ -1,9 +1,9 @@
-.dekked-folder-binder  {
+.dekked-folderBinder  {
     width:100%;
 }
 
 
-.dekked-folder-binder .dekked-page-header-container {
+.dekked-folderBinder .dekked-pageHeaderContainer {
     width:100%;
     display:flex;
     align-items:center;
@@ -13,49 +13,49 @@
     margin-top:68px;  
 }
 
-.dekked-folder-binder .dekked-page-content-container {
+.dekked-folderBinder .dekked-pageContentContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
     width:100%;
 }
 
-.dekked-folder-binder .dekked-page-header{
+.dekked-folderBinder .dekked-pageHeader{
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
     max-width:100%;
-    width:1000px;
+    width:100%;
 }
 
-.dekked-folder-binder .dekked-page-header p.quantity {
+.dekked-folderBinder .dekked-pageHeader p.quantity {
     color:var(--grey-2);
     user-select: none;
 }
 
-.dekked-folder-binder #button-quantity {
+.buttonQuantity {
     margin-top:14px;
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
-.dekked-folder-binder .dekked-page-header h2:empty:before {
+.dekked-folderBinder .dekked-pageHeader h2:empty:before {
     content: 'Untitled';
     color:var(--grey-2);
 }
 
-.dekked-folder-binder .dekked-page-header h2 {
+.dekked-folderBinder .dekked-pageHeader h2 {
     cursor:text;
 }
 
-.dekked-folder-binder  .dekked-page-content {
+.dekked-folderBinder  .dekked-pageContent {
     display:grid;
-    grid-template-columns: repeat(4,1fr );
-    grid-column-gap: 56.67px;
-    grid-row-gap: 42px;
+  
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-row-gap: 16px;
     max-width:100%;
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
-    width:1000px;
+    width:100%;
     padding-bottom:30vh;
     padding-top:32px;
 
