@@ -11,13 +11,7 @@ function LinkedFlashcard({ sidebar }) {
     <div
       className="linkedFlashcardContainer"
       style={{
-        bottom: position ? "-240px" : "0px",
-        paddingLeft: sidebar
-          ? "calc(189px + env(safe-area-inset-left))"
-          : "calc(79px + env(safe-area-inset-left))",
-        paddingRight: sidebar
-          ? "calc(189px + env(safe-area-inset-right))"
-          : "calc(79px + env(safe-area-inset-right))",
+        bottom: position ? "-240px" : "0px"
       }}
     >
       <div

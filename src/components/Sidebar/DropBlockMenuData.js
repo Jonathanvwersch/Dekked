@@ -4,107 +4,63 @@ import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
 
 // declare global variables
-const ADDBINDER = "Add binder"
-const ADDSTUDYSET = "Add study set"
-const ICONRECOLOUR = "Icon colour"
-const RENAME = "Rename"
-const DELETE = "Delete"
+const ADDBINDER = "Add binder";
+const ADDSTUDYSET = "Add study set";
+const ICONRECOLOUR = "Icon colour";
+const RENAME = "Rename";
+const DELETE = "Delete";
 
 export const FolderData = [
   {
     action: ADDBINDER,
-    icon: (
-      <div className="icon binder">
-        <BinderIcon stroke="#2C2C31" />
-      </div>
-    ),
+    icon: <BinderIcon stroke="#2C2C31" className="icon binder" />,
   },
 
   {
     action: ICONRECOLOUR,
-    icon: (
-      <div className="icon colourChange">
-        <Icons.MdFormatPaint />
-      </div>
-    ),
+    icon: <Icons.MdFormatPaint className="icon colourChange" />,
   },
   {
     action: RENAME,
-    icon: (
-      <div className="icon rename">
-        <Icons.MdModeEdit />
-      </div>
-    ),
+    icon: <Icons.MdModeEdit className="icon rename" />,
   },
   {
     action: DELETE,
-    icon: (
-      <div className="icon delete">
-        <Icons.MdDeleteForever />
-      </div>
-    ),
+    icon: <Icons.MdDelete className="icon delete" />,
   },
 ];
 
 export const BinderData = [
   {
     action: ADDSTUDYSET,
-    icon: (
-      <div className="icon studySet">
-        <StudySetIcon stroke="#2C2C31" />
-      </div>
-    ),
+    icon: <StudySetIcon className="icon studySet" stroke="#2C2C31" />,
   },
 
   {
     action: ICONRECOLOUR,
-    icon: (
-      <div className="icon colourChange">
-        <Icons.MdFormatPaint />
-      </div>
-    ),
+    icon: <Icons.MdFormatPaint className="icon colourChange" />,
   },
   {
     action: RENAME,
-    icon: (
-      <div className="icon rename">
-        <Icons.MdModeEdit />
-      </div>
-    ),
+    icon: <Icons.MdModeEdit className="icon rename" />,
   },
   {
     action: DELETE,
-    icon: (
-      <div className="icon delete">
-        <Icons.MdDeleteForever />
-      </div>
-    ),
+    icon: <Icons.MdDelete className="icon delete" />,
   },
 ];
 
 export const StudySetData = [
   {
     action: ICONRECOLOUR,
-    icon: (
-      <div className="icon colourChange">
-        <Icons.MdFormatPaint />
-      </div>
-    ),
+    icon: <Icons.MdFormatPaint className="icon colourChange" />,
   },
   {
     action: RENAME,
-    icon: (
-      <div className="icon rename">
-        <Icons.MdModeEdit />
-      </div>
-    ),
+    icon: <Icons.MdModeEdit className="icon rename" />,
   },
   {
     action: DELETE,
-    icon: (
-      <div className="icon delete">
-        <Icons.MdDeleteForever />
-      </div>
-    ),
+    icon: <Icons.MdDelete className="icon delete" />,
   },
 ];

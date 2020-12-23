@@ -56,7 +56,6 @@ function App() {
     const newFolderBlocksArray = folderBlocks.slice();
     if (type === "folder") {
       newFolderBlocksArray[folderIndex].name = blockName;
-      console.log("hello");
     } else if (type === "binder") {
       newFolderBlocksArray[folderIndex].binders[binderIndex].name = blockName;
     } else if (type === "studySet") {

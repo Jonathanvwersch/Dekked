@@ -24,7 +24,7 @@
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
     max-width:100%;
-    width:100%;
+    width:1000px;
 }
 
 .dekked-folderBinder .dekked-pageHeader p.quantity {
@@ -49,13 +49,12 @@
 
 .dekked-folderBinder  .dekked-pageContent {
     display:grid;
-  
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
     grid-row-gap: 16px;
     max-width:100%;
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
-    width:100%;
+    width:1000px;
     padding-bottom:30vh;
     padding-top:32px;
 

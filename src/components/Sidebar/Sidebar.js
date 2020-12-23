@@ -8,7 +8,7 @@ import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
+import trashCanOutline from "@iconify/icons-mdi/trash-can-outline";
 import Portal from "../General/Portal";
 import Block from "../General/Block";
 import Settings from "../Settings/Settings";
@@ -22,6 +22,18 @@ function Sidebar({
 }) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
+  const [deletedItems, setDeletedItems] = useState([]);
+
+  const convertArrayToObject = (array) => {
+    const initialValue = {};
+    return array.reduce((obj, item) => {
+      return {
+        ...obj,
+        item,
+      };
+    }, initialValue);
+  };
+  console.log(deletedItems);
 
   const addFolder = () => {
     const newFolder = {
@@ -82,23 +94,28 @@ function Sidebar({
     newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
     handleFolderBlocks(newFolderBlocksArray);
   };
+  console.log(deletedItems);
 
-  const deleteBlock = (id, type, folderIndex, binderIndex, studySetIndex) => {
-    let array;
+  const deleteBlock = (type, folderIndex, binderIndex, studySetIndex) => {
+    let itemsArray = folderBlocks.slice();
+    let deletedItemsArray = [...deletedItems];
+    let deleted;
 
-    if (type === "folder")
-      array = folderBlocks.filter((folderBlock) => folderBlock.id !== id);
-    else if (type === "binder") {
-      array = folderBlocks.slice();
-      array[folderIndex].binders.splice(binderIndex, 1);
+    if (type === "folder") {
+      deleted = itemsArray.splice(folderIndex, 1);
+    } else if (type === "binder") {
+      deleted = itemsArray[folderIndex].binders.splice(binderIndex, 1);
     } else if (type === "studySet") {
-      array = folderBlocks.slice();
-      array[folderIndex].binders[binderIndex].studySets.splice(
+      deleted = itemsArray[folderIndex].binders[binderIndex].studySets.splice(
         studySetIndex,
         1
       );
     }
-    handleFolderBlocks(array);
+
+    deletedItemsArray.push(convertArrayToObject(deleted));
+    setDeletedItems(deletedItemsArray);
+
+    handleFolderBlocks(itemsArray);
     if (folderBlocks.length === 1) addFolder();
   };
 
@@ -131,9 +148,9 @@ function Sidebar({
   return (
     <>
       {sidebar ? (
-        <div className="dekked-sidebar-container">
+        <div className="dekked-sidebarContainer">
           <div className="dekked-sidebar">
-            <div className="sidebar-top">
+            <div className="sidebarTop">
               <div className="profile">
                 <p className="p1 avatar">J</p>
                 <p className="p3">Jane Doe</p>
@@ -209,7 +226,7 @@ function Sidebar({
                           key={folder.id}
                           id={folder.id}
                           handleDelete={() =>
-                            deleteBlock(folder.id, folder.type)
+                            deleteBlock(folder.type, folderIndex)
                           }
                           handleAddItem={() => addBinder(folderIndex)}
                           isExpanded={() => openFolderBlock(folderIndex)}
@@ -249,7 +266,6 @@ function Sidebar({
                                 id={binder.id}
                                 handleDelete={() =>
                                   deleteBlock(
-                                    binder.id,
                                     binder.type,
                                     folderIndex,
                                     binderIndex
@@ -310,7 +326,6 @@ function Sidebar({
                                           studySetIndex={studySetIndex}
                                           handleDelete={() =>
                                             deleteBlock(
-                                              studySet.id,
                                               studySet.type,
                                               folderIndex,
                                               binderIndex,
@@ -336,8 +351,15 @@ function Sidebar({
                 ))}
               </div>
             </div>
-            <div className="sidebar-bottom" onClick={addFolder}>
-              <div className="addBlock">
+            <div className="sidebarBottom">
+              <Block
+                item={{
+                  action: "Trash",
+                  icon: <Icon className="icon trash" icon={trashCanOutline} />,
+                }}
+                backgroundColour="off-beige"
+              />
+              <div className="addBlock" onClick={addFolder}>
                 <Icons.MdAdd className="icon plus" />
                 <p className="p1 addFolder">Add folder</p>
               </div>

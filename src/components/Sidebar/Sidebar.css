@@ -1,6 +1,6 @@
 /* General stylings */
 
-.dekked-sidebar-container {
+.dekked-sidebarContainer {
   position:relative;
   flex-grow:0;
   flex-shrink:0;
@@ -43,7 +43,7 @@
 }
 
 /* Style Top Profile Section of Sidebar */
-.sidebar-top {
+.sidebarTop {
   display:flex;
   align-items:center;
   height:60px;  
@@ -51,7 +51,7 @@
   border-bottom: 0.5px solid var(--grey-3);
 }
 
-.sidebar-top .profile{
+.sidebarTop .profile{
   display:flex;
   height:28px;
   margin:16px;
@@ -59,7 +59,7 @@
   place-items:center;
 }
 
-.sidebar-top .profile .avatar{
+.sidebarTop .profile .avatar{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -70,18 +70,18 @@
   margin-right:8px;
 }
 
-.sidebar-top .profile .p1.avatar{
+.sidebarTop .profile .p1.avatar{
   color:white;
 }
 
-.sidebar-top .profile .p3{
+.sidebarTop .profile .p3{
   text-overflow:ellipsis;
   max-width:70px;
   overflow:hidden;
   white-space:nowrap;
 }
 
-.sidebar-top .icon.chevronDoubleLeft
+.sidebarTop .icon.chevronDoubleLeft
 {
   position:absolute;
   right:0;
@@ -107,7 +107,7 @@
 .workspace{
   overflow-y:auto;
   padding-bottom:10px;
-  margin-bottom:30px;
+  margin-bottom:70px;
 }
 
 .workspace .title {
@@ -149,14 +149,22 @@
 
 /* Style Bottom Section of Sidebar */
 
-.sidebar-bottom {
+.sidebarBottom {
   display:block;
   flex: 0 0 auto;
   margin-top:auto;
+  position:absolute;
+    bottom:0;
+    width:100%;
+
+
+}
+
+.sidebarBottom .dekked-block {
 }
 
 .addBlock{
-  position:absolute;
+
   display:flex;
   justify-content:flex-start;
   width:100%;
@@ -164,22 +172,21 @@
   place-items:center;
   border-top:0.5px solid var(--grey-3);
   background:var(--off-beige);
-  bottom:0;
 }
 
-.sidebar-bottom .icon.plus{
+.sidebarBottom .icon.plus{
   margin-right:16px;
   margin-left:16px;
 }
 
-.sidebar-bottom .addFolder{
+.sidebarBottom .addFolder{
   height:100%;
   display:flex;
   justify-content:center;
   align-items:center;
 }
 
-.sidebar-bottom .icon.plus:hover{
+.sidebarBottom .icon.plus:hover{
   color:var(--main-black);;
 }
 
