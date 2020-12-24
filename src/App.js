@@ -8,9 +8,7 @@ import {
 } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
-import { v4 as uuidv4 } from 'uuid';
-
-
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [sidebar, setSidebar] = useState(true);
@@ -18,14 +16,15 @@ function App() {
     {
       name: "Welcome to Dekked",
       type: "folder",
-      id: uuidv4(),
+      id: "f73932jff8393d",
       iconColour: "#2C2C31",
       isOpen: true,
       binders: [
         {
           name: "Getting Started",
           type: "binder",
-          id: uuidv4(),
+          id: "f73932j4fd393d",
+          folderId: "f73932jff8393d",
           iconColour: "#2C2C31",
           isOpen: true,
           studySets: [
@@ -33,8 +32,10 @@ function App() {
               name: "Tutorial",
               type: "studySet",
               id: uuidv4(),
+              binderId: "f73932j4fd393d",
+              folderId: "f73932jff8393d",
               iconColour: "#2C2C31",
-              tab: "notes"
+              tab: "notes",
             },
           ],
         },
@@ -101,7 +102,6 @@ function App() {
               }}
             />
           </Route>
-          
         </Switch>
       </Router>
     </>

@@ -14,7 +14,6 @@ function DeleteBlock({
   handleDeleteForever,
   handleRestore,
 }) {
-  console.log(type);
   const [deleteModal, setDeleteModal] = useState(false);
 
   const handleDeleteModal = () => {

@@ -16,6 +16,7 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
       name: "",
       type: "binder",
       id: uuidv4(),
+      folderId: folderBlocks[folderIndex].id,
       iconColour: "#2C2C31",
       isOpen: false,
       studySets: [],
@@ -31,6 +32,8 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
       name: "",
       type: "studySet",
       id: uuidv4(),
+      binderId: folderBlocks[folderIndex].binders[binderIndex].id,
+      folderId: folderBlocks[folderIndex].id,
       iconColour: "#2C2C31",
       tab: "notes",
     };

@@ -32,17 +32,26 @@ function Sidebar({
     setDeletedItems(deletedItemsArray);
   };
 
-  const handleRestore = (type, deletedItemIndex, folderIndex, binderIndex) => {
+  const handleRestore = (type, deletedItemIndex) => {
     let itemsArray = folderBlocks.slice();
+    const findBinderIndexInArray = (item) => {
+      return item.id === deletedItems[deletedItemIndex].folderId;
+    };
+    const findStudySetIndexInArray = (item) => {
+      return item.id === deletedItems[deletedItemIndex].binderId;
+    };
 
     if (type === "folder") {
       itemsArray.push(deletedItems[deletedItemIndex]);
     } else if (type === "binder") {
-      itemsArray[folderIndex].binders[binderIndex].push(
-        deletedItems[deletedItemIndex]
-      );
+      const folderIndex = folderBlocks.findIndex(findBinderIndexInArray);
+      itemsArray[folderIndex].binders.push(deletedItems[deletedItemIndex]);
     } else if (type === "studySet") {
-      itemsArray.folderIndex.binders[binderIndex].studySet.push(
+      const folderIndex = folderBlocks.findIndex(findBinderIndexInArray);
+      const binderIndex = folderBlocks[folderIndex].binders.findIndex(
+        findStudySetIndexInArray
+      );
+      itemsArray[folderIndex].binders[binderIndex].studySets.push(
         deletedItems[deletedItemIndex]
       );
     }
@@ -60,12 +69,10 @@ function Sidebar({
       };
     }, initialValue);
   };
-  console.log(deletedItems);
 
   const addFolder = () => {
     const newFolder = {
       name: "",
-      index: null,
       type: "folder",
       id: uuidv4(),
       iconColour: "#2C2C31",
@@ -74,8 +81,6 @@ function Sidebar({
     };
     handleFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
   };
-
-  console.log(deletedItems);
 
   const openFolderBlock = (folderIndex) => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -91,6 +96,7 @@ function Sidebar({
       index: null,
       type: "binder",
       id: uuidv4(),
+      folderId: folderBlocks[folderIndex].id,
       iconColour: "#2C2C31",
       isOpen: false,
       studySets: [],
@@ -115,6 +121,8 @@ function Sidebar({
       index: null,
       type: "studySet",
       id: uuidv4(),
+      binderId: folderBlocks[folderIndex].binders[binderIndex].id,
+      folderId: folderBlocks[folderIndex].id,
       iconColour: "#2C2C31",
       tab: "notes",
     };
@@ -126,7 +134,6 @@ function Sidebar({
     newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
     handleFolderBlocks(newFolderBlocksArray);
   };
-  console.log(deletedItems);
 
   const deleteBlock = (type, folderIndex, binderIndex, studySetIndex) => {
     let itemsArray = folderBlocks.slice();
