@@ -7,7 +7,13 @@
     user-select: none;
     padding-bottom:10px;
     padding-top:10px;
- 
+}
+
+.dekked-deleteBlock .p2 {
+    width:154px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
 }
 
 .dekked-deleteBlock .icon{

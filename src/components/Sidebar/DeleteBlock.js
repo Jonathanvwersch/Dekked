@@ -7,7 +7,13 @@ import "./DeleteBlock.css";
 import Portal from "../General/Portal";
 import DeleteModal from "../General/DeleteModal";
 
-function DeleteBlock({ name, type, iconColour, handleDeleteForever }) {
+function DeleteBlock({
+  name,
+  type,
+  iconColour,
+  handleDeleteForever,
+  handleRestore,
+}) {
   console.log(type);
   const [deleteModal, setDeleteModal] = useState(false);
 
@@ -28,7 +34,11 @@ function DeleteBlock({ name, type, iconColour, handleDeleteForever }) {
         <p className="p2"> {name ? name : "Untitled"}</p>
       </div>
       <div style={{ display: "flex" }}>
-        <Icons.MdUndo className="icon active restore" />
+        <Icons.MdUndo
+          className="icon active restore"
+          style={{ marginLeft: "4px" }}
+          onClick={handleRestore}
+        />
         <Icons.MdDeleteForever
           className="icon active deleteForever"
           style={{ marginLeft: "0px" }}
@@ -43,7 +53,13 @@ function DeleteBlock({ name, type, iconColour, handleDeleteForever }) {
           close={true}
           lightbox={true}
         >
-          <DeleteModal handleDelete={handleDeleteForever} />
+          <DeleteModal
+            handleDelete={() => {
+              handleDeleteForever();
+              handleDeleteModal();
+            }}
+            handleCancel={handleDeleteModal}
+          />
         </Portal>
       ) : null}
     </div>

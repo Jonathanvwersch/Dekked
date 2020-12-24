@@ -32,6 +32,25 @@ function Sidebar({
     setDeletedItems(deletedItemsArray);
   };
 
+  const handleRestore = (type, deletedItemIndex, folderIndex, binderIndex) => {
+    let itemsArray = folderBlocks.slice();
+
+    if (type === "folder") {
+      itemsArray.push(deletedItems[deletedItemIndex]);
+    } else if (type === "binder") {
+      itemsArray[folderIndex].binders[binderIndex].push(
+        deletedItems[deletedItemIndex]
+      );
+    } else if (type === "studySet") {
+      itemsArray.folderIndex.binders[binderIndex].studySet.push(
+        deletedItems[deletedItemIndex]
+      );
+    }
+
+    handleFolderBlocks(itemsArray);
+    deleteForever(deletedItemIndex);
+  };
+
   const convertArrayToObject = (array) => {
     const initialValue = {};
     return array.reduce((obj, item) => {
@@ -46,6 +65,7 @@ function Sidebar({
   const addFolder = () => {
     const newFolder = {
       name: "",
+      index: null,
       type: "folder",
       id: uuidv4(),
       iconColour: "#2C2C31",
@@ -54,6 +74,8 @@ function Sidebar({
     };
     handleFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
   };
+
+  console.log(deletedItems);
 
   const openFolderBlock = (folderIndex) => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -66,6 +88,7 @@ function Sidebar({
   const addBinder = (folderIndex) => {
     const newBinder = {
       name: "",
+      index: null,
       type: "binder",
       id: uuidv4(),
       iconColour: "#2C2C31",
@@ -89,6 +112,7 @@ function Sidebar({
   const addStudySet = (folderIndex, binderIndex) => {
     const newStudySet = {
       name: "",
+      index: null,
       type: "studySet",
       id: uuidv4(),
       iconColour: "#2C2C31",
@@ -120,7 +144,7 @@ function Sidebar({
       );
     }
 
-    deletedItemsArray.push(convertArrayToObject(deleted));
+    deletedItemsArray.push(convertArrayToObject(deleted).item);
     setDeletedItems(deletedItemsArray);
 
     handleFolderBlocks(itemsArray);
@@ -382,11 +406,20 @@ function Sidebar({
                     ) : (
                       deletedItems.map((item, index) => (
                         <DeleteBlock
-                          name={item.item.name}
-                          type={item.item.type}
-                          iconColour={item.item.iconColour}
+                          name={item.name}
+                          type={item.type}
+                          iconColour={item.iconColour}
                           handleDeleteForever={() => {
                             deleteForever(index);
+                          }}
+                          handleRestore={() => {
+                            handleRestore(
+                              item.type,
+                              index,
+                              item.folderIndex,
+                              item.binderIndex,
+                              item.studySetIndex
+                            );
                           }}
                         />
                       ))
