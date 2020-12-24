@@ -1,0 +1,16 @@
+.dekked-deleteBlock {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    height:30px!important;
+    user-select: none;
+    padding-bottom:10px;
+    padding-top:10px;
+ 
+}
+
+.dekked-deleteBlock .icon{
+    margin-left:16px;
+    margin-right:8px;
+}

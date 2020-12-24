@@ -1,7 +1,7 @@
 import React from "react";
 import "./Block.css"
 
-const Block = ({item, backgroundColour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount}) => {
+const Block = ({item, backgroundColour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount, handleTrash}) => {
     let buttonClick;
     switch (item.action) {
         case "Add binder":
@@ -27,6 +27,10 @@ const Block = ({item, backgroundColour, handleDelete, handleRename, handleColour
 
         case "Account":
             buttonClick = handleAccount
+            break;
+
+        case "Trash":
+            buttonClick = handleTrash
             break;
         
         default:

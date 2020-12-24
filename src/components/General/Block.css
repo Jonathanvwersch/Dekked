@@ -10,7 +10,6 @@
     user-select: none; 
 }
 
-
 .dekked-block:hover{
     background:var(--white-hover);
     cursor:pointer;

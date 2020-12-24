@@ -110,7 +110,7 @@ h3{
   width:220px;  
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 2px;
-  background:var(--white);
+  background:white;
 }
 
 /* width */
@@ -153,6 +153,9 @@ h3{
   width:16px;
   height:16px;
   color: var(--main-black);
+}
+
+.icon.active {
   cursor:pointer;
 }
 

@@ -12,6 +12,7 @@ import trashCanOutline from "@iconify/icons-mdi/trash-can-outline";
 import Portal from "../General/Portal";
 import Block from "../General/Block";
 import Settings from "../Settings/Settings";
+import DeleteBlock from "./DeleteBlock";
 
 function Sidebar({
   sidebar,
@@ -23,6 +24,13 @@ function Sidebar({
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
   const [deletedItems, setDeletedItems] = useState([]);
+  const [trashCan, setTrashCan] = useState(false);
+
+  const deleteForever = (index) => {
+    const deletedItemsArray = deletedItems.slice();
+    deletedItemsArray.splice(index, 1);
+    setDeletedItems(deletedItemsArray);
+  };
 
   const convertArrayToObject = (array) => {
     const initialValue = {};
@@ -357,8 +365,35 @@ function Sidebar({
                   action: "Trash",
                   icon: <Icon className="icon trash" icon={trashCanOutline} />,
                 }}
+                handleTrash={() => setTrashCan(true)}
                 backgroundColour="off-beige"
               />
+
+              {trashCan ? (
+                <Portal state={trashCan} handleState={() => setTrashCan(false)}>
+                  <div className="deleteBlockContainer">
+                    {deletedItems.length === 0 ? (
+                      <p
+                        className="p2 noBinders"
+                        style={{ paddingLeft: "16px" }}
+                      >
+                        No items inside
+                      </p>
+                    ) : (
+                      deletedItems.map((item, index) => (
+                        <DeleteBlock
+                          name={item.item.name}
+                          type={item.item.type}
+                          iconColour={item.item.iconColour}
+                          handleDeleteForever={() => {
+                            deleteForever(index);
+                          }}
+                        />
+                      ))
+                    )}
+                  </div>
+                </Portal>
+              ) : null}
               <div className="addBlock" onClick={addFolder}>
                 <Icons.MdAdd className="icon plus" />
                 <p className="p1 addFolder">Add folder</p>

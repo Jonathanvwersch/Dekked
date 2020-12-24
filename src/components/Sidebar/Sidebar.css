@@ -127,7 +127,6 @@
   width:100%;
   height:30px;
   cursor:default;
-  background: var(--off-beige);
   color:var(--grey-1);
   padding-left:40px;
 }
@@ -140,31 +139,22 @@
   width:100%;
   height:30px;
   cursor:default;
-  background: var(--off-beige);
   color:var(--grey-1);
   padding-left:48px;  
 
 }
 
-
 /* Style Bottom Section of Sidebar */
-
 .sidebarBottom {
   display:block;
   flex: 0 0 auto;
   margin-top:auto;
   position:absolute;
-    bottom:0;
-    width:100%;
-
-
-}
-
-.sidebarBottom .dekked-block {
+  bottom:0;
+  width:100%;
 }
 
 .addBlock{
-
   display:flex;
   justify-content:flex-start;
   width:100%;
@@ -198,6 +188,23 @@
 .addBlock:active {
   background:var(--off-beige-clicked);
 }
+
+.deleteBlockContainer {
+  position:fixed;
+  display: flex;
+  flex-direction: column;
+  width:250px;  
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 2px;
+  background:white;
+  height:280px;
+  overflow:auto;
+  bottom: 55px;
+  left:210px;
+  overflow-y:auto;
+}
+
+
 
 
 
