@@ -43,7 +43,36 @@ function App() {
     },
   ]);
 
+  const addFolder = () => {
+    const newFolderBlocksArray = folderBlocks.slice();
+    const newFolder = {
+      name: "",
+      type: "folder",
+      id: uuidv4(),
+      iconColour: "#2C2C31",
+      isOpen: false,
+      binders: [],
+    };
+    newFolderBlocksArray.push(newFolder);
+    handleFolderBlocks(newFolderBlocksArray);
+  };
+
+  const addFolderToNewArray = (newFolderBlocksArray) => {
+    const newFolder = {
+      name: "",
+      type: "folder",
+      id: uuidv4(),
+      iconColour: "#2C2C31",
+      isOpen: false,
+      binders: [],
+    };
+    newFolderBlocksArray.push(newFolder);
+    return newFolderBlocksArray;
+  };
+
   const handleFolderBlocks = (newFolderBlocksArray) => {
+    if (newFolderBlocksArray.length === 0)
+      addFolderToNewArray(newFolderBlocksArray);
     setFolderBlocks(newFolderBlocksArray);
   };
 
@@ -80,6 +109,8 @@ function App() {
           folderBlocks={folderBlocks}
           handleFolderBlocks={handleFolderBlocks}
           handleNameChange={handleNameChange}
+          addFolder={addFolder}
+          addFolderToNewArray={addFolderToNewArray}
         />
 
         <Switch>

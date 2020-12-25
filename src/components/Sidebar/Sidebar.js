@@ -20,6 +20,8 @@ function Sidebar({
   folderBlocks,
   handleFolderBlocks,
   handleNameChange,
+  addFolder,
+  addFolderToNewArray,
 }) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
@@ -31,6 +33,23 @@ function Sidebar({
     deletedItemsArray.splice(index, 1);
     setDeletedItems(deletedItemsArray);
   };
+
+   const addBinderToNewArray = (newFolderBlocksArray, folderIndex) => {
+     const newBinder = {
+       name: "",
+       index: null,
+       type: "binder",
+       id: uuidv4(),
+       folderId: newFolderBlocksArray[folderIndex].id,
+       iconColour: "#2C2C31",
+       isOpen: false,
+       studySets: [],
+     };
+
+
+     newFolderBlocksArray[folderIndex].binders.push(newBinder);
+     return newFolderBlocksArray;
+   };
 
   const handleRestore = (type, deletedItemIndex) => {
     let itemsArray = folderBlocks.slice();
@@ -45,15 +64,33 @@ function Sidebar({
       itemsArray.push(deletedItems[deletedItemIndex]);
     } else if (type === "binder") {
       const folderIndex = folderBlocks.findIndex(findBinderIndexInArray);
-      itemsArray[folderIndex].binders.push(deletedItems[deletedItemIndex]);
+      if (folderIndex === -1) {
+        addFolderToNewArray(itemsArray);
+        itemsArray[folderBlocks.length].binders.push(
+          deletedItems[deletedItemIndex]
+        );
+        itemsArray[folderBlocks.length].isOpen = true;
+      } else
+        itemsArray[folderIndex].binders.push(deletedItems[deletedItemIndex]);
     } else if (type === "studySet") {
       const folderIndex = folderBlocks.findIndex(findBinderIndexInArray);
-      const binderIndex = folderBlocks[folderIndex].binders.findIndex(
-        findStudySetIndexInArray
-      );
-      itemsArray[folderIndex].binders[binderIndex].studySets.push(
-        deletedItems[deletedItemIndex]
-      );
+      if (folderIndex === -1) {
+        const updatedArray = addFolderToNewArray(itemsArray);
+        addBinderToNewArray(updatedArray, folderBlocks.length)
+        updatedArray[folderBlocks.length].binders[0].studySets.push(
+          deletedItems[deletedItemIndex]
+        );
+        updatedArray[folderBlocks.length].isOpen = true;
+        updatedArray[folderBlocks.length].binders[0].isOpen = true;
+
+      } else {
+        const binderIndex = folderBlocks[folderIndex].binders.findIndex(
+          findStudySetIndexInArray
+        );
+        itemsArray[folderIndex].binders[binderIndex].studySets.push(
+          deletedItems[deletedItemIndex]
+        );
+      }
     }
 
     handleFolderBlocks(itemsArray);
@@ -68,18 +105,6 @@ function Sidebar({
         item,
       };
     }, initialValue);
-  };
-
-  const addFolder = () => {
-    const newFolder = {
-      name: "",
-      type: "folder",
-      id: uuidv4(),
-      iconColour: "#2C2C31",
-      isOpen: false,
-      binders: [],
-    };
-    handleFolderBlocks((folderBlocks) => [...folderBlocks, newFolder]);
   };
 
   const openFolderBlock = (folderIndex) => {
@@ -155,7 +180,6 @@ function Sidebar({
     setDeletedItems(deletedItemsArray);
 
     handleFolderBlocks(itemsArray);
-    if (folderBlocks.length === 1) addFolder();
   };
 
   const handleSettings = () => {
