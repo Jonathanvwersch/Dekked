@@ -129,6 +129,7 @@ function App() {
                   type: folderBlocks[0].type,
                   name: folderBlocks[0].name,
                   folderIndex: 0,
+                  iconColour: folderBlocks[0].iconColour,
                 },
               }}
             />

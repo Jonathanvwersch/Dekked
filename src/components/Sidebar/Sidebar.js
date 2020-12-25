@@ -414,7 +414,7 @@ function Sidebar({
                 ))}
               </div>
             </div>
-            <div className="sidebarBottom">
+            <div className="sidebarBottom" style={{borderTop: folderBlocks.length > 14 ? "0.5px solid var(--grey-3)" : null}}>
               <Block
                 item={{
                   action: "Trash",

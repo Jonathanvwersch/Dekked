@@ -106,7 +106,6 @@
 
 .workspace{
   overflow-y:auto;
-  padding-bottom:10px;
   margin-bottom:70px;
 }
 
@@ -202,6 +201,7 @@
   bottom: 55px;
   left:210px;
   overflow-y:auto;
+
 }
 
 

@@ -10,7 +10,7 @@
     cursor:pointer;
 }
 
-#dekked-addCard :hover .icon{
+#dekked-addCard:hover .icon{
     color: var(--primary-color);
 }
 
