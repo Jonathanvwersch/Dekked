@@ -1,0 +1,14 @@
+.dekked-studyButtonContainer {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    user-select:none;
+    gap:8px;
+}
+
+.dekked-studyButton{
+    width:210px;
+    height:40px;
+    border-radius:5px;
+}

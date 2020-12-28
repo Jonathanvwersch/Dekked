@@ -7,21 +7,17 @@ import Button from "../Buttons/Button";
 
 function StudyQueue() {
   const [studyQueue, setStudyQueue] = useState(false);
-  const [notifications, setNotifications] = useState(false);
+  const [notifications, setNotifications] = useState(0);
 
   return (
     <>
       <div className="studyQueue-container">
         <div className="studyQueueBubble-container">
-          {notifications ? (
-            <div className="notificationBubble">
-              <b>
-                <p className="p2"></p>
-              </b>
-            </div>
+          {notifications > 0 ? (
+            <div className="notificationBubble p2 bold">{notifications}</div>
           ) : null}
           <div
-            className="studyQueueBubble"
+            className="studyQueueBubble primary"
             onClick={() => setStudyQueue((prevState) => !prevState)}
           >
             <Icon
@@ -36,10 +32,8 @@ function StudyQueue() {
               handleState={() => setStudyQueue((prevState) => !prevState)}
             >
               <div className="studyQueue">
-                <div className="header">
-                  <b>
-                    <p className="p1">Study Queue</p>
-                  </b>
+                <div className="header p1 bold">
+                  Study Queue
                   <Button disabled={true} action="Study" />
                 </div>
                 <div className="items"></div>

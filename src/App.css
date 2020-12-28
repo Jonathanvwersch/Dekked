@@ -89,12 +89,8 @@ p {
   font-weight:700
 }
 
-.p1 grey,.p2 grey,.p3 grey {
+.p1.grey,.p2.grey,.p3.grey {
   color:var(--grey-1);
-}
-
-.p1 white,.p2 white,.p3 white {
-  color:white;
 }
 
 h1{
@@ -203,4 +199,47 @@ input {
 
 a {
     text-decoration: none;
+}
+
+
+.primary{
+    background: var(--primary-color);
+    color: white;
+    border:0px;
+}
+
+.secondary{
+    background: white;
+    border: 0.5px solid var(--grey-2);
+}
+
+.tertiary{
+    background: var(--red);
+    border:0px;
+    color: white;
+}
+
+
+
+.primary:hover {
+    background:var(--primary-color-hover);
+}
+.secondary:hover {
+    background:var(--white-hover);
+}
+
+.tertiary:hover {
+    background:var(--red-hover);
+}
+
+.primary:active {
+    background:var(--primary-color-clicked);
+}
+
+.secondary:active {
+    background:var(--white-clicked);
+}
+
+.tertiary:active{
+    background:var(--red-clicked);
 }
