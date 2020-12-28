@@ -42,10 +42,20 @@
 }
 
 .linkedFlashcardText .linkedFlashcardFront, .linkedFlashcardBack{
+    position:relative;
     background-color:var(--white);
     height:150px;
     width:48%;
     border-radius:var(--general-border-radius);
+    padding:16px 16px;
 }
+
+.linkedFlashcardText .linkedFlashcardFront p, .linkedFlashcardBack p{
+    color:var(--grey-1);
+    top:4px;
+    left:8px;
+    position:absolute;
+}
+
 
 

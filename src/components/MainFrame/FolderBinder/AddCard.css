@@ -14,7 +14,7 @@
     color: var(--primary-color);
 }
 
-#dekked-addCard :active .icon{
+#dekked-addCard:active .icon{
     color: var(--primary-color-hover);
 }
 

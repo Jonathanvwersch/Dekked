@@ -7,7 +7,6 @@ import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import { ProfileData } from "./ProfileData";
 import { NavLink } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import trashCanOutline from "@iconify/icons-mdi/trash-can-outline";
 import Portal from "../General/Portal";
 import Block from "../General/Block";
@@ -21,91 +20,16 @@ function Sidebar({
   handleFolderBlocks,
   handleNameChange,
   addFolder,
-  addFolderToNewArray,
+  addBinder,
+  addStudySet,
+  deleteBlock,
+  deleteForever,
+  handleRestore,
+  deletedItems,
 }) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
-  const [deletedItems, setDeletedItems] = useState([]);
   const [trashCan, setTrashCan] = useState(false);
-
-  const deleteForever = (index) => {
-    const deletedItemsArray = deletedItems.slice();
-    deletedItemsArray.splice(index, 1);
-    setDeletedItems(deletedItemsArray);
-  };
-
-   const addBinderToNewArray = (newFolderBlocksArray, folderIndex) => {
-     const newBinder = {
-       name: "",
-       index: null,
-       type: "binder",
-       id: uuidv4(),
-       folderId: newFolderBlocksArray[folderIndex].id,
-       iconColour: "#2C2C31",
-       isOpen: false,
-       studySets: [],
-     };
-
-
-     newFolderBlocksArray[folderIndex].binders.push(newBinder);
-     return newFolderBlocksArray;
-   };
-
-  const handleRestore = (type, deletedItemIndex) => {
-    let itemsArray = folderBlocks.slice();
-    const findBinderIndexInArray = (item) => {
-      return item.id === deletedItems[deletedItemIndex].folderId;
-    };
-    const findStudySetIndexInArray = (item) => {
-      return item.id === deletedItems[deletedItemIndex].binderId;
-    };
-
-    if (type === "folder") {
-      itemsArray.push(deletedItems[deletedItemIndex]);
-    } else if (type === "binder") {
-      const folderIndex = folderBlocks.findIndex(findBinderIndexInArray);
-      if (folderIndex === -1) {
-        addFolderToNewArray(itemsArray);
-        itemsArray[folderBlocks.length].binders.push(
-          deletedItems[deletedItemIndex]
-        );
-        itemsArray[folderBlocks.length].isOpen = true;
-      } else
-        itemsArray[folderIndex].binders.push(deletedItems[deletedItemIndex]);
-    } else if (type === "studySet") {
-      const folderIndex = folderBlocks.findIndex(findBinderIndexInArray);
-      if (folderIndex === -1) {
-        const updatedArray = addFolderToNewArray(itemsArray);
-        addBinderToNewArray(updatedArray, folderBlocks.length)
-        updatedArray[folderBlocks.length].binders[0].studySets.push(
-          deletedItems[deletedItemIndex]
-        );
-        updatedArray[folderBlocks.length].isOpen = true;
-        updatedArray[folderBlocks.length].binders[0].isOpen = true;
-
-      } else {
-        const binderIndex = folderBlocks[folderIndex].binders.findIndex(
-          findStudySetIndexInArray
-        );
-        itemsArray[folderIndex].binders[binderIndex].studySets.push(
-          deletedItems[deletedItemIndex]
-        );
-      }
-    }
-
-    handleFolderBlocks(itemsArray);
-    deleteForever(deletedItemIndex);
-  };
-
-  const convertArrayToObject = (array) => {
-    const initialValue = {};
-    return array.reduce((obj, item) => {
-      return {
-        ...obj,
-        item,
-      };
-    }, initialValue);
-  };
 
   const openFolderBlock = (folderIndex) => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -115,71 +39,12 @@ function Sidebar({
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const addBinder = (folderIndex) => {
-    const newBinder = {
-      name: "",
-      index: null,
-      type: "binder",
-      id: uuidv4(),
-      folderId: folderBlocks[folderIndex].id,
-      iconColour: "#2C2C31",
-      isOpen: false,
-      studySets: [],
-    };
-    const newFolderBlocksArray = folderBlocks.slice();
-    newFolderBlocksArray[folderIndex].isOpen = true;
-    newFolderBlocksArray[folderIndex].binders.push(newBinder);
-    handleFolderBlocks(newFolderBlocksArray);
-  };
-
   const openBinderBlock = (folderIndex, binderIndex) => {
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[folderIndex].binders[
       binderIndex
     ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
     handleFolderBlocks(newFolderBlocksArray);
-  };
-
-  const addStudySet = (folderIndex, binderIndex) => {
-    const newStudySet = {
-      name: "",
-      index: null,
-      type: "studySet",
-      id: uuidv4(),
-      binderId: folderBlocks[folderIndex].binders[binderIndex].id,
-      folderId: folderBlocks[folderIndex].id,
-      iconColour: "#2C2C31",
-      tab: "notes",
-    };
-    const newFolderBlocksArray = folderBlocks.slice();
-    newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
-      newStudySet
-    );
-
-    newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
-    handleFolderBlocks(newFolderBlocksArray);
-  };
-
-  const deleteBlock = (type, folderIndex, binderIndex, studySetIndex) => {
-    let itemsArray = folderBlocks.slice();
-    let deletedItemsArray = [...deletedItems];
-    let deleted;
-
-    if (type === "folder") {
-      deleted = itemsArray.splice(folderIndex, 1);
-    } else if (type === "binder") {
-      deleted = itemsArray[folderIndex].binders.splice(binderIndex, 1);
-    } else if (type === "studySet") {
-      deleted = itemsArray[folderIndex].binders[binderIndex].studySets.splice(
-        studySetIndex,
-        1
-      );
-    }
-
-    deletedItemsArray.push(convertArrayToObject(deleted).item);
-    setDeletedItems(deletedItemsArray);
-
-    handleFolderBlocks(itemsArray);
   };
 
   const handleSettings = () => {
@@ -414,7 +279,7 @@ function Sidebar({
                 ))}
               </div>
             </div>
-            <div className="sidebarBottom" style={{borderTop: folderBlocks.length > 14 ? "0.5px solid var(--grey-3)" : null}}>
+            <div className="sidebarBottom">
               <Block
                 item={{
                   action: "Trash",

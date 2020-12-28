@@ -11,7 +11,7 @@ function LinkedFlashcard({ sidebar }) {
     <div
       className="linkedFlashcardContainer"
       style={{
-        bottom: position ? "-240px" : "0px"
+        bottom: position ? "-240px" : "0px",
       }}
     >
       <div
@@ -34,8 +34,12 @@ function LinkedFlashcard({ sidebar }) {
           <div></div>
         </div>
         <div className="linkedFlashcardText">
-          <div className="linkedFlashcardFront"></div>
-          <div className="linkedFlashcardBack"></div>
+          <div className="linkedFlashcardFront">
+            <p className="p1">Front</p>
+          </div>
+          <div className="linkedFlashcardBack">
+            <p className="p1">Back</p>
+          </div>
         </div>
         <div
           style={{
@@ -45,7 +49,7 @@ function LinkedFlashcard({ sidebar }) {
           }}
         >
           <div></div>
-          <Button type="primary" action="Save" />
+          <Button disabled type="primary" action="Save" />
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import TopBar from "./TopBar";
 import { useLocation, withRouter } from "react-router";
 import "./MainFrame.css";
 import FolderBinder from "./FolderBinder/FolderBinder";
-
 import StudySet from "./StudySet/StudySet";
 
 function MainFrame({
@@ -13,6 +12,8 @@ function MainFrame({
   folderBlocks,
   handleFolderBlocks,
   handleNameChange,
+  addBinder,
+  addStudySet
 }) {
   const expandedSidebarWidth = 220;
   const [frameWidth, setFrameWidth] = useState(
@@ -59,8 +60,9 @@ function MainFrame({
             location.state.type === "binder" ? (
               <FolderBinder
                 folderBlocks={folderBlocks}
-                handleFolderBlocks={handleFolderBlocks}
                 handleNameChange={handleNameChange}
+                addBinder={addBinder}
+                addStudySet={addStudySet}
               />
             ) : (
               <StudySet
@@ -69,7 +71,6 @@ function MainFrame({
                 handleNameChange={handleNameChange}
                 handleFolderBlocks={handleFolderBlocks}
               />
-              
             )
           ) : null}
         </div>

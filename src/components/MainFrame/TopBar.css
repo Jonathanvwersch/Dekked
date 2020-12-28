@@ -30,11 +30,11 @@
     flex-grow:1;
     min-width:0px;
     user-select:none;
+    gap:4px;
 
 }
 
 .dekked-topBar .breadcrumbs .icon {
-    margin-right:4px;
     cursor:auto;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .dekked-topBar #slash{
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: 4px;
+    margin-right: 4px;
     color: var(--grey-2);
     font-size: 14px;
 }

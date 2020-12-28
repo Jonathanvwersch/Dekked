@@ -17,8 +17,12 @@ function Flashcard({ deleteFlashcard, index }) {
           />
         </div>
         <div className="flashcardText">
-          <div className="flashcardFront"></div>
-          <div className="flashcardBack"></div>
+          <div className="flashcardFront">
+            <p className="p1">Front</p>
+          </div>
+          <div className="flashcardBack">
+            <p className="p1">Back</p>
+          </div>
         </div>
       </div>
     </div>

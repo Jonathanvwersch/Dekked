@@ -6,7 +6,6 @@ import Flashcard from "./Flashcard";
 function StudySetFlashcards({
   folderBlocks,
   handleFolderBlocks,
-  flashcards,
   deleteFlashcard,
 }) {
   let location = useLocation();
@@ -23,14 +22,20 @@ function StudySetFlashcards({
   }, [location.state]);
   return (
     <>
-      {flashcards.map((item, index) => (
-        <Flashcard
-          deleteFlashcard={() => {
-            deleteFlashcard(index);
-          }}
-          index={index}
-        />
-      ))}
+      {location.state
+        ? folderBlocks[location.state.folderIndex].binders[
+            location.state.binderIndex
+          ].studySets[location.state.studySetIndex].flashcards.map(
+            (item, index) => (
+              <Flashcard
+                deleteFlashcard={() => {
+                  deleteFlashcard(index);
+                }}
+                index={index}
+              />
+            )
+          )
+        : null}
     </>
   );
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import "./Button.css";
 
-const Button = ({ type, action, handleClick }) => {
+const Button = ({ type, action, handleClick, disabled }) => {
   return (
-      <button onClick={handleClick} className={`Button ${type}`}>
-        <p className="p2">{action}</p>
+      <button disabled = {disabled} onClick={handleClick} className={`dekked-button ${type} p2`}>
+        {action}
       </button>
   );
 };

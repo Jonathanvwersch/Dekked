@@ -7,44 +7,9 @@ import Card from "./Card";
 import Button from "../../Buttons/Button";
 import { v4 as uuidv4 } from "uuid";
 
-function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
+function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }) {
   let location = useLocation();
   const titleRef = useRef();
-
-  const addBinder = (folderIndex) => {
-    const newBinder = {
-      name: "",
-      type: "binder",
-      id: uuidv4(),
-      folderId: folderBlocks[folderIndex].id,
-      iconColour: "#2C2C31",
-      isOpen: false,
-      studySets: [],
-    };
-    const newFolderBlocksArray = folderBlocks.slice();
-    newFolderBlocksArray[folderIndex].isOpen = true;
-    newFolderBlocksArray[folderIndex].binders.push(newBinder);
-    handleFolderBlocks(newFolderBlocksArray);
-  };
-
-  const addStudySet = (folderIndex, binderIndex) => {
-    const newStudySet = {
-      name: "",
-      type: "studySet",
-      id: uuidv4(),
-      binderId: folderBlocks[folderIndex].binders[binderIndex].id,
-      folderId: folderBlocks[folderIndex].id,
-      iconColour: "#2C2C31",
-      tab: "notes",
-    };
-    const newFolderBlocksArray = folderBlocks.slice();
-    newFolderBlocksArray[folderIndex].binders[binderIndex].studySets.push(
-      newStudySet
-    );
-
-    newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen = true;
-    handleFolderBlocks(newFolderBlocksArray);
-  };
 
   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
@@ -73,6 +38,9 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
             <div className="dekked-pageHeader">
               <h2
                 className="dekked-page-title"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                }}
                 contentEditable={true}
                 ref={titleRef}
                 spellCheck={false}
@@ -108,7 +76,7 @@ function FolderBinder({ folderBlocks, handleFolderBlocks, handleNameChange }) {
                         } Study set(s)`
                     : null}
                 </p>
-                <Button type="primary" action="Study" />
+                <Button type="primary" action="Study" disabled={true} />
               </div>
             </div>
           </div>

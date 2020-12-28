@@ -36,9 +36,19 @@
 }
 
 .flashcardText .flashcardFront, .flashcardBack{
+    position:relative;
     background-color:white;
     height:140px;
     width:48%;
+    padding:16px 16px;
+}
+
+
+.flashcardText .flashcardFront p, .flashcardBack p{
+    color:var(--grey-1);
+    top:4px;
+    left:8px;
+    position:absolute;
 }
 
 

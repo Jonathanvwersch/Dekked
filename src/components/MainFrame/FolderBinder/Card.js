@@ -3,7 +3,7 @@ import "./Card.css";
 import { ReactComponent as BinderIcon } from "../../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../../custom-icons/studyset.svg";
 
-function Card({ name, type, iconColour }) {
+function Card({ name, type, iconColour, bottomText, clicked, handleClick}) {
   let date = new Date();
   const options = {
     year: "numeric",
@@ -12,17 +12,23 @@ function Card({ name, type, iconColour }) {
   };
 
   return (
-    <div id="dekked-card" role="button">
+    <div className={clicked ? "dekked-card clicked" : "dekked-card"} role="button" onClick={handleClick}>
       <div id="cardThumbnail"></div>
       <div id="cardDescription">
-          <p className="p2 cardName">{name} </p>
+        <p className="p2 cardName">{name} </p>
         <div id="cardDate">
-            {type === "binder" ? (
+          {type ? (
+            type === "binder" ? (
               <BinderIcon className={`icon ${type}`} stroke={iconColour} />
             ) : (
               <StudySetIcon className={`icon ${type}`} stroke={iconColour} />
-            )}
-          <p className="p3">Created {date.toLocaleString("en-US", options)}</p>
+            )
+          ) : null}
+          <p className="p3">
+            {bottomText
+              ? bottomText
+              : `Created ${date.toLocaleString("en-US", options)}`}
+          </p>
         </div>
       </div>
     </div>

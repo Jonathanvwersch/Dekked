@@ -7,7 +7,6 @@ import Button from "../Buttons/Button";
 
 function StudyQueue() {
   const [studyQueue, setStudyQueue] = useState(false);
-  const [buttonState, setButtonState] = useState("inactive");
   const [notifications, setNotifications] = useState(false);
 
   return (
@@ -41,7 +40,7 @@ function StudyQueue() {
                   <b>
                     <p className="p1">Study Queue</p>
                   </b>
-                  <Button type={buttonState} action="Study" />
+                  <Button disabled={true} action="Study" />
                 </div>
                 <div className="items"></div>
               </div>

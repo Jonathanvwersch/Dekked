@@ -27,17 +27,30 @@ function StudySet({
   const addFlashcard = () => {
     const newFlashcard = {
       id: uuidv4(),
+      type: "",
+      studySetId:
+        folderBlocks[location.state.folderIndex].binders[
+          location.state.binderIndex
+        ].studySets[location.state.studySetIndex].id,
+      binderId:
+        folderBlocks[location.state.folderIndex].binders[
+          location.state.binderIndex
+        ].id,
+      folderId: folderBlocks[location.state.folderIndex].id,
     };
-    let flashcardsArray = flashcards.slice();
-    flashcardsArray.unshift(newFlashcard);
-    handleFlashcards(flashcardsArray);
-    console.log(flashcards);
+    const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[location.state.folderIndex].binders[
+      location.state.binderIndex
+    ].studySets[location.state.studySetIndex].flashcards.unshift(newFlashcard);
+    handleFolderBlocks(newFolderBlocksArray);
   };
 
   const deleteFlashcard = (index) => {
-    let flashcardsArray = flashcards.slice();
-    flashcardsArray.splice(index, 1);
-    setFlashcards(flashcardsArray);
+    const newFolderBlocksArray = folderBlocks.slice();
+    newFolderBlocksArray[location.state.folderIndex].binders[
+      location.state.binderIndex
+    ].studySets[location.state.studySetIndex].flashcards.splice(index, 1);
+    handleFolderBlocks(newFolderBlocksArray);
   };
 
   useEffect(() => {
@@ -141,6 +154,9 @@ function StudySet({
               <div className="dekked-studySetPageTitle">
                 <h2
                   contentEditable={true}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                  }}
                   ref={titleRef}
                   spellCheck={false}
                   onKeyDown={(e) => {
@@ -177,7 +193,7 @@ function StudySet({
                         action="Add flashcard"
                       />
                     </div>
-                    <Button type="primary" action="Study" />
+                    <Button disabled type="primary" action="Study" />
                   </div>
                 </div>
               ) : null}

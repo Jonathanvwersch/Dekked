@@ -68,22 +68,33 @@ p {
 }
 
 .p1 {
+    color:var(--main-black);
     font-size:14px;
     margin:0;
 }
 
 .p2 {
+    color:var(--main-black);  
     font-size:12px;
     margin:0;
 }
 
 .p3 {
+    color:var(--main-black);
     font-size:10px; 
     margin:0;
 }
 
 .p1.bold,.p2.bold,.p3.bold {
   font-weight:700
+}
+
+.p1 grey,.p2 grey,.p3 grey {
+  color:var(--grey-1);
+}
+
+.p1 white,.p2 white,.p3 white {
+  color:white;
 }
 
 h1{

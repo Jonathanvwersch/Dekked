@@ -1,4 +1,4 @@
-.Button{
+.dekked-button{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -10,67 +10,73 @@
     user-select:none;
 }
 
-.Button.primary{
+.dekked-button.primary{
     background: var(--primary-color);
     color: white;
     border:0px;
 }
 
-.Button.primary p{
+.dekked-button.primary p{
     color: white;
 }
 
-.Button.secondary{
+.dekked-button.secondary{
     background: white;
     color: var(--main-black);
     border: 0.5px solid var(--grey-2);
 }
 
-.Button.tertiary{
+.dekked-button.tertiary{
     background: var(--red);
     border:0px;
 }
 
-.Button.tertiary p{
+.dekked-button.tertiary p{
     color: white;
 }
 
-.Button.inactive {
+.dekked-button[disabled] {
     background:var(--grey-2);
     border:0px;
     cursor:auto;
 }
 
-.Button.inactive p{
+.dekked-button[disabled]:hover {
+    background:var(--grey-2)!important;
+    border:0px!important;
+    cursor:auto!important;
+}
+
+.dekked-button[disabled] p{
     color: var(--white);
 }
 
-.Button:active,
-.Button:hover,
-.Button:focus {
+.dekked-button:active,
+.dekked-button:hover,
+.dekked-button:focus {
     outline:none;
 }
 
-.Button.primary:hover {
+.dekked-button.primary:hover {
     background:var(--primary-color-hover);
 }
 
-.Button.secondary:hover {
+.dekked-button.secondary:hover {
     background:var(--white-hover);
 }
 
-.Button.tertiary:hover {
+.dekked-button.tertiary:hover {
     background:var(--red-hover);
 }
 
-.Button.primary:active {
+.dekked-button.primary:active {
     background:var(--primary-color-clicked);
 }
 
-.Button.secondary:active {
+.dekked-button.secondary:active {
     background:var(--white-clicked);
 }
 
-.Button.tertiary:active{
+.dekked-button.tertiary:active{
     background:var(--red-clicked);
 }
