@@ -13,7 +13,7 @@ function Toolbar({ type }) {
   return (
     <div className="toolbar">
       <div
-        className="switchBlock"
+        id="switchBlock"
         onClick={(e) => {
           const rect = e.target.getBoundingClientRect();
           setCoords({
@@ -24,7 +24,6 @@ function Toolbar({ type }) {
         }}
       >
         <Icons.MdTextFields className="icon active blockType" />
-
         <Icons.MdArrowDropDown className="icon active dropdownArrow" />
       </div>
       {textBlockSelector ? (

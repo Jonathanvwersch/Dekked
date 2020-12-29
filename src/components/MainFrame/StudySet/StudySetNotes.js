@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import "./StudySetNotes.css";
 
 function StudySetNotes({ folderBlocks, handleFolderBlocks }) {
   let location = useLocation();
@@ -12,6 +11,7 @@ function StudySetNotes({ folderBlocks, handleFolderBlocks }) {
     ].studySets[location.state.studySetIndex].tab = "notes"; // Invert folder block's open status
     handleFolderBlocks(newFolderBlocksArray);
   };
+
   useEffect(() => {
     handleTab();
   }, [location.state]);

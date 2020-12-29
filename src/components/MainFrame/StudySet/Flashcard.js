@@ -5,12 +5,11 @@ import Toolbar from "./Toolbar";
 
 function Flashcard({ deleteFlashcard, index }) {
   return (
-    <div className="flashcardContainer">
+    <div className="dekked-flashcardContainer">
       <div className="flashcard">
         <div className="flashcardHeader">
-          <p className="p1 bold">{index + 1}</p>
+          <span className="p1 bold">{index + 1}</span>
           <Toolbar />
-
           <Icons.MdDeleteForever
             className="icon active delete"
             onClick={deleteFlashcard}
@@ -18,10 +17,10 @@ function Flashcard({ deleteFlashcard, index }) {
         </div>
         <div className="flashcardText">
           <div className="flashcardFront">
-            <p className="p1">Front</p>
+            <span className="p3">Front</span>
           </div>
           <div className="flashcardBack">
-            <p className="p1">Back</p>
+            <span className="p3">Back</span>
           </div>
         </div>
       </div>

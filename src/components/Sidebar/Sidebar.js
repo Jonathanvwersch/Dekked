@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import * as Icons from "react-icons/md";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
-import { Icon } from "@iconify/react";
-import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
-import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
-import { ProfileData } from "./ProfileData";
-import { NavLink } from "react-router-dom";
-import trashCanOutline from "@iconify/icons-mdi/trash-can-outline";
-import Portal from "../General/Portal";
-import Block from "../General/Block";
-import Settings from "../Settings/Settings";
-import DeleteBlock from "./DeleteBlock";
+import SidebarTop from "./SidebarTop";
+import SidebarBottom from "./SidebarBottom";
 
 function Sidebar({
   sidebar,
@@ -27,49 +20,16 @@ function Sidebar({
   handleRestore,
   deletedItems,
 }) {
-  const [profileMenu, setProfileMenu] = useState(false);
-  const [settingsPage, setSettingsPage] = useState(false);
-  const [trashCan, setTrashCan] = useState(false);
-
-  const openFolderBlock = (folderIndex) => {
-    const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
-    newFolderBlocksArray[folderIndex].isOpen = !newFolderBlocksArray[
-      folderIndex
-    ].isOpen; // Invert folder block's open status
-    handleFolderBlocks(newFolderBlocksArray);
-  };
-
-  const openBinderBlock = (folderIndex, binderIndex) => {
+  const openBlock = (type, folderIndex, binderIndex) => {
     const newFolderBlocksArray = folderBlocks.slice();
-    newFolderBlocksArray[folderIndex].binders[
-      binderIndex
-    ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
-    handleFolderBlocks(newFolderBlocksArray);
-  };
-
-  const handleSettings = () => {
-    setSettingsPage((prevState) => !prevState);
-  };
-
-  const handleIconColour = (
-    type,
-    folderIndex,
-    binderIndex,
-    studySetIndex,
-    iconColour
-  ) => {
-    const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder") {
-      newFolderBlocksArray[folderIndex].iconColour = iconColour;
-    } else if (type === "binder") {
+    if (type === "folder")
+      newFolderBlocksArray[folderIndex].isOpen = !newFolderBlocksArray[
+        folderIndex
+      ].isOpen;
+    else
       newFolderBlocksArray[folderIndex].binders[
         binderIndex
-      ].iconColour = iconColour;
-    } else if (type === "studySet") {
-      newFolderBlocksArray[folderIndex].binders[binderIndex].studySets[
-        studySetIndex
-      ].iconColour = iconColour;
-    }
+      ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
     handleFolderBlocks(newFolderBlocksArray);
   };
 
@@ -78,55 +38,7 @@ function Sidebar({
       {sidebar ? (
         <div className="dekked-sidebarContainer">
           <div className="dekked-sidebar">
-            <div className="sidebarTop">
-              <div className="profile">
-                <p className="p1 avatar">J</p>
-                <p className="p3">Jane Doe</p>
-
-                <Icons.MdArrowDropDown
-                  className="icon active dropDownArrow down"
-                  onClick={() => setProfileMenu(true)}
-                />
-
-                {profileMenu ? (
-                  <Portal
-                    state={profileMenu}
-                    handleState={() => setProfileMenu(false)}
-                  >
-                    <div
-                      className="dropdownMenu settingsMenu"
-                      onClick={() => setProfileMenu(false)}
-                    >
-                      {ProfileData.map((item, index) => {
-                        return (
-                          <Block
-                            item={item}
-                            key={`${item} Block ${index}`}
-                            handleSettings={handleSettings}
-                          />
-                        );
-                      })}
-                    </div>
-                  </Portal>
-                ) : null}
-                {settingsPage ? (
-                  <Portal
-                    state={settingsPage}
-                    handleState={handleSettings}
-                    lightbox={true}
-                    center={true}
-                    close={true}
-                  >
-                    <Settings handleState={handleSettings} />
-                  </Portal>
-                ) : null}
-              </div>
-              <Icon
-                className="icon active chevronDoubleLeft"
-                onClick={handleSidebar}
-                icon={chevronDoubleLeft}
-              />
-            </div>
+            <SidebarTop handleSidebar={handleSidebar} />
             <div className="workspace">
               <p className="p2 title">Workspace</p>
               <div className="folderBlocks">
@@ -157,12 +69,12 @@ function Sidebar({
                             deleteBlock(folder.type, folderIndex)
                           }
                           handleAddItem={() => addBinder(folderIndex)}
-                          isExpanded={() => openFolderBlock(folderIndex)}
+                          isExpanded={() => openBlock(folder.type, folderIndex)}
                           isOpen={folder.isOpen}
                           dropBlockMenuData={FolderData}
                           handleNameChange={handleNameChange}
-                          handleIconColour={handleIconColour}
                           folderBlocks={folderBlocks}
+                          handleFolderBlocks={handleFolderBlocks}
                         />
                       </NavLink>
                     </>
@@ -205,13 +117,17 @@ function Sidebar({
                                   addStudySet(folderIndex, binderIndex)
                                 }
                                 isExpanded={() =>
-                                  openBinderBlock(folderIndex, binderIndex)
+                                  openBlock(
+                                    binder.type,
+                                    folderIndex,
+                                    binderIndex
+                                  )
                                 }
                                 isOpen={binder.isOpen}
                                 handleNameChange={handleNameChange}
                                 dropBlockMenuData={BinderData}
-                                handleIconColour={handleIconColour}
                                 folderBlocks={folderBlocks}
+                                handleFolderBlocks={handleFolderBlocks}
                               />
                             </NavLink>
                             {binder.isOpen ? (
@@ -262,8 +178,8 @@ function Sidebar({
                                           }
                                           dropBlockMenuData={StudySetData}
                                           handleNameChange={handleNameChange}
-                                          handleIconColour={handleIconColour}
                                           folderBlocks={folderBlocks}
+                                          handleFolderBlocks={handleFolderBlocks}
                                         />
                                       </NavLink>
                                     </div>
@@ -279,55 +195,12 @@ function Sidebar({
                 ))}
               </div>
             </div>
-            <div className="sidebarBottom">
-              <Block
-                item={{
-                  action: "Trash",
-                  icon: <Icon className="icon trash" icon={trashCanOutline} />,
-                }}
-                handleTrash={() => setTrashCan(true)}
-                backgroundColour="off-beige"
-              />
-
-              {trashCan ? (
-                <Portal state={trashCan} handleState={() => setTrashCan(false)}>
-                  <div className="deleteBlockContainer">
-                    {deletedItems.length === 0 ? (
-                      <p
-                        className="p2 noBinders"
-                        style={{ paddingLeft: "16px" }}
-                      >
-                        No items inside
-                      </p>
-                    ) : (
-                      deletedItems.map((item, index) => (
-                        <DeleteBlock
-                          name={item.name}
-                          type={item.type}
-                          iconColour={item.iconColour}
-                          handleDeleteForever={() => {
-                            deleteForever(index);
-                          }}
-                          handleRestore={() => {
-                            handleRestore(
-                              item.type,
-                              index,
-                              item.folderIndex,
-                              item.binderIndex,
-                              item.studySetIndex
-                            );
-                          }}
-                        />
-                      ))
-                    )}
-                  </div>
-                </Portal>
-              ) : null}
-              <div className="addBlock" onClick={addFolder}>
-                <Icons.MdAdd className="icon plus" />
-                <p className="p1 addFolder">Add folder</p>
-              </div>
-            </div>
+            <SidebarBottom
+              deleteForever={deleteForever}
+              handleRestore={handleRestore}
+              deletedItems={deletedItems}
+              addFolder={addFolder}
+            />
           </div>
         </div>
       ) : null}

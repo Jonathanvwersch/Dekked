@@ -15,7 +15,7 @@ function Card({ name, type, iconColour, bottomText, clicked, handleClick}) {
     <div className={clicked ? "dekked-card clicked" : "dekked-card"} role="button" onClick={handleClick}>
       <div id="cardThumbnail"></div>
       <div id="cardDescription">
-        <p className="p2 cardName">{name} </p>
+        <span className="p2 cardName">{name} </span>
         <div id="cardDate">
           {type ? (
             type === "binder" ? (
@@ -24,11 +24,11 @@ function Card({ name, type, iconColour, bottomText, clicked, handleClick}) {
               <StudySetIcon className={`icon ${type}`} stroke={iconColour} />
             )
           ) : null}
-          <p className="p3">
+          <span className="p3">
             {bottomText
               ? bottomText
               : `Created ${date.toLocaleString("en-US", options)}`}
-          </p>
+          </span>
         </div>
       </div>
     </div>

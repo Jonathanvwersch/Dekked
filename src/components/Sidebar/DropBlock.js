@@ -8,8 +8,7 @@ import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
 import { NavLink } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 function DropBlock({
   type,
@@ -23,8 +22,8 @@ function DropBlock({
   folderIndex,
   binderIndex,
   studySetIndex,
-  handleIconColour,
   folderBlocks,
+  handleFolderBlocks
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
@@ -60,6 +59,29 @@ function DropBlock({
       top: topValue,
     });
   };
+  
+
+   const handleIconColour = (
+    type,
+    folderIndex,
+    binderIndex,
+    studySetIndex,
+    iconColour
+  ) => {
+    const newFolderBlocksArray = folderBlocks.slice();
+    if (type === "folder") {
+      newFolderBlocksArray[folderIndex].iconColour = iconColour;
+    } else if (type === "binder") {
+      newFolderBlocksArray[folderIndex].binders[
+        binderIndex
+      ].iconColour = iconColour;
+    } else if (type === "studySet") {
+      newFolderBlocksArray[folderIndex].binders[binderIndex].studySets[
+        studySetIndex
+      ].iconColour = iconColour;
+    }
+    handleFolderBlocks(newFolderBlocksArray);
+  };
 
   const handleColourPicker = () => {
     const newCoords = {
@@ -73,7 +95,7 @@ function DropBlock({
 
   const handleRename = () => {
     // Focus in on name of dropblock when being renamed (i.e. show text cursor)
-    var div = document.querySelector(`p[id="${id}"]`);
+    var div = document.querySelector(`span[id="${id}"]`);
     setTimeout(function () {
       setEditableName((prevValue) => !prevValue);
       div.focus();
@@ -112,7 +134,7 @@ function DropBlock({
   useEffect(() => {
     const updateEditableName = (e) => {
       // When user clicks away from name, make sure the beginning of the name is shown
-      let fileName = document.querySelector(`p[id="${id}"]`);
+      let fileName = document.querySelector(`span[id="${id}"]`);
       if (fileName) {
         fileName.addEventListener(
           "blur",
@@ -138,55 +160,57 @@ function DropBlock({
   }, [editableName, id]);
 
   return (
-    <div role="button" className="dekked-dropBlock">
-      <div
-        className={
-          isOpen
-            ? `icon active ${type} dropDownArrow down`
-            : `icon active ${type} dropDownArrow right`
-        }
-        onClick={() => {
-          isExpanded();
-        }}
-      >
-        {type !== "studySet" ? <Icons.MdArrowDropDown /> : null}
-      </div>
-      <div className={`icon ${type}`}>
-        {type === "folder" ? (
-          <FolderIcon fill={iconColour} />
-        ) : type === "binder" ? (
-          <BinderIcon stroke={iconColour} />
-        ) : (
-          <StudySetIcon stroke={iconColour} />
-        )}
-      </div>
-      <p
-        ref={nameRef}
-        id={id}
-        spellCheck="false"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            setEditableName((prevValue) => !prevValue);
+    <>
+      <div role="button" className="dekked-dropBlock">
+        <div
+          className={
+            isOpen
+              ? `icon active dropDownArrow down ${type}`
+              : `icon active dropDownArrow right  ${type}`
           }
-          setTimeout(function () {
-            handleNameChange(
-              type,
-              folderIndex,
-              binderIndex,
-              studySetIndex,
-              nameRef.current.innerText
-            );
-          }, 100);
-        }}
-        contentEditable={editableName}
-        className="p2"
-      ></p>
-      <Icons.MdMoreHoriz
-        className="icon active dots"
-        onClick={(e) => {
-          handleDropdownMenu(e);
-        }}
-      ></Icons.MdMoreHoriz>
+          onClick={() => {
+            isExpanded();
+          }}
+        >
+          {type !== "studySet" ? <Icons.MdArrowDropDown /> : null}
+        </div>
+        <div className={`icon ${type}`}>
+          {type === "folder" ? (
+            <FolderIcon fill={iconColour} />
+          ) : type === "binder" ? (
+            <BinderIcon stroke={iconColour} />
+          ) : (
+            <StudySetIcon stroke={iconColour} />
+          )}
+        </div>
+        <span
+          ref={nameRef}
+          id={id}
+          spellCheck="false"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setEditableName((prevValue) => !prevValue);
+            }
+            setTimeout(function () {
+              handleNameChange(
+                type,
+                folderIndex,
+                binderIndex,
+                studySetIndex,
+                nameRef.current.innerText
+              );
+            }, 100);
+          }}
+          contentEditable={editableName}
+          className="p2"
+        ></span>
+        <Icons.MdMoreHoriz
+          className="icon active dots"
+          onClick={(e) => {
+            handleDropdownMenu(e);
+          }}
+        ></Icons.MdMoreHoriz>
+      </div>
       {dropdownMenu ? (
         <Portal state={dropdownMenu} handleState={() => setDropdownMenu(false)}>
           <div
@@ -235,14 +259,14 @@ function DropBlock({
       {colourPicker ? (
         <Portal state={colourPicker} handleState={handleColourPicker}>
           <div style={{ ...coords }} className="colourPicker">
-            <ColourPicker 
+            <ColourPicker
               iconColour={iconColour}
               setIconColour={setIconColour}
             ></ColourPicker>
           </div>
         </Portal>
       ) : null}
-    </div>
+    </>
   );
 }
 export default DropBlock;

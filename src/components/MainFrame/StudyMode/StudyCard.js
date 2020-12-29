@@ -6,8 +6,8 @@ function StudyCard() {
   const [iconColour, setIconColour] = useState("var(--main-black)");
 
   return (
-    <div className="dekked-studyCardContainer">
-      <div className="dekked-studyCard"></div>
+    <div id="dekked-studyCardContainer">
+      <div id="dekked-studyCard"></div>
       <LogoIcon
         className="icon active logo"
         stroke={iconColour}

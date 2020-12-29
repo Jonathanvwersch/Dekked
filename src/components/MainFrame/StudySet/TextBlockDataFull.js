@@ -23,17 +23,17 @@ const NUMBEREDLIST = "Numbered List";
 
   {
     action: LARGEHEADING,
-    icon: <Icon className="icon large-heading" icon={typeH1} />,
+    icon: <Icon className="icon largeHeading" icon={typeH1} />,
   },
 
   {
     action: MEDIUMHEADING,
-    icon: <Icon className="icon medium-heading" icon={typeH2} />,
+    icon: <Icon className="icon mediumHeading" icon={typeH2} />,
   },
 
   {
     action: SMALLHEADING,
-    icon: <Icon className="icon small-heading" icon={typeH3} />,
+    icon: <Icon className="icon smallHeading" icon={typeH3} />,
   },
 
   {

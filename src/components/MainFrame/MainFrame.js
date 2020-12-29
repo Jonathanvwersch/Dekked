@@ -42,19 +42,20 @@ function MainFrame({
   return (
     <>
       <div
-        className="dekked-frame"
+        className="dekked-frameContainer"
         style={{
           width: `${frameWidth}px`,
         }}
       >
-        <div style={{ width: "100%", maxWidth: "100vw", zIndex: "9" }}>
+        <div id="topBarContainer">
           <TopBar
             folderBlocks={folderBlocks}
             sidebar={sidebar}
             handleSidebar={handleSidebar}
+            frameWidth={frameWidth}
           />
         </div>
-        <div className="dekked-mainPage">
+        <div className="dekked-frame">
           {location.state ? (
             location.state.type === "folder" ||
             location.state.type === "binder" ? (

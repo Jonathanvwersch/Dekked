@@ -9,12 +9,12 @@ const NUMBEREDLIST = "Numbered List";
  const TextBlockDataHalf = [
   {
     action: BULLETEDLIST,
-    icon: <MdFormatListBulleted className="icon bulleted-list" />,
+    icon: <MdFormatListBulleted className="icon bulletedList" />,
   },
 
   {
     action: NUMBEREDLIST,
-    icon: <MdFormatListNumbered className="icon numbered-list" />,
+    icon: <MdFormatListNumbered className="icon numberedList" />,
   },
 ];
 

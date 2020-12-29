@@ -1,0 +1,58 @@
+.sidebarTop {
+  display:flex;
+  align-items:center;
+  height:60px;  
+  width: 100%;
+  border-bottom: 0.5px solid var(--grey-3);
+}
+
+.sidebarTop .profile{
+  display:flex;
+  height:28px;
+  margin:16px;
+  flex-direction: row;
+  place-items:center;
+}
+
+.sidebarTop .profile .avatar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--primary-color);
+  border-radius:100px;
+  width:28px;
+  height:28px;
+  margin-right:8px;
+}
+
+.sidebarTop .profile .p1.avatar{
+  color:white;
+}
+
+.sidebarTop .profile .p3{
+  text-overflow:ellipsis;
+  max-width:70px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.sidebarTop .icon.chevronDoubleLeft
+{
+  position:absolute;
+  right:0;
+  margin-right:10px; 
+}
+
+.icon.dropDownArrow.down
+{
+  margin-left:12px;
+}
+
+.settingsMenu {
+  border-radius: var(--general-border-radius);
+  width: 220px;
+  filter: var(--drop-shadow);
+  position:absolute;  
+  top:38px;
+  left:108px;
+}

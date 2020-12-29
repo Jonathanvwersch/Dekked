@@ -1,4 +1,3 @@
-import "./StudySetFlashcards.css";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router";
 import Flashcard from "./Flashcard";
@@ -17,9 +16,11 @@ function StudySetFlashcards({
     ].studySets[location.state.studySetIndex].tab = "flashcards"; // Invert folder block's open status
     handleFolderBlocks(newFolderBlocksArray);
   };
+
   useEffect(() => {
     handleTab();
   }, [location.state]);
+
   return (
     <>
       {location.state

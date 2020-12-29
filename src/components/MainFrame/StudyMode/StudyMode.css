@@ -6,14 +6,6 @@
     justify-content:flex-start;
 }
 
-.dekked-studyMode .dekked-pageContentContainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width:100%;
-    height:100%;
-}
-
  .dekked-studyMode .dekked-pageContent{
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));

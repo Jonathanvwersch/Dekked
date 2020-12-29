@@ -1,4 +1,4 @@
-.dekked-deleteBlock {
+.dekked-deletedBlock {
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -9,14 +9,15 @@
     padding-top:10px;
 }
 
-.dekked-deleteBlock .p2 {
-    width:154px;
-    text-overflow:ellipsis;
-    overflow:hidden;
-    white-space:nowrap;
-}
-
-.dekked-deleteBlock .icon{
+.dekked-deletedBlock .icon{
     margin-left:16px;
     margin-right:8px;
 }
+
+.dekked-deletedBlock span{
+    width:154px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+

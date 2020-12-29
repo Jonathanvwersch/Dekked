@@ -23,32 +23,22 @@ function LinkedFlashcard({ sidebar }) {
         <LogoIcon className="icon active logo" stroke={iconColour} />
       </div>
       <div className="linkedFlashcard">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Toolbar />
-          <div></div>
-        </div>
+        <Toolbar />
         <div className="linkedFlashcardText">
           <div className="linkedFlashcardFront">
-            <p className="p1">Front</p>
+            <span className="p1">Front</span>
           </div>
           <div className="linkedFlashcardBack">
-            <p className="p1">Back</p>
+            <span className="p1">Back</span>
           </div>
         </div>
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             width: "100%",
           }}
         >
-          <div></div>
           <Button disabled type="primary" action="Save" />
         </div>
       </div>

@@ -1,64 +1,53 @@
 
 /* Title Styling */
 
-#account-title {
+.account {
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.account h3 {
     border-bottom: 0.5px solid var(--grey-3);
     display:flex;
     justify-content:flex-start;
-
-}
-
-#account-title h3{
-    padding-bottom:8px;
 }
 
 /* Avatar Styling */
 
-#account-avatar-container{
+#accountAvatarContainer {
+    display:flex;
+    flex-direction:column;
+    gap:8px;
     border-bottom: 0.5px solid var(--grey-3);
-    padding-top:16px;
     padding-bottom:16px;
 }
-#account-avatar-button{
-    padding-top:16px;
+
+#accountAvatarButton {
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:16px;
 }
 
-#account-avatar {
+#accountAvatar {
     width: 54px;
     height: 54px;
     background: var(--primary-color);
-    border-radius: 100%;
-    margin-right:15px;
-}
-
-#account-avatar-button {
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
-    justify-content:flex-start;
+    border-radius: 50%;
+    border-bottom: 0.5px solid var(--grey-3);
 }
 
 /* Personal Info Styling */
 
-#account-personal-info {
-    padding-top:16px;
-    padding-bottom:16px;
+#accountPersonalInfo {
     border-bottom: 0.5px solid var(--grey-3);
+    padding-bottom:16px;
 }
 
-#account-input {
-    padding-top:16px;
+#accountInput {
     display:flex;
     flex-direction:column;
-}
-
-#account-input p{
-    color:var(--grey-1);
-}
-
-#account-last-name {
-    padding-top:8px;
-
 }
 
 input {
@@ -67,12 +56,8 @@ input {
 
 /* Password Styling */
 
-#account-password {
-    padding-top:16px;
-    padding-bottom:16px;
+#accountPassword button{
+   margin-top:8px;
 }
 
-#account-password-title {
-    padding-bottom:8px;
-}
 

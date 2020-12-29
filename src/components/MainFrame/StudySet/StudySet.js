@@ -1,5 +1,5 @@
 import "./StudySet.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
 import Toolbar from "../StudySet/Toolbar";
 import { NavLink } from "react-router-dom";
@@ -17,12 +17,6 @@ function StudySet({
 }) {
   let location = useLocation();
   const titleRef = useRef();
-
-  const [flashcards, setFlashcards] = useState([]);
-
-  const handleFlashcards = (newFlashcardsArray) => {
-    setFlashcards(newFlashcardsArray);
-  };
 
   const addFlashcard = () => {
     const newFlashcard = {
@@ -73,12 +67,12 @@ function StudySet({
   }, [folderBlocks, location.state]);
 
   return (
-    <div className="dekked-studySet">
+    <>
       {location.state ? (
         <>
-          <div className="dekked-pageHeaderContainer">
+          <div className="dekked-pageHeaderContainer studySet">
             <div className="dekked-pageHeader">
-              <div className="toolbarTab">
+              <div id="toolbarTab">
                 {location.state && location.state.tab === "notes" ? (
                   <Toolbar type="full" />
                 ) : (
@@ -91,7 +85,7 @@ function StudySet({
                         activeStyle={{
                           textDecoration: "underline",
                           textDecorationColor: "var(--primary-color)",
-                          color: "var(--main-black)",
+                          color: "var(--main-black)!important",
                           fontWeight: "700",
                           textDecorationThickness: "2px",
                         }}
@@ -111,14 +105,11 @@ function StudySet({
                           },
                         }}
                       >
-                        <p
-                          style={{
-                            marginRight: "24px",
-                          }}
+                        <span
                           className="p1"
                         >
                           Notes
-                        </p>
+                        </span>
                       </NavLink>
 
                       <NavLink
@@ -145,13 +136,12 @@ function StudySet({
                           },
                         }}
                       >
-                        <p className="p1">Flashcards</p>
+                        <span className="p1">Flashcards</span>
                       </NavLink>
                     </>
                   ) : null}
                 </div>
               </div>
-              <div className="dekked-studySetPageTitle">
                 <h2
                   contentEditable={true}
                   onDragOver={(e) => {
@@ -176,16 +166,15 @@ function StudySet({
                     }
                   }}
                 ></h2>
-              </div>
               {location.state.tab === "flashcards" ? (
-                <div className="buttonQuantity">
-                  <p
+                <div className="buttonQuantity studySet">
+                  <span
                     className="p2"
                     style={{ color: "var(--grey-2)", userSelect: "none" }}
                   >
-                    {`${flashcards.length} Flashcard(s)`}
-                  </p>
-                  <div className="dekked-studySetPageButtons">
+                    {`${folderBlocks[location.state.folderIndex].binders[location.state.binderIndex].studySets[location.state.studySetIndex].flashcards.length} Flashcard(s)`}
+                  </span>
+                  <div style={{display:"flex"}}>
                     <div style={{ marginRight: "32px" }}>
                       <Button
                         handleClick={addFlashcard}
@@ -201,7 +190,7 @@ function StudySet({
           </div>
 
           <div className="dekked-pageContentContainer">
-            <div className="dekked-pageContent">
+            <div className="dekked-pageContent studySet">
               {location.state.tab === "notes" ? (
                 <>
                   <StudySetNotes
@@ -213,21 +202,19 @@ function StudySet({
                 <StudySetFlashcards
                   handleFolderBlocks={handleFolderBlocks}
                   folderBlocks={folderBlocks}
-                  flashcards={flashcards}
-                  handleFlashcards={handleFlashcards}
                   deleteFlashcard={deleteFlashcard}
                 />
               )}
             </div>
             {location.state.tab === "notes" ? (
-              <div className="linkedFlashcard">
+              <div id="linkedFlashcardContainer">
                 <LinkedFlashcard sidebar={sidebar} />
               </div>
             ) : null}
           </div>
         </>
       ) : null}
-    </div>
+    </>
   );
 }
 

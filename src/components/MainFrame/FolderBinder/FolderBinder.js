@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import "./FolderBinder.css";
 import AddCard from "./AddCard";
 import { useLocation, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
@@ -31,13 +30,12 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
   }, [folderBlocks, location.state]);
 
   return (
-    <div className="dekked-folderBinder">
+    <>
       {location.state ? (
         <>
           <div className="dekked-pageHeaderContainer">
             <div className="dekked-pageHeader">
               <h2
-                className="dekked-page-title"
                 onDragOver={(e) => {
                   e.preventDefault();
                 }}
@@ -62,7 +60,7 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
                 }}
               ></h2>
               <div className="buttonQuantity">
-                <p className="p2 quantity">
+                <span className="p2">
                   {location.state
                     ? location.state.type === "folder"
                       ? `${
@@ -75,7 +73,7 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
                           ].studySets.length
                         } Study set(s)`
                     : null}
-                </p>
+                </span>
                 <Button type="primary" action="Study" disabled={true} />
               </div>
             </div>
@@ -143,7 +141,7 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
           </div>
         </>
       ) : null}
-    </div>
+      </>
   );
 }
 

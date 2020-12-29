@@ -12,34 +12,29 @@ function Account() {
   return (
     <>
       <div className="account">
-        <div id="account-title">
-          <h3>Account</h3>
-        </div>
-        <div id="account-avatar-container">
-          <p className="p1">Avatar</p>
-          <div id="account-avatar-button">
-            <div id="account-avatar"></div>
+        <h3>Account</h3>
+        <div id="accountAvatarContainer">
+          <span className="p1">Avatar</span>
+          <div id="accountAvatarButton">
+            <div id="accountAvatar"></div>
             <Button type="secondary" action="Upload" />
           </div>
         </div>
-        <div id="account-personal-info">
-          <p className="p1">Personal Info</p>
-
+        <div id="accountPersonalInfo">
+          <span className="p1">Personal Info</span>
           <div id="account-input">
-            <div id="account-first-name">
-              <p className="p3">First name</p>
+            <div>
+              <span className="p3 grey">First name</span>
               <input type="text"></input>
             </div>
-            <div id="account-last-name">
-              <p className="p3">Last name</p>
+            <div>
+              <span className="p3 grey">Last name</span>
               <input type="text"></input>
             </div>
           </div>
         </div>
-        <div id="account-password">
-          <div id="account-password-title">
-            <p className="p1">Password</p>
-          </div>
+        <div id="accountPassword">
+          <span className="p1">Password</span>
           <Button
             handleClick={handleChangePassword}
             type="secondary"

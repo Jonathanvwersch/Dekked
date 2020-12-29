@@ -9,11 +9,6 @@
   background: var(--off-beige);
   width:220px;
   cursor:default;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -40,66 +35,6 @@
   text-decoration: none;
   color:var(--main-black);
   width:100%;
-}
-
-/* Style Top Profile Section of Sidebar */
-.sidebarTop {
-  display:flex;
-  align-items:center;
-  height:60px;  
-  width: 100%;
-  border-bottom: 0.5px solid var(--grey-3);
-}
-
-.sidebarTop .profile{
-  display:flex;
-  height:28px;
-  margin:16px;
-  flex-direction: row;
-  place-items:center;
-}
-
-.sidebarTop .profile .avatar{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: var(--primary-color);
-  border-radius:100px;
-  width:28px;
-  height:28px;
-  margin-right:8px;
-}
-
-.sidebarTop .profile .p1.avatar{
-  color:white;
-}
-
-.sidebarTop .profile .p3{
-  text-overflow:ellipsis;
-  max-width:70px;
-  overflow:hidden;
-  white-space:nowrap;
-}
-
-.sidebarTop .icon.chevronDoubleLeft
-{
-  position:absolute;
-  right:0;
-  margin-right:10px; 
-}
-
-.icon.dropDownArrow.down
-{
-  margin-left:12px;
-}
-
-.settingsMenu {
-  border-radius: var(--general-border-radius);
-  width: 220px;
-  filter: var(--drop-shadow);
-  position:absolute;  
-  top:38px;
-  left:108px;
 }
 
 /* Style Workspace Section of Sidebar */
@@ -142,70 +77,6 @@
   padding-left:48px;  
 
 }
-
-/* Style Bottom Section of Sidebar */
-.sidebarBottom {
-  display:block;
-  flex: 0 0 auto;
-  margin-top:auto;
-  position:absolute;
-  bottom:0;
-  width:100%;
-}
-
-.addBlock{
-  display:flex;
-  justify-content:flex-start;
-  width:100%;
-  height:40px;
-  place-items:center;
-  border-top:0.5px solid var(--grey-3);
-  background:var(--off-beige);
-}
-
-.sidebarBottom .icon.plus{
-  margin-right:16px;
-  margin-left:16px;
-}
-
-.sidebarBottom .addFolder{
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.sidebarBottom .icon.plus:hover{
-  color:var(--main-black);;
-}
-
-.addBlock:hover{
-  background-color:var(--off-beige-hover);
-  cursor:pointer;
-}
-
-.addBlock:active {
-  background:var(--off-beige-clicked);
-}
-
-.deleteBlockContainer {
-  position:fixed;
-  display: flex;
-  flex-direction: column;
-  width:250px;  
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 2px;
-  background:white;
-  height:280px;
-  overflow:auto;
-  bottom: 55px;
-  left:210px;
-  overflow-y:auto;
-
-}
-
-
-
 
 
 

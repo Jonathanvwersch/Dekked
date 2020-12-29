@@ -8,9 +8,7 @@ export const SettingsData = [
   {
     action: ACCOUNT,
     icon: (
-      <div className="icon account">
-        <MdAccountCircle/>
-      </div>
+        <MdAccountCircle className="icon account"/>
     ),
   },
 

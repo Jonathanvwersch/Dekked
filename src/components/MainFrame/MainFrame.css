@@ -1,4 +1,4 @@
-.dekked-mainPage{
+.dekked-frameContainer{
     position:relative;
     display:flex;
     align-items:center;
@@ -19,5 +19,18 @@
     z-index: 1;
     height: 100vh;
     max-height: 100%;
+    width:100%;
 }
+
+#topBarContainer {
+    position:sticky;
+    top:0;
+    width:100%;
+    max-width:100vw;
+    height:60px;
+    user-select:none;
+    z-index:9;
+}
+
+
 

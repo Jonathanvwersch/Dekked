@@ -1,4 +1,4 @@
-.dekked-studyCardContainer {
+#dekked-studyCardContainer {
     position:relative;
     width:100%;
     height:100%;
@@ -11,13 +11,12 @@
     overflow-y:auto;
 }
 
-.dekked-studyCard {
+#dekked-studyCard {
     width:100%;
     height:100%;
 }
 
-.dekked-studyCardContainer .icon.active.logo{
+#dekked-studyCardContainer .icon.active.logo{
     position:absolute;
     bottom:16px;
-
 }

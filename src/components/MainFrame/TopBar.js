@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./TopBar.css";
 import * as Icons from "react-icons/md";
 import { useLocation } from "react-router-dom";
@@ -7,7 +7,7 @@ import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg"
 import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { NavLink } from "react-router-dom";
 
-function TopBar({ sidebar, handleSidebar, folderBlocks }) {
+function TopBar({ sidebar, handleSidebar, folderBlocks, frameWidth }) {
   let location = useLocation();
 
   return (
@@ -15,52 +15,45 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
       <div className="dekked-topBarContainer">
         <div className="dekked-topBar">
           {!sidebar ? (
-            <div className="icon active hamburgerMenu" onClick={handleSidebar}>
-              <Icons.MdMenu />
+            <div>
+              <Icons.MdMenu
+                className="icon active hamburgerMenu"
+                onClick={handleSidebar}
+              />
             </div>
           ) : null}
           <div className="breadcrumbs">
             {location.state ? (
               <>
-                <>
+                <NavLink
+                  to={{
+                    pathname: `/${
+                      folderBlocks[location.state.folderIndex].type
+                    }/${folderBlocks[location.state.folderIndex].id}`,
+                    state: {
+                      type: folderBlocks[location.state.folderIndex].type,
+                      folderIndex: location.state.folderIndex,
+                      name: location.state.name,
+                      tab: location.state.tab,
+                    },
+                  }}
+                >
                   <FolderIcon
-                    className="icon"
+                    className="icon folder"
                     fill={folderBlocks[location.state.folderIndex].iconColour}
                   />
+                  <span className="p2">
+                    {folderBlocks[location.state.folderIndex].name
+                      ? folderBlocks[location.state.folderIndex].name
+                      : "Untitled"}
+                  </span>
+                </NavLink>
 
-                  <NavLink
-                    to={{
-                      pathname: `/${
-                        folderBlocks[location.state.folderIndex].type
-                      }/${folderBlocks[location.state.folderIndex].id}`,
-                      state: {
-                        type: folderBlocks[location.state.folderIndex].type,
-                        folderIndex: location.state.folderIndex,
-                        name: location.state.name,
-                        tab: location.state.tab,
-                      },
-                    }}
-                  >
-                    <p className="p2">
-                      {folderBlocks[location.state.folderIndex].name
-                        ? folderBlocks[location.state.folderIndex].name
-                        : "Untitled"}
-                    </p>
-                  </NavLink>
-                </>
                 {location.state.type === "binder" ||
                 location.state.type === "studySet" ? (
                   <>
                     <span id="slash">/</span>
 
-                    <BinderIcon
-                      className="icon"
-                      stroke={
-                        folderBlocks[location.state.folderIndex].binders[
-                          location.state.binderIndex
-                        ].iconColour
-                      }
-                    />
                     <NavLink
                       to={{
                         pathname: `/${
@@ -84,7 +77,15 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                         },
                       }}
                     >
-                      <p className="p2">
+                      <BinderIcon
+                        className="icon binder"
+                        stroke={
+                          folderBlocks[location.state.folderIndex].binders[
+                            location.state.binderIndex
+                          ].iconColour
+                        }
+                      />
+                      <span className="p2">
                         {folderBlocks[location.state.folderIndex].binders[
                           location.state.binderIndex
                         ].name
@@ -92,21 +93,11 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                               location.state.binderIndex
                             ].name
                           : "Untitled"}
-                      </p>
+                      </span>
                     </NavLink>
                     {location.state.type === "studySet" ? (
                       <>
                         <span id="slash">/</span>
-
-                        <StudySetIcon
-                          className="icon"
-                          stroke={
-                            folderBlocks[location.state.folderIndex].binders[
-                              location.state.binderIndex
-                            ].studySets[location.state.studySetIndex].iconColour
-                          }
-                        />
-
                         <NavLink
                           to={{
                             pathname: `/${
@@ -135,7 +126,16 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                             },
                           }}
                         >
-                          <p className="p2">
+                          <StudySetIcon
+                            className="icon"
+                            stroke={
+                              folderBlocks[location.state.folderIndex].binders[
+                                location.state.binderIndex
+                              ].studySets[location.state.studySetIndex]
+                                .iconColour
+                            }
+                          />
+                          <span className="p2">
                             {folderBlocks[location.state.folderIndex].binders[
                               location.state.binderIndex
                             ].studySets[location.state.studySetIndex].name
@@ -143,7 +143,7 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
                                   .binders[location.state.binderIndex]
                                   .studySets[location.state.studySetIndex].name
                               : "Untitled"}
-                          </p>
+                          </span>
                         </NavLink>
                       </>
                     ) : null}
@@ -154,7 +154,6 @@ function TopBar({ sidebar, handleSidebar, folderBlocks }) {
           </div>
         </div>
       </div>
-      <div style={{ width: "100%", userSelect: "none" }}></div>
     </>
   );
 }
