@@ -21,7 +21,7 @@ function Flashcard({ deleteFlashcard, index, link }) {
           ) : (
             <>
               <Toolbar />
-              <MdSave />
+              <MdSave className="icon active save" />
             </>
           )}
         </div>

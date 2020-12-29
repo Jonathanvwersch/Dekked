@@ -11,7 +11,7 @@ function Toolbar({ type }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
 
   return (
-    <div className="toolbar">
+    <div className={`toolbar ${type==="full" ? null : "half"}`}>
       <div
         id="switchBlock"
         onClick={(e) => {

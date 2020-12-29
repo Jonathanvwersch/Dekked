@@ -26,3 +26,8 @@
     width:1px;
     background-color: var(--main-black);
 }
+
+.toolbar.half .icon{
+    height:14px;
+    width:14px;
+}

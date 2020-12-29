@@ -60,7 +60,7 @@
     user-select:none;
 }
 
-.flashcard .icon.delete {
-    height:12px;
-    width:12px;
+.flashcard .icon.delete, .icon.save {
+    height:14px;
+    width:14px;
 }
