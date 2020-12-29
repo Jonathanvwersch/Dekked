@@ -144,6 +144,7 @@ function StudySet({
                 onDragOver={(e) => {
                   e.preventDefault();
                 }}
+                onPaste={(e)=>{e.preventDefault();return false;}}
                 ref={titleRef}
                 spellCheck={false}
                 onKeyDown={(e) => {

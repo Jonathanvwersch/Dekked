@@ -39,6 +39,7 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
                 onDragOver={(e) => {
                   e.preventDefault();
                 }}
+                onPaste={(e)=>{e.preventDefault();return false;}}
                 contentEditable={true}
                 ref={titleRef}
                 spellCheck={false}

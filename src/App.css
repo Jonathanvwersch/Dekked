@@ -219,8 +219,6 @@ a {
     color: white;
 }
 
-
-
 .primary:hover {
     background:var(--primary-color-hover);
 }
@@ -282,7 +280,7 @@ a{
     padding-bottom:42vh;
     padding-top:32px;
     display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
     grid-row-gap: 16px;
 }
 
@@ -322,6 +320,7 @@ a{
 .dekked-pageHeader h2:empty:before {
     content: 'Untitled';
     color:var(--grey-2);
+    cursor:text;
 }
 
 .buttonQuantity span{
