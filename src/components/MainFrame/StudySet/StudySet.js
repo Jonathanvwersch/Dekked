@@ -8,7 +8,6 @@ import StudySetFlashcards from "./StudySetFlashcards";
 import Button from "../../Buttons/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
-import FlashcardTab from "./FlashcardTab";
 
 function StudySet({
   folderBlocks,

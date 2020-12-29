@@ -1,5 +1,7 @@
 import React from "react";
 import {MdAccountCircle} from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
+
 
 // declare global variables
 const ACCOUNT = "Account"
@@ -10,6 +12,7 @@ export const SettingsData = [
     icon: (
         <MdAccountCircle className="icon account"/>
     ),
+    id: uuidv4()
   },
 
 ];

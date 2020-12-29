@@ -22,7 +22,7 @@ function Settings({ handleState }) {
                 <Block
                   backgroundColour="off-beige"
                   item={item}
-                  key={`${item} Block ${index}`}
+                  key={item.id}
                 />
               ))}
             </div>

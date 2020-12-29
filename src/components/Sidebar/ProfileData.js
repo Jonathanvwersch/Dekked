@@ -2,6 +2,7 @@ import React from "react";
 import {MdSettings} from "react-icons/md";
 import { Icon, InlineIcon } from '@iconify/react';
 import logoutIcon from '@iconify/icons-mdi/logout';
+import { v4 as uuidv4 } from "uuid";
 
 
 // declare global variables
@@ -12,19 +13,17 @@ export const ProfileData = [
   {
     action: SETTINGS,
     icon: (
-      <div className="icon settings">
-        <MdSettings/>
-      </div>
+        <MdSettings className="icon settings"/>
     ),
+    id:uuidv4()
   },
 
   {
     action: LOGOUT,
     icon: (
-      <div className="icon logout">
-        <Icon icon={logoutIcon} />
-      </div>
+        <Icon icon={logoutIcon} className="icon logout"/>
     ),
+    id:uuidv4()
   },
 
 ];

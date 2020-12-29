@@ -42,10 +42,10 @@ function Toolbar({ type }) {
           >
             {type === "full"
               ? TextBlockDataFull.map((item, index) => {
-                  return <Block item={item} key={`${item} Block ${index}`} />;
+                  return <Block item={item} key={item.id} />;
                 })
               : TextBlockDataHalf.map((item, index) => {
-                  return <Block item={item} key={`${item} Block ${index}`} />;
+                  return <Block item={item} key={item.id} />;
                 })}
           </div>
         </Portal>

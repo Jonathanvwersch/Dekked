@@ -38,6 +38,7 @@ function SidebarBottom({
                 <DeletedBlock
                   name={item.name}
                   type={item.type}
+                  id= {item.id}
                   iconColour={item.iconColour}
                   handleDeleteForever={() => {
                     deleteForever(index);
