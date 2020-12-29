@@ -1,0 +1,12 @@
+
+#flashcardTab {
+    cursor:pointer;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 8px 48px;
+    background: var(--off-beige);
+    border-radius: 5px 5px 0px 0px;
+    width: 112px;
+    height: 32px;
+}

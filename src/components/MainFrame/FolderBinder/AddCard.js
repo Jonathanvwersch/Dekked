@@ -5,7 +5,7 @@ import "./AddCard.css";
 function AddCard({handleClick}) {
   return (
     <div id="dekked-addCard" onClick={handleClick}>
-        <MdAdd className="icon plus" size={160} />
+        <MdAdd className="icon plus"  />
     </div>
   );
 }

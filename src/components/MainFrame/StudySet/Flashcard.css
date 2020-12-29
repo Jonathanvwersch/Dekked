@@ -1,4 +1,4 @@
-.dekked-flashcardContainer {
+.flashcardContainer {
     display: flex;
     align-items: center;
     width: 100%;
@@ -6,9 +6,10 @@
     background: var(--off-beige);
     border-radius: 5px; 
     padding: 16px 32px;
+    
 }
 
-.dekked-flashcardContainer .flashcard {
+.flashcard {
     display:flex;
     flex-direction:column;
     width:100%;
@@ -16,13 +17,13 @@
     gap:8px;
 }
 
-.dekked-flashcardContainer .flashcardHeader{
+.flashcardHeader{
     width:100%;
     display:flex;
     justify-content:space-between;
 }
 
-.dekked-flashcardContainer .flashcardText{
+.flashcardText{
     display:flex;
     flex-direction:row;
     justify-content:space-between;
@@ -34,9 +35,8 @@
 
 @media only screen and (max-width:600px)
 {
-    .dekked-flashcardContainer .flashcardText{
+    .flashcardText{
         flex-direction:column;
-
     }
 }
 
@@ -44,7 +44,7 @@
     position:relative;
     background-color:white;
     height:100%;
-    min-height:75px;
+    min-height:100px;
     padding:16px 16px;
     width:100%;
 }
@@ -58,4 +58,9 @@
 
 .flashcard span {
     user-select:none;
+}
+
+.flashcard .icon.delete {
+    height:12px;
+    width:12px;
 }

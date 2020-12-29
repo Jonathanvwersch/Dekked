@@ -8,6 +8,7 @@ import StudySetFlashcards from "./StudySetFlashcards";
 import Button from "../../Buttons/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
+import FlashcardTab from "./FlashcardTab";
 
 function StudySet({
   folderBlocks,
@@ -105,11 +106,7 @@ function StudySet({
                           },
                         }}
                       >
-                        <span
-                          className="p1"
-                        >
-                          Notes
-                        </span>
+                        <span className="p1">Notes</span>
                       </NavLink>
 
                       <NavLink
@@ -142,39 +139,44 @@ function StudySet({
                   ) : null}
                 </div>
               </div>
-                <h2
-                  contentEditable={true}
-                  onDragOver={(e) => {
-                    e.preventDefault();
-                  }}
-                  ref={titleRef}
-                  spellCheck={false}
-                  onKeyDown={(e) => {
-                    if (location.state) {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                      }
-                      setTimeout(function () {
-                        handleNameChange(
-                          location.state.type,
-                          location.state.folderIndex,
-                          location.state.binderIndex,
-                          location.state.studySetIndex,
-                          titleRef.current.innerText
-                        );
-                      }, 100);
+              <h2
+                contentEditable={true}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                }}
+                ref={titleRef}
+                spellCheck={false}
+                onKeyDown={(e) => {
+                  if (location.state) {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
                     }
-                  }}
-                ></h2>
+                    setTimeout(function () {
+                      handleNameChange(
+                        location.state.type,
+                        location.state.folderIndex,
+                        location.state.binderIndex,
+                        location.state.studySetIndex,
+                        titleRef.current.innerText
+                      );
+                    }, 100);
+                  }
+                }}
+              ></h2>
               {location.state.tab === "flashcards" ? (
                 <div className="buttonQuantity studySet">
                   <span
                     className="p2"
                     style={{ color: "var(--grey-2)", userSelect: "none" }}
                   >
-                    {`${folderBlocks[location.state.folderIndex].binders[location.state.binderIndex].studySets[location.state.studySetIndex].flashcards.length} Flashcard(s)`}
+                    {`${
+                      folderBlocks[location.state.folderIndex].binders[
+                        location.state.binderIndex
+                      ].studySets[location.state.studySetIndex].flashcards
+                        .length
+                    } Flashcard(s)`}
                   </span>
-                  <div style={{display:"flex"}}>
+                  <div style={{ display: "flex" }}>
                     <div style={{ marginRight: "32px" }}>
                       <Button
                         handleClick={addFlashcard}
@@ -208,7 +210,7 @@ function StudySet({
             </div>
             {location.state.tab === "notes" ? (
               <div id="linkedFlashcardContainer">
-                <LinkedFlashcard sidebar={sidebar} />
+                <LinkedFlashcard />
               </div>
             ) : null}
           </div>

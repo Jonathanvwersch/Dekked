@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./TopBar.css";
 import * as Icons from "react-icons/md";
 import { useLocation } from "react-router-dom";
@@ -12,7 +12,7 @@ function TopBar({ sidebar, handleSidebar, folderBlocks, frameWidth }) {
 
   return (
     <>
-      <div className="dekked-topBarContainer">
+      <div className="dekked-topBarOuter">
         <div className="dekked-topBar">
           {!sidebar ? (
             <div>

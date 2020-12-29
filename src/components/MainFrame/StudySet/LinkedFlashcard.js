@@ -1,48 +1,44 @@
 import React, { useState } from "react";
 import "./LinkedFlashcard.css";
-import { ReactComponent as LogoIcon } from "../../../custom-icons/logo.svg";
 import Toolbar from "./Toolbar";
-import Button from "../../Buttons/Button";
+import { MdSave } from "react-icons/md";
+import FlashcardTab from "./FlashcardTab";
 
-function LinkedFlashcard({ sidebar }) {
-  const [position, setPosition] = useState(true);
-  const [iconColour, setIconColour] = useState("var(--main-black)");
+function LinkedFlashcard() {
+  const [linkedFlashcard, setLinkedFlashcard] = useState(false);
+  const handleFlashcard = () => {
+    setLinkedFlashcard((prevState) => !prevState);
+  };
   return (
-    <div
-      className="linkedFlashcardContainer"
-      style={{
-        bottom: position ? "-240px" : "0px",
-      }}
-    >
-      <div
-        onClick={() => setPosition((prevValue) => !prevValue)}
-        className="linkedFlashcardTab"
-        onMouseOver={() => setIconColour("var(--primary-color)")}
-        onMouseOut={() => setIconColour("var(--main-black)")}
-      >
-        <LogoIcon className="icon active logo" stroke={iconColour} />
-      </div>
-      <div className="linkedFlashcard">
-        <Toolbar />
-        <div className="linkedFlashcardText">
-          <div className="linkedFlashcardFront">
-            <span className="p1">Front</span>
-          </div>
-          <div className="linkedFlashcardBack">
-            <span className="p1">Back</span>
-          </div>
-        </div>
+    <>
+      <FlashcardTab handleClick={handleFlashcard} />
+      {linkedFlashcard ? (
         <div
           style={{
-            display: "flex",
-            justifyContent: "flex-end",
+            padding: "16px 24px",
             width: "100%",
+            height: "100%",
+            background: "var(--off-beige)",
+            borderRadius: "5px",
           }}
         >
-          <Button disabled type="primary" action="Save" />
+          <div className="flashcard">
+            <div className="flashcardHeader">
+              <Toolbar />
+              <MdSave className="icon active save" />
+            </div>
+            <div className="flashcardText">
+              <div className="flashcardFront">
+                <span className="p3">Front</span>
+              </div>
+              <div className="flashcardBack">
+                <span className="p3">Back</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : null}
+    </>
   );
 }
 

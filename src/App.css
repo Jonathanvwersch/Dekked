@@ -278,7 +278,7 @@ a{
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
     max-width:100%;
-    width:1000px;
+    width:900px;
     padding-bottom:42vh;
     padding-top:32px;
     display:grid;
@@ -304,7 +304,7 @@ a{
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
     max-width:100%;
-    width:1000px;
+    width:900px;
 }
 
 @media only screen and (max-width: 600px) {

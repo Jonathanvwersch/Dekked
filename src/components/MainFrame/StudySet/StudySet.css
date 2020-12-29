@@ -41,14 +41,22 @@
 }
 
 #linkedFlashcardContainer {
-    bottom:0px;
     position:fixed;
+    bottom:0px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    width: 1000px;
+    width: 900px;
     max-width:100%;
     z-index:10000;     
     padding-left:calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
+}
+
+@media only screen and (max-width:600px)
+{
+    #linkedFlashcardContainer {
+        padding-left:calc(25px + env(safe-area-inset-left));
+        padding-right: calc(25px + env(safe-area-inset-right));
+    }
 }
