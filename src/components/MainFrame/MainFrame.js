@@ -10,6 +10,7 @@ import { useMousePosition } from "../../custom-hooks/UseMousePosition";
 function MainFrame({
   sidebar,
   handleSidebar,
+  setHoverbar,
   folderBlocks,
   handleFolderBlocks,
   handleNameChange,
@@ -17,13 +18,6 @@ function MainFrame({
   addStudySet,
 }) {
   let location = useLocation();
-  const position = useMousePosition();
-  console.log(position.x);
-  console.log(sidebar);
-
-  useEffect(() => {
-    if (!sidebar && position.x < 25) handleSidebar();
-  });
 
   return (
     <>
@@ -33,6 +27,7 @@ function MainFrame({
             folderBlocks={folderBlocks}
             sidebar={sidebar}
             handleSidebar={handleSidebar}
+            setHoverbar={setHoverbar}
           />
         </div>
         <div className="dekked-frame">

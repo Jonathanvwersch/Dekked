@@ -8,7 +8,7 @@ import "./SidebarTop.css";
 import Block from "../General/Block";
 import { MdArrowDropDown } from "react-icons/md";
 
-function SidebarTop({ handleSidebar }) {
+function SidebarTop({ handleSidebar, hoverbar }) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
   const handleSettings = () => {
@@ -26,12 +26,13 @@ function SidebarTop({ handleSidebar }) {
             onClick={() => setProfileMenu(true)}
           />
         </div>
-
-        <Icon
-          className="icon active chevronDoubleLeft"
-          onClick={handleSidebar}
-          icon={chevronDoubleLeft}
-        />
+        {!hoverbar ? (
+          <Icon
+            className="icon active chevronDoubleLeft"
+            onClick={handleSidebar}
+            icon={chevronDoubleLeft}
+          />
+        ) : null}
       </div>
 
       {profileMenu ? (

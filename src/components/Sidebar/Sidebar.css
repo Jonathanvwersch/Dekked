@@ -1,21 +1,27 @@
+.dekked-sidebarContainer {
+  width:220px;
+  display:flex;
+  align-items:center;
+  user-select:none;
+  z-index:5;
+  height:100%; 
+}
+
 .dekked-sidebar{
   background: var(--off-beige);
   overflow:auto;
-  resize:horizontal;
   position:relative;
   display:flex;
   flex-direction:column;
   height:100%;
-  min-width:220px;
-  max-width:275px;
+  width:220px;
   top:0px;
   left:0px;
   bottom:0px;
   cursor:default;
   max-height:100%;
   border-right: 0.5px solid var(--grey-3);
-  z-index:99;
-}
+  }
 
 /* Style Workspace Section of Sidebar */
 .workspace{

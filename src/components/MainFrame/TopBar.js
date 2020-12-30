@@ -7,18 +7,18 @@ import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg"
 import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { NavLink } from "react-router-dom";
 
-function TopBar({ sidebar, handleSidebar, folderBlocks}) {
+function TopBar({ sidebar, handleSidebar, folderBlocks, setHoverbar }) {
   let location = useLocation();
 
   return (
     <>
       <div className="dekked-topBarOuter">
         <div className="dekked-topBar">
-          {!sidebar ? (
+          {!sidebar ?  (
             <div>
               <Icons.MdMenu
                 className="icon active hamburgerMenu"
-                onClick={handleSidebar}
+                onClick={() => {handleSidebar(); setHoverbar(false)}}
               />
             </div>
           ) : null}

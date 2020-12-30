@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [sidebar, setSidebar] = useState(true);
+  const [hoverbar, setHoverbar] = useState(false);
+
   const [deletedItems, setDeletedItems] = useState([]);
 
   const [folderBlocks, setFolderBlocks] = useState([
@@ -242,6 +244,8 @@ function App() {
       <Router>
         <Sidebar
           sidebar={sidebar}
+          hoverbar={hoverbar}
+          setHoverbar={setHoverbar}
           handleSidebar={handleSidebar}
           folderBlocks={folderBlocks}
           handleFolderBlocks={handleFolderBlocks}
@@ -265,6 +269,7 @@ function App() {
               handleFolderBlocks={handleFolderBlocks}
               addBinder={addBinder}
               addStudySet={addStudySet}
+              setHoverbar={setHoverbar}
             />
             <Redirect
               to={{
