@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import "./Toolbar.css";
-import TextBlockDataFull from "./TextBlockDataFull";
-import TextBlockDataHalf from "./TextBlockDataHalf.js";
+import {TextBlockDataFull, TextBlockDataHalf} from "./TextBlockData";
 import Portal from "../../../components/General/Portal";
 import Block from "../../General/Block";
 
