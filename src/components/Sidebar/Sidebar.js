@@ -20,18 +20,6 @@ function Sidebar({
   handleRestore,
   deletedItems,
 }) {
-  const openBlock = (type, folderIndex, binderIndex) => {
-    const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder")
-      newFolderBlocksArray[folderIndex].isOpen = !newFolderBlocksArray[
-        folderIndex
-      ].isOpen;
-    else
-      newFolderBlocksArray[folderIndex].binders[
-        binderIndex
-      ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
-    handleFolderBlocks(newFolderBlocksArray);
-  };
 
   return (
     <>
@@ -40,7 +28,7 @@ function Sidebar({
           <div className="dekked-sidebar">
             <SidebarTop handleSidebar={handleSidebar} />
             <div className="workspace">
-              <p className="p2 title">Workspace</p>
+              <span className="p2 grey title">Workspace</span>
               <div className="folderBlocks">
                 {folderBlocks.map((folder, folderIndex) => (
                   <div key={folder.id} className="folderBlock">
@@ -60,18 +48,14 @@ function Sidebar({
                         }}
                       >
                         <DropBlock
-                          name={folder.name}
-                          type={folder.type}
+                          item={folder}
                           folderIndex={folderIndex}
                           key={folder.id}
-                          id={folder.id}
+                          dropBlockMenuData={FolderData}
                           handleDelete={() =>
                             deleteBlock(folder.type, folderIndex)
                           }
                           handleAddItem={() => addBinder(folderIndex)}
-                          isExpanded={() => openBlock(folder.type, folderIndex)}
-                          isOpen={folder.isOpen}
-                          dropBlockMenuData={FolderData}
                           handleNameChange={handleNameChange}
                           folderBlocks={folderBlocks}
                           handleFolderBlocks={handleFolderBlocks}
@@ -80,7 +64,7 @@ function Sidebar({
                     </>
                     {folder.isOpen ? (
                       folder.binders.length === 0 ? (
-                        <p className="p2 noBinders">No binders inside</p>
+                        <span className="p2 noBinders">No binders inside</span>
                       ) : (
                         folder.binders.map((binder, binderIndex) => (
                           <div key={binder.id} className="binderBlock">
@@ -100,10 +84,9 @@ function Sidebar({
                               }}
                             >
                               <DropBlock
-                                name={binder.name}
-                                type={binder.type}
+                                item={binder}
                                 key={binder.id}
-                                id={binder.id}
+                                dropBlockMenuData={BinderData}
                                 handleDelete={() =>
                                   deleteBlock(
                                     binder.type,
@@ -116,25 +99,16 @@ function Sidebar({
                                 handleAddItem={() =>
                                   addStudySet(folderIndex, binderIndex)
                                 }
-                                isExpanded={() =>
-                                  openBlock(
-                                    binder.type,
-                                    folderIndex,
-                                    binderIndex
-                                  )
-                                }
-                                isOpen={binder.isOpen}
                                 handleNameChange={handleNameChange}
-                                dropBlockMenuData={BinderData}
                                 folderBlocks={folderBlocks}
                                 handleFolderBlocks={handleFolderBlocks}
                               />
                             </NavLink>
                             {binder.isOpen ? (
                               binder.studySets.length === 0 ? (
-                                <p className="p2 noStudySets">
+                                <span className="p2 noStudySets">
                                   No study sets inside
-                                </p>
+                                </span>
                               ) : (
                                 binder.studySets.map(
                                   (studySet, studySetIndex) => (
@@ -161,10 +135,8 @@ function Sidebar({
                                         }}
                                       >
                                         <DropBlock
-                                          name={studySet.name}
-                                          type={studySet.type}
+                                          item={studySet}
                                           key={studySet.id}
-                                          id={studySet.id}
                                           folderIndex={folderIndex}
                                           binderIndex={binderIndex}
                                           studySetIndex={studySetIndex}

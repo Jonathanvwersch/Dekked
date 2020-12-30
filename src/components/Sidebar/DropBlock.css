@@ -17,12 +17,15 @@
     margin-right:8px;
 }
 
-.dekked-dropBlock .icon.dots{
+.dekked-dropBlock #dropBlockDots{
     will-change: opacity;
     position:absolute;
     right:0;
-    margin-right:8px;
     opacity:0;
+}
+
+.dekked-dropBlock:hover #dropBlockDots{
+    opacity:1;
 }
 
 .dekked-dropBlock span{
@@ -54,9 +57,6 @@
     background:var(--off-beige-clicked);
 }
 
-.dekked-dropBlock:hover .icon.dots{
-    opacity:1;
-}
 
 .dekked-dropBlock:hover span{
     margin-right:28px;

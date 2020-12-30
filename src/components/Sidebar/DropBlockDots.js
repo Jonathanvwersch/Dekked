@@ -7,19 +7,19 @@ import { v4 as uuidv4 } from "uuid";
 import * as Icons from "react-icons/md";
 
 function DropBlockDots({
+  item,
   handleFolderBlocks,
   handleRename,
-  type,
   handleDelete,
   handleAddItem,
   dropBlockMenuData,
   setIconColour,
   iconColour,
   folderBlocks,
-  isExpanded,
   studySetIndex,
   folderIndex,
   binderIndex,
+  openDropBlock
 }) {
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
@@ -79,6 +79,7 @@ function DropBlockDots({
     };
     setCoords(newCoords);
     setColourPicker((prevState) => !prevState);
+    handleIconColour(item.type, folderIndex, binderIndex, studySetIndex, iconColour)
   };
 
   const handleDropdownMenu = (e) => {
@@ -117,9 +118,8 @@ function DropBlockDots({
                     handleRename={handleRename}
                     handleColourPicker={handleColourPicker}
                     handleAddItem={handleAddItem}
-                    showDropBlocks={isExpanded}
+                    showDropBlocks={openDropBlock}
                     item={item}
-                    id={uuidv4()}
                     key={uuidv4()}
                   />
                 </NavLink>
@@ -129,9 +129,8 @@ function DropBlockDots({
                   handleRename={handleRename}
                   handleColourPicker={handleColourPicker}
                   handleAddItem={handleAddItem}
-                  showDropBlocks={isExpanded}
+                  showDropBlocks={openDropBlock}
                   item={item}
-                  id={uuidv4()}
                   key={uuidv4()}
                 />
               );
