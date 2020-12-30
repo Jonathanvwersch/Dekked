@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router";
 
 function StudySetNotes({ folderBlocks, handleFolderBlocks }) {

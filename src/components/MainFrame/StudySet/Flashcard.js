@@ -1,6 +1,5 @@
 import React from "react";
 import "./Flashcard.css";
-import * as Icons from "react-icons/md";
 import Toolbar from "./Toolbar";
 import { MdSave, MdDeleteForever } from "react-icons/md";
 

@@ -4,6 +4,7 @@ import "./DropBlock.css";
 import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
+import { NavLink } from "react-router-dom";
 
 import DropBlockDots from "./DropBlockDots";
 
@@ -96,65 +97,87 @@ function DropBlock({
 
   return (
     <>
-      <div role="button" className="dekked-dropBlock">
-        <div
-          className={
-            item.isOpen
-              ? `icon active dropDownArrow down ${item.type}`
-              : `icon active dropDownArrow right  ${item.type}`
-          }
-          onClick={() => {
-            openDropBlock(item.type, folderIndex, binderIndex);
-          }}
-        >
-          {item.type !== "studySet" ? <Icons.MdArrowDropDown /> : null}
-        </div>
-        <div className={`icon ${item.type}`}>
-          {item.type === "folder" ? (
-            <FolderIcon fill={iconColour} />
-          ) : item.type === "binder" ? (
-            <BinderIcon stroke={iconColour} />
-          ) : (
-            <StudySetIcon stroke={iconColour} />
-          )}
-        </div>
-        <span
-          ref={nameRef}
-          spellCheck="false"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              setEditableName((prevValue) => !prevValue);
+      <NavLink
+        activeStyle={{
+          background: "var(--off-beige-clicked)",
+          fontWeight: "700",
+        }}
+        to={{
+          pathname: `${
+            item.type === "studySet"
+              ? `/${item.type}/${item.tab}/${item.id}`
+              : `/${item.type}/${item.id}`
+          }`,
+          state: {
+            type: item.type,
+            name: item.name,
+            folderIndex: folderIndex,
+            binderIndex: binderIndex,
+            studySetIndex: studySetIndex,
+            tab: item.tab,
+          },
+        }}
+      >
+        <div role="button" className="dekked-dropBlock">
+          <div
+            className={
+              item.isOpen
+                ? `icon active dropDownArrow down ${item.type}`
+                : `icon active dropDownArrow right  ${item.type}`
             }
-            setTimeout(function () {
-              handleNameChange(
-                item.type,
-                folderIndex,
-                binderIndex,
-                studySetIndex,
-                nameRef.current.innerText
-              );
-            }, 100);
-          }}
-          contentEditable={editableName}
-          className="p2"
-        ></span>
-        <DropBlockDots
-          item={item}
-          handleFolderBlocks={handleFolderBlocks}
-          handleRename={handleRename}
-          handleDelete={handleDelete}
-          handleAddItem={handleAddItem}
-          setIconColour={setIconColour}
-          iconColour={iconColour}
-          folderBlocks={folderBlocks}
-          openDropBlock={() =>
-            openDropBlock(item.type, folderIndex, binderIndex)
-          }
-          studySetIndex={studySetIndex}
-          folderIndex={folderIndex}
-          binderIndex={binderIndex}
-        ></DropBlockDots>
-      </div>
+            onClick={() => {
+              openDropBlock(item.type, folderIndex, binderIndex);
+            }}
+          >
+            {item.type !== "studySet" ? <Icons.MdArrowDropDown /> : null}
+          </div>
+          <div className={`icon ${item.type}`}>
+            {item.type === "folder" ? (
+              <FolderIcon fill={iconColour} />
+            ) : item.type === "binder" ? (
+              <BinderIcon stroke={iconColour} />
+            ) : (
+              <StudySetIcon stroke={iconColour} />
+            )}
+          </div>
+          <span
+            ref={nameRef}
+            spellCheck="false"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setEditableName((prevValue) => !prevValue);
+              }
+              setTimeout(function () {
+                handleNameChange(
+                  item.type,
+                  folderIndex,
+                  binderIndex,
+                  studySetIndex,
+                  nameRef.current.innerText
+                );
+              }, 100);
+            }}
+            contentEditable={editableName}
+            className="p2"
+          ></span>
+          <DropBlockDots
+            item={item}
+            handleFolderBlocks={handleFolderBlocks}
+            handleRename={handleRename}
+            handleDelete={handleDelete}
+            handleAddItem={handleAddItem}
+            setIconColour={setIconColour}
+            iconColour={iconColour}
+            folderBlocks={folderBlocks}
+            openDropBlock={() =>
+              openDropBlock(item.type, folderIndex, binderIndex)
+            }
+            studySetIndex={studySetIndex}
+            folderIndex={folderIndex}
+            binderIndex={binderIndex}
+          ></DropBlockDots>
+        </div>
+      </NavLink>
     </>
   );
 }

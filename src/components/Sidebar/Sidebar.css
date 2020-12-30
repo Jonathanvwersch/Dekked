@@ -1,44 +1,23 @@
-/* General stylings */
-
-.dekked-sidebarContainer {
-  position:relative;
-  flex-grow:0;
-  flex-shrink:0;
-  pointer-events:none;
-  z-index:99;
-  background: var(--off-beige);
-  width:220px;
-  cursor:default;
-  user-select: none;
-}
-
-::-webkit-resizer {
-   height:100%!important;
-}
-
 .dekked-sidebar{
+  background: var(--off-beige);
   overflow:auto;
   resize:horizontal;
   position:relative;
   display:flex;
   flex-direction:column;
   height:100%;
-  width:220px;
+  min-width:220px;
+  max-width:275px;
   top:0px;
-  pointer-events:auto;
+  left:0px;
+  bottom:0px;
+  cursor:default;
   max-height:100%;
   border-right: 0.5px solid var(--grey-3);
-}
-
-.dekked-sidebar a{
-  display:block;
-  text-decoration: none;
-  color:var(--main-black);
-  width:100%;
+  z-index:99;
 }
 
 /* Style Workspace Section of Sidebar */
-
 .workspace{
   overflow-y:auto;
   margin-bottom:70px;

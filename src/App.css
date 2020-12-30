@@ -124,15 +124,12 @@ h3{
 *::-webkit-scrollbar {
   width: 8px;
   cursor:auto;
-
 }
 
 /* Track */
 *::-webkit-scrollbar-track {
   background: #DEDEDE;
   cursor:auto;
-
- 
 }
  
 /* Handle */
@@ -276,7 +273,7 @@ a{
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
     max-width:100%;
-    width:900px;
+    width:1000px;
     padding-bottom:42vh;
     padding-top:32px;
     display:grid;
@@ -302,7 +299,7 @@ a{
     padding-left: calc(75px + env(safe-area-inset-left));
     padding-right: calc(75px + env(safe-area-inset-right));
     max-width:100%;
-    width:900px;
+    width:1000px;
 }
 
 @media only screen and (max-width: 600px) {

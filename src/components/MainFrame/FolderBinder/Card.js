@@ -24,7 +24,7 @@ function Card({ name, type, iconColour, bottomText, clicked, handleClick}) {
               <StudySetIcon className={`icon ${type}`} stroke={iconColour} />
             )
           ) : null}
-          <span className="p3">
+          <span className="p3 grey">
             {bottomText
               ? bottomText
               : `Created ${date.toLocaleString("en-US", options)}`}
