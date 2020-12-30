@@ -5,22 +5,22 @@ import Portal from "../General/Portal";
 import { NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import * as Icons from "react-icons/md";
+import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 
 function DropBlockDots({
   item,
   handleFolderBlocks,
+  folderBlocks,
   handleRename,
   handleDelete,
   handleAddItem,
-  dropBlockMenuData,
   setIconColour,
   iconColour,
-  folderBlocks,
   studySetIndex,
   folderIndex,
   binderIndex,
-  openDropBlock
 }) {
+  const dropBlockMenuData = item.type==="folder" ? FolderData : item.type==="binder" ? BinderData : StudySetData
   const [coords, setCoords] = useState({}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
   const [colourPicker, setColourPicker] = useState(false); // Set visibility of colour picker component
@@ -79,8 +79,11 @@ function DropBlockDots({
     };
     setCoords(newCoords);
     setColourPicker((prevState) => !prevState);
-    handleIconColour(item.type, folderIndex, binderIndex, studySetIndex, iconColour)
   };
+
+  useEffect (() => {
+    handleIconColour(item.type, folderIndex, binderIndex, studySetIndex, iconColour)
+  }, [iconColour])
 
   const handleDropdownMenu = (e) => {
     positionComponents(e, heightOfDropdownMenu);
@@ -118,7 +121,6 @@ function DropBlockDots({
                     handleRename={handleRename}
                     handleColourPicker={handleColourPicker}
                     handleAddItem={handleAddItem}
-                    showDropBlocks={openDropBlock}
                     item={item}
                     key={uuidv4()}
                   />
@@ -129,7 +131,6 @@ function DropBlockDots({
                   handleRename={handleRename}
                   handleColourPicker={handleColourPicker}
                   handleAddItem={handleAddItem}
-                  showDropBlocks={openDropBlock}
                   item={item}
                   key={uuidv4()}
                 />

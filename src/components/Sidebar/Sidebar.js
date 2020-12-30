@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
 import SidebarTop from "./SidebarTop";
@@ -51,7 +50,6 @@ function Sidebar({
                           item={folder}
                           folderIndex={folderIndex}
                           key={folder.id}
-                          dropBlockMenuData={FolderData}
                           handleDelete={() =>
                             deleteBlock(folder.type, folderIndex)
                           }
@@ -86,7 +84,6 @@ function Sidebar({
                               <DropBlock
                                 item={binder}
                                 key={binder.id}
-                                dropBlockMenuData={BinderData}
                                 handleDelete={() =>
                                   deleteBlock(
                                     binder.type,
@@ -148,7 +145,6 @@ function Sidebar({
                                               studySetIndex
                                             )
                                           }
-                                          dropBlockMenuData={StudySetData}
                                           handleNameChange={handleNameChange}
                                           folderBlocks={folderBlocks}
                                           handleFolderBlocks={handleFolderBlocks}

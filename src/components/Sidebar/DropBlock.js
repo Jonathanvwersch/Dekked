@@ -17,7 +17,6 @@ function DropBlock({
   handleDelete,
   handleAddItem,
   handleNameChange,
-  dropBlockMenuData,
 }) {
   const [editableName, setEditableName] = useState(false);
   const [iconColour, setIconColour] = useState(item.iconColour);
@@ -93,7 +92,6 @@ function DropBlock({
         binderIndex
       ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
     handleFolderBlocks(newFolderBlocksArray);
-    console.log("hello");
   };
 
   return (
@@ -146,7 +144,6 @@ function DropBlock({
           handleRename={handleRename}
           handleDelete={handleDelete}
           handleAddItem={handleAddItem}
-          dropBlockMenuData={dropBlockMenuData}
           setIconColour={setIconColour}
           iconColour={iconColour}
           folderBlocks={folderBlocks}
