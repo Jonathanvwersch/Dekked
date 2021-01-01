@@ -31,12 +31,11 @@ function StudyQueue() {
               state={studyQueue}
               handleState={() => setStudyQueue((prevState) => !prevState)}
             >
-              <div className="studyQueue">
-                <div className="header p1 bold">
-                  Study Queue
+              <div className="studyQueue dropdownMenu">
+                <div className="items"></div>
+                <div id="studyQueueButton">
                   <Button disabled={true} action="Study" />
                 </div>
-                <div className="items"></div>
               </div>
             </Portal>
           ) : null}
