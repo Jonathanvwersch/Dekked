@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
 import SidebarTop from "./SidebarTop";
@@ -23,13 +23,17 @@ function Sidebar({
   deletedItems,
 }) {
   const mousePosition = useMousePosition();
-  const [hoverRef, isHovered] = useHover();
+  const [portalHover, setPortalHover] = useState(false);
 
   useEffect(() => {
-    if (!sidebar && mousePosition.x < 20 && !hoverbar) setHoverbar(true);
-    else if (hoverbar && !isHovered && mousePosition.x > 220)
-      setHoverbar(false);
-  }, [isHovered, mousePosition]);
+    if (document.getElementById("portal-overlay") && hoverbar)
+      setHoverbar(true);
+    else {
+      if (!sidebar && mousePosition.x < 20 && !hoverbar) setHoverbar(true);
+      else if (hoverbar && !portalHover && mousePosition.x > 220)
+        setHoverbar(false);
+    }
+  }, [mousePosition]);
 
   const hoverStyleContainer = {
     position: "fixed",
@@ -52,11 +56,7 @@ function Sidebar({
             className="dekked-sidebar"
             style={hoverbar ? hoverStyleSidebar : null}
           >
-            <SidebarTop
-              hoverbar={hoverbar}
-              handleSidebar={handleSidebar}
-              ref={hoverRef}
-            />
+            <SidebarTop hoverbar={hoverbar} handleSidebar={handleSidebar} />
             <div className="workspace">
               <span className="p2 grey title">Workspace</span>
               <div className="folderBlocks">
@@ -150,6 +150,7 @@ function Sidebar({
               handleRestore={handleRestore}
               deletedItems={deletedItems}
               addFolder={addFolder}
+              hoverbar={hoverbar}
             />
           </div>
         </div>

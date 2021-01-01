@@ -49,9 +49,6 @@
 }
 
 .settingsMenu {
-  border-radius: var(--general-border-radius);
-  width: 220px;
-  filter: var(--drop-shadow);
   position:absolute;  
   top:38px;
   left:108px;

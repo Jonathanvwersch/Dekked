@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { MdClose } from "react-icons/md";
 import "./Portal.css";
 
+
 const CHILD_STYLE = {
   position: "fixed",
   top: "0px",
@@ -44,6 +45,7 @@ export default function Portal({
   level,
   close,
 }) {
+
   return createPortal(
     <>
       {state ? (
@@ -54,13 +56,14 @@ export default function Portal({
             position: "relative",
             zIndex: level ? level : "0",
           }}
+         
         >
           <div style={center && OVERLAY_STYLE_CENTER}>
             <div
               style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
               onClick={handleState}
             ></div>
-            <div style={center ? CENTER : null}>
+            <div style={center ? CENTER : null} id="portal-overlay">
               {children}
               {close ? (
                 <MdClose onClick={handleState} className="icon active close" />

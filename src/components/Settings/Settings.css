@@ -7,6 +7,7 @@
     height:calc(100vh - 100px);
     max-height: 600px;
     overflow:hidden;
+    user-select:none;
 }
 
 .dekked-settings {
@@ -26,7 +27,6 @@
     border-right: 0.5px solid var(--grey-3);
     background-color:var(--off-beige);
     border-radius: var(--general-border-radius) 0 0 var(--general-border-radius);
-    user-select:none;
     flex-grow:0;
     flex-shrink:0;
 }

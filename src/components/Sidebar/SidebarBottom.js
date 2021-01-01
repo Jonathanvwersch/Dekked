@@ -12,8 +12,13 @@ function SidebarBottom({
   deleteForever,
   handleRestore,
   deletedItems,
+  hoverbar
 }) {
   const [trashCan, setTrashCan] = useState(false);
+
+  const hoverStyleSidebar = {
+    top:"243px",
+  };
 
   return (
     <div className="sidebarBottom">
@@ -28,7 +33,7 @@ function SidebarBottom({
 
       {trashCan ? (
         <Portal state={trashCan} handleState={() => setTrashCan(false)}>
-          <div className="deleteBlockContainer">
+          <div className="dropdownMenu deleteBlockContainer" style={hoverbar ? hoverStyleSidebar : null}>
             {deletedItems.length === 0 ? (
               <p className="p2 noBinders" style={{ paddingLeft: "16px" }}>
                 No items inside

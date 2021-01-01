@@ -5,7 +5,7 @@ import Account from "./Account";
 import "./Settings.css";
 import { SettingsData } from "./SettingsData";
 
-function Settings({ handleState }) {
+function Settings() {
   return (
     <>
       <div className="dekked-settings-container">

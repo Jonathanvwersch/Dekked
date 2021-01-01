@@ -8,12 +8,17 @@ import "./SidebarTop.css";
 import Block from "../General/Block";
 import { MdArrowDropDown } from "react-icons/md";
 
-function SidebarTop({ handleSidebar, hoverbar }) {
+function SidebarTop({ handleSidebar, hoverbar, portalRef }) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [settingsPage, setSettingsPage] = useState(false);
   const handleSettings = () => {
     setSettingsPage((prevState) => !prevState);
   };
+
+  const hoverStyleSidebar = {
+    top: "110px",
+  };
+
   return (
     <>
       <div className="sidebarTop">
@@ -36,17 +41,24 @@ function SidebarTop({ handleSidebar, hoverbar }) {
       </div>
 
       {profileMenu ? (
-        <Portal state={profileMenu} handleState={() => setProfileMenu(false)}>
+        <Portal
+          state={profileMenu}
+          handleState={() => setProfileMenu(false)}
+          portalRef={portalRef}
+        >
           <div
             className="dropdownMenu settingsMenu"
             onClick={() => setProfileMenu(false)}
+            style={hoverbar ? hoverStyleSidebar : null}
           >
             {ProfileData.map((item, index) => {
               return (
                 <Block
                   item={item}
                   key={`${item} Block ${index}`}
-                  handleSettings={handleSettings}
+                  handleSettings={() =>
+                    setSettingsPage((prevState) => !prevState)
+                  }
                 />
               );
             })}
@@ -60,8 +72,9 @@ function SidebarTop({ handleSidebar, hoverbar }) {
           lightbox={true}
           center={true}
           close={true}
+          portalRef={portalRef}
         >
-          <Settings handleState={handleSettings} />
+          <Settings />
         </Portal>
       ) : null}
     </>
