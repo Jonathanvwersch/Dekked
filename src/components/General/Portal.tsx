@@ -42,6 +42,7 @@ const NOT_CENTERED = {
 
 
 interface Props {
+  children:JSX.Element;
   state:any;
   handleState: () => void;
   lightbox?: boolean;

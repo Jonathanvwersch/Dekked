@@ -3,6 +3,8 @@
   position:absolute;
   bottom:0;
   width:100%;
+  user-select:none;
+
 }
 
 .addBlock{
@@ -47,5 +49,6 @@
   bottom: 55px;
   left:210px;
   overflow-y:auto;
+  user-select:none;
 }
 
