@@ -25,6 +25,4 @@ export const useHover = () => {
   );
 
   return [ref, value];
-}
-
-
+};

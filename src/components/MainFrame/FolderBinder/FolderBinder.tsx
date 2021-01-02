@@ -1,20 +1,27 @@
 import React, { useEffect, useRef } from "react";
 import AddCard from "./AddCard";
-import { useLocation, withRouter } from "react-router";
+import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import Button from "../../Buttons/Button";
 import { v4 as uuidv4 } from "uuid";
 
-function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }) {
-  let location = useLocation();
-  const titleRef = useRef();
+interface Props {
+  folderBlocks:any;
+  handleNameChange:(type:string, folderIndex:number, binderIndex:number, studySetIndex:number, blockName:string ) => void;
+  addStudySet: (folderIndex:string, binderIndex:string) => any;
+  addBinder: (folderIndex:string) =>  any;
+}
+
+const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudySet, addBinder }) => {
+  let location = useLocation<any>();
+  const titleRef = useRef<any>(null);
 
   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
       if (location.state.type === "folder") {
         titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].name;
+          folderBlocks[location.state.folderIndex].name;  
       } else if (location.state.type === "binder") {
         titleRef.current.innerText =
           folderBlocks[location.state.folderIndex].binders[
@@ -93,7 +100,7 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
               />
               {location.state.type === "folder"
                 ? folderBlocks[location.state.folderIndex].binders.map(
-                    (item, index) => (
+                    (item:any, index:number) => (
                       <NavLink
                         to={{
                           pathname: `/${item.type}/${item.id}`,
@@ -116,7 +123,7 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
                   )
                 : folderBlocks[location.state.folderIndex].binders[
                     location.state.binderIndex
-                  ].studySets.map((item, index) => (
+                  ].studySets.map((item:any, index:number) => (
                     <NavLink
                       to={{
                         pathname: `/${item.type}/${item.tab}/${item.id}`,
@@ -146,4 +153,4 @@ function FolderBinder({ folderBlocks, handleNameChange, addStudySet, addBinder }
   );
 }
 
-export default withRouter(FolderBinder);
+export default FolderBinder;

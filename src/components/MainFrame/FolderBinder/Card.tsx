@@ -3,9 +3,24 @@ import "./Card.css";
 import { ReactComponent as BinderIcon } from "../../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../../custom-icons/studyset.svg";
 
-function Card({ name, type, iconColour, bottomText, clicked, handleClick}) {
-  let date = new Date();
-  const options = {
+interface Props {
+  name: string;
+  type: string;
+  iconColour?: string;
+  bottomText?:string;
+  clicked?: boolean;
+  handleClick?: () => void;
+}
+
+interface dateOptionsNode {
+  year:string;
+  month:string;
+  day:string;
+}
+
+const Card: React.FC<Props> = ({ name, type, iconColour, bottomText, clicked, handleClick}) => {
+  let date: Date = new Date();
+  const dateOptions: dateOptionsNode = {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -27,7 +42,7 @@ function Card({ name, type, iconColour, bottomText, clicked, handleClick}) {
           <span className="p3 grey">
             {bottomText
               ? bottomText
-              : `Created ${date.toLocaleString("en-US", options)}`}
+              : `Created ${date.toLocaleString("en-US", dateOptions)}`}
           </span>
         </div>
       </div>

@@ -5,9 +5,9 @@ import bookshelfIcon from "@iconify/icons-mdi/bookshelf";
 import Portal from "./Portal";
 import Button from "../Buttons/Button";
 
-function StudyQueue() {
-  const [studyQueue, setStudyQueue] = useState(false);
-  const [notifications, setNotifications] = useState(0);
+const  StudyQueue: React.FC = () => {
+  const [studyQueue, setStudyQueue] = useState<boolean>(false);
+  const [notifications, setNotifications] = useState<number>(0);
 
   return (
     <>
@@ -34,7 +34,7 @@ function StudyQueue() {
               <div className="studyQueue dropdownMenu">
                 <div className="items"></div>
                 <div id="studyQueueButton">
-                  <Button disabled={true} action="Study" />
+                  <Button type="primary" action="Study" disabled={true}  />
                 </div>
               </div>
             </Portal>

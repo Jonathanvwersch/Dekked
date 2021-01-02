@@ -1,6 +1,6 @@
 import React from "react";
 import {MdSettings} from "react-icons/md";
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import logoutIcon from '@iconify/icons-mdi/logout';
 import { v4 as uuidv4 } from "uuid";
 

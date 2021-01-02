@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import StudyQueue from "../General/StudyQueue";
 import TopBar from "./TopBar";
 import { useLocation, withRouter } from "react-router";
 import "./MainFrame.css";
 import FolderBinder from "./FolderBinder/FolderBinder";
 import StudySet from "./StudySet/StudySet";
-import { useMousePosition } from "../../custom-hooks/UseMousePosition";
 
 function MainFrame({
   sidebar,

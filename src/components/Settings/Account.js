@@ -48,7 +48,6 @@ function Account() {
           state={changePassword}
           lightbox={true}
           center={true}
-          level={1}
           close={true}
         >
           <ChangePassword handleState={handleChangePassword} />

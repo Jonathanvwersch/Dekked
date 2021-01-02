@@ -13,7 +13,6 @@ function StudySet({
   folderBlocks,
   handleNameChange,
   handleFolderBlocks,
-  sidebar,
 }) {
   let location = useLocation();
   const titleRef = useRef();

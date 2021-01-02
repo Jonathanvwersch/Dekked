@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
 import SidebarTop from "./SidebarTop";
 import SidebarBottom from "./SidebarBottom";
 import { useMousePosition } from "../../custom-hooks/UseMousePosition";
-import { useHover } from "../../custom-hooks/useHover";
 
 function Sidebar({
   sidebar,
@@ -23,15 +22,13 @@ function Sidebar({
   deletedItems,
 }) {
   const mousePosition = useMousePosition();
-  const [portalHover, setPortalHover] = useState(false);
 
   useEffect(() => {
     if (document.getElementById("portal-overlay") && hoverbar)
       setHoverbar(true);
     else {
       if (!sidebar && mousePosition.x < 20 && !hoverbar) setHoverbar(true);
-      else if (hoverbar && !portalHover && mousePosition.x > 220)
-        setHoverbar(false);
+      else if (hoverbar && mousePosition.x > 220) setHoverbar(false);
     }
   }, [mousePosition]);
 

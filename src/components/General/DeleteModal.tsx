@@ -2,7 +2,12 @@ import React from "react";
 import Button from "../Buttons/Button";
 import "./DeleteModal.css";
 
-function DeleteModal({ handleDelete, handleCancel }) {
+interface Props {
+  handleDelete: () => void;
+  handleCancel: () => void;
+}
+
+const DeleteModal: React.FC<Props> = ({ handleDelete, handleCancel }) => {
   return (
     <div className="dekked-deleteModalContainer">
       <div className="dekked-deleteModal">
