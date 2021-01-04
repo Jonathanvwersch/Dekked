@@ -30,17 +30,9 @@ const OVERLAY_STYLE_CENTER: React.CSSProperties = {
   justifyContent: "center",
 } as React.CSSProperties;
 
-const OVERLAY_STYLE: React.CSSProperties = {
-}
-
 const CENTER = {
   position: "relative",
 } as React.CSSProperties;
-
-const NOT_CENTERED = {
-} as React.CSSProperties;
-
-
 interface Props {
   children:JSX.Element;
   state:any;
@@ -69,12 +61,12 @@ const Portal: React.FC<Props> = ({
           }}
          
         >
-          <div style={center ? OVERLAY_STYLE_CENTER : OVERLAY_STYLE}>
+          <div style={center ? OVERLAY_STYLE_CENTER : null}>
             <div
               style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
               onClick={handleState}
             ></div>
-            <div style={center ? CENTER : NOT_CENTERED} id="portal-overlay">
+            <div style={center ? CENTER : null} id="portal-overlay">
               {children}
               {close ? (
                 <MdClose onClick={handleState} className="icon active close" />

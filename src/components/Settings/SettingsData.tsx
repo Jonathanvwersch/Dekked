@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 
 // declare global variables
-const ACCOUNT = "Account"
+const ACCOUNT:string = "Account"
 
 export const SettingsData = [
   {

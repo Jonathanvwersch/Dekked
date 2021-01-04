@@ -5,19 +5,12 @@ import Account from "./Account";
 import "./Settings.css";
 import { SettingsData } from "./SettingsData";
 
-function Settings() {
+const Settings:React.FC = () => {
   return (
     <>
-      <div className="dekked-settings-container">
-        <div className="dekked-settings">
-          <div className="dekked-settings-sidebar">
-            <div className="title p2">
-              <p className="p2">Settings</p>
-            </div>
-            <div
-              style={{ background: "var(--off-beige-clicked)" }}
-              className="dekked-settings-blocks-container"
-            >
+      <div className="dekked-settings">
+          <div className="dekked-settingsSidebar">
+              <span className="p2 title">Settings</span>
               {SettingsData.map((item, index) => (
                 <Block
                   backgroundColour="off-beige"
@@ -25,23 +18,16 @@ function Settings() {
                   key={item.id}
                 />
               ))}
-            </div>
           </div>
-
-          <div className="dekked-settings-mainFrame-container">
-            <div className="dekked-settings-mainFrame">
-              <div className="content">
+            <div className="dekked-settingsMainFrame">
+              <div id="settingsContent">
                 <Account />
               </div>
               <div id="save-changes">
-                <div id="save-changes-button">
                   <Button type="primary" action="Save changes" />
-                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </>
   );
 }

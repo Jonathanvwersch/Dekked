@@ -7,14 +7,22 @@ import "./DeletedBlock.css";
 import Portal from "../General/Portal";
 import DeleteModal from "../General/DeleteModal";
 
-function DeletedBlock({
+interface Props {
+  name:string;
+  type:string;
+  iconColour:string;
+  handleDeleteForever: () => void;
+  handleRestore: () => void;
+}
+
+const DeletedBlock:React.FC<Props> = ({
   name,
   type,
   iconColour,
   handleDeleteForever,
   handleRestore,
-}) {
-  const [deleteModal, setDeleteModal] = useState(false);
+}) => {
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const handleDeleteModal = () => {
     setDeleteModal((prevValue) => !prevValue);

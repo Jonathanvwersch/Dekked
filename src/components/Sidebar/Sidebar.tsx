@@ -1,11 +1,60 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import DropBlock from "./DropBlock";
 import "./Sidebar.css";
 import SidebarTop from "./SidebarTop";
 import SidebarBottom from "./SidebarBottom";
-import { useMousePosition } from "../../custom-hooks/UseMousePosition";
+import { useMousePosition } from "../../custom-hooks/useMousePosition";
 
-function Sidebar({
+interface Props {
+  sidebar:boolean;
+  hoverbar:boolean;
+  setHoverbar: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSidebar: () => void;
+  folderBlocks:{
+    name: string;
+    type: string;
+    id: string;
+    iconColour: string;
+    isOpen: boolean;
+    binders: {
+        name: string;
+        type: string;
+        id: string;
+        folderId: string;
+        iconColour: string;
+        isOpen: boolean;
+        studySets: {
+            name: string;
+            type: string;
+            id: string;
+            binderId:string;
+            folderId:string;
+            iconColour:string;
+            tab:string;
+            flashcards:{
+              type: string;
+              id: string;
+              front:string;
+              back:string;
+              studySetId:string
+              binderId:string;
+              folderId:string;
+            }[];
+        }[];
+    }[];
+  }[];
+  handleFolderBlocks: (newFolderBlocksArray:any) => void;
+  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex?:number, studySetIndex?:number) => void;
+  addFolder: () => void;
+  addBinder: (folderIndex: number) => void;
+  addStudySet: (folderIndex: number, binderIndex: number) => void;
+  deleteBlock: (type:string, folderIndex:number, binderIndex?:any, studySetIndex?:any) => void;
+  deleteForever: (index:number) => void;
+  handleRestore: (type:string, deletedItemIndex:number) => void;
+  deletedItems: Array<any>;
+}
+
+const Sidebar:React.FC<Props> = ({
   sidebar,
   hoverbar,
   setHoverbar,
@@ -20,27 +69,29 @@ function Sidebar({
   deleteForever,
   handleRestore,
   deletedItems,
-}) {
+}) => {
   const mousePosition = useMousePosition();
+  const sidebarRef = useRef<any>(null);
 
   useEffect(() => {
     if (document.getElementById("portal-overlay") && hoverbar)
       setHoverbar(true);
     else {
       if (!sidebar && mousePosition.x < 20 && !hoverbar) setHoverbar(true);
-      else if (hoverbar && mousePosition.x > 220) setHoverbar(false);
+      else if (hoverbar && mousePosition.x > sidebarRef.current.offsetWidth) setHoverbar(false);
     }
-  }, [mousePosition]);
+  }, [mousePosition, sidebar, hoverbar, setHoverbar, sidebarRef]);
 
   const hoverStyleContainer = {
     position: "fixed",
-  };
+  } as React.CSSProperties;
 
   const hoverStyleSidebar = {
     filter: "var(--drop-shadow)",
     borderRadius: "2px 0px 2px",
     height: "calc(100vh - 140px)",
-  };
+  } as React.CSSProperties;
+  
 
   return (
     <>
@@ -52,6 +103,7 @@ function Sidebar({
           <div
             className="dekked-sidebar"
             style={hoverbar ? hoverStyleSidebar : null}
+            ref={sidebarRef}
           >
             <SidebarTop hoverbar={hoverbar} handleSidebar={handleSidebar} />
             <div className="workspace">

@@ -3,14 +3,20 @@ import "./Flashcard.css";
 import Toolbar from "./Toolbar";
 import { MdSave, MdDeleteForever } from "react-icons/md";
 
-function Flashcard({ deleteFlashcard, index, link }) {
+interface Props {
+  deleteFlashcard?: () => void;
+  index?: number;
+  link?: boolean; // determines whether flashcard is regular of linked i.e. true represents a linked flashcard
+}
+
+const Flashcard:React.FC<Props> = ({ deleteFlashcard, index, link }) => {
   return (
     <div className="flashcardContainer">
       <div className="flashcard">
         <div className="flashcardHeader">
           {!link ? (
             <>
-              <span className="p2">{index + 1}</span>
+              <span className="p2">{index ? index + 1 : null}</span>
               <Toolbar />
               <MdDeleteForever
                 className="icon active delete"

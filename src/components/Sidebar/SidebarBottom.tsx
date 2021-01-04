@@ -7,13 +7,22 @@ import * as Icons from "react-icons/md";
 import { Icon } from "@iconify/react";
 import trashCanOutline from "@iconify/icons-mdi/trash-can-outline";
 
-function SidebarBottom({
+interface Props {
+  addFolder:  () => void;
+  deleteForever:(index: number) => void;
+  handleRestore:(type:string, deletedItemIndex:number) => void;
+  deletedItems:Array<any>;
+  hoverbar:boolean;
+}
+
+
+const SidebarBottom:React.FC<Props> = ({
   addFolder,
   deleteForever,
   handleRestore,
   deletedItems,
   hoverbar
-}) {
+}) => {
   const [trashCan, setTrashCan] = useState(false);
 
   const hoverStyleSidebar = {
@@ -43,7 +52,7 @@ function SidebarBottom({
                 <DeletedBlock
                   name={item.name}
                   type={item.type}
-                  id= {item.id}
+                  key= {item.id}
                   iconColour={item.iconColour}
                   handleDeleteForever={() => {
                     deleteForever(index);
@@ -52,9 +61,6 @@ function SidebarBottom({
                     handleRestore(
                       item.type,
                       index,
-                      item.folderIndex,
-                      item.binderIndex,
-                      item.studySetIndex
                     );
                   }}
                 />

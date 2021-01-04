@@ -10,12 +10,10 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
 import { v4 as uuidv4 } from "uuid";
 
-function App() {
-  const [sidebar, setSidebar] = useState(true);
-  const [hoverbar, setHoverbar] = useState(false);
-
-  const [deletedItems, setDeletedItems] = useState([]);
-
+const App:React.FC = () => {
+  const [sidebar, setSidebar] = useState<boolean>(true);
+  const [hoverbar, setHoverbar] = useState<boolean>(false);
+  const [deletedItems, setDeletedItems] = useState<Array<any>>([]);
   const [folderBlocks, setFolderBlocks] = useState([
     {
       name: "Welcome to Dekked",
@@ -40,7 +38,17 @@ function App() {
               folderId: "f73932jff8393d",
               iconColour: "#2C2C31",
               tab: "notes",
-              flashcards: [],
+              flashcards: [
+                {
+                  id: "f73932j4fdee3d",
+                  type: "flashcard",
+                  front: "",
+                  back: "",
+                  studySetId: "f739338f8f393d",
+                  binderId: "f73932j4fd393d",
+                  folderId: "f73932jff8393d",
+                },
+              ],
             },
           ],
         },
@@ -62,7 +70,7 @@ function App() {
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const addBinder = (folderIndex) => {
+  const addBinder = (folderIndex:number) => {
     const newBinder = {
       name: "",
       type: "binder",
@@ -78,7 +86,7 @@ function App() {
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const addStudySet = (folderIndex, binderIndex) => {
+  const addStudySet = (folderIndex:number, binderIndex:number) => {
     const newStudySet = {
       name: "",
       type: "studySet",
@@ -98,22 +106,22 @@ function App() {
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const handleFolderBlocks = (newFolderBlocksArray) => {
+  const handleFolderBlocks = (newFolderBlocksArray:any) => {
     if (newFolderBlocksArray.length === 0)
       addFolderToNewArray(newFolderBlocksArray);
     setFolderBlocks(newFolderBlocksArray);
   };
 
-  const deleteBlock = (type, folderIndex, binderIndex, studySetIndex) => {
+  const deleteBlock = (type:string, folderIndex:number, binderIndex?:number, studySetIndex?:number) => {
     let itemsArray = folderBlocks.slice();
     let deletedItemsArray = [...deletedItems];
     let deleted;
 
-    if (type === "folder") {
+    if (type === "folder" && folderIndex) {
       deleted = itemsArray.splice(folderIndex, 1);
-    } else if (type === "binder") {
+    } else if (type === "binder" && folderIndex && binderIndex) {
       deleted = itemsArray[folderIndex].binders.splice(binderIndex, 1);
-    } else if (type === "studySet") {
+    } else if (type === "studySet" && binderIndex && studySetIndex) {
       deleted = itemsArray[folderIndex].binders[binderIndex].studySets.splice(
         studySetIndex,
         1
@@ -126,15 +134,15 @@ function App() {
     handleFolderBlocks(itemsArray);
   };
 
-  const deleteForever = (index) => {
+  const deleteForever = (index:number) => {
     const deletedItemsArray = deletedItems.slice();
     deletedItemsArray.splice(index, 1);
     setDeletedItems(deletedItemsArray);
   };
 
-  const convertArrayToObject = (array) => {
+  const convertArrayToObject = (array:any) => {
     const initialValue = {};
-    return array.reduce((obj, item) => {
+    return array.reduce((obj:any, item:any) => {
       return {
         ...obj,
         item,
@@ -143,18 +151,19 @@ function App() {
   };
 
   const handleNameChange = (
-    type,
-    folderIndex,
-    binderIndex,
-    studySetIndex,
-    blockName
+    type:string,
+    folderIndex:number,
+    blockName:string,
+    binderIndex?:number,
+    studySetIndex?:number,
+    
   ) => {
     const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder") {
+    if (type === "folder" && folderIndex) {
       newFolderBlocksArray[folderIndex].name = blockName;
-    } else if (type === "binder") {
+    } else if (type === "binder" && folderIndex && binderIndex) {
       newFolderBlocksArray[folderIndex].binders[binderIndex].name = blockName;
-    } else if (type === "studySet") {
+    } else if (type === "studySet" && folderIndex && binderIndex && studySetIndex) {
       newFolderBlocksArray[folderIndex].binders[binderIndex].studySets[
         studySetIndex
       ].name = blockName;
@@ -166,7 +175,7 @@ function App() {
     setSidebar((prevState) => !prevState);
   };
 
-  const addFolderToNewArray = (newFolderBlocksArray) => {
+  const addFolderToNewArray = (newFolderBlocksArray:any) => {
     const newFolder = {
       name: "",
       type: "folder",
@@ -179,7 +188,7 @@ function App() {
     return newFolderBlocksArray;
   };
 
-  const addBinderToNewArray = (newFolderBlocksArray, folderIndex) => {
+  const addBinderToNewArray = (newFolderBlocksArray:any, folderIndex:number) => {
     const newBinder = {
       name: "",
       type: "binder",
@@ -194,12 +203,12 @@ function App() {
     return newFolderBlocksArray;
   };
 
-  const handleRestore = (type, deletedItemIndex) => {
+  const handleRestore = (type:string, deletedItemIndex:number) => {
     let itemsArray = folderBlocks.slice();
-    const findBinderIndexInArray = (item) => {
+    const findBinderIndexInArray = (item:any) => {
       return item.id === deletedItems[deletedItemIndex].folderId;
     };
-    const findStudySetIndexInArray = (item) => {
+    const findStudySetIndexInArray = (item:any) => {
       return item.id === deletedItems[deletedItemIndex].binderId;
     };
 

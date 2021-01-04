@@ -2,7 +2,7 @@ import React from 'react'
 import StudyCard from './StudyCard'
 import './StudyMode.css'
 
-function StudyMode() {
+const StudyMode:React.FC = () => {
     return (
         <div className="dekked-studyMode">
             <div className="dekked-pageContentContainer">

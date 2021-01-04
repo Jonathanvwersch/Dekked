@@ -7,9 +7,46 @@ import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg"
 import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { NavLink } from "react-router-dom";
 
-function TopBar({ sidebar, handleSidebar, folderBlocks, setHoverbar }) {
-  let location = useLocation();
-
+interface Props {
+  sidebar:boolean;
+  handleSidebar: () => void;
+  setHoverbar: React.Dispatch<React.SetStateAction<boolean>>;
+  folderBlocks:{
+    name: string;
+    type: string;
+    id: string;
+    iconColour: string;
+    isOpen: boolean;
+    binders: {
+        name: string;
+        type: string;
+        id: string;
+        folderId: string;
+        iconColour: string;
+        isOpen: boolean;
+        studySets: {
+            name: string;
+            type: string;
+            id: string;
+            binderId:string;
+            folderId:string;
+            iconColour:string;
+            tab:string;
+            flashcards:{
+              type: string;
+              id: string;
+              front:string;
+              back:string;
+              studySetId:string
+              binderId:string;
+              folderId:string;
+            }[];
+        }[];
+    }[];
+  }[];
+}
+const TopBar: React.FC<Props> = ({ sidebar, handleSidebar, folderBlocks, setHoverbar }) => {
+  let location = useLocation<any>();
   return (
     <>
       <div className="dekked-topBarOuter">

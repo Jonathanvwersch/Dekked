@@ -5,7 +5,7 @@ import { ReactComponent as StudySetIcon } from "../../../custom-icons/studyset.s
 
 interface Props {
   name: string;
-  type: string;
+  type?: string;
   iconColour?: string;
   bottomText?: string;
   clicked?: boolean;

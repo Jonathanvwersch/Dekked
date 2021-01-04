@@ -60,7 +60,7 @@
     display:flex;
     justify-content:flex-end;
     align-items:center;
-    border-top: 1.5px solid var(--grey-3);
+    border-top: 0.5px solid var(--grey-3);
     padding:8px;
     z-index:1;  
 }

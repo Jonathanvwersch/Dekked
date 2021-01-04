@@ -8,7 +8,51 @@ import { NavLink } from "react-router-dom";
 
 import DropBlockDots from "./DropBlockDots";
 
-function DropBlock({
+interface Props {
+  item:any;
+  folderIndex:number;
+  folderBlocks:{
+    name: string;
+    type: string;
+    id: string;
+    iconColour: string;
+    isOpen: boolean;
+    binders: {
+        name: string;
+        type: string;
+        id: string;
+        folderId: string;
+        iconColour: string;
+        isOpen: boolean;
+        studySets: {
+            name: string;
+            type: string;
+            id: string;
+            binderId:string;
+            folderId:string;
+            iconColour:string;
+            tab:string;
+            flashcards:{
+              type: string;
+              id: string;
+              front:string;
+              back:string;
+              studySetId:string
+              binderId:string;
+              folderId:string;
+            }[];
+        }[];
+    }[];
+  }[];
+  handleFolderBlocks: (newFolderBlocksArray:any) => void;
+  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex?:number, studySetIndex?:number) => void;
+  handleDelete: () => void;
+  handleAddItem?: () => void;
+  binderIndex?:number;
+  studySetIndex?: number;
+}
+
+const DropBlock:React.FC<Props> = ({
   item,
   folderIndex,
   binderIndex,
@@ -18,10 +62,10 @@ function DropBlock({
   handleDelete,
   handleAddItem,
   handleNameChange,
-}) {
-  const [editableName, setEditableName] = useState(false);
+}) => {
+  const [editableName, setEditableName] = useState<boolean>(false);
   const [iconColour, setIconColour] = useState(item.iconColour);
-  const nameRef = useRef(null);
+  const nameRef = useRef<any>(null);
 
   const handleRename = () => {
     // Focus in on name of dropblock when being renamed (i.e. show text cursor)
@@ -31,21 +75,25 @@ function DropBlock({
     }, 50);
   };
 
-  useEffect(() => {
-    // Set name of dropblock using data from folder block
+  const handleName = (type:string, folderIndex: number, binderIndex?:number, studySetIndex?:number) => {
     if (editableName === false) {
-      if (item.type === "folder") {
+      if (type === "folder") {
         nameRef.current.innerText = folderBlocks[folderIndex].name;
-      } else if (item.type === "binder") {
+      } else if (type === "binder" && binderIndex) {
         nameRef.current.innerText =
           folderBlocks[folderIndex].binders[binderIndex].name;
-      } else if (item.type === "studySet") {
+      } else if (type === "studySet" && binderIndex && studySetIndex) {
         nameRef.current.innerText =
           folderBlocks[folderIndex].binders[binderIndex].studySets[
             studySetIndex
           ].name;
       }
     }
+  }
+
+  useEffect(() => {
+    // Set name of dropblock using data from folder block
+    handleName(item.type, folderIndex, binderIndex, studySetIndex)
   }, [
     folderBlocks,
     editableName,
@@ -56,15 +104,14 @@ function DropBlock({
   ]);
 
   useEffect(() => {
-    const updateEditableName = (e) => {
+    const updateEditableName = (e:any) => {
       // When user clicks away from name, make sure the beginning of the name is shown
       if (nameRef.current) {
         nameRef.current.addEventListener(
           "blur",
-          function (e) {
-            this.scrollLeft = "0px";
+          function () {
+            nameRef.current.scrollLeft = "0px";
           },
-          true
         );
       }
 
@@ -82,13 +129,13 @@ function DropBlock({
     };
   }, [editableName]);
 
-  const openDropBlock = (type, folderIndex, binderIndex) => {
+  const openDropBlock = (type:string, folderIndex:number, binderIndex?:number) => {
     const newFolderBlocksArray = folderBlocks.slice();
     if (type === "folder")
       newFolderBlocksArray[folderIndex].isOpen = !newFolderBlocksArray[
         folderIndex
       ].isOpen;
-    else
+    else if (binderIndex)
       newFolderBlocksArray[folderIndex].binders[
         binderIndex
       ].isOpen = !newFolderBlocksArray[folderIndex].binders[binderIndex].isOpen;
@@ -100,7 +147,7 @@ function DropBlock({
       <NavLink
         activeStyle={{
           background: "var(--off-beige-clicked)",
-          fontWeight: "700",
+          fontWeight: "bold",
         }}
         to={{
           pathname: `${
@@ -151,9 +198,9 @@ function DropBlock({
                 handleNameChange(
                   item.type,
                   folderIndex,
+                  nameRef.current.innerText,
                   binderIndex,
                   studySetIndex,
-                  nameRef.current.innerText
                 );
               }, 100);
             }}
@@ -169,9 +216,6 @@ function DropBlock({
             setIconColour={setIconColour}
             iconColour={iconColour}
             folderBlocks={folderBlocks}
-            openDropBlock={() =>
-              openDropBlock(item.type, folderIndex, binderIndex)
-            }
             studySetIndex={studySetIndex}
             folderIndex={folderIndex}
             binderIndex={binderIndex}

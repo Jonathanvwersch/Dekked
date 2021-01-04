@@ -4,10 +4,57 @@ import Block from "../General/Block";
 import Portal from "../General/Portal";
 import { NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import * as Icons from "react-icons/md";
+import {MdMoreHoriz} from "react-icons/md";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 
-function DropBlockDots({
+interface Props {
+  item:any;
+  handleFolderBlocks: (newFolderBlocksArray:any) => void;
+  studySetIndex?:number;
+  binderIndex?:number;
+  folderIndex:number;
+  iconColour:string;
+  setIconColour: React.Dispatch<any>;
+  handleAddItem?: () => void;
+  handleDelete: () => void;
+  handleRename: () => void;
+  folderBlocks:{
+    name: string;
+    type: string;
+    id: string;
+    iconColour: string;
+    isOpen: boolean;
+    binders: {
+        name: string;
+        type: string;
+        id: string;
+        folderId: string;
+        iconColour: string;
+        isOpen: boolean;
+        studySets: {
+            name: string;
+            type: string;
+            id: string;
+            binderId:string;
+            folderId:string;
+            iconColour:string;
+            tab:string;
+            flashcards:{
+              type: string;
+              id: string;
+              front:string;
+              back:string;
+              studySetId:string
+              binderId:string;
+              folderId:string;
+            }[];
+        }[];
+    }[];
+  }[];
+
+}
+
+const DropBlockDots:React.FC<Props> = ({
   item,
   handleFolderBlocks,
   folderBlocks,
@@ -19,16 +66,16 @@ function DropBlockDots({
   studySetIndex,
   folderIndex,
   binderIndex,
-}) {
+}) => {
   const dropBlockMenuData = item.type==="folder" ? FolderData : item.type==="binder" ? BinderData : StudySetData
-  const [coords, setCoords] = useState({}); // Set mouse coordinates
+  const [coords, setCoords] = useState({left:0, top:0}); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
   const [colourPicker, setColourPicker] = useState(false); // Set visibility of colour picker component
-  const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState(); // Set y position of dropdown menu
+  const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState<number>(0); // Set y position of dropdown menu
   const heightOfDropdownMenu = 30 * dropBlockMenuData.length; // Value is necessary to position dropdown menu based on mouse coordinates
   const heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
  
-  const positionComponents = (e, itemHeight) => {
+  const positionComponents = (e:any, itemHeight:number) => {
     const rect = e.target.getBoundingClientRect();
     let bottomValue = window.innerHeight - rect.y; // distance from mouse click to bottom of window
     let topValue = rect.y; // distance from mouse click to top of window
@@ -51,20 +98,20 @@ function DropBlockDots({
   };
 
   const handleIconColour = (
-    type,
-    folderIndex,
-    binderIndex,
-    studySetIndex,
-    iconColour
+    type:string,
+    folderIndex:number,
+    iconColour:string,
+    binderIndex?:number,
+    studySetIndex?:number,
   ) => {
     const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder") {
+    if (type === "folder" && folderIndex) {
       newFolderBlocksArray[folderIndex].iconColour = iconColour;
-    } else if (type === "binder") {
+    } else if (type === "binder" && folderIndex && binderIndex) {
       newFolderBlocksArray[folderIndex].binders[
         binderIndex
       ].iconColour = iconColour;
-    } else if (type === "studySet") {
+    } else if (type === "studySet" && folderIndex && binderIndex && studySetIndex) {
       newFolderBlocksArray[folderIndex].binders[binderIndex].studySets[
         studySetIndex
       ].iconColour = iconColour;
@@ -81,23 +128,24 @@ function DropBlockDots({
     setColourPicker((prevState) => !prevState);
   };
 
-  useEffect (() => {
-    handleIconColour(item.type, folderIndex, binderIndex, studySetIndex, iconColour)
-  }, [iconColour])
-
-  const handleDropdownMenu = (e) => {
+  
+  const handleDropdownMenu = (e:any) => {
     positionComponents(e, heightOfDropdownMenu);
     setDropdownMenu((prevState) => !prevState);
   };
-
+  
+  useEffect (() => {
+    handleIconColour(item.type, folderIndex, iconColour, binderIndex, studySetIndex)
+  }, [iconColour])
+  
   return (
     <div id="dropBlockDots">
-      <Icons.MdMoreHoriz
+      <MdMoreHoriz
         className="icon active dots"
         onClick={(e) => {
           handleDropdownMenu(e);
         }}
-      ></Icons.MdMoreHoriz>
+      ></MdMoreHoriz>
       {dropdownMenu ? (
         <Portal state={dropdownMenu} handleState={() => setDropdownMenu(false)}>
           <div
@@ -105,7 +153,7 @@ function DropBlockDots({
             className="dropdownMenu dropBlocks"
             style={{ ...coords }}
           >
-            {dropBlockMenuData.map((item, index) => {
+            {dropBlockMenuData.map((item) => {
               return item.action === "Delete" ? (
                 <NavLink
                   to={{

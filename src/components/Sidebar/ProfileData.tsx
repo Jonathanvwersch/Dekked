@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 
 
 // declare global variables
-const SETTINGS = "Settings"
-const LOGOUT = "Log out"
+const SETTINGS:string = "Settings"
+const LOGOUT:string = "Log out"
 
 export const ProfileData = [
   {

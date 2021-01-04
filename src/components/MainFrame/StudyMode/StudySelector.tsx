@@ -3,20 +3,23 @@ import Button from "../../Buttons/Button";
 import Card from "../FolderBinder/Card";
 import "./StudySelector.css";
 
-function StudySelector() {
-  const [CardOneState, setCardOneState] = useState(false);
-  const [CardTwoState, setCardTwoState] = useState(false);
-  const [buttonState, setButtonState] = useState(true);
+const StudySelector:React.FC = () => {
+  const [CardOneState, setCardOneState] = useState<boolean>(false);
+  const [CardTwoState, setCardTwoState] = useState<boolean>(false);
+  const [buttonState, setButtonState] = useState<boolean>(true);
+
   const handleCardOneClick = () => {
     setCardOneState(true);
     setButtonState(false);
     if (CardTwoState) setCardTwoState(false);
   };
+
   const handleCardTwoClick = () => {
     setCardTwoState(true);
     setButtonState(false);
     if (CardOneState) setCardOneState(false);
   };
+
   return (
     <div id="dekked-studySelector">
       <h3>Choose your study mode</h3>

@@ -9,12 +9,12 @@ import typeH3 from "@iconify/icons-bi/type-h3";
 import { v4 as uuidv4 } from "uuid";
 
 // declare global variables
-const BODY = "Body";
-const LARGEHEADING = "Large Heading";
-const MEDIUMHEADING = "Medium Heading";
-const SMALLHEADING = "Small Heading";
-const BULLETEDLIST = "Bulleted List";
-const NUMBEREDLIST = "Numbered List";
+const BODY:string = "Body";
+const LARGEHEADING:string = "Large Heading";
+const MEDIUMHEADING:string = "Medium Heading";
+const SMALLHEADING:string = "Small Heading";
+const BULLETEDLIST:string = "Bulleted List";
+const NUMBEREDLIST:string = "Numbered List";
 
 
 export const TextBlockDataHalf = [

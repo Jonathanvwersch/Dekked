@@ -1,8 +1,20 @@
 import React from "react";
 import "./Block.css"
 
-const Block = ({item, backgroundColour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount, handleTrash}) => {
-    let buttonClick;
+interface Props {
+    item: {action:string; icon:JSX.Element};
+    backgroundColour?:string;
+    handleDelete?: () => void;
+    handleRename?: () => void;
+    handleColourPicker?: () => void;
+    handleAddItem?: () => void;
+    handleSettings?: () => void;
+    handleAccount?: () => void;
+    handleTrash?: () => void;
+}
+
+const Block:React.FC<Props> = ({item, backgroundColour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount, handleTrash}) => {
+    let buttonClick: any;
     switch (item.action) {
         case "Add binder":
         case "Add study set":

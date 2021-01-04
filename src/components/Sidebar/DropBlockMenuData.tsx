@@ -4,11 +4,11 @@ import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
 
 // declare global variables
-const ADDBINDER = "Add binder";
-const ADDSTUDYSET = "Add study set";
-const ICONRECOLOUR = "Icon colour";
-const RENAME = "Rename";
-const DELETE = "Delete";
+const ADDBINDER:string = "Add binder";
+const ADDSTUDYSET:string = "Add study set";
+const ICONRECOLOUR:string = "Icon colour";
+const RENAME:string = "Rename";
+const DELETE:string = "Delete";
 
 export const FolderData = [
   {

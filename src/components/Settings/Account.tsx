@@ -4,8 +4,9 @@ import "./Account.css";
 import ChangePassword from "./ChangePassword";
 import Portal from "../General/Portal";
 
-function Account() {
-  const [changePassword, setChangePassword] = useState(false);
+
+const Account:React.FC = () => {
+  const [changePassword, setChangePassword] = useState<boolean>(false);
   const handleChangePassword = () => {
     setChangePassword((prevState) => !prevState);
   };

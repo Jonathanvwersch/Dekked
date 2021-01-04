@@ -3,8 +3,8 @@ import "./LinkedFlashcard.css";
 import FlashcardTab from "./FlashcardTab";
 import Flashcard from "./Flashcard";
 
-function LinkedFlashcard() {
-  const [linkedFlashcard, setLinkedFlashcard] = useState(false);
+const LinkedFlashcard:React.FC = () => {
+  const [linkedFlashcard, setLinkedFlashcard] = useState<boolean>(false);
   const handleFlashcard = () => {
     setLinkedFlashcard((prevState) => !prevState);
   };

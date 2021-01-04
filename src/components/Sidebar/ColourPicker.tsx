@@ -4,12 +4,17 @@ import "./ColourPicker.css";
 
 // Colour picker take from https://casesandberg.github.io/react-color/
 
-const ColourPicker = ({ iconColour, setIconColour }) => {
+interface Props {
+  iconColour:string;
+  setIconColour: (colour:any) => void;
+}
+
+const ColourPicker:React.FC<Props>= ({ iconColour, setIconColour }) => {
   const [colour, setColour] = useState({
     background: iconColour,
   });
 
-  const handleChange = (colour) => {
+  const handleChange = (colour:any) => {
     setColour({ background: colour });
     setIconColour(colour.hex);
   };
@@ -29,7 +34,6 @@ const ColourPicker = ({ iconColour, setIconColour }) => {
 
   return (
       <BlockPicker
-        disableAlpha
         color={colour.background}
         onChange={handleChange}
         triangle="hide"

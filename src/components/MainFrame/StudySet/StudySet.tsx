@@ -1,7 +1,7 @@
 import "./StudySet.css";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import Toolbar from "../StudySet/Toolbar";
+import Toolbar from "./Toolbar";
 import { NavLink } from "react-router-dom";
 import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
@@ -9,18 +9,58 @@ import Button from "../../Buttons/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
 
-function StudySet({
+interface Props {
+  folderBlocks:{
+    name: string;
+    type: string;
+    id: string;
+    iconColour: string;
+    isOpen: boolean;
+    binders: {
+        name: string;
+        type: string;
+        id: string;
+        folderId: string;
+        iconColour: string;
+        isOpen: boolean;
+        studySets: {
+            name: string;
+            type: string;
+            id: string;
+            binderId:string;
+            folderId:string;
+            iconColour:string;
+            tab:string;
+            flashcards: {
+              id:string;
+              type:string;
+              front:string;
+              back:string;
+              studySetId:string;
+              binderId:string;
+              folderId:string;
+            }[];
+        }[];
+    }[];
+  }[]
+  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex?:number, studySetIndex?:number) => void;
+  handleFolderBlocks: (newFolderBlocksArray:any) => void;
+}
+
+const StudySet:React.FC<Props> = ({
   folderBlocks,
   handleNameChange,
   handleFolderBlocks,
-}) {
-  let location = useLocation();
-  const titleRef = useRef();
+}) => {
+  let location = useLocation<any>();
+  const titleRef = useRef<any>(null);
 
   const addFlashcard = () => {
     const newFlashcard = {
       id: uuidv4(),
-      type: "",
+      type: "flashcard",
+      front:"",
+      back:"",
       studySetId:
         folderBlocks[location.state.folderIndex].binders[
           location.state.binderIndex
@@ -38,7 +78,7 @@ function StudySet({
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const deleteFlashcard = (index) => {
+  const deleteFlashcard = (index:number) => {
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[location.state.folderIndex].binders[
       location.state.binderIndex
@@ -85,7 +125,7 @@ function StudySet({
                           textDecoration: "underline",
                           textDecorationColor: "var(--primary-color)",
                           color: "var(--main-black)!important",
-                          fontWeight: "700",
+                          fontWeight: "bold",
                           textDecorationThickness: "2px",
                         }}
                         to={{
@@ -112,7 +152,7 @@ function StudySet({
                           textDecoration: "underline",
                           textDecorationColor: "var(--primary-color)",
                           color: "var(--main-black)",
-                          fontWeight: "700",
+                          fontWeight: "bold",
                           textDecorationThickness: "2px",
                         }}
                         to={{
@@ -154,9 +194,9 @@ function StudySet({
                       handleNameChange(
                         location.state.type,
                         location.state.folderIndex,
+                        titleRef.current.innerText,
                         location.state.binderIndex,
                         location.state.studySetIndex,
-                        titleRef.current.innerText
                       );
                     }, 100);
                   }

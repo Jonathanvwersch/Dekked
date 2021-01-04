@@ -8,16 +8,21 @@ import "./SidebarTop.css";
 import Block from "../General/Block";
 import { MdArrowDropDown } from "react-icons/md";
 
-function SidebarTop({ handleSidebar, hoverbar, portalRef }) {
-  const [profileMenu, setProfileMenu] = useState(false);
-  const [settingsPage, setSettingsPage] = useState(false);
+interface Props {
+  handleSidebar: () => void;
+  hoverbar: boolean;
+}
+
+const SidebarTop: React.FC<Props> = ({ handleSidebar, hoverbar }) => {
+  const [profileMenu, setProfileMenu] = useState<boolean>(false);
+  const [settingsPage, setSettingsPage] = useState<boolean>(false);
   const handleSettings = () => {
     setSettingsPage((prevState) => !prevState);
   };
 
   const hoverStyleSidebar = {
     top: "110px",
-  };
+  } as React.CSSProperties;
 
   return (
     <>
@@ -32,20 +37,17 @@ function SidebarTop({ handleSidebar, hoverbar, portalRef }) {
           />
         </div>
         {!hoverbar ? (
-          <Icon
+          <div
             className="icon active chevronDoubleLeft"
             onClick={handleSidebar}
-            icon={chevronDoubleLeft}
-          />
+          >
+            <Icon icon={chevronDoubleLeft} />
+          </div>
         ) : null}
       </div>
 
       {profileMenu ? (
-        <Portal
-          state={profileMenu}
-          handleState={() => setProfileMenu(false)}
-          portalRef={portalRef}
-        >
+        <Portal state={profileMenu} handleState={() => setProfileMenu(false)}>
           <div
             className="dropdownMenu settingsMenu"
             onClick={() => setProfileMenu(false)}
@@ -72,13 +74,12 @@ function SidebarTop({ handleSidebar, hoverbar, portalRef }) {
           lightbox={true}
           center={true}
           close={true}
-          portalRef={portalRef}
         >
           <Settings />
         </Portal>
       ) : null}
     </>
   );
-}
+};
 
 export default SidebarTop;

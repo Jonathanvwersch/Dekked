@@ -2,7 +2,11 @@ import React from "react";
 import "./ChangePassword.css";
 import Button from "../Buttons/Button";
 
-function ChangePassword({ handleState }) {
+interface Props {
+  handleState: () => void;
+}
+
+const ChangePassword:React.FC<Props> = ({ handleState }) => {
   return (
     <div className="dekked-passwordModalContainer">
       <div className="dekked-passwordModal">

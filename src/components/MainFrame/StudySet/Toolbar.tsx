@@ -2,22 +2,27 @@ import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import "./Toolbar.css";
 import {TextBlockDataFull, TextBlockDataHalf} from "./TextBlockData";
-import Portal from "../../../components/General/Portal";
+import Portal from "../../General/Portal";
 import Block from "../../General/Block";
+interface Props {
+  type?:string;  
+}
 
-function Toolbar({ type }) {
-  const [textBlockSelector, setTextBlockSelector] = useState(false);
-  const [coords, setCoords] = useState({}); // Set mouse coordinates
+const Toolbar:React.FC<Props> = ({ type }) => {
+
+  const [textBlockSelector, setTextBlockSelector] = useState<boolean>(false);
+  const [coords, setCoords] = useState<{left:number, top:number} | {}>({}); // Set mouse coordinates
 
   return (
     <div className={`toolbar ${type==="full" ? null : "half"}`}>
       <div
         id="switchBlock"
-        onClick={(e) => {
-          const rect = e.target.getBoundingClientRect();
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+          const node = e.target as any;
+          const rect = node.getBoundingClientRect() as DOMRect;
           setCoords({
             left: rect.x + rect.width / 2,
-            top: rect.y + window.scrollY,
+            top: rect.y,
           });
           setTextBlockSelector(true);
         }}

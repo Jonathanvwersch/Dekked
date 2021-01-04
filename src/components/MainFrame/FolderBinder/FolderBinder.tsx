@@ -7,14 +7,47 @@ import Button from "../../Buttons/Button";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
-  folderBlocks:any;
-  handleNameChange:(type:string, folderIndex:number, binderIndex:number, studySetIndex:number, blockName:string ) => void;
-  addStudySet: (folderIndex:string, binderIndex:string) => any;
-  addBinder: (folderIndex:string) =>  any;
+  folderBlocks:{
+    name: string;
+    type: string;
+    id: string;
+    iconColour: string;
+    isOpen: boolean;
+    binders: {
+        name: string;
+        type: string;
+        id: string;
+        folderId: string;
+        iconColour: string;
+        isOpen: boolean;
+        studySets: {
+            name: string;
+            type: string;
+            id: string;
+            binderId:string;
+            folderId:string;
+            iconColour:string;
+            tab:string;
+            flashcards:{
+              type: string;
+              id: string;
+              front:string;
+              back:string;
+              studySetId:string
+              binderId:string;
+              folderId:string;
+            }[];
+        }[];
+    }[];
+}[]
+
+  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex?:number, studySetIndex?:number ) => void;
+  addStudySet: (folderIndex:number, binderIndex:number) => any;
+  addBinder: (folderIndex:number) =>  any;
 }
 
 const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudySet, addBinder }) => {
-  let location = useLocation<any>();
+  let location = useLocation();
   const titleRef = useRef<any>(null);
 
   useEffect(() => {
@@ -59,9 +92,9 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
                       handleNameChange(
                         location.state.type,
                         location.state.folderIndex,
+                        titleRef.current.innerText,
                         location.state.binderIndex,
                         location.state.studySetIndex,
-                        titleRef.current.innerText
                       );
                     }, 100);
                   }
