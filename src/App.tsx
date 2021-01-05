@@ -154,16 +154,16 @@ const App:React.FC = () => {
     type:string,
     folderIndex:number,
     blockName:string,
-    binderIndex?:number,
-    studySetIndex?:number,
+    binderIndex:any,
+    studySetIndex:any,
     
   ) => {
     const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder" && folderIndex) {
+    if (type === "folder") {
       newFolderBlocksArray[folderIndex].name = blockName;
-    } else if (type === "binder" && folderIndex && binderIndex) {
+    } else if (type === "binder") {
       newFolderBlocksArray[folderIndex].binders[binderIndex].name = blockName;
-    } else if (type === "studySet" && folderIndex && binderIndex && studySetIndex) {
+    } else if (type === "studySet") {
       newFolderBlocksArray[folderIndex].binders[binderIndex].studySets[
         studySetIndex
       ].name = blockName;

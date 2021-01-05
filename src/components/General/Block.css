@@ -8,7 +8,9 @@
     height:30px;
     padding:0;    
     user-select: none; 
-    cursor:pointer
+    cursor:pointer;
+    padding-left:16px;
+    gap:8px;
 }
 
 .dekked-block:hover{
@@ -21,18 +23,9 @@
 
 .dekked-block.off-beige:hover{
     background:var(--off-beige-hover);
-    cursor:pointer;
 }
 
 .dekked-block.off-beige:active{
     background:var(--off-beige-clicked);
 }
 
-.dekked-block .icon{
-    margin-left:16px;
-    margin-right:8px;
-}
-
-.dekked-block .icon:hover {
-    color: var(--main-black);
-}

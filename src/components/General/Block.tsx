@@ -3,7 +3,6 @@ import "./Block.css"
 
 interface Props {
     item: {action:string; icon:JSX.Element};
-    backgroundColour?:string;
     handleDelete?: () => void;
     handleRename?: () => void;
     handleColourPicker?: () => void;
@@ -13,7 +12,7 @@ interface Props {
     handleTrash?: () => void;
 }
 
-const Block:React.FC<Props> = ({item, backgroundColour, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount, handleTrash}) => {
+const Block:React.FC<Props> = ({item, handleDelete, handleRename, handleColourPicker, handleAddItem, handleSettings, handleAccount, handleTrash}) => {
     let buttonClick: any;
     switch (item.action) {
         case "Add binder":
@@ -49,7 +48,7 @@ const Block:React.FC<Props> = ({item, backgroundColour, handleDelete, handleRena
             break;
     }
     return (
-    <div role="button" onClick={buttonClick} className={`dekked-block ${backgroundColour} p2`}>
+    <div role="button" onClick={buttonClick} className={`dekked-block p2`}>
         {item.icon}
         {item.action}
     </div>

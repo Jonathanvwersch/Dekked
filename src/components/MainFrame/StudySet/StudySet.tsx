@@ -43,7 +43,7 @@ interface Props {
         }[];
     }[];
   }[]
-  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex?:number, studySetIndex?:number) => void;
+  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex:any, studySetIndex:any) => void;
   handleFolderBlocks: (newFolderBlocksArray:any) => void;
 }
 

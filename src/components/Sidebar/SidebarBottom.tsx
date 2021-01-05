@@ -37,7 +37,6 @@ const SidebarBottom:React.FC<Props> = ({
           icon: <Icon className="icon trash" icon={trashCanOutline} />,
         }}
         handleTrash={() => setTrashCan(true)}
-        backgroundColour="off-beige"
       />
 
       {trashCan ? (

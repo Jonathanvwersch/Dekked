@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router";
 import Flashcard from "./Flashcard";
 
@@ -48,17 +48,17 @@ const StudySetFlashcards: React.FC<Props> = ({
   let location = useLocation<any>();
 
 
-  const handleTab = useCallback(() => {
+   const handleTab = () => {
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[location.state.folderIndex].binders[
       location.state.binderIndex
     ].studySets[location.state.studySetIndex].tab = "flashcards";
     handleFolderBlocks(newFolderBlocksArray);
-  },[location, folderBlocks, handleFolderBlocks]);
+  };
 
   useEffect(() => {
     handleTab();
-  }, [handleTab]);
+  }, [folderBlocks]);
 
   return (
     <>

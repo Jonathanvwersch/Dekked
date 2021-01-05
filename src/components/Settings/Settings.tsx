@@ -13,7 +13,6 @@ const Settings:React.FC = () => {
               <span className="p2 title">Settings</span>
               {SettingsData.map((item, index) => (
                 <Block
-                  backgroundColour="off-beige"
                   item={item}
                   key={item.id}
                 />
