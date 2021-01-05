@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,8 +9,15 @@ import {
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
 import { v4 as uuidv4 } from "uuid";
+import { LoadingSpinner } from "./components/General/LoadingSpinner";
 
-const App:React.FC = () => {
+const App: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   const [sidebar, setSidebar] = useState<boolean>(true);
   const [hoverbar, setHoverbar] = useState<boolean>(false);
   const [deletedItems, setDeletedItems] = useState<Array<any>>([]);
@@ -70,7 +77,7 @@ const App:React.FC = () => {
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const addBinder = (folderIndex:number) => {
+  const addBinder = (folderIndex: number) => {
     const newBinder = {
       name: "",
       type: "binder",
@@ -86,7 +93,7 @@ const App:React.FC = () => {
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const addStudySet = (folderIndex:number, binderIndex:number) => {
+  const addStudySet = (folderIndex: number, binderIndex: number) => {
     const newStudySet = {
       name: "",
       type: "studySet",
@@ -106,13 +113,18 @@ const App:React.FC = () => {
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const handleFolderBlocks = (newFolderBlocksArray:any) => {
+  const handleFolderBlocks = (newFolderBlocksArray: any) => {
     if (newFolderBlocksArray.length === 0)
       addFolderToNewArray(newFolderBlocksArray);
     setFolderBlocks(newFolderBlocksArray);
   };
 
-  const deleteBlock = (type:string, folderIndex:number, binderIndex:any, studySetIndex:any) => {
+  const deleteBlock = (
+    type: string,
+    folderIndex: number,
+    binderIndex: any,
+    studySetIndex: any
+  ) => {
     let itemsArray = folderBlocks.slice();
     let deletedItemsArray = [...deletedItems];
     let deleted;
@@ -134,15 +146,15 @@ const App:React.FC = () => {
     handleFolderBlocks(itemsArray);
   };
 
-  const deleteForever = (index:number) => {
+  const deleteForever = (index: number) => {
     const deletedItemsArray = deletedItems.slice();
     deletedItemsArray.splice(index, 1);
     setDeletedItems(deletedItemsArray);
   };
 
-  const convertArrayToObject = (array:any) => {
+  const convertArrayToObject = (array: any) => {
     const initialValue = {};
-    return array.reduce((obj:any, item:any) => {
+    return array.reduce((obj: any, item: any) => {
       return {
         ...obj,
         item,
@@ -151,12 +163,11 @@ const App:React.FC = () => {
   };
 
   const handleNameChange = (
-    type:string,
-    folderIndex:number,
-    blockName:string,
-    binderIndex:any,
-    studySetIndex:any,
-    
+    type: string,
+    folderIndex: number,
+    blockName: string,
+    binderIndex: any,
+    studySetIndex: any
   ) => {
     const newFolderBlocksArray = folderBlocks.slice();
     if (type === "folder") {
@@ -175,7 +186,7 @@ const App:React.FC = () => {
     setSidebar((prevState) => !prevState);
   };
 
-  const addFolderToNewArray = (newFolderBlocksArray:any) => {
+  const addFolderToNewArray = (newFolderBlocksArray: any) => {
     const newFolder = {
       name: "",
       type: "folder",
@@ -188,7 +199,10 @@ const App:React.FC = () => {
     return newFolderBlocksArray;
   };
 
-  const addBinderToNewArray = (newFolderBlocksArray:any, folderIndex:number) => {
+  const addBinderToNewArray = (
+    newFolderBlocksArray: any,
+    folderIndex: number
+  ) => {
     const newBinder = {
       name: "",
       type: "binder",
@@ -203,12 +217,12 @@ const App:React.FC = () => {
     return newFolderBlocksArray;
   };
 
-  const handleRestore = (type:string, deletedItemIndex:number) => {
+  const handleRestore = (type: string, deletedItemIndex: number) => {
     let itemsArray = folderBlocks.slice();
-    const findBinderIndexInArray = (item:any) => {
+    const findBinderIndexInArray = (item: any) => {
       return item.id === deletedItems[deletedItemIndex].folderId;
     };
-    const findStudySetIndexInArray = (item:any) => {
+    const findStudySetIndexInArray = (item: any) => {
       return item.id === deletedItems[deletedItemIndex].binderId;
     };
 
@@ -250,52 +264,56 @@ const App:React.FC = () => {
 
   return (
     <>
-      <Router>
-        <Sidebar
-          sidebar={sidebar}
-          hoverbar={hoverbar}
-          setHoverbar={setHoverbar}
-          handleSidebar={handleSidebar}
-          folderBlocks={folderBlocks}
-          handleFolderBlocks={handleFolderBlocks}
-          handleNameChange={handleNameChange}
-          addFolder={addFolder}
-          addBinder={addBinder}
-          addStudySet={addStudySet}
-          deleteBlock={deleteBlock}
-          deleteForever={deleteForever}
-          handleRestore={handleRestore}
-          deletedItems={deletedItems}
-        />
+      {loading ? (
+        <LoadingSpinner/>
+      ) : (
+        <Router>
+          <Sidebar
+            sidebar={sidebar}
+            hoverbar={hoverbar}
+            setHoverbar={setHoverbar}
+            handleSidebar={handleSidebar}
+            folderBlocks={folderBlocks}
+            handleFolderBlocks={handleFolderBlocks}
+            handleNameChange={handleNameChange}
+            addFolder={addFolder}
+            addBinder={addBinder}
+            addStudySet={addStudySet}
+            deleteBlock={deleteBlock}
+            deleteForever={deleteForever}
+            handleRestore={handleRestore}
+            deletedItems={deletedItems}
+          />
 
-        <Switch>
-          <Route path="/">
-            <MainFrame
-              folderBlocks={folderBlocks}
-              sidebar={sidebar}
-              handleSidebar={handleSidebar}
-              handleNameChange={handleNameChange}
-              handleFolderBlocks={handleFolderBlocks}
-              addBinder={addBinder}
-              addStudySet={addStudySet}
-              setHoverbar={setHoverbar}
-            />
-            <Redirect
-              to={{
-                pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
-                state: {
-                  type: folderBlocks[0].type,
-                  name: folderBlocks[0].name,
-                  folderIndex: 0,
-                  iconColour: folderBlocks[0].iconColour,
-                },
-              }}
-            />
-          </Route>
-        </Switch>
-      </Router>
+          <Switch>
+            <Route path="/">
+              <MainFrame
+                folderBlocks={folderBlocks}
+                sidebar={sidebar}
+                handleSidebar={handleSidebar}
+                handleNameChange={handleNameChange}
+                handleFolderBlocks={handleFolderBlocks}
+                addBinder={addBinder}
+                addStudySet={addStudySet}
+                setHoverbar={setHoverbar}
+              />
+              <Redirect
+                to={{
+                  pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
+                  state: {
+                    type: folderBlocks[0].type,
+                    name: folderBlocks[0].name,
+                    folderIndex: 0,
+                    iconColour: folderBlocks[0].iconColour,
+                  },
+                }}
+              />
+            </Route>
+          </Switch>
+        </Router>
+      )}
     </>
   );
-}
+};
 
 export default App;
