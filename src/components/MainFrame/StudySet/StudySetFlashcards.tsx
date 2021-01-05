@@ -47,18 +47,17 @@ const StudySetFlashcards: React.FC<Props> = ({
 }) => {
   let location = useLocation<any>();
 
-
-   const handleTab = () => {
-    const newFolderBlocksArray = folderBlocks.slice();
+  const handleTab = () => {
+    const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
     newFolderBlocksArray[location.state.folderIndex].binders[
       location.state.binderIndex
-    ].studySets[location.state.studySetIndex].tab = "flashcards";
+    ].studySets[location.state.studySetIndex].tab = "flashcards"; // Invert folder block's open status
     handleFolderBlocks(newFolderBlocksArray);
   };
 
   useEffect(() => {
     handleTab();
-  }, [folderBlocks]);
+  }, [location.state]);
 
   return (
     <>

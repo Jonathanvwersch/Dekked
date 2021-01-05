@@ -112,16 +112,16 @@ const App:React.FC = () => {
     setFolderBlocks(newFolderBlocksArray);
   };
 
-  const deleteBlock = (type:string, folderIndex:number, binderIndex?:number, studySetIndex?:number) => {
+  const deleteBlock = (type:string, folderIndex:number, binderIndex:any, studySetIndex:any) => {
     let itemsArray = folderBlocks.slice();
     let deletedItemsArray = [...deletedItems];
     let deleted;
 
-    if (type === "folder" && folderIndex) {
+    if (type === "folder") {
       deleted = itemsArray.splice(folderIndex, 1);
-    } else if (type === "binder" && folderIndex && binderIndex) {
+    } else if (type === "binder") {
       deleted = itemsArray[folderIndex].binders.splice(binderIndex, 1);
-    } else if (type === "studySet" && binderIndex && studySetIndex) {
+    } else if (type === "studySet") {
       deleted = itemsArray[folderIndex].binders[binderIndex].studySets.splice(
         studySetIndex,
         1

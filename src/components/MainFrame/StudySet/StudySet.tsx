@@ -46,13 +46,12 @@ interface Props {
   handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex:any, studySetIndex:any) => void;
   handleFolderBlocks: (newFolderBlocksArray:any) => void;
 }
-
 const StudySet:React.FC<Props> = ({
   folderBlocks,
   handleNameChange,
   handleFolderBlocks,
 }) => {
-  let location = useLocation<any>();
+  let location = useLocation();
   const titleRef = useRef<any>(null);
 
   const addFlashcard = () => {
@@ -88,20 +87,7 @@ const StudySet:React.FC<Props> = ({
 
   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
-      if (location.state.type === "folder") {
-        titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].name;
-      } else if (location.state.type === "binder") {
-        titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].binders[
-            location.state.binderIndex
-          ].name;
-      } else if (location.state.type === "studySet") {
-        titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].binders[
-            location.state.binderIndex
-          ].studySets[location.state.studySetIndex].name;
-      }
+        titleRef.current.innerText =location.state.name
     }
   }, [folderBlocks, location.state]);
 

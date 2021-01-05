@@ -4,6 +4,7 @@
     border-radius:2px!important;
     box-shadow:none!important;
     filter: var(--drop-shadow);
+    user-select:none;
 }
 
 .colourPicker .block-picker div
