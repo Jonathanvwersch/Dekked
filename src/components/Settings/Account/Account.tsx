@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Button from "../Buttons/Button";
+import Button from "../../Buttons/Button/Button";
 import "./Account.css";
 import ChangePassword from "./ChangePassword";
-import Portal from "../General/Portal";
+import Portal from "../../General/Portal/Portal";
 
 
 const Account:React.FC = () => {
@@ -23,7 +23,7 @@ const Account:React.FC = () => {
         </div>
         <div id="accountPersonalInfo">
           <span className="p1">Personal Info</span>
-          <div id="account-input">
+          <div id="accountInput">
             <div>
               <label htmlFor="firstName" className="p3 grey">First name</label>
               <input id="firstName" type="text"></input>

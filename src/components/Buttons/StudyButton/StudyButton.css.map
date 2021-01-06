@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,4BAA4B,CAAC;EACzB,OAAO,EAAC,IAAI;EACZ,cAAc,EAAE,MAAM;EACtB,WAAW,EAAC,MAAM;EAClB,eAAe,EAAC,MAAM;EACtB,WAAW,EAAC,IAAI;EAChB,GAAG,EAAC,GAAG;CACV;;AAED,AAAA,mBAAmB,CAAA;EACf,KAAK,EAAC,KAAK;EACX,MAAM,EAAC,IAAI;EACX,aAAa,EAAC,GAAG;CACpB",
+    "sources": [
+        "StudyButton.scss"
+    ],
+    "names": [],
+    "file": "StudyButton.css"
+}

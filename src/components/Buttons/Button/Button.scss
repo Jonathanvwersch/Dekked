@@ -1,0 +1,20 @@
+.dekked-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 16px;
+    border-radius: 5px;
+    height: 22px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dekked-button[disabled] {
+    background: var(--grey-2);
+    cursor: auto;
+    color: var(--white);
+    pointer-events: none;
+    
+}
+

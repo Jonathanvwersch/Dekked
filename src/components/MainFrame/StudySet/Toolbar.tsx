@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import "./Toolbar.css";
 import {TextBlockDataFull, TextBlockDataHalf} from "./TextBlockData";
-import Portal from "../../General/Portal";
-import Block from "../../General/Block";
+import Portal from "../../General/Portal/Portal";
+import Block from "../../General/Block/Block";
 interface Props {
   type?:string;  
 }

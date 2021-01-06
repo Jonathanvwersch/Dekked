@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Buttons/Button";
+import Button from "../../Buttons/Button/Button";
 import "./DeleteModal.css";
 
 interface Props {

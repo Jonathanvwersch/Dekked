@@ -1,5 +1,5 @@
 import React from "react";
-import StudyQueue from "../General/StudyQueue";
+import StudyQueue from "../General/StudyQueue/StudyQueue";
 import TopBar from "./TopBar";
 import { useLocation } from "react-router";
 import "./MainFrame.css";

@@ -11,21 +11,12 @@
     cursor:pointer;
     padding-left:16px;
     gap:8px;
-}
 
-.dekked-block:hover{
-    background:var(--white-hover);
-}
+    &:hover {
+        background:var(--white-hover);
+    }
 
-.dekked-block:active{
-    background:var(--white-clicked);
+    &:active{
+        background:var(--white-clicked);
+    }
 }
-
-.dekked-block.off-beige:hover{
-    background:var(--off-beige-hover);
-}
-
-.dekked-block.off-beige:active{
-    background:var(--off-beige-clicked);
-}
-

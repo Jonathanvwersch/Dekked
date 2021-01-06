@@ -1,0 +1,27 @@
+.dekked-studyButtonContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  gap: 8px;
+}
+
+.dekked-studyButton {
+  width: 210px;
+  height: 40px;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=StudyButton.css.map */

@@ -9,7 +9,7 @@ import {
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
 import { v4 as uuidv4 } from "uuid";
-import { LoadingSpinner } from "./components/General/LoadingSpinner";
+import { LoadingSpinner } from "./components/General/LoadingSpinner/LoadingSpinner";
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);

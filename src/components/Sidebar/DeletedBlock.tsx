@@ -4,8 +4,8 @@ import { ReactComponent as FolderIcon } from "../../custom-icons/folder.svg";
 import { ReactComponent as BinderIcon } from "../../custom-icons/binder.svg";
 import { ReactComponent as StudySetIcon } from "../../custom-icons/studyset.svg";
 import "./DeletedBlock.css";
-import Portal from "../General/Portal";
-import DeleteModal from "../General/DeleteModal";
+import Portal from "../General/Portal/Portal";
+import DeleteModal from "../General/DeleteModal/DeleteModal";
 
 interface Props {
   name:string;

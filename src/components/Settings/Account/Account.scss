@@ -1,0 +1,59 @@
+
+/* Title Styling */
+.account {
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+    h3 {
+        border-bottom: 0.5px solid var(--grey-3);
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    input {
+        width: 100%;
+    }
+
+
+    #accountAvatarContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-bottom: 0.5px solid var(--grey-3);
+        padding-bottom: 16px;
+
+        #accountAvatarButton {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+
+            #accountAvatar {
+                width: 54px;
+                height: 54px;
+                background: var(--primary-color);
+                border-radius: 50%;
+                border-bottom: 0.5px solid var(--grey-3);
+            }
+        }
+    }
+
+    #accountPersonalInfo {
+        border-bottom: 0.5px solid var(--grey-3);
+        padding-bottom: 16px;
+    }
+
+    #accountPassword button {
+        margin-top: 8px;
+    }
+
+}
+
+
+
+
+
+
+
+

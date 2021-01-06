@@ -1,0 +1,69 @@
+/* Title Styling */
+.account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 16px;
+}
+
+.account h3 {
+  border-bottom: 0.5px solid var(--grey-3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.account input {
+  width: 100%;
+}
+
+.account #accountAvatarContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+  border-bottom: 0.5px solid var(--grey-3);
+  padding-bottom: 16px;
+}
+
+.account #accountAvatarContainer #accountAvatarButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 16px;
+}
+
+.account #accountAvatarContainer #accountAvatarButton #accountAvatar {
+  width: 54px;
+  height: 54px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border-bottom: 0.5px solid var(--grey-3);
+}
+
+.account #accountPersonalInfo {
+  border-bottom: 0.5px solid var(--grey-3);
+  padding-bottom: 16px;
+}
+
+.account #accountPassword button {
+  margin-top: 8px;
+}
+/*# sourceMappingURL=Account.css.map */

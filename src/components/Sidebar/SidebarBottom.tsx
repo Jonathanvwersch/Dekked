@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Portal from "../General/Portal";
-import Block from "../General/Block";
+import Portal from "../General/Portal/Portal";
+import Block from "../General/Block/Block";
 import DeletedBlock from "./DeletedBlock";
 import "./SidebarBottom.css";
 import * as Icons from "react-icons/md";

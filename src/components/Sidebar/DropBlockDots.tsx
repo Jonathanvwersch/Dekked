@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ColourPicker from "./ColourPicker";
-import Block from "../General/Block";
-import Portal from "../General/Portal";
+import Block from "../General/Block/Block";
+import Portal from "../General/Portal/Portal";
 import { NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {MdMoreHoriz} from "react-icons/md";

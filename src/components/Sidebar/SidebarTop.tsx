@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import chevronDoubleLeft from "@iconify/icons-mdi/chevron-double-left";
 import { ProfileData } from "./ProfileData";
-import Settings from "../Settings/Settings";
-import Portal from "../General/Portal";
+import Settings from "../Settings/Settings/Settings";
+import Portal from "../General/Portal/Portal";
 import "./SidebarTop.css";
-import Block from "../General/Block";
+import Block from "../General/Block/Block";
 import { MdArrowDropDown } from "react-icons/md";
 
 interface Props {

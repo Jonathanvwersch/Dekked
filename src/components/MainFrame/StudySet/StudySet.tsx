@@ -4,7 +4,7 @@ import { useLocation } from "react-router";
 import Toolbar from "./Toolbar";
 import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
-import Button from "../../Buttons/Button";
+import Button from "../../Buttons/Button/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
 import { StudySetTabs } from "./StudySetTabs";
