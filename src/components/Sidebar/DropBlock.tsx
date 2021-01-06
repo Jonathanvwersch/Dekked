@@ -151,18 +151,21 @@ const DropBlock: React.FC<Props> = ({
           },
         }}
       >
-          <div
-            className={
-              item.isOpen
-                ? `icon active dropDownArrow down ${item.type}`
-                : `icon active dropDownArrow right  ${item.type}`
-            }
-            onClick={() => {
-              openDropBlock(item.type, folderIndex, binderIndex);
-            }}
-          >
-            {item.type !== "studySet" ? <Icons.MdArrowDropDown /> : null}
-          </div>
+        <div role="button" className={`dekked-dropBlock ${item.type}`}>
+          {item.type !== "studySet" ? (
+            <div
+              className={
+                item.isOpen
+                  ? `icon active dropDownArrow down`
+                  : `icon active dropDownArrow right`
+              }
+              onClick={() => {
+                openDropBlock(item.type, folderIndex, binderIndex);
+              }}
+            >
+              <Icons.MdArrowDropDown />
+            </div>
+          ) : null}
           <div className={`icon ${item.type}`}>
             {item.type === "folder" ? (
               <FolderIcon fill={iconColour} />
@@ -192,6 +195,7 @@ const DropBlock: React.FC<Props> = ({
             contentEditable={editableName}
             className="p2"
           ></span>
+        </div>
       </NavLink>
       <DropBlockDots
         item={item}
