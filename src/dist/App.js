@@ -21,8 +21,8 @@ exports.__esModule = true;
 require("./App.css");
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
-var Sidebar_1 = require("./components/Sidebar/Sidebar");
-var MainFrame_1 = require("./components/MainFrame/MainFrame");
+var Sidebar_1 = require("./components/Sidebar/Sidebar/Sidebar");
+var MainFrame_1 = require("./components/MainFrame/MainFrame/MainFrame");
 var uuid_1 = require("uuid");
 var LoadingSpinner_1 = require("./components/General/LoadingSpinner/LoadingSpinner");
 var App = function () {

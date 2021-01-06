@@ -1,0 +1,89 @@
+.dekked-dropBlockContainer {
+    position:relative;
+    height:30px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    cursor: pointer;
+
+    a{
+    width:100%;
+}
+
+    &:hover {
+        background: var(--off-beige-hover);
+
+        #dropBlockDots {
+            opacity: 1;
+        }
+
+        .dekked-dropBlock {
+            padding-right: 28px;
+        }
+    }
+
+
+    .dekked-dropBlock {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        gap: 8px;
+        height: 30px;
+        width: 100%;
+        z-index: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+        background:inherit;
+    
+        span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+            &[contenteditable=true] {
+                text-overflow: clip;
+            }
+
+            &:empty:before {
+                content: 'Untitled';
+            }
+            
+        }
+
+        .icon.dropDownArrow.right {
+            transform: rotate(-90deg);
+        }
+
+     
+    }
+
+    #dropBlockDots {
+        will-change: opacity;
+        position: absolute;
+        right: 8px;
+        opacity: 0;
+        z-index: 1;
+
+    }
+}
+
+.dropdownMenu.dropBlocks {
+    position: absolute;
+    transform: translate(0, 15px);
+}
+
+.dekked-dropBlock.binder{
+    padding-left:24px;
+}
+
+/* Style study set dropblocks */
+.dekked-dropBlock.studySet{
+   padding-left:56px;
+}
+
+
+
+
+

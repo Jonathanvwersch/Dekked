@@ -8,7 +8,7 @@ import Button from "../../Buttons/Button/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
 import { StudySetTabs } from "./StudySetTabs";
-import { PageTitle } from "../PageTitle";
+import { PageTitle } from "../PageTitle/PageTitle";
 
 interface Props {
   folderBlocks:{

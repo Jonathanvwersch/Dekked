@@ -82,7 +82,7 @@
   overflow: auto;
 }
 
-.dekked-settings .dekked-settingsMainFrame #save-changes {
+.dekked-settings .dekked-settingsMainFrame #saveChanges {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

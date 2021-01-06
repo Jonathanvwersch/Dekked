@@ -7,7 +7,7 @@ var react_router_dom_1 = require("react-router-dom");
 var Card_1 = require("./Card");
 var Button_1 = require("../../Buttons/Button/Button");
 var uuid_1 = require("uuid");
-var PageTitle_1 = require("../PageTitle");
+var PageTitle_1 = require("../PageTitle/PageTitle");
 var FolderBinder = function (_a) {
     var folderBlocks = _a.folderBlocks, handleNameChange = _a.handleNameChange, addStudySet = _a.addStudySet, addBinder = _a.addBinder;
     var location = react_router_1.useLocation();

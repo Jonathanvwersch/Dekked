@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import Button from "../../Buttons/Button/Button";
 import { v4 as uuidv4 } from "uuid";
-import { PageTitle } from "../PageTitle";
+import { PageTitle } from "../PageTitle/PageTitle";
 
 interface Props {
   folderBlocks:{

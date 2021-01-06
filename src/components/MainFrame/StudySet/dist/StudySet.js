@@ -10,7 +10,7 @@ var Button_1 = require("../../Buttons/Button/Button");
 var LinkedFlashcard_1 = require("./LinkedFlashcard");
 var uuid_1 = require("uuid");
 var StudySetTabs_1 = require("./StudySetTabs");
-var PageTitle_1 = require("../PageTitle");
+var PageTitle_1 = require("../PageTitle/PageTitle");
 var StudySet = function (_a) {
     var folderBlocks = _a.folderBlocks, handleNameChange = _a.handleNameChange, handleFolderBlocks = _a.handleFolderBlocks;
     var location = react_router_1.useLocation();

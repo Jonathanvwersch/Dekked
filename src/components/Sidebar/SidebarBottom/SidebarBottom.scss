@@ -1,0 +1,41 @@
+.sidebarBottom {
+  display:block;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  user-select:none;
+
+  .addBlock {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 40px;
+    place-items: center;
+    border-top: 0.5px solid var(--grey-3);
+    background: var(--off-beige);
+    padding-left:16px;
+    gap:8px;
+
+    &:hover {
+        background-color: var(--off-beige-hover);
+        cursor: pointer;
+    }
+
+    &:active {
+      background: var(--off-beige-clicked);
+    }
+  }
+
+  .deleteBlockContainer {
+    position: fixed;
+    width: 250px;
+    height: 280px;
+    bottom: 55px;
+    left: 210px;
+    overflow-y: auto;
+    user-select: none;
+  }
+
+
+}
+

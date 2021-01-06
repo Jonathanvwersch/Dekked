@@ -1,0 +1,49 @@
+.sidebarBottom {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.sidebarBottom .addBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+  height: 40px;
+  place-items: center;
+  border-top: 0.5px solid var(--grey-3);
+  background: var(--off-beige);
+  padding-left: 16px;
+  gap: 8px;
+}
+
+.sidebarBottom .addBlock:hover {
+  background-color: var(--off-beige-hover);
+  cursor: pointer;
+}
+
+.sidebarBottom .addBlock:active {
+  background: var(--off-beige-clicked);
+}
+
+.sidebarBottom .deleteBlockContainer {
+  position: fixed;
+  width: 250px;
+  height: 280px;
+  bottom: 55px;
+  left: 210px;
+  overflow-y: auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+/*# sourceMappingURL=SidebarBottom.css.map */

@@ -1,0 +1,98 @@
+.dekked-dropBlockContainer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  cursor: pointer;
+}
+
+.dekked-dropBlockContainer a {
+  width: 100%;
+}
+
+.dekked-dropBlockContainer:hover {
+  background: var(--off-beige-hover);
+}
+
+.dekked-dropBlockContainer:hover #dropBlockDots {
+  opacity: 1;
+}
+
+.dekked-dropBlockContainer:hover .dekked-dropBlock {
+  padding-right: 28px;
+}
+
+.dekked-dropBlockContainer .dekked-dropBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 8px;
+  height: 30px;
+  width: 100%;
+  z-index: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  background: inherit;
+}
+
+.dekked-dropBlockContainer .dekked-dropBlock span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dekked-dropBlockContainer .dekked-dropBlock span[contenteditable=true] {
+  text-overflow: clip;
+}
+
+.dekked-dropBlockContainer .dekked-dropBlock span:empty:before {
+  content: 'Untitled';
+}
+
+.dekked-dropBlockContainer .dekked-dropBlock .icon.dropDownArrow.right {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.dekked-dropBlockContainer #dropBlockDots {
+  will-change: opacity;
+  position: absolute;
+  right: 8px;
+  opacity: 0;
+  z-index: 1;
+}
+
+.dropdownMenu.dropBlocks {
+  position: absolute;
+  -webkit-transform: translate(0, 15px);
+          transform: translate(0, 15px);
+}
+
+.dekked-dropBlock.binder {
+  padding-left: 24px;
+}
+
+/* Style study set dropblocks */
+.dekked-dropBlock.studySet {
+  padding-left: 56px;
+}
+/*# sourceMappingURL=DropBlock.css.map */

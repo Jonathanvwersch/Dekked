@@ -1,0 +1,57 @@
+.dekked-settings {
+  filter: var(--drop-shadow);
+  width: 850px;
+  max-width: calc(100vw - 100px);
+  height: calc(100vh - 100px);
+  max-height: 600px;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--general-border-radius);
+}
+.dekked-settings .dekked-settingsSidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 175px;
+  border-right: 0.5px solid var(--grey-3);
+  background-color: var(--off-beige);
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.dekked-settings .dekked-settingsSidebar .title {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--grey-1);
+  padding-left: 16px;
+}
+.dekked-settings .dekked-settingsSidebar .dekked-block {
+  background: var(--off-beige-clicked);
+}
+.dekked-settings .dekked-settingsMainFrame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+}
+.dekked-settings .dekked-settingsMainFrame #settingsContent {
+  flex-grow: 1;
+  padding: 36px 60px 36px 60px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  overflow: auto;
+}
+.dekked-settings .dekked-settingsMainFrame #saveChanges {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 0.5px solid var(--grey-3);
+  height: 60px;
+  padding-left: 60px;
+}

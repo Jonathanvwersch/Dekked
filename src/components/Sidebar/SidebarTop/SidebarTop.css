@@ -1,0 +1,77 @@
+.sidebarTop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 60px;
+  width: 100%;
+  border-bottom: 0.5px solid var(--grey-3);
+  padding-left: 16px;
+  padding-right: 8px;
+}
+
+.sidebarTop .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 28px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  place-items: center;
+}
+
+.sidebarTop .profile .p1.avatar {
+  color: white;
+}
+
+.sidebarTop .profile .p3 {
+  text-overflow: ellipsis;
+  max-width: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebarTop .profile .avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: var(--primary-color);
+  border-radius: 100px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+}
+
+.sidebarTop .profile .icon.chevronDoubleLeft {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+
+.sidebarTop .profile .icon.dropDownArrow.down {
+  margin-left: 12px;
+}
+
+.settingsMenu {
+  position: absolute;
+  top: 38px;
+  left: 108px;
+}
+/*# sourceMappingURL=SidebarTop.css.map */

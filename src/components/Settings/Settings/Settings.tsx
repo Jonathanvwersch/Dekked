@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../Buttons/Button/Button";
 import Block from "../../General/Block/Block";
-import Account from "../Account/Account";
+import Account from "../Account/Account/Account";
 import "./Settings.css";
 import { SettingsData } from "./SettingsData";
 
