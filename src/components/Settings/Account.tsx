@@ -25,12 +25,12 @@ const Account:React.FC = () => {
           <span className="p1">Personal Info</span>
           <div id="account-input">
             <div>
-              <span className="p3 grey">First name</span>
-              <input type="text"></input>
+              <label htmlFor="firstName" className="p3 grey">First name</label>
+              <input id="firstName" type="text"></input>
             </div>
             <div>
-              <span className="p3 grey">Last name</span>
-              <input type="text"></input>
+              <label htmlFor="lastName" className="p3 grey">Last name</label>
+              <input id="lastName" type="text"></input>
             </div>
           </div>
         </div>

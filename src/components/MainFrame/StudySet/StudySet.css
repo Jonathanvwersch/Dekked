@@ -60,3 +60,10 @@
         padding-right: calc(25px + env(safe-area-inset-right));
     }
 }
+
+.studySetButtons {
+    display:flex;
+    flex-direction:row;
+    gap:32px;
+
+}

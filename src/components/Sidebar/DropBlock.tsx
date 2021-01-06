@@ -129,7 +129,7 @@ const DropBlock: React.FC<Props> = ({
   };
 
   return (
-    <>
+    <div className="dekked-dropBlockContainer">
       <NavLink
         activeStyle={{
           background: "var(--off-beige-clicked)",
@@ -151,7 +151,6 @@ const DropBlock: React.FC<Props> = ({
           },
         }}
       >
-        <div role="button" className="dekked-dropBlock">
           <div
             className={
               item.isOpen
@@ -193,22 +192,21 @@ const DropBlock: React.FC<Props> = ({
             contentEditable={editableName}
             className="p2"
           ></span>
-          <DropBlockDots
-            item={item}
-            handleFolderBlocks={handleFolderBlocks}
-            handleRename={handleRename}
-            handleDelete={handleDelete}
-            handleAddItem={handleAddItem}
-            setIconColour={setIconColour}
-            iconColour={iconColour}
-            folderBlocks={folderBlocks}
-            studySetIndex={studySetIndex}
-            folderIndex={folderIndex}
-            binderIndex={binderIndex}
-          ></DropBlockDots>
-        </div>
       </NavLink>
-    </>
+      <DropBlockDots
+        item={item}
+        handleFolderBlocks={handleFolderBlocks}
+        handleRename={handleRename}
+        handleDelete={handleDelete}
+        handleAddItem={handleAddItem}
+        setIconColour={setIconColour}
+        iconColour={iconColour}
+        folderBlocks={folderBlocks}
+        studySetIndex={studySetIndex}
+        folderIndex={folderIndex}
+        binderIndex={binderIndex}
+      ></DropBlockDots>
+    </div>
   );
 };
 export default DropBlock;

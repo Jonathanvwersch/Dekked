@@ -1,32 +1,21 @@
-.dekked-dropBlock {
-    position:relative;
+.dekked-dropBlockContainer {
+    width:100%;
+    height:30px;
     display:flex;
     justify-content:flex-start;
     align-items:center;
     flex-direction:row;
-    width:100%;
-    height:30px;
+    padding-left:12px;
 }
 
-.dropdownMenu.dropBlocks {
-    position: absolute;
-    transform: translate(0, 15px);
+.dekked-dropBlockContainer a {
+    width:100%;
 }
 
 .dekked-dropBlock .icon{
     margin-right:8px;
 }
 
-.dekked-dropBlock #dropBlockDots{
-    will-change: opacity;
-    position:absolute;
-    right:0;
-    opacity:0;
-}
-
-.dekked-dropBlock:hover #dropBlockDots{
-    opacity:1;
-}
 
 .dekked-dropBlock span{
     text-overflow:ellipsis;

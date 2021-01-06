@@ -1,0 +1,12 @@
+.studySetSwitcher{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    user-select: none;
+    gap:24px;  
+}
+
+
+.studySetSwitcher span:hover{
+   color:var(--primary-color);
+}

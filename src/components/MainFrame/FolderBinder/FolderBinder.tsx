@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import Button from "../../Buttons/Button";
 import { v4 as uuidv4 } from "uuid";
+import { PageTitle } from "../PageTitle";
 
 interface Props {
   folderBlocks:{
@@ -50,24 +51,12 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
   let location = useLocation();
   const titleRef = useRef<any>(null);
 
-  useEffect(() => {
+   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
-      if (location.state.type === "folder") {
-        titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].name;  
-      } else if (location.state.type === "binder") {
-        titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].binders[
-            location.state.binderIndex
-          ].name;
-      } else if (location.state.type === "studySet") {
-        titleRef.current.innerText =
-          folderBlocks[location.state.folderIndex].binders[
-            location.state.binderIndex
-          ].studySets[location.state.studySetIndex].name;
-      }
+        titleRef.current.innerText =location.state.name
     }
   }, [folderBlocks, location.state]);
+
 
   return (
     <>
@@ -75,31 +64,7 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
         <>
           <div className="dekked-pageHeaderContainer">
             <div className="dekked-pageHeader">
-              <h2
-                onDragOver={(e) => {
-                  e.preventDefault();
-                }}
-                onPaste={(e)=>{e.preventDefault();return false;}}
-                contentEditable={true}
-                ref={titleRef}
-                spellCheck={false}
-                onKeyDown={(e) => {
-                  if (location.state) {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                    }
-                    setTimeout(function () {
-                      handleNameChange(
-                        location.state.type,
-                        location.state.folderIndex,
-                        titleRef.current.innerText,
-                        location.state.binderIndex,
-                        location.state.studySetIndex,
-                      );
-                    }, 100);
-                  }
-                }}
-              ></h2>
+              <PageTitle titleRef={titleRef} handleNameChange={handleNameChange}/>
               <div className="buttonQuantity">
                 <span className="p2">
                   {location.state

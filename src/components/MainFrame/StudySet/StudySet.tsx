@@ -2,12 +2,13 @@ import "./StudySet.css";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
 import Toolbar from "./Toolbar";
-import { NavLink } from "react-router-dom";
 import StudySetNotes from "./StudySetNotes";
 import StudySetFlashcards from "./StudySetFlashcards";
 import Button from "../../Buttons/Button";
 import LinkedFlashcard from "./LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
+import { StudySetTabs } from "./StudySetTabs";
+import { PageTitle } from "../PageTitle";
 
 interface Props {
   folderBlocks:{
@@ -103,91 +104,9 @@ const StudySet:React.FC<Props> = ({
                 ) : (
                   <div></div>
                 )}
-                <div id="studySetSwitcher">
-                  {location.state ? (
-                    <>
-                      <NavLink
-                        activeStyle={{
-                          textDecoration: "underline",
-                          textDecorationColor: "var(--primary-color)",
-                          color: "var(--main-black)!important",
-                          fontWeight: "bold",
-                          textDecorationThickness: "2px",
-                        }}
-                        to={{
-                          pathname: `/studySet/notes/${
-                            folderBlocks[location.state.folderIndex].binders[
-                              location.state.binderIndex
-                            ].studySets[location.state.studySetIndex].id
-                          }`,
-                          state: {
-                            name: location.state.name,
-                            type: location.state.type,
-                            folderIndex: location.state.folderIndex,
-                            binderIndex: location.state.binderIndex,
-                            studySetIndex: location.state.studySetIndex,
-                            tab: "notes",
-                          },
-                        }}
-                      >
-                        <span className="p1">Notes</span>
-                      </NavLink>
-
-                      <NavLink
-                        activeStyle={{
-                          textDecoration: "underline",
-                          textDecorationColor: "var(--primary-color)",
-                          color: "var(--main-black)",
-                          fontWeight: "bold",
-                          textDecorationThickness: "2px",
-                        }}
-                        to={{
-                          pathname: `/studySet/flashcards/${
-                            folderBlocks[location.state.folderIndex].binders[
-                              location.state.binderIndex
-                            ].studySets[location.state.studySetIndex].id
-                          }`,
-                          state: {
-                            name: location.state.name,
-                            type: location.state.type,
-                            folderIndex: location.state.folderIndex,
-                            binderIndex: location.state.binderIndex,
-                            studySetIndex: location.state.studySetIndex,
-                            tab: "flashcards",
-                          },
-                        }}
-                      >
-                        <span className="p1">Flashcards</span>
-                      </NavLink>
-                    </>
-                  ) : null}
-                </div>
+              <StudySetTabs folderBlocks={folderBlocks}/>
               </div>
-              <h2
-                contentEditable={true}
-                onDragOver={(e) => {
-                  e.preventDefault();
-                }}
-                onPaste={(e)=>{e.preventDefault();return false;}}
-                ref={titleRef}
-                spellCheck={false}
-                onKeyDown={(e) => {
-                  if (location.state) {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                    }
-                    setTimeout(function () {
-                      handleNameChange(
-                        location.state.type,
-                        location.state.folderIndex,
-                        titleRef.current.innerText,
-                        location.state.binderIndex,
-                        location.state.studySetIndex,
-                      );
-                    }, 100);
-                  }
-                }}
-              ></h2>
+              <PageTitle titleRef={titleRef} handleNameChange={handleNameChange}/>
               {location.state.tab === "flashcards" ? (
                 <div className="buttonQuantity studySet">
                   <span
@@ -201,14 +120,12 @@ const StudySet:React.FC<Props> = ({
                         .length
                     } Flashcard(s)`}
                   </span>
-                  <div style={{ display: "flex" }}>
-                    <div style={{ marginRight: "32px" }}>
+                  <div className="studySetButtons">
                       <Button
                         handleClick={addFlashcard}
                         type="secondary"
                         action="Add flashcard"
                       />
-                    </div>
                     <Button disabled type="primary" action="Study" />
                   </div>
                 </div>

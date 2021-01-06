@@ -310,17 +310,6 @@ a{
   }
 }
 
-.dekkedPageHeader h2 {
-    cursor:text;
-}
-
-
-.dekked-pageHeader h2:empty:before {
-    content: 'Untitled';
-    color:var(--grey-2);
-    cursor:text;
-}
-
 .buttonQuantity span{
     color:var(--grey-2);
     user-select: none;
