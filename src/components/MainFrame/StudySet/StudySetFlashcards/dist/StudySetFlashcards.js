@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var react_router_1 = require("react-router");
-var Flashcard_1 = require("../../Flashcard/Flashcard");
+var Flashcard_1 = require("../Flashcard/Flashcard");
 var StudySetFlashcards = function (_a) {
     var folderBlocks = _a.folderBlocks, handleFolderBlocks = _a.handleFolderBlocks, deleteFlashcard = _a.deleteFlashcard;
     var location = react_router_1.useLocation();

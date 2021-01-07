@@ -1,0 +1,33 @@
+ .breadcrumbs {
+     display: flex;
+     align-items: center;
+     height: 100%;
+     gap: 4px;
+
+     span.p2 {
+         text-overflow: ellipsis;
+         overflow: hidden;
+         white-space: nowrap;
+         max-width: 140px;
+     }
+
+     #slash {
+         margin-left: 4px;
+         margin-right: 4px;
+         color: var(--grey-2);
+         font-size: 14px;
+     }
+
+     a {
+         display: flex;
+         align-items: center;
+         gap: 4px;
+         padding: 2px;
+
+         &:hover {
+             background: var(--off-beige);
+             border-radius: var(--general-border-radius);
+         }
+     }
+
+ }

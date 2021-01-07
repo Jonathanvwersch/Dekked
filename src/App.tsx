@@ -6,8 +6,8 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Sidebar from "./components/Sidebar/Sidebar/Sidebar";
-import MainFrame from "./components/MainFrame/MainFrame/MainFrame";
+import Sidebar from "./components/Sidebar/Sidebar";
+import MainFrame from "./components/MainFrame/MainFrame";
 import { v4 as uuidv4 } from "uuid";
 import { LoadingSpinner } from "./components/General/LoadingSpinner/LoadingSpinner";
 

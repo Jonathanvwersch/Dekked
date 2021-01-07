@@ -35,47 +35,6 @@
   gap: 24px;
 }
 
-.dekked-topBarOuter .dekked-topBar .breadcrumbs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 100%;
-  gap: 4px;
-}
-
-.dekked-topBarOuter .dekked-topBar .breadcrumbs span.p2 {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 140px;
-}
-
-.dekked-topBarOuter .dekked-topBar .breadcrumbs #slash {
-  margin-left: 4px;
-  margin-right: 4px;
-  color: var(--grey-2);
-  font-size: 14px;
-}
-
-.dekked-topBarOuter .dekked-topBar .breadcrumbs a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 4px;
-  padding: 2px;
-}
-
-.dekked-topBarOuter .dekked-topBar .breadcrumbs a:hover {
-  background: var(--off-beige);
-  border-radius: var(--general-border-radius);
-}
-
 @media only screen and (max-width: 588px) {
   .dekked-topBar span.p2 {
     max-width: 60px;

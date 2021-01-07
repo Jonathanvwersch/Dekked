@@ -1,10 +1,10 @@
 import React from "react";
-import StudyQueue from "../../General/StudyQueue/StudyQueue";
-import TopBar from "../TopBar/TopBar";
+import StudyQueue from "../General/StudyQueue/StudyQueue";
+import TopBar from "./TopBar/TopBar";
 import { useLocation } from "react-router";
 import "./MainFrame.css";
-import FolderBinder from "../FolderBinder/FolderBinder";
-import StudySet from "../StudySet/StudySet/StudySet";
+import FolderBinder from "./FolderBinder/FolderBinder";
+import StudySet from "./StudySet/StudySet";
 
 interface Props {
   sidebar:boolean;

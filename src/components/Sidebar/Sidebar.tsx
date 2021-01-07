@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "./Sidebar.css";
-import SidebarTop from "../SidebarTop/SidebarTop";
-import SidebarBottom from "../SidebarBottom/SidebarBottom";
-import { useMousePosition } from "../../../custom-hooks/useMousePosition";
-import { SidebarWorkspace } from "../SidebarWorkspace/SidebarWorkspace";
+import SidebarTop from "./SidebarTop/SidebarTop";
+import SidebarBottom from "./SidebarBottom/SidebarBottom";
+import { useMousePosition } from "../../custom-hooks/useMousePosition";
+import { SidebarWorkspace } from "./SidebarWorkspace/SidebarWorkspace";
 
 interface Props {
   sidebar: boolean;
