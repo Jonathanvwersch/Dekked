@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,aAAa,CAAC;EACV,MAAM,EAAC,OAAO;EACd,OAAO,EAAE,IAAI;EACb,eAAe,EAAC,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,QAAQ;EACjB,UAAU,EAAE,gBAAgB;EAC5B,aAAa,EAAE,eAAe;EAC9B,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;CACf",
+    "sources": [
+        "FlashcardTab.scss"
+    ],
+    "names": [],
+    "file": "FlashcardTab.css"
+}

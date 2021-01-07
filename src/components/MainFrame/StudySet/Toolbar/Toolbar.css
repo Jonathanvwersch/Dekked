@@ -1,0 +1,51 @@
+.toolbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 16px;
+  gap: 8px;
+}
+
+.toolbar #switchBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.toolbar #switchBlock:hover .icon {
+  color: var(--primary-color);
+}
+
+.toolbar #switchBlock:active .icon {
+  color: var(--primary-color-hover);
+}
+
+.toolbar #switchBlock
+.toolbar #divider {
+  height: 16px;
+  width: 1px;
+  background-color: var(--main-black);
+}
+
+.toolbar.half .icon {
+  height: 14px;
+  width: 14px;
+}
+/*# sourceMappingURL=Toolbar.css.map */

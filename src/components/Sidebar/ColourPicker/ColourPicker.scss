@@ -1,0 +1,30 @@
+.colourPicker 
+{
+    position: absolute;
+    transform: translate(0, 15px);
+
+    .block-picker {
+        color:white!important;
+        border-radius:2px!important;
+        box-shadow:none!important;
+        filter: var(--drop-shadow);
+        user-select:none;
+
+        div {
+            text-transform: capitalize !important;
+            border-radius: 2px !important;
+            box-shadow: none !important;
+            color: transparent !important;
+        }
+
+        input {
+            color: var(--main-black) !important;
+            font-size: 12px !important;
+            border-radius: var(general-border-radius) !important;
+            border: 0.5px var(--grey-2) !important;
+            font-family: 'DM Sans', sans-serif !important;
+            background: var(--off-beige);
+        }
+
+    }
+}

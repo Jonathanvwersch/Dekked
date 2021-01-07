@@ -4,9 +4,12 @@
     align-items:center;
     user-select: none;
     gap:24px;  
+
+    span {
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
 }
 
 
-.studySetSwitcher span:hover{
-   color:var(--primary-color);
-}

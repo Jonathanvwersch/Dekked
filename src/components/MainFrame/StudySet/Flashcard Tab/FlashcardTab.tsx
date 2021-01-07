@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./FlashcardTab.css";
-import { ReactComponent as LogoIcon } from "../../../custom-icons/logo.svg";
+import { ReactComponent as LogoIcon } from "../../../../custom-icons/logo.svg";
 
 interface Props {
   handleClick: () => any;

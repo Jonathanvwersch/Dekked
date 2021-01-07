@@ -1,14 +1,14 @@
 import "./StudySet.css";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import Toolbar from "./Toolbar";
-import StudySetNotes from "./StudySetNotes";
-import StudySetFlashcards from "./StudySetFlashcards";
-import Button from "../../Buttons/Button/Button";
-import LinkedFlashcard from "./LinkedFlashcard";
+import Toolbar from "../Toolbar/Toolbar";
+import StudySetNotes from "./StudySetNotes/StudySetNotes";
+import StudySetFlashcards from "./StudySetFlashcards/StudySetFlashcards";
+import Button from "../../../Buttons/Button/Button";
+import LinkedFlashcard from "../Linked Flashcard/LinkedFlashcard";
 import { v4 as uuidv4 } from "uuid";
-import { StudySetTabs } from "./StudySetTabs";
-import { PageTitle } from "../PageTitle/PageTitle";
+import { StudySetTabs } from "./StudySetTabs/StudySetTabs";
+import { PageTitle } from "../../PageTitle/PageTitle";
 
 interface Props {
   folderBlocks:{

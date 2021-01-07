@@ -1,31 +1,36 @@
-.colourPicker .block-picker
-{
-    color:white!important;
-    border-radius:2px!important;
-    box-shadow:none!important;
-    filter: var(--drop-shadow);
-    user-select:none;
-}
-
-.colourPicker .block-picker div
-{
-    text-transform: capitalize!important;
-    border-radius:2px!important;
-    box-shadow:none!important;
-    color:transparent!important;
-  
-}
-
-.colourPicker input{
-    color: var(--main-black)!important;
-    font-size: 12px!important;
-    border-radius:var(general-border-radius)!important;
-    border: 0.5px var(--grey-2) !important;
-    font-family: 'DM Sans', sans-serif!important;
-    background:var(--off-beige);
-}
-
 .colourPicker {
-    position: absolute;
-    transform: translate(0, 15px);
+  position: absolute;
+  -webkit-transform: translate(0, 15px);
+          transform: translate(0, 15px);
 }
+
+.colourPicker .block-picker {
+  color: white !important;
+  border-radius: 2px !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  -webkit-filter: var(--drop-shadow);
+          filter: var(--drop-shadow);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.colourPicker .block-picker div {
+  text-transform: capitalize !important;
+  border-radius: 2px !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  color: transparent !important;
+}
+
+.colourPicker .block-picker input {
+  color: var(--main-black) !important;
+  font-size: 12px !important;
+  border-radius: var(general-border-radius) !important;
+  border: 0.5px var(--grey-2) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  background: var(--off-beige);
+}
+/*# sourceMappingURL=ColourPicker.css.map */

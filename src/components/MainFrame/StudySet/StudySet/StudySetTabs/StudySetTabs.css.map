@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,CAAA;EACb,OAAO,EAAC,IAAI;EACZ,cAAc,EAAC,GAAG;EAClB,WAAW,EAAC,MAAM;EAClB,WAAW,EAAE,IAAI;EACjB,GAAG,EAAC,IAAI;CAOX;;AAZD,AAQQ,iBARS,CAOb,IAAI,AACC,MAAM,CAAC;EACJ,KAAK,EAAE,oBAAoB;CAC9B",
+    "sources": [
+        "StudySetTabs.scss"
+    ],
+    "names": [],
+    "file": "StudySetTabs.css"
+}

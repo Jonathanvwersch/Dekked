@@ -1,0 +1,30 @@
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 16px;
+  gap: 8px;
+}
+.toolbar #switchBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.toolbar #switchBlock:hover .icon {
+  color: var(--primary-color);
+}
+.toolbar #switchBlock:active .icon {
+  color: var(--primary-color-hover);
+}
+
+.toolbar #switchBlock .toolbar #divider {
+  height: 16px;
+  width: 1px;
+  background-color: var(--main-black);
+}
+
+.toolbar.half .icon {
+  height: 14px;
+  width: 14px;
+}

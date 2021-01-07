@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router";
-import Flashcard from "./Flashcard";
+import Flashcard from "../../Flashcard/Flashcard";
 
 interface Props {
   folderBlocks:{

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,yBAAyB,CAAC;EACtB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,OAAO,EAAC,IAAI;EACZ,WAAW,EAAE,MAAM;EACnB,cAAc,EAAC,MAAM;CACxB",
+    "sources": [
+        "LinkedFlashcard.scss"
+    ],
+    "names": [],
+    "file": "LinkedFlashcard.css"
+}

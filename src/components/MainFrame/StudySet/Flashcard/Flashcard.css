@@ -1,0 +1,90 @@
+.flashcardContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--off-beige);
+  border-radius: 5px;
+  padding: 16px 16px;
+}
+
+.flashcardContainer .flashcard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+}
+
+.flashcardContainer .flashcard .icon.delete,
+.flashcardContainer .flashcard .icon.save {
+  height: 14px;
+  width: 14px;
+}
+
+.flashcardContainer .flashcard .flashcardHeader {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flashcardContainer .flashcard .flashcardText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.flashcardContainer .flashcard .flashcardText .flashcardFront,
+.flashcardContainer .flashcard .flashcardText .flashcardBack {
+  position: relative;
+  background-color: white;
+  height: 100%;
+  min-height: 100px;
+  padding: 16px 16px;
+  width: 100%;
+}
+
+.flashcardContainer .flashcard .flashcardText .flashcardFront span,
+.flashcardContainer .flashcard .flashcardText .flashcardBack span {
+  color: var(--grey-1);
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .flashcardText {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+/*# sourceMappingURL=Flashcard.css.map */

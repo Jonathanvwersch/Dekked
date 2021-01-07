@@ -1,6 +1,6 @@
 import React from "react";
 import "./Flashcard.css";
-import Toolbar from "./Toolbar";
+import Toolbar from "../Toolbar/Toolbar";
 import { MdSave, MdDeleteForever } from "react-icons/md";
 
 interface Props {

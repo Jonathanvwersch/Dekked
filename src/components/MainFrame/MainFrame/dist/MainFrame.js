@@ -6,7 +6,7 @@ var TopBar_1 = require("../TopBar/TopBar");
 var react_router_1 = require("react-router");
 require("./MainFrame.css");
 var FolderBinder_1 = require("../FolderBinder/FolderBinder");
-var StudySet_1 = require("../StudySet/StudySet");
+var StudySet_1 = require("../StudySet/StudySet/StudySet");
 var MainFrame = function (_a) {
     var sidebar = _a.sidebar, handleSidebar = _a.handleSidebar, setHoverbar = _a.setHoverbar, folderBlocks = _a.folderBlocks, handleFolderBlocks = _a.handleFolderBlocks, handleNameChange = _a.handleNameChange, addBinder = _a.addBinder, addStudySet = _a.addStudySet;
     var location = react_router_1.useLocation();

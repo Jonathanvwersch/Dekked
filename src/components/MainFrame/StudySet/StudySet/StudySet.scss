@@ -6,11 +6,6 @@
     align-items:center;
 }
 
-#studySetSwitcher span:hover{
-   color:var(--primary-color);
-}
-
-
 @media only screen and (max-width: 740px) {
 
     #toolbarTab {
@@ -20,14 +15,6 @@
     #toolbarTab .toolbar {
         padding-top:32px;
     }
-}
-
-#studySetSwitcher{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    user-select: none;
-    gap:24px;  
 }
 
 @media only screen and (max-width: 740px) {
@@ -65,5 +52,4 @@
     display:flex;
     flex-direction:row;
     gap:32px;
-
 }
