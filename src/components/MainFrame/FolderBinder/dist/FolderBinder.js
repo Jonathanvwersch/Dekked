@@ -12,15 +12,10 @@ var FolderBinder = function (_a) {
     var folderBlocks = _a.folderBlocks, handleNameChange = _a.handleNameChange, addStudySet = _a.addStudySet, addBinder = _a.addBinder;
     var location = react_router_1.useLocation();
     var titleRef = react_1.useRef(null);
-    react_1.useEffect(function () {
-        if (location.state && document.activeElement !== titleRef.current) {
-            titleRef.current.innerText = location.state.item.name;
-        }
-    }, [folderBlocks, location.state]);
     return (react_1["default"].createElement(react_1["default"].Fragment, null, location.state ? (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: "dekked-pageHeaderContainer" },
             react_1["default"].createElement("div", { className: "dekked-pageHeader" },
-                react_1["default"].createElement(PageTitle_1.PageTitle, { titleRef: titleRef, handleNameChange: handleNameChange }),
+                react_1["default"].createElement(PageTitle_1.PageTitle, { folderBlocks: folderBlocks, handleNameChange: handleNameChange }),
                 react_1["default"].createElement("div", { className: "buttonQuantity" },
                     react_1["default"].createElement("span", { className: "p2" }, location.state
                         ? location.state.item.type === "folder"
@@ -49,12 +44,10 @@ var FolderBinder = function (_a) {
                     : folderBlocks[location.state.folderIndex].binders[location.state.binderIndex].studySets.map(function (item, index) { return (react_1["default"].createElement(react_router_dom_1.NavLink, { to: {
                             pathname: "/" + item.type + "/" + item.tab + "/" + item.id,
                             state: {
-                                type: item.type,
-                                name: item.name,
+                                item: item,
                                 folderIndex: location.state.folderIndex,
                                 binderIndex: location.state.binderIndex,
-                                studySetIndex: index,
-                                tab: item.tab
+                                studySetIndex: index
                             }
                         } },
                         react_1["default"].createElement(Card_1["default"], { key: uuid_1.v4(), name: item.name ? item.name : "Untitled", type: item.type, iconColour: item.iconColour }))); }))))) : null));

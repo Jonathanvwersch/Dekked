@@ -1,5 +1,5 @@
 import "./StudySet.css";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useLocation } from "react-router";
 import Toolbar from "./Toolbar/Toolbar";
 import StudySetNotes from "./StudySetNotes/StudySetNotes";
@@ -52,8 +52,8 @@ const StudySet:React.FC<Props> = ({
   handleNameChange,
   handleFolderBlocks,
 }) => {
-  let location = useLocation();
-  const titleRef = useRef<any>(null);
+  let location = useLocation()
+  const tab = location.state.item.tab;
 
   const addFlashcard = () => {
     const newFlashcard = {
@@ -86,12 +86,6 @@ const StudySet:React.FC<Props> = ({
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  useEffect(() => {
-    if (location.state && document.activeElement !== titleRef.current) {
-        titleRef.current.innerText =location.state.item.name
-    }
-  }, [folderBlocks, location.state]);
-
   return (
     <>
       {location.state ? (
@@ -99,15 +93,15 @@ const StudySet:React.FC<Props> = ({
           <div className="dekked-pageHeaderContainer studySet">
             <div className="dekked-pageHeader">
               <div id="toolbarTab">
-                {location.state && location.state.item.tab === "notes" ? (
+                {tab === "notes" ? (
                   <Toolbar type="full" />
                 ) : (
                   <div></div>
                 )}
               <StudySetTabs folderBlocks={folderBlocks}/>
               </div>
-              <PageTitle titleRef={titleRef} handleNameChange={handleNameChange}/>
-              {location.state.item.tab === "flashcards" ? (
+              <PageTitle folderBlocks={folderBlocks} handleNameChange={handleNameChange}/>
+              {tab === "flashcards" ? (
                 <div className="buttonQuantity studySet">
                   <span
                     className="p2"
@@ -135,7 +129,7 @@ const StudySet:React.FC<Props> = ({
 
           <div className="dekked-pageContentContainer">
             <div className="dekked-pageContent studySet">
-              {location.state.item.tab === "notes" ? (
+              {tab === "notes" ? (
                 <>
                   <StudySetNotes
                     handleFolderBlocks={handleFolderBlocks}
@@ -150,7 +144,7 @@ const StudySet:React.FC<Props> = ({
                 />
               )}
             </div>
-            {location.state.item.tab === "notes" ? (
+            {tab === "notes" ? (
               <div id="linkedFlashcardContainer">
                 <LinkedFlashcard />
               </div>

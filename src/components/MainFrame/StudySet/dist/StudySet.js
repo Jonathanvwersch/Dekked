@@ -14,7 +14,7 @@ var PageTitle_1 = require("../PageTitle/PageTitle");
 var StudySet = function (_a) {
     var folderBlocks = _a.folderBlocks, handleNameChange = _a.handleNameChange, handleFolderBlocks = _a.handleFolderBlocks;
     var location = react_router_1.useLocation();
-    var titleRef = react_1.useRef(null);
+    var tab = location.state.item.tab;
     var addFlashcard = function () {
         var newFlashcard = {
             id: uuid_1.v4(),
@@ -34,28 +34,23 @@ var StudySet = function (_a) {
         newFolderBlocksArray[location.state.folderIndex].binders[location.state.binderIndex].studySets[location.state.studySetIndex].flashcards.splice(index, 1);
         handleFolderBlocks(newFolderBlocksArray);
     };
-    react_1.useEffect(function () {
-        if (location.state && document.activeElement !== titleRef.current) {
-            titleRef.current.innerText = location.state.item.name;
-        }
-    }, [folderBlocks, location.state]);
     return (react_1["default"].createElement(react_1["default"].Fragment, null, location.state ? (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: "dekked-pageHeaderContainer studySet" },
             react_1["default"].createElement("div", { className: "dekked-pageHeader" },
                 react_1["default"].createElement("div", { id: "toolbarTab" },
-                    location.state && location.state.item.tab === "notes" ? (react_1["default"].createElement(Toolbar_1["default"], { type: "full" })) : (react_1["default"].createElement("div", null)),
+                    tab === "notes" ? (react_1["default"].createElement(Toolbar_1["default"], { type: "full" })) : (react_1["default"].createElement("div", null)),
                     react_1["default"].createElement(StudySetTabs_1.StudySetTabs, { folderBlocks: folderBlocks })),
-                react_1["default"].createElement(PageTitle_1.PageTitle, { titleRef: titleRef, handleNameChange: handleNameChange }),
-                location.state.item.tab === "flashcards" ? (react_1["default"].createElement("div", { className: "buttonQuantity studySet" },
+                react_1["default"].createElement(PageTitle_1.PageTitle, { folderBlocks: folderBlocks, handleNameChange: handleNameChange }),
+                tab === "flashcards" ? (react_1["default"].createElement("div", { className: "buttonQuantity studySet" },
                     react_1["default"].createElement("span", { className: "p2", style: { color: "var(--grey-2)", userSelect: "none" } }, folderBlocks[location.state.folderIndex].binders[location.state.binderIndex].studySets[location.state.studySetIndex].flashcards
                         .length + " Flashcard(s)"),
                     react_1["default"].createElement("div", { className: "studySetButtons" },
                         react_1["default"].createElement(Button_1["default"], { handleClick: addFlashcard, type: "secondary", action: "Add flashcard" }),
                         react_1["default"].createElement(Button_1["default"], { disabled: true, type: "primary", action: "Study" })))) : null)),
         react_1["default"].createElement("div", { className: "dekked-pageContentContainer" },
-            react_1["default"].createElement("div", { className: "dekked-pageContent studySet" }, location.state.item.tab === "notes" ? (react_1["default"].createElement(react_1["default"].Fragment, null,
+            react_1["default"].createElement("div", { className: "dekked-pageContent studySet" }, tab === "notes" ? (react_1["default"].createElement(react_1["default"].Fragment, null,
                 react_1["default"].createElement(StudySetNotes_1["default"], { handleFolderBlocks: handleFolderBlocks, folderBlocks: folderBlocks }))) : (react_1["default"].createElement(StudySetFlashcards_1["default"], { handleFolderBlocks: handleFolderBlocks, folderBlocks: folderBlocks, deleteFlashcard: deleteFlashcard }))),
-            location.state.item.tab === "notes" ? (react_1["default"].createElement("div", { id: "linkedFlashcardContainer" },
+            tab === "notes" ? (react_1["default"].createElement("div", { id: "linkedFlashcardContainer" },
                 react_1["default"].createElement(LinkedFlashcard_1["default"], null))) : null))) : null));
 };
 exports["default"] = StudySet;

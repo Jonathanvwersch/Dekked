@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import AddCard from "./AddCard";
 import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
@@ -51,20 +51,13 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
   let location = useLocation();
   const titleRef = useRef<any>(null);
 
-   useEffect(() => {
-    if (location.state && document.activeElement !== titleRef.current) {
-        titleRef.current.innerText =location.state.item.name
-    }
-  }, [folderBlocks, location.state]);
-
-
   return (
     <>
       {location.state ? (
         <>
           <div className="dekked-pageHeaderContainer">
             <div className="dekked-pageHeader">
-              <PageTitle titleRef={titleRef} handleNameChange={handleNameChange}/>
+              <PageTitle folderBlocks={folderBlocks} handleNameChange={handleNameChange}/>
               <div className="buttonQuantity">
                 <span className="p2">
                   {location.state
@@ -125,12 +118,10 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
                       to={{
                         pathname: `/${item.type}/${item.tab}/${item.id}`,
                         state: {
-                          type: item.type,
-                          name: item.name,
+                          item:item,
                           folderIndex: location.state.folderIndex,
                           binderIndex: location.state.binderIndex,
                           studySetIndex: index,
-                          tab: item.tab,
                         },
                       }}
                     >
