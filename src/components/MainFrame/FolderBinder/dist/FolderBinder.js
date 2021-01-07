@@ -14,7 +14,7 @@ var FolderBinder = function (_a) {
     var titleRef = react_1.useRef(null);
     react_1.useEffect(function () {
         if (location.state && document.activeElement !== titleRef.current) {
-            titleRef.current.innerText = location.state.name;
+            titleRef.current.innerText = location.state.item.name;
         }
     }, [folderBlocks, location.state]);
     return (react_1["default"].createElement(react_1["default"].Fragment, null, location.state ? (react_1["default"].createElement(react_1["default"].Fragment, null,
@@ -23,7 +23,7 @@ var FolderBinder = function (_a) {
                 react_1["default"].createElement(PageTitle_1.PageTitle, { titleRef: titleRef, handleNameChange: handleNameChange }),
                 react_1["default"].createElement("div", { className: "buttonQuantity" },
                     react_1["default"].createElement("span", { className: "p2" }, location.state
-                        ? location.state.type === "folder"
+                        ? location.state.item.type === "folder"
                             ? folderBlocks[location.state.folderIndex].binders
                                 .length + " Binder(s)"
                             : folderBlocks[location.state.folderIndex].binders[location.state.binderIndex].studySets.length + " Study set(s)"
@@ -32,16 +32,15 @@ var FolderBinder = function (_a) {
         react_1["default"].createElement("div", { className: "dekked-pageContentContainer" },
             react_1["default"].createElement("div", { className: "dekked-pageContent" },
                 react_1["default"].createElement(AddCard_1["default"], { handleClick: function () {
-                        location.state.type === "folder"
+                        location.state.item.type === "folder"
                             ? addBinder(location.state.folderIndex)
                             : addStudySet(location.state.folderIndex, location.state.binderIndex);
                     } }),
-                location.state.type === "folder"
+                location.state.item.type === "folder"
                     ? folderBlocks[location.state.folderIndex].binders.map(function (item, index) { return (react_1["default"].createElement(react_router_dom_1.NavLink, { to: {
                             pathname: "/" + item.type + "/" + item.id,
                             state: {
-                                type: item.type,
-                                name: item.name,
+                                item: item,
                                 folderIndex: location.state.folderIndex,
                                 binderIndex: index
                             }

@@ -8,7 +8,7 @@ interface Props {
    disabled?: boolean;
 }
 
-const Button:React.FC<Props> = ({action,type,handleClick,disabled}) => {
+const Button:React.FC<Props> = ({action, type, handleClick, disabled}) => {
   return (
       <button disabled = {disabled} onClick={handleClick} className={`dekked-button ${type} p2`}>
         {action}

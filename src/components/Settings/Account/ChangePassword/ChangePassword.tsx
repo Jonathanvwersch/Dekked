@@ -11,16 +11,16 @@ const ChangePassword:React.FC<Props> = ({ handleState }) => {
     <div className="dekked-passwordModalContainer">
       <div className="dekked-passwordModal">
         <div className="passwordInput">
-          <label className="p3 grey">Current password</label>
-          <input  type="text"></input>
+          <label className="p3 grey" htmlFor="currentPasswordInput">Current password</label>
+          <input id="currentPasswordInput" type="text"></input>
         </div>
         <div className="passwordInput">
-          <label className="p3 grey">New password</label>
-          <input type="text"></input>
+          <label className="p3 grey" htmlFor="newPasswordInput">New password</label>
+          <input id="newPasswordInput" type="text"></input>
         </div>
         <div className="passwordInput">
-          <label className="p3 grey">Confirm new password</label    >
-          <input className="passwordInput" type="text"></input>
+          <label className="p3 grey" htmlFor="confirmPasswordInput">Confirm new password</label    >
+          <input id="confirmPasswordInput" type="text"></input>
         </div>
         <span id="passwordLength" className="p3">
           Your password must be atleast eight characters long

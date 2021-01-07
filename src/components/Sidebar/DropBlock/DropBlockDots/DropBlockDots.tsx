@@ -127,7 +127,6 @@ const DropBlockDots:React.FC<Props> = ({
     setCoords(newCoords);
     setColourPicker((prevState) => !prevState);
   };
-
   
   const handleDropdownMenu = (e:any) => {
     positionComponents(e, heightOfDropdownMenu);
@@ -159,7 +158,7 @@ const DropBlockDots:React.FC<Props> = ({
                   to={{
                     pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
                     state: {
-                      type: "folder",
+                      item: {name:folderBlocks[0].name, type:folderBlocks[0].type},
                       folderIndex: "0",
                     },
                   }}

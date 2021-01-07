@@ -67,46 +67,34 @@ p {
     color:var(--main-black);
     font-size:14px;
     margin:0;
-    &.bold {
-      font-weight:700;
-    }
-
-    &.grey {
-      color:var(--grey-1);
-    }
 }
 
 .p2 {
     color:var(--main-black);  
     font-size:12px;
     margin:0;
-
-     &.bold {
-       font-weight: 700;
-     }
-
-     &.grey {
-       color: var(--grey-1);
-     }
 }
 
 .p3 {
     color:var(--main-black);
     font-size:10px; 
     margin:0;
+}
 
-    &.bold {
-      font-weight: 700;
-    }
-
-    &.grey {
-      color: var(--grey-1);
-    }
+.h1 {
+  font-size:53px;
+  color:var(--main-black);
 }
 
 h1{
   font-size:53px;
   color:var(--main-black);
+}
+
+.h2 {
+  font-size: 40px;
+  color: var(--main-black);
+  margin: 0;
 }
 
 h2{
@@ -115,10 +103,24 @@ h2{
   margin:0;
 }
 
+.h3 {
+  font-size: 22px;
+  color: var(--main-black);
+  margin: 0;
+}
+
 h3{
   font-size:22px;
   color:var(--main-black);
   margin:0;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.grey {
+  color: var(--grey-1);
 }
 
 .dropdownMenu{

@@ -74,8 +74,8 @@ const MainFrame:React.FC<Props> = ({
         </div>
         <div className="dekked-frame">
           {location.state ? (
-            location.state.type === "folder" ||
-            location.state.type === "binder" ? (
+            location.state.item.type === "folder" ||
+            location.state.item.type === "binder" ? (
               <FolderBinder
                 folderBlocks={folderBlocks}
                 handleNameChange={handleNameChange}

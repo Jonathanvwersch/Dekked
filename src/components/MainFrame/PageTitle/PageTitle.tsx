@@ -12,8 +12,8 @@ export const PageTitle: React.FC<PageTitleProps> = ({titleRef, handleNameChange}
       let location = useLocation();
 
         return (
-             <h2
-                className="pageTitle"
+             <div
+                className="pageTitle h2 bold"
                 onDragOver={(e) => {
                   e.preventDefault();
                 }}
@@ -28,7 +28,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({titleRef, handleNameChange}
                     }
                     setTimeout(function () {
                       handleNameChange(
-                        location.state.type,
+                        location.state.item.type,
                         location.state.folderIndex,
                         titleRef.current.innerText,
                         location.state.binderIndex,
@@ -37,6 +37,6 @@ export const PageTitle: React.FC<PageTitleProps> = ({titleRef, handleNameChange}
                     }, 100);
                   }
                 }}
-              ></h2>
+              ></div>
         );
 }

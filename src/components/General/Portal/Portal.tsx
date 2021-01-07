@@ -18,66 +18,47 @@ const CHILD_STYLE_LIGHTBOX = {
   background: "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
 } as React.CSSProperties;
 
-const OVERLAY_STYLE_CENTER: React.CSSProperties = {
-  pointerEvents: "auto",
-  position: "fixed",
-  top: "0px",
-  left: "0px",
-  width: "100vw",
-  height: "100vh",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-} as React.CSSProperties;
-
 const CENTER = {
   position: "relative",
 } as React.CSSProperties;
 interface Props {
-  children:JSX.Element;
-  state:any;
+  children: JSX.Element;
+  state: any;
   handleState: () => void;
   lightbox?: boolean;
   center?: boolean;
-  close?:boolean | null;
-} 
+  close?: boolean | null;
+}
 
 const Portal: React.FC<Props> = ({
   children,
   state,
   handleState,
-  lightbox = false,
-  center = false,
-  close = false,
+  lightbox = false, // set state of lightbox
+  center = false, // center=true will center child item on portal
+  close = false, // close=true will show close icon in top right of child item
 }) => {
   return createPortal(
     <>
       {state ? (
         <div
-          className="dekked-overlay"
-          style={{
-            pointerEvents: "auto",
-            position: "relative",
-          }}
-         
+          className={`${!center ? "dekked-overlay" : "dekked-overlay center"}`}
         >
-          <div style={center ? OVERLAY_STYLE_CENTER : null}>
-            <div
-              style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
-              onClick={handleState}
-            ></div>
-            <div style={center ? CENTER : null} id="portal-overlay">
-              {children}
-              {close ? (
-                <MdClose onClick={handleState} className="icon active close" />
-              ) : null}
-            </div>
+          <div
+            style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
+            onClick={handleState}
+          ></div>
+          <div id="portal-overlay" style={center ? CENTER : null}>
+            {children}
+            {close ? (
+              <MdClose onClick={handleState} className="icon active close" />
+            ) : null}
           </div>
         </div>
       ) : null}
     </>,
     document.getElementById("dekked-overlay-container")!
   );
-}
+};
 
 export default Portal;

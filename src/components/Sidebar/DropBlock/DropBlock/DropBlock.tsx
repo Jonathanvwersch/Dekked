@@ -142,12 +142,10 @@ const DropBlock: React.FC<Props> = ({
               : `/${item.type}/${item.id}`
           }`,
           state: {
-            type: item.type,
-            name: item.name,
+            item: { type: item.type, name: item.name, tab: item.tab },
             folderIndex: folderIndex,
             binderIndex: binderIndex,
             studySetIndex: studySetIndex,
-            tab: item.tab,
           },
         }}
       >

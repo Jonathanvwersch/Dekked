@@ -88,7 +88,7 @@ const StudySet:React.FC<Props> = ({
 
   useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
-        titleRef.current.innerText =location.state.name
+        titleRef.current.innerText =location.state.item.name
     }
   }, [folderBlocks, location.state]);
 
@@ -99,7 +99,7 @@ const StudySet:React.FC<Props> = ({
           <div className="dekked-pageHeaderContainer studySet">
             <div className="dekked-pageHeader">
               <div id="toolbarTab">
-                {location.state && location.state.tab === "notes" ? (
+                {location.state && location.state.item.tab === "notes" ? (
                   <Toolbar type="full" />
                 ) : (
                   <div></div>
@@ -107,7 +107,7 @@ const StudySet:React.FC<Props> = ({
               <StudySetTabs folderBlocks={folderBlocks}/>
               </div>
               <PageTitle titleRef={titleRef} handleNameChange={handleNameChange}/>
-              {location.state.tab === "flashcards" ? (
+              {location.state.item.tab === "flashcards" ? (
                 <div className="buttonQuantity studySet">
                   <span
                     className="p2"
@@ -135,7 +135,7 @@ const StudySet:React.FC<Props> = ({
 
           <div className="dekked-pageContentContainer">
             <div className="dekked-pageContent studySet">
-              {location.state.tab === "notes" ? (
+              {location.state.item.tab === "notes" ? (
                 <>
                   <StudySetNotes
                     handleFolderBlocks={handleFolderBlocks}
@@ -150,7 +150,7 @@ const StudySet:React.FC<Props> = ({
                 />
               )}
             </div>
-            {location.state.tab === "notes" ? (
+            {location.state.item.tab === "notes" ? (
               <div id="linkedFlashcardContainer">
                 <LinkedFlashcard />
               </div>

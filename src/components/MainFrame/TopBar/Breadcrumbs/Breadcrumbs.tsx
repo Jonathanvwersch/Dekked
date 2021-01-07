@@ -55,10 +55,12 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ folderBlocks }) => {
                 folderBlocks[location.state.folderIndex].id
               }`,
               state: {
-                type: folderBlocks[location.state.folderIndex].type,
+                item: {
+                  type: folderBlocks[location.state.folderIndex].type,
+                  name: location.state.item.name,
+                  tab: location.state.item.tab,
+                },
                 folderIndex: location.state.folderIndex,
-                name: location.state.name,
-                tab: location.state.tab,
               },
             }}
           >
@@ -73,8 +75,8 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ folderBlocks }) => {
             </span>
           </NavLink>
 
-          {location.state.type === "binder" ||
-          location.state.type === "studySet" ? (
+          {location.state.item.type === "binder" ||
+          location.state.item.type === "studySet" ? (
             <>
               <span id="slash">/</span>
 
@@ -90,14 +92,16 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ folderBlocks }) => {
                     ].id
                   }`,
                   state: {
-                    type:
-                      folderBlocks[location.state.folderIndex].binders[
-                        location.state.binderIndex
-                      ].type,
+                    item: {
+                      type:
+                        folderBlocks[location.state.folderIndex].binders[
+                          location.state.binderIndex
+                        ].type,
+                      tab: location.state.item.tab,
+                      name: location.state.item.name,
+                    },
                     folderIndex: location.state.folderIndex,
                     binderIndex: location.state.binderIndex,
-                    name: location.state.name,
-                    tab: location.state.tab,
                   },
                 }}
               >
@@ -119,7 +123,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ folderBlocks }) => {
                     : "Untitled"}
                 </span>
               </NavLink>
-              {location.state.type === "studySet" ? (
+              {location.state.item.type === "studySet" ? (
                 <>
                   <span id="slash">/</span>
                   <NavLink
@@ -138,15 +142,17 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ folderBlocks }) => {
                         ].studySets[location.state.studySetIndex].id
                       }`,
                       state: {
-                        type:
-                          folderBlocks[location.state.folderIndex].binders[
-                            location.state.binderIndex
-                          ].studySets[location.state.studySetIndex].type,
+                        item: {
+                          type:
+                            folderBlocks[location.state.folderIndex].binders[
+                              location.state.binderIndex
+                            ].studySets[location.state.studySetIndex].type,
+                          name: location.state.name,
+                          tab: location.state.tab,
+                        },
                         folderIndex: location.state.folderIndex,
                         binderIndex: location.state.binderIndex,
                         studySetIndex: location.state.studySetIndex,
-                        name: location.state.name,
-                        tab: location.state.tab,
                       },
                     }}
                   >

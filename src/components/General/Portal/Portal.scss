@@ -1,6 +1,23 @@
-.dekked-overlay .icon.active.close {
-    position:absolute; 
-    right:0;
-    top:0;
-    margin: 8px 16px 0px 0px;
+.dekked-overlay {
+
+    pointer-events: auto;
+    position: relative;
+
+    &.center {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon.active.close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 8px 16px 0px 0px;
+    }
 }

@@ -61,12 +61,10 @@ export const StudySetTabs: React.FC<StudySetTabsProps> = ({ folderBlocks }) => {
                 ].studySets[location.state.studySetIndex].id
               }`,
               state: {
-                name: location.state.name,
-                type: location.state.type,
+                item: {name: location.state.item.name, type: location.state.item.type, tab:"notes"},
                 folderIndex: location.state.folderIndex,
                 binderIndex: location.state.binderIndex,
                 studySetIndex: location.state.studySetIndex,
-                tab: "notes",
               },
             }}
           >
@@ -88,12 +86,10 @@ export const StudySetTabs: React.FC<StudySetTabsProps> = ({ folderBlocks }) => {
                 ].studySets[location.state.studySetIndex].id
               }`,
               state: {
-                name: location.state.name,
-                type: location.state.type,
+                item: {name: location.state.item.name, type: location.state.item.type, tab:"flashcards"},
                 folderIndex: location.state.folderIndex,
                 binderIndex: location.state.binderIndex,
                 studySetIndex: location.state.studySetIndex,
-                tab: "flashcards",
               },
             }}
           >

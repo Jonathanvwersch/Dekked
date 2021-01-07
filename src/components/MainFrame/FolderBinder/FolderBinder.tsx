@@ -53,7 +53,7 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
 
    useEffect(() => {
     if (location.state && document.activeElement !== titleRef.current) {
-        titleRef.current.innerText =location.state.name
+        titleRef.current.innerText =location.state.item.name
     }
   }, [folderBlocks, location.state]);
 
@@ -68,7 +68,7 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
               <div className="buttonQuantity">
                 <span className="p2">
                   {location.state
-                    ? location.state.type === "folder"
+                    ? location.state.item.type === "folder"
                       ? `${
                           folderBlocks[location.state.folderIndex].binders
                             .length
@@ -88,7 +88,7 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
             <div className="dekked-pageContent">
               <AddCard
                 handleClick={() => {
-                  location.state.type === "folder"
+                  location.state.item.type === "folder"
                     ? addBinder(location.state.folderIndex)
                     : addStudySet(
                         location.state.folderIndex,
@@ -96,15 +96,14 @@ const FolderBinder:React.FC<Props> = ({ folderBlocks, handleNameChange, addStudy
                       );
                 }}
               />
-              {location.state.type === "folder"
+              {location.state.item.type === "folder"
                 ? folderBlocks[location.state.folderIndex].binders.map(
                     (item:any, index:number) => (
                       <NavLink
                         to={{
                           pathname: `/${item.type}/${item.id}`,
                           state: {
-                            type: item.type,
-                            name: item.name,
+                            item:item,
                             folderIndex: location.state.folderIndex,
                             binderIndex: index,
                           },

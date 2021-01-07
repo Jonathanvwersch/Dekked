@@ -26,16 +26,15 @@
     }
   }
 
-  .deleteBlockContainer {
-    position: fixed;
-    width: 250px;
-    height: 280px;
-    bottom: 55px;
-    left: 210px;
-    overflow-y: auto;
-    user-select: none;
-  }
+}
 
-
+.deleteBlockContainer {
+  position: fixed;
+  width: 250px;
+  height: 280px;
+  bottom: 55px;
+  left: 210px;
+  overflow-y: auto;
+  user-select: none;
 }
 

@@ -301,10 +301,8 @@ const App: React.FC = () => {
                 to={{
                   pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
                   state: {
-                    type: folderBlocks[0].type,
-                    name: folderBlocks[0].name,
+                    item: {type: folderBlocks[0].type, name: folderBlocks[0].name, iconColour: folderBlocks[0].iconColour},
                     folderIndex: 0,
-                    iconColour: folderBlocks[0].iconColour,
                   },
                 }}
               />
