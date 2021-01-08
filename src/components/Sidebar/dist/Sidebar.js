@@ -21,14 +21,11 @@ var Sidebar = function (_a) {
         }
     }, [mousePosition, sidebar, hoverbar, setHoverbar, sidebarRef]);
     var hoverStyleContainer = {
-        position: "fixed",
-        top: "10vh",
-        maxHeight: "calc(100vh - 140px)"
+        position: "fixed"
     };
     var hoverStyleSidebar = {
         filter: "var(--drop-shadow)",
-        borderRadius: "2px 0px 2px",
-        maxHeight: "calc(100vh - 140px)"
+        borderRadius: "2px 0px 2px"
     };
     return (react_1["default"].createElement(react_1["default"].Fragment, null, sidebar || hoverbar ? (react_1["default"].createElement("div", { className: "dekked-sidebarContainer", style: hoverbar ? hoverStyleContainer : null },
         react_1["default"].createElement("div", { className: "dekked-sidebar", style: hoverbar ? hoverStyleSidebar : null, ref: sidebarRef },

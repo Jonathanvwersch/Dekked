@@ -1,10 +1,8 @@
 .dekked-sidebarContainer {
-  width:220px;
-  display:flex;
-  align-items:center;
-  user-select:none;
-  z-index:5;
-  height:100%; 
+  width: 220px;
+  user-select: none;
+  z-index: 5;
+  height: 100%;
 
   .dekked-sidebar {
     background: var(--off-beige);
@@ -21,17 +19,5 @@
     max-height: 100%;
     border-right: 0.5px solid var(--grey-3);
   }
-  
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
