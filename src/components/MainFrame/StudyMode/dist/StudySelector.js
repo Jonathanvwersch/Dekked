@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var Button_1 = require("../../Buttons/Button/Button");
-var Card_1 = require("../FolderBinder/Card");
+var Card_1 = require("../FolderBinder/Card/Card");
 require("./StudySelector.css");
 var StudySelector = function () {
     var _a = react_1.useState(false), CardOneState = _a[0], setCardOneState = _a[1];

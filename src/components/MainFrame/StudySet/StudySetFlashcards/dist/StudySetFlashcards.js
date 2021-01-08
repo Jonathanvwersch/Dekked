@@ -3,6 +3,8 @@ exports.__esModule = true;
 var react_1 = require("react");
 var react_router_1 = require("react-router");
 var Flashcard_1 = require("../Flashcard/Flashcard");
+var uuid_1 = require("uuid");
+require("./StudySetFlashcards.css");
 var StudySetFlashcards = function (_a) {
     var folderBlocks = _a.folderBlocks, handleFolderBlocks = _a.handleFolderBlocks, deleteFlashcard = _a.deleteFlashcard;
     var location = react_router_1.useLocation();
@@ -14,10 +16,10 @@ var StudySetFlashcards = function (_a) {
     react_1.useEffect(function () {
         handleTab();
     }, [location.state]);
-    return (react_1["default"].createElement(react_1["default"].Fragment, null, location.state
+    return (react_1["default"].createElement("div", { className: "studySetFlashcards" }, location.state
         ? folderBlocks[location.state.folderIndex].binders[location.state.binderIndex].studySets[location.state.studySetIndex].flashcards.map(function (item, index) { return (react_1["default"].createElement(Flashcard_1["default"], { deleteFlashcard: function () {
                 deleteFlashcard(index);
-            }, index: index })); })
+            }, index: index + 1, key: uuid_1.v4() })); })
         : null));
 };
 exports["default"] = StudySetFlashcards;

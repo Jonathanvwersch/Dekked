@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 import * as Icons from "react-icons/md";
 import "./Toolbar.css";
-import {TextBlockDataFull, TextBlockDataHalf} from "./TextBlockData";
+import { TextBlockDataFull, TextBlockDataHalf } from "./TextBlockData";
 import Portal from "../../../General/Portal/Portal";
-import Block from "../../../General/Block/Block";
+import { Scroller } from "../../../General/Scroller/Scroller";
 interface Props {
-  type?:string;  
+  type?: string;
 }
 
-const Toolbar:React.FC<Props> = ({ type }) => {
-
+const Toolbar: React.FC<Props> = ({ type }) => {
   const [textBlockSelector, setTextBlockSelector] = useState<boolean>(false);
-  const [coords, setCoords] = useState<{left:number, top:number} | {}>({}); // Set mouse coordinates
+  const [coords, setCoords] = useState<{ left: number; top: number } | {}>({});
+
+  const positionModal = (e: any) => {
+    const node = e.target as any;
+    const rect = node.getBoundingClientRect() as DOMRect;
+    setCoords({
+      left: rect.x + rect.width / 2,
+      top: rect.y,
+    });
+    setTextBlockSelector(true);
+  };
 
   return (
-    <div className={`toolbar ${type==="full" ? null : "half"}`}>
+    <div className={`toolbar ${type}`}>
       <div
-        id="switchBlock"
+        className="switchBlock"
         onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-          const node = e.target as any;
-          const rect = node.getBoundingClientRect() as DOMRect;
-          setCoords({
-            left: rect.x + rect.width / 2,
-            top: rect.y,
-          });
-          setTextBlockSelector(true);
+          positionModal(e);
         }}
       >
         <Icons.MdTextFields className="icon active blockType" />
@@ -36,21 +39,15 @@ const Toolbar:React.FC<Props> = ({ type }) => {
           handleState={() => setTextBlockSelector(false)}
         >
           <div
-            style={{
-              position: "absolute",
-              transform: "translate(0px, 16px)",
-              ...coords,
-            }}
-            className="dropdownMenu textBlockSelector"
+            style={{ ...coords }}
+            className="textBlockSelector"
             onClick={() => setTextBlockSelector(false)}
           >
-            {type === "full"
-              ? TextBlockDataFull.map((item, index) => {
-                  return <Block item={item} key={item.id} />;
-                })
-              : TextBlockDataHalf.map((item, index) => {
-                  return <Block item={item} key={item.id} />;
-                })}
+            {type === "full" ? (
+              <Scroller Data={TextBlockDataFull} />
+            ) : (
+              <Scroller Data={TextBlockDataHalf} />
+            )}
           </div>
         </Portal>
       ) : null}
@@ -60,7 +57,7 @@ const Toolbar:React.FC<Props> = ({ type }) => {
       <Icons.MdFormatItalic className="icon active italics" />
       {type === "full" ? (
         <>
-          <span id="divider"></span>
+          <span className="divider"></span>
           <Icons.MdFormatAlignLeft className="icon active alignLeft" />
           <Icons.MdFormatAlignCenter className="icon active alignCenter" />
           <Icons.MdFormatAlignRight className="icon active alignRight" />
@@ -69,6 +66,6 @@ const Toolbar:React.FC<Props> = ({ type }) => {
       ) : null}
     </div>
   );
-}
+};
 
 export default Toolbar;

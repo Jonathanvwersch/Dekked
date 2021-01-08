@@ -16,9 +16,6 @@ interface Props {
 const SidebarTop: React.FC<Props> = ({ handleSidebar, hoverbar }) => {
   const [profileMenu, setProfileMenu] = useState<boolean>(false);
   const [settingsPage, setSettingsPage] = useState<boolean>(false);
-  const handleSettings = () => {
-    setSettingsPage((prevState) => !prevState);
-  };
 
   const hoverStyleSidebar = {
     top: "110px",
@@ -58,9 +55,7 @@ const SidebarTop: React.FC<Props> = ({ handleSidebar, hoverbar }) => {
                 <Block
                   item={item}
                   key={`${item} Block ${index}`}
-                  handleSettings={() =>
-                    setSettingsPage((prevState) => !prevState)
-                  }
+                  handleSettings={() => setSettingsPage(true)}
                 />
               );
             })}
@@ -70,7 +65,7 @@ const SidebarTop: React.FC<Props> = ({ handleSidebar, hoverbar }) => {
       {settingsPage ? (
         <Portal
           state={settingsPage}
-          handleState={handleSettings}
+          handleState={() => setSettingsPage(false)}
           lightbox={true}
           center={true}
           close={true}

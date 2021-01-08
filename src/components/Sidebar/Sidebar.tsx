@@ -96,12 +96,14 @@ const Sidebar: React.FC<Props> = ({
 
   const hoverStyleContainer = {
     position: "fixed",
+    top: "10vh",
+    maxHeight: "calc(100vh - 140px)",
   } as React.CSSProperties;
 
   const hoverStyleSidebar = {
     filter: "var(--drop-shadow)",
     borderRadius: "2px 0px 2px",
-    height: "calc(100vh - 140px)",
+    maxHeight: "calc(100vh - 140px)",
   } as React.CSSProperties;
 
   return (

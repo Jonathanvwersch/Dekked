@@ -1,40 +1,25 @@
-.dekked-frameContainer{
-    position:relative;
-    display:flex;
-    align-items:center;
+.dekked-frameContainer {
+    overflow: auto;
+    cursor: auto;
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    flex-grow:1;
-    overflow:auto;
-    margin-right:0px;
-    margin-bottom:0px;
-    cursor:auto;
-    width:100%;
+    background: white;
+    z-index: 1;
+    height: 100vh;
+    max-height: 100%;
+
 
     .dekked-frame {
-        flex-grow: 1;
-        flex-shrink: 1;
         display: flex;
         flex-direction: column;
         background: white;
         z-index: 1;
-        height: 100vh;
-        max-height: 100%;
+        height: 100%;
         width: 100%;
+        align-items: center;
     }
 
-    #topBarContainer {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        max-width: 100vw;
-        height: 60px;
-        user-select: none;
-        z-index: 9;
-    }
+
 
 }
-
-
-
-
-

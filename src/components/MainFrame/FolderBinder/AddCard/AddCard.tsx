@@ -6,12 +6,12 @@ interface Props {
   handleClick: () => void;
 }
 
-const AddCard: React.FC<Props> = ({handleClick}) => {
+const AddCard: React.FC<Props> = ({ handleClick }) => {
   return (
-    <div id="dekked-addCard" onClick={handleClick}>
-        <MdAdd className="icon plus"  />
+    <div className="dekked-addCard" onClick={handleClick}>
+      <MdAdd className="icon plus" />
     </div>
   );
-}
+};
 
 export default AddCard;

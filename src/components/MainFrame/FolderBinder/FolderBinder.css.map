@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,qCAAqC;EAC5D,YAAY,EAAE,IAAI;CACrB",
+    "sources": [
+        "FolderBinder.scss"
+    ],
+    "names": [],
+    "file": "FolderBinder.css"
+}

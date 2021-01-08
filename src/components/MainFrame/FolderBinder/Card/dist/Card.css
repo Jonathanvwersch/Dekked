@@ -1,0 +1,55 @@
+.dekked-card {
+  height: 188px;
+  width: 170px;
+  border: 0.5px solid var(--grey-3);
+  border-radius: var(--general-border-radius);
+  background: var(--white);
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+}
+.dekked-card .cardThumbnail {
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.dekked-card.clicked {
+  box-shadow: 0 0 0 0.5pt var(--primary-color);
+}
+.dekked-card:hover {
+  box-shadow: 0 0 0 0.5pt var(--primary-color);
+}
+.dekked-card .cardDescription {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: var(--off-beige);
+  border-radius: 0 0 var(--general-border-radius) var(--general-border-radius);
+  z-index: 1;
+  border-top: 0.5px solid var(--grey-3);
+  padding: 12px 12px;
+}
+.dekked-card .cardDescription .cardDate {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+.dekked-card .cardDescription .cardName {
+  width: 100%;
+}
+.dekked-card span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

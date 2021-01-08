@@ -1,32 +1,22 @@
-.dekked-topBarOuter {
-    width:100%;
-    height:60px;
-    max-width:100vw;
-    background:white;
-    z-index:1000;
+.dekked-topBar {
+    width: 100%;
+    max-width: 100vw;
+    background: white;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
     user-select: none;
-  
-
-    .dekked-topBar {
-        background: white;
-        display: flex;
-        justify-content: flex-start;
-        flex-direction:row;
-        align-items: center;
-        position: absolute;
-        overflow: hidden;
-        height: 60px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        padding-left: 16px;
-        gap:24px;
-    }
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    padding-left: 16px;
+    gap: 24px;
 }
 
-
 @media only screen and (max-width: 588px) {
-    .dekked-topBar span.p2{
+    .dekked-topBar span.p2 {
         max-width: 60px;
     }
 }

@@ -9,14 +9,8 @@ var LinkedFlashcard = function () {
     var handleFlashcard = function () {
         setLinkedFlashcard(function (prevState) { return !prevState; });
     };
-    return (react_1["default"].createElement(react_1["default"].Fragment, null,
+    return (react_1["default"].createElement("div", { className: "linkedFlashcard" },
         react_1["default"].createElement(FlashcardTab_1["default"], { handleClick: handleFlashcard }),
-        linkedFlashcard ? (react_1["default"].createElement("div", { style: {
-                width: "100%",
-                height: "100%",
-                background: "var(--off-beige)",
-                borderRadius: "5px"
-            } },
-            react_1["default"].createElement(Flashcard_1["default"], { link: true }))) : null));
+        linkedFlashcard ? react_1["default"].createElement(Flashcard_1["default"], { link: true }) : null));
 };
 exports["default"] = LinkedFlashcard;

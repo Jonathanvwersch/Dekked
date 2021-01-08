@@ -5,8 +5,6 @@
 
 .dekked-overlay.center {
   position: fixed;
-  top: 0px;
-  left: 0px;
   width: 100vw;
   height: 100vh;
   display: -webkit-box;
@@ -20,10 +18,29 @@
           justify-content: center;
 }
 
+.dekked-overlay .lightBoxOn {
+  position: absolute;
+  inset: 0px;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+.dekked-overlay .lightBoxOff {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
 .dekked-overlay .icon.active.close {
   position: absolute;
   right: 0;
   top: 0;
   margin: 8px 16px 0px 0px;
+}
+
+.dekked-overlay .childStyle.closed {
+  position: relative;
 }
 /*# sourceMappingURL=Portal.css.map */

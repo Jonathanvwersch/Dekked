@@ -28,6 +28,7 @@ var DropBlockDots = function (_a) {
     var _e = react_1.useState(0), yPositionOfDropdownMenu = _e[0], setYPositionofDropdownMenu = _e[1]; // Set y position of dropdown menu
     var heightOfDropdownMenu = 30 * dropBlockMenuData.length; // Value is necessary to position dropdown menu based on mouse coordinates
     var heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
+    var titleRef = react_1.useRef();
     var positionComponents = function (e, itemHeight) {
         var rect = e.target.getBoundingClientRect();
         var bottomValue = window.innerHeight - rect.y; // distance from mouse click to bottom of window

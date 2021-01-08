@@ -17,13 +17,15 @@
   --grey-2: #C6C5C2;
   --grey-2-hover: #B6B5B2;
   --grey-3: #DEDEDE;
-  --grey-3-hover:#CCCCCC;
+  --grey-3-hover: #CCCCCC;
   --highlight: #CCDDE8;
   --drop-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   --general-border-radius: 2px;
 }
 
-html.dekked-html, body.dekked-body, #dekked-app {
+html.dekked-html,
+body.dekked-body,
+#dekked-app {
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -40,7 +42,8 @@ html.dekked-html, body.dekked-body, #dekked-app {
   /* Gecko Browsers */
 }
 
-*, *:focus {
+*,
+*:focus {
   outline: 0;
   box-sizing: border-box;
 }
@@ -249,42 +252,16 @@ a {
   text-decoration: none;
 }
 
-.dekked-pageHeaderContainer {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  flex-grow: 0;
-  flex-direction: column;
-  margin-top: 68px;
-}
-.dekked-pageHeaderContainer.studySet {
-  margin-top: 21px;
-}
-
-.dekked-pageContentContainer {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-
 .dekked-pageContent {
+  display: flex;
+  align-items: center;
+  height: 100%;
   padding-left: calc(75px + env(safe-area-inset-left));
   padding-right: calc(75px + env(safe-area-inset-right));
   max-width: 100%;
   width: 1000px;
   padding-bottom: 42vh;
   padding-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-  grid-row-gap: 16px;
-}
-.dekked-pageContent.studySet {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -294,10 +271,17 @@ a {
   }
 }
 .dekked-pageHeader {
+  width: 1000px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   padding-left: calc(75px + env(safe-area-inset-left));
   padding-right: calc(75px + env(safe-area-inset-right));
   max-width: 100%;
-  width: 1000px;
+  margin-top: 66px;
+}
+.dekked-pageHeader.studySet {
+  margin-top: 20px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -311,6 +295,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .buttonQuantity span {
   color: var(--grey-2);

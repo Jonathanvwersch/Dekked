@@ -1,29 +1,20 @@
-.dekked-deleteModalContainer {
-    width:340px;
-    height:144px;
-    filter:var(--drop-shadow);
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
+.dekked-deleteModal {
+    width: 340px;
+    height: 144px;
+    filter: var(--drop-shadow);
+    flex-direction: column;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     user-select: none;
+    justify-content: space-between;
+    padding: 24px;
 
-    .dekked-deleteModal {
-        width: 220px;
-        height: 120px;
+    .deleteModalButtons {
         display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-
-        #deleteModalButtons {
-            display: flex;
-            width: 172px;
-            justify-content: space-between;
-        }
+        flex-direction: row;
+        gap: 24px;
     }
 }
-
-
-

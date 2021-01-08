@@ -25,6 +25,7 @@ var Sidebar_1 = require("./components/Sidebar/Sidebar");
 var MainFrame_1 = require("./components/MainFrame/MainFrame");
 var uuid_1 = require("uuid");
 var LoadingSpinner_1 = require("./components/General/LoadingSpinner/LoadingSpinner");
+var StudyQueueBubble_1 = require("./components/General/StudyQueue/StudyQueueBubble/StudyQueueBubble");
 var App = function () {
     var _a = react_1.useState(true), loading = _a[0], setLoading = _a[1];
     react_1.useEffect(function () {
@@ -238,9 +239,14 @@ var App = function () {
                 react_1["default"].createElement(react_router_dom_1.Redirect, { to: {
                         pathname: "/" + folderBlocks[0].type + "/" + folderBlocks[0].id,
                         state: {
-                            item: { type: folderBlocks[0].type, name: folderBlocks[0].name, iconColour: folderBlocks[0].iconColour },
+                            item: {
+                                type: folderBlocks[0].type,
+                                name: folderBlocks[0].name,
+                                iconColour: folderBlocks[0].iconColour
+                            },
                             folderIndex: 0
                         }
-                    } })))))));
+                    } }))),
+        react_1["default"].createElement(StudyQueueBubble_1["default"], null)))));
 };
 exports["default"] = App;

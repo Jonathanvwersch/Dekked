@@ -11,56 +11,62 @@ import { StudySetTabs } from "./StudySetTabs/StudySetTabs";
 import { PageTitle } from "../PageTitle/PageTitle";
 
 interface Props {
-  folderBlocks:{
+  folderBlocks: {
     name: string;
     type: string;
     id: string;
     iconColour: string;
     isOpen: boolean;
     binders: {
+      name: string;
+      type: string;
+      id: string;
+      folderId: string;
+      iconColour: string;
+      isOpen: boolean;
+      studySets: {
         name: string;
         type: string;
         id: string;
+        binderId: string;
         folderId: string;
         iconColour: string;
-        isOpen: boolean;
-        studySets: {
-            name: string;
-            type: string;
-            id: string;
-            binderId:string;
-            folderId:string;
-            iconColour:string;
-            tab:string;
-            flashcards: {
-              id:string;
-              type:string;
-              front:string;
-              back:string;
-              studySetId:string;
-              binderId:string;
-              folderId:string;
-            }[];
+        tab: string;
+        flashcards: {
+          id: string;
+          type: string;
+          front: string;
+          back: string;
+          studySetId: string;
+          binderId: string;
+          folderId: string;
         }[];
+      }[];
     }[];
-  }[]
-  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex:any, studySetIndex:any) => void;
-  handleFolderBlocks: (newFolderBlocksArray:any) => void;
+  }[];
+  handleNameChange: (
+    type: string,
+    folderIndex: number,
+    blockName: string,
+    binderIndex: any,
+    studySetIndex: any
+  ) => void;
+  handleFolderBlocks: (newFolderBlocksArray: any) => void;
 }
-const StudySet:React.FC<Props> = ({
+const StudySet: React.FC<Props> = ({
   folderBlocks,
   handleNameChange,
   handleFolderBlocks,
 }) => {
-  let location = useLocation()
+  let location = useLocation();
   const tab = location.state.item.tab;
 
   const addFlashcard = () => {
     const newFlashcard = {
       id: uuidv4(),
       type: "flashcard",
-      front:"",
-      back:"",
+      front: "",
+      back: "",
       studySetId:
         folderBlocks[location.state.folderIndex].binders[
           location.state.binderIndex
@@ -78,7 +84,7 @@ const StudySet:React.FC<Props> = ({
     handleFolderBlocks(newFolderBlocksArray);
   };
 
-  const deleteFlashcard = (index:number) => {
+  const deleteFlashcard = (index: number) => {
     const newFolderBlocksArray = folderBlocks.slice();
     newFolderBlocksArray[location.state.folderIndex].binders[
       location.state.binderIndex
@@ -90,70 +96,60 @@ const StudySet:React.FC<Props> = ({
     <>
       {location.state ? (
         <>
-          <div className="dekked-pageHeaderContainer studySet">
-            <div className="dekked-pageHeader">
-              <div id="toolbarTab">
-                {tab === "notes" ? (
-                  <Toolbar type="full" />
-                ) : (
-                  <div></div>
-                )}
-              <StudySetTabs folderBlocks={folderBlocks}/>
-              </div>
-              <PageTitle folderBlocks={folderBlocks} handleNameChange={handleNameChange}/>
-              {tab === "flashcards" ? (
-                <div className="buttonQuantity studySet">
-                  <span
-                    className="p2"
-                    style={{ color: "var(--grey-2)", userSelect: "none" }}
-                  >
-                    {`${
-                      folderBlocks[location.state.folderIndex].binders[
-                        location.state.binderIndex
-                      ].studySets[location.state.studySetIndex].flashcards
-                        .length
-                    } Flashcard(s)`}
-                  </span>
-                  <div className="studySetButtons">
-                      <Button
-                        handleClick={addFlashcard}
-                        type="secondary"
-                        action="Add flashcard"
-                      />
-                    <Button disabled type="primary" action="Study" />
-                  </div>
-                </div>
-              ) : null}
+          <div className="dekked-pageHeader studySet">
+            <div className="toolbarTab">
+              {tab === "notes" ? <Toolbar type="full" /> : <div></div>}
+              <StudySetTabs folderBlocks={folderBlocks} />
             </div>
-          </div>
-
-          <div className="dekked-pageContentContainer">
-            <div className="dekked-pageContent studySet">
-              {tab === "notes" ? (
-                <>
-                  <StudySetNotes
-                    handleFolderBlocks={handleFolderBlocks}
-                    folderBlocks={folderBlocks}
+            <PageTitle
+              folderBlocks={folderBlocks}
+              handleNameChange={handleNameChange}
+            />
+            {tab === "flashcards" ? (
+              <div className="buttonQuantity studySet">
+                <span
+                  className="p2"
+                  style={{ color: "var(--grey-2)", userSelect: "none" }}
+                >
+                  {`${
+                    folderBlocks[location.state.folderIndex].binders[
+                      location.state.binderIndex
+                    ].studySets[location.state.studySetIndex].flashcards.length
+                  } Flashcard(s)`}
+                </span>
+                <div className="studySetButtons">
+                  <Button
+                    handleClick={addFlashcard}
+                    type="secondary"
+                    action="Add flashcard"
                   />
-                </>
-              ) : (
-                <StudySetFlashcards
-                  handleFolderBlocks={handleFolderBlocks}
-                  folderBlocks={folderBlocks}
-                  deleteFlashcard={deleteFlashcard}
-                />
-              )}
-            </div>
-            {tab === "notes" ? (
-              <div id="linkedFlashcardContainer">
-                <LinkedFlashcard />
+                  <Button disabled type="primary" action="Study" />
+                </div>
               </div>
             ) : null}
+          </div>
+
+          <div className="dekked-pageContent">
+            {tab === "notes" ? (
+              <>
+                <StudySetNotes
+                  handleFolderBlocks={handleFolderBlocks}
+                  folderBlocks={folderBlocks}
+                />
+                <LinkedFlashcard />
+              </>
+            ) : (
+              <StudySetFlashcards
+                handleFolderBlocks={handleFolderBlocks}
+                folderBlocks={folderBlocks}
+                deleteFlashcard={deleteFlashcard}
+              />
+            )}
           </div>
         </>
       ) : null}
     </>
   );
-}
+};
 
 export default StudySet;

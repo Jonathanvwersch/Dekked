@@ -1,0 +1,51 @@
+.toolbarTab {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 26px;
+  align-items: center;
+  height: 20px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 740px) {
+  .toolbarTab {
+    flex-direction: column-reverse;
+  }
+
+  .toolbarTab .toolbar {
+    padding-top: 32px;
+  }
+}
+@media only screen and (max-width: 740px) {
+  .buttonQuantity.studySet {
+    flex-direction: column;
+    gap: 16px;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+}
+#linkedFlashcardContainer {
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1000px;
+  max-width: 100%;
+  z-index: 1;
+  padding-left: calc(75px + env(safe-area-inset-left));
+  padding-right: calc(75px + env(safe-area-inset-right));
+}
+
+@media only screen and (max-width: 600px) {
+  #linkedFlashcardContainer {
+    padding-left: calc(25px + env(safe-area-inset-left));
+    padding-right: calc(25px + env(safe-area-inset-right));
+  }
+}
+.studySetButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}

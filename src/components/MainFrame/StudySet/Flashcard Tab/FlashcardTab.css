@@ -1,4 +1,4 @@
-#flashcardTab {
+.flashcardTab {
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -14,5 +14,6 @@
   border-radius: 5px 5px 0px 0px;
   width: 112px;
   height: 32px;
+  z-index: 100;
 }
 /*# sourceMappingURL=FlashcardTab.css.map */

@@ -6,12 +6,12 @@ interface Props {
   handleClick: () => any;
 }
 
-const FlashcardTab:React.FC<Props> = ({ handleClick }) => {
+const FlashcardTab: React.FC<Props> = ({ handleClick }) => {
   const [iconColour, setIconColour] = useState<string>("var(--main-black)");
   return (
     <>
       <div
-        id="flashcardTab"
+        className="flashcardTab"
         onClick={handleClick}
         onMouseOver={() => setIconColour("var(--primary-color)")}
         onMouseOut={() => setIconColour("var(--main-black)")}
@@ -20,6 +20,6 @@ const FlashcardTab:React.FC<Props> = ({ handleClick }) => {
       </div>
     </>
   );
-}
+};
 
 export default FlashcardTab;

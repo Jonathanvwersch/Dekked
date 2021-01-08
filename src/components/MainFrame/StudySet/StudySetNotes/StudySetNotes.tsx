@@ -1,44 +1,48 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router";
-
+import LinkedFlashcard from "../Linked Flashcard/LinkedFlashcard";
+import "./StudySetNotes.css";
 interface Props {
-  folderBlocks:{
+  folderBlocks: {
     name: string;
     type: string;
     id: string;
     iconColour: string;
     isOpen: boolean;
     binders: {
+      name: string;
+      type: string;
+      id: string;
+      folderId: string;
+      iconColour: string;
+      isOpen: boolean;
+      studySets: {
         name: string;
         type: string;
         id: string;
+        binderId: string;
         folderId: string;
         iconColour: string;
-        isOpen: boolean;
-        studySets: {
-            name: string;
-            type: string;
-            id: string;
-            binderId:string;
-            folderId:string;
-            iconColour:string;
-            tab:string;
-            flashcards: {
-              id:string;
-              type:string;
-              front:string;
-              back:string;
-              studySetId:string;
-              binderId:string;
-              folderId:string;
-            }[];
+        tab: string;
+        flashcards: {
+          id: string;
+          type: string;
+          front: string;
+          back: string;
+          studySetId: string;
+          binderId: string;
+          folderId: string;
         }[];
+      }[];
     }[];
-  }[]
-  handleFolderBlocks: (newFolderBlocksArray:any) => void;
+  }[];
+  handleFolderBlocks: (newFolderBlocksArray: any) => void;
 }
 
-const StudySetNotes:React.FC<Props> = ({ folderBlocks, handleFolderBlocks }) => {
+const StudySetNotes: React.FC<Props> = ({
+  folderBlocks,
+  handleFolderBlocks,
+}) => {
   let location = useLocation<any>();
 
   const handleTab = () => {
@@ -53,7 +57,12 @@ const StudySetNotes:React.FC<Props> = ({ folderBlocks, handleFolderBlocks }) => 
     handleTab();
   }, [location.state]);
 
-  return <></>;
-}
+  return (
+    <>
+      <div className="studySetNotes"></div>
+      {/* {location.state.item.tab === "notes" ? <LinkedFlashcard /> : null} */}
+    </>
+  );
+};
 
 export default StudySetNotes;

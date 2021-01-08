@@ -1,0 +1,92 @@
+.dekked-card {
+  height: 188px;
+  width: 170px;
+  border: 0.5px solid var(--grey-3);
+  border-radius: var(--general-border-radius);
+  background: var(--white);
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.dekked-card .cardThumbnail {
+  z-index: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.dekked-card.clicked {
+  -webkit-box-shadow: 0 0 0 0.5pt var(--primary-color);
+          box-shadow: 0 0 0 0.5pt var(--primary-color);
+}
+
+.dekked-card:hover {
+  -webkit-box-shadow: 0 0 0 0.5pt var(--primary-color);
+          box-shadow: 0 0 0 0.5pt var(--primary-color);
+}
+
+.dekked-card .cardDescription {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: var(--off-beige);
+  border-radius: 0 0 var(--general-border-radius) var(--general-border-radius);
+  z-index: 1;
+  border-top: 0.5px solid var(--grey-3);
+  padding: 12px 12px;
+}
+
+.dekked-card .cardDescription .cardDate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.dekked-card .cardDescription .cardName {
+  width: 100%;
+}
+
+.dekked-card span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/*# sourceMappingURL=Card.css.map */

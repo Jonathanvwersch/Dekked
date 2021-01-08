@@ -8,14 +8,14 @@ import Portal from "../../General/Portal/Portal";
 import DeleteModal from "../../General/DeleteModal/DeleteModal";
 
 interface Props {
-  name:string;
-  type:string;
-  iconColour:string;
+  name: string;
+  type: string;
+  iconColour: string;
   handleDeleteForever: () => void;
   handleRestore: () => void;
 }
 
-const DeletedBlock:React.FC<Props> = ({
+const DeletedBlock: React.FC<Props> = ({
   name,
   type,
   iconColour,
@@ -54,25 +54,17 @@ const DeletedBlock:React.FC<Props> = ({
           />
         </div>
       </div>
-      {deleteModal ? (
-        <Portal
-          state={deleteModal}
-          handleState={handleDeleteModal}
-          center={true}
-          close={true}
-          lightbox={true}
-        >
-          <DeleteModal
-            handleDelete={() => {
-              handleDeleteForever();
-              handleDeleteModal();
-            }}
-            handleCancel={handleDeleteModal}
-          />
-        </Portal>
-      ) : null}
+      <DeleteModal
+        handleDelete={() => {
+          handleDeleteForever();
+          handleDeleteModal();
+        }}
+        handleCancel={handleDeleteModal}
+        handleDeleteModal={handleDeleteModal}
+        deleteModal={deleteModal}
+      />
     </>
   );
-}
+};
 
 export default DeletedBlock;

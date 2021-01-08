@@ -70,7 +70,6 @@ export const StudySetTabs: React.FC<StudySetTabsProps> = ({ folderBlocks }) => {
           >
             <span className="p1">Notes</span>
           </NavLink>
-
           <NavLink
             activeStyle={{
               textDecoration: "underline",

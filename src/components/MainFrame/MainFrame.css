@@ -1,26 +1,7 @@
 .dekked-frameContainer {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   overflow: auto;
-  margin-right: 0px;
-  margin-bottom: 0px;
   cursor: auto;
   width: 100%;
-}
-
-.dekked-frameContainer .dekked-frame {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -37,20 +18,21 @@
   z-index: 1;
   height: 100vh;
   max-height: 100%;
-  width: 100%;
 }
 
-.dekked-frameContainer #topBarContainer {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  max-width: 100vw;
-  height: 60px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  z-index: 9;
+.dekked-frameContainer .dekked-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: white;
+  z-index: 1;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=MainFrame.css.map */

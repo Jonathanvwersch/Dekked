@@ -1,5 +1,6 @@
 .pageTitle {
   cursor: text;
+  width: 100%;
 }
 
 .pageTitle:empty:before {

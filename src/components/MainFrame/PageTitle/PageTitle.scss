@@ -1,5 +1,6 @@
 .pageTitle {
-    cursor:text;
+    cursor: text;
+    width: 100%;
 
     &:empty:before {
         content: 'Untitled';

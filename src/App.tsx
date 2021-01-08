@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import MainFrame from "./components/MainFrame/MainFrame";
 import { v4 as uuidv4 } from "uuid";
 import { LoadingSpinner } from "./components/General/LoadingSpinner/LoadingSpinner";
+import StudyQueueBubble from "./components/General/StudyQueue/StudyQueueBubble/StudyQueueBubble";
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -265,9 +266,10 @@ const App: React.FC = () => {
   return (
     <>
       {loading ? (
-        <LoadingSpinner/>
+        <LoadingSpinner />
       ) : (
         <Router>
+
           <Sidebar
             sidebar={sidebar}
             hoverbar={hoverbar}
@@ -301,13 +303,18 @@ const App: React.FC = () => {
                 to={{
                   pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
                   state: {
-                    item: {type: folderBlocks[0].type, name: folderBlocks[0].name, iconColour: folderBlocks[0].iconColour},
+                    item: {
+                      type: folderBlocks[0].type,
+                      name: folderBlocks[0].name,
+                      iconColour: folderBlocks[0].iconColour,
+                    },
                     folderIndex: 0,
                   },
                 }}
               />
             </Route>
           </Switch>
+          <StudyQueueBubble/>
         </Router>
       )}
     </>

@@ -44,7 +44,6 @@ interface Props {
 const TopBar: React.FC<Props> = ({ sidebar, handleSidebar, folderBlocks, setHoverbar }) => {
   return (
     <>
-      <div className="dekked-topBarOuter">
         <div className="dekked-topBar">
           {!sidebar ?  (
             <div>
@@ -56,7 +55,6 @@ const TopBar: React.FC<Props> = ({ sidebar, handleSidebar, folderBlocks, setHove
           ) : null}
           <Breadcrumbs folderBlocks={folderBlocks}/>
         </div>
-      </div>
     </>
   );
 }

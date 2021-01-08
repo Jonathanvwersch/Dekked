@@ -1,0 +1,19 @@
+.dekked-deleteModal {
+  width: 340px;
+  height: 144px;
+  filter: var(--drop-shadow);
+  flex-direction: column;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  justify-content: space-between;
+  padding: 24px;
+}
+.dekked-deleteModal .deleteModalButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}

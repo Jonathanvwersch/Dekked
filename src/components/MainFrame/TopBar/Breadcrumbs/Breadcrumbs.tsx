@@ -78,6 +78,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ folderBlocks }) => {
           {location.state.item.type === "binder" ||
           location.state.item.type === "studySet" ? (
             <>
+            
               <span id="slash">/</span>
 
               <NavLink

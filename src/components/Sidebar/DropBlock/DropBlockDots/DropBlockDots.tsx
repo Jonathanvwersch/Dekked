@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ColourPicker from "../../ColourPicker/ColourPicker";
 import Block from "../../../General/Block/Block";
 import Portal from "../../../General/Portal/Portal";
@@ -75,6 +75,8 @@ const DropBlockDots:React.FC<Props> = ({
   const heightOfDropdownMenu = 30 * dropBlockMenuData.length; // Value is necessary to position dropdown menu based on mouse coordinates
   const heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
  
+  const titleRef = useRef()
+
   const positionComponents = (e:any, itemHeight:number) => {
     const rect = e.target.getBoundingClientRect();
     let bottomValue = window.innerHeight - rect.y; // distance from mouse click to bottom of window

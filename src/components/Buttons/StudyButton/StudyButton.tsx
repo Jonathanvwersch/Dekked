@@ -13,7 +13,7 @@ const StudyButton: React.FC<Props> = ({ action, type, handleClick }) => {
       <button className={`dekked-studyButton ${type} p1`} onClick={handleClick}>
         {action}
       </button>
-      <div className="p1 grey">{`Next review in X days`}</div>
+      <span className="p1 grey">{`Next review in X days`}</span>
     </div>
   );
 }

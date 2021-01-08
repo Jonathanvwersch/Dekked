@@ -83,7 +83,7 @@ export const SidebarWorkspace: React.FC<SidebarWorkspaceProps> = ({
             </>
             {folder.isOpen ? (
               folder.binders.length === 0 ? (
-                <span className="p2 noItems">No binders inside</span>
+                <span className="p2 grey noItems">No binders inside</span>
               ) : (
                 folder.binders.map((binder: any, binderIndex: number) => (
                   <div key={binder.id} className="binderBlock">

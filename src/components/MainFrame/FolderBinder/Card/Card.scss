@@ -1,0 +1,63 @@
+.dekked-card {
+    height: 188px;
+    width: 170px;
+    border: 0.5px solid var(--grey-3);
+    border-radius: var(--general-border-radius);
+    background: var(--white);
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+
+    .cardThumbnail {
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    &.clicked {
+        box-shadow: 0 0 0 0.5pt var(--primary-color);
+    }
+
+    &:hover {
+        box-shadow: 0 0 0 0.5pt var(--primary-color);
+    }
+
+    .cardDescription {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 60px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background: var(--off-beige);
+        border-radius: 0 0 var(--general-border-radius) var(--general-border-radius);
+        z-index: 1;
+        border-top: 0.5px solid var(--grey-3);
+        padding: 12px 12px;
+
+        .cardDate {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 4px;
+            width: 100%;
+        }
+
+        .cardName {
+            width: 100%;
+        }
+    }
+
+    span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+}

@@ -1,5 +1,4 @@
-import React from "react";
-import StudyQueue from "../General/StudyQueue/StudyQueue";
+import React, {useRef} from "react";
 import TopBar from "./TopBar/TopBar";
 import { useLocation } from "react-router";
 import "./MainFrame.css";
@@ -60,18 +59,17 @@ const MainFrame:React.FC<Props> = ({
   addStudySet,
 }) => {
   let location = useLocation();
+  const frameRef = useRef();
 
   return (
     <>
       <div className="dekked-frameContainer">
-        <div id="topBarContainer">
           <TopBar
             folderBlocks={folderBlocks}
             sidebar={sidebar}
             handleSidebar={handleSidebar}
             setHoverbar={setHoverbar}
           />
-        </div>
         <div className="dekked-frame">
           {location.state ? (
             location.state.item.type === "folder" ||
@@ -91,7 +89,6 @@ const MainFrame:React.FC<Props> = ({
             )
           ) : null}
         </div>
-        <StudyQueue />
       </div>
     </>
   );

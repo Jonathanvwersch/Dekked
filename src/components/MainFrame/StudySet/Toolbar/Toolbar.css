@@ -16,7 +16,7 @@
   gap: 8px;
 }
 
-.toolbar #switchBlock {
+.toolbar .switchBlock {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,16 +29,15 @@
           flex-direction: row;
 }
 
-.toolbar #switchBlock:hover .icon {
+.toolbar .switchBlock:hover .icon {
   color: var(--primary-color);
 }
 
-.toolbar #switchBlock:active .icon {
+.toolbar .switchBlock:active .icon {
   color: var(--primary-color-hover);
 }
 
-.toolbar #switchBlock
-.toolbar #divider {
+.toolbar .divider {
   height: 16px;
   width: 1px;
   background-color: var(--main-black);
@@ -47,5 +46,24 @@
 .toolbar.half .icon {
   height: 14px;
   width: 14px;
+}
+
+.textBlockSelector {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 220px;
+  -webkit-filter: var(--drop-shadow);
+          filter: var(--drop-shadow);
+  border-radius: 2px;
+  background: white;
+  cursor: pointer;
+  position: absolute;
+  -webkit-transform: translate(0px, 16px);
+          transform: translate(0px, 16px);
 }
 /*# sourceMappingURL=Toolbar.css.map */

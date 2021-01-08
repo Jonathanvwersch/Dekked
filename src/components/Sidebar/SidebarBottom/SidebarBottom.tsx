@@ -8,25 +8,24 @@ import { Icon } from "@iconify/react";
 import trashCanOutline from "@iconify/icons-mdi/trash-can-outline";
 
 interface Props {
-  addFolder:  () => void;
-  deleteForever:(index: number) => void;
-  handleRestore:(type:string, deletedItemIndex:number) => void;
-  deletedItems:Array<any>;
-  hoverbar:boolean;
+  addFolder: () => void;
+  deleteForever: (index: number) => void;
+  handleRestore: (type: string, deletedItemIndex: number) => void;
+  deletedItems: Array<any>;
+  hoverbar: boolean;
 }
 
-
-const SidebarBottom:React.FC<Props> = ({
+const SidebarBottom: React.FC<Props> = ({
   addFolder,
   deleteForever,
   handleRestore,
   deletedItems,
-  hoverbar
+  hoverbar,
 }) => {
   const [trashCan, setTrashCan] = useState(false);
 
   const hoverStyleSidebar = {
-    top:"243px",
+    top: "243px",
   };
 
   return (
@@ -41,26 +40,24 @@ const SidebarBottom:React.FC<Props> = ({
 
       {trashCan ? (
         <Portal state={trashCan} handleState={() => setTrashCan(false)}>
-          <div className="dropdownMenu deleteBlockContainer" style={hoverbar ? hoverStyleSidebar : null}>
+          <div
+            className="dropdownMenu deleteBlockContainer"
+            style={hoverbar ? hoverStyleSidebar : null}
+          >
             {deletedItems.length === 0 ? (
-              <p className="p2 noBinders" style={{ paddingLeft: "16px" }}>
-                No items inside
-              </p>
+              <span className="p2 grey noItems">No items inside</span>
             ) : (
               deletedItems.map((item, index) => (
                 <DeletedBlock
                   name={item.name}
                   type={item.type}
-                  key= {item.id}
+                  key={item.id}
                   iconColour={item.iconColour}
                   handleDeleteForever={() => {
                     deleteForever(index);
                   }}
                   handleRestore={() => {
-                    handleRestore(
-                      item.type,
-                      index,
-                    );
+                    handleRestore(item.type, index);
                   }}
                 />
               ))
@@ -74,6 +71,6 @@ const SidebarBottom:React.FC<Props> = ({
       </div>
     </div>
   );
-}
+};
 
 export default SidebarBottom;

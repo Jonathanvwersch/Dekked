@@ -1,29 +1,12 @@
 /* Overlay container used to render all popovers and modals */
-import React from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { MdClose } from "react-icons/md";
 import "./Portal.css";
 
-const CHILD_STYLE = {
-  position: "fixed",
-  top: "0px",
-  left: "0px",
-  width: "100vw",
-  height: "100vh",
-} as React.CSSProperties;
-
-const CHILD_STYLE_LIGHTBOX = {
-  position: "absolute",
-  inset: "0px",
-  background: "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
-} as React.CSSProperties;
-
-const CENTER = {
-  position: "relative",
-} as React.CSSProperties;
 interface Props {
   children: JSX.Element;
-  state: any;
+  state: boolean;
   handleState: () => void;
   lightbox?: boolean;
   center?: boolean;
@@ -38,6 +21,13 @@ const Portal: React.FC<Props> = ({
   center = false, // center=true will center child item on portal
   close = false, // close=true will show close icon in top right of child item
 }) => {
+  function handleEscape(e: any) {
+    handleState();
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscape);
+  }, []);
   return createPortal(
     <>
       {state ? (
@@ -45,10 +35,13 @@ const Portal: React.FC<Props> = ({
           className={`${!center ? "dekked-overlay" : "dekked-overlay center"}`}
         >
           <div
-            style={!lightbox ? CHILD_STYLE : CHILD_STYLE_LIGHTBOX}
+            className={`${!lightbox ? "lightBoxOff" : "lightBoxOn"}`}
             onClick={handleState}
           ></div>
-          <div id="portal-overlay" style={center ? CENTER : null}>
+          <div
+            id="portal-overlay"
+            className={`${!close ? "childStyle" : "childStyle closed"}`}
+          >
             {children}
             {close ? (
               <MdClose onClick={handleState} className="icon active close" />

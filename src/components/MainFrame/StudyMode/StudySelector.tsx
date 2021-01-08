@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../Buttons/Button/Button";
-import Card from "../FolderBinder/Card";
+import Card from "../FolderBinder/Card/Card";
 import "./StudySelector.css";
 
 const StudySelector:React.FC = () => {

@@ -1,0 +1,9 @@
+.pageTitle {
+  cursor: text;
+  width: 100%;
+}
+.pageTitle:empty:before {
+  content: "Untitled";
+  color: var(--grey-2);
+  cursor: text;
+}

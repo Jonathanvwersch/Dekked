@@ -1,9 +1,9 @@
 .sidebarBottom {
-  display:block;
-  position:absolute;
-  bottom:0;
-  width:100%;
-  user-select:none;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  user-select: none;
 
   .addBlock {
     display: flex;
@@ -13,12 +13,12 @@
     place-items: center;
     border-top: 0.5px solid var(--grey-3);
     background: var(--off-beige);
-    padding-left:16px;
-    gap:8px;
+    padding-left: 16px;
+    gap: 8px;
 
     &:hover {
-        background-color: var(--off-beige-hover);
-        cursor: pointer;
+      background-color: var(--off-beige-hover);
+      cursor: pointer;
     }
 
     &:active {
@@ -36,5 +36,16 @@
   left: 210px;
   overflow-y: auto;
   user-select: none;
-}
 
+  .noItems {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 30px;
+    cursor: default;
+    padding-left: 16px;
+
+  }
+
+}

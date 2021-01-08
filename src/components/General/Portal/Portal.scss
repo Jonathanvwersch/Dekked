@@ -5,13 +5,25 @@
 
     &.center {
         position: fixed;
-        top: 0px;
-        left: 0px;
         width: 100vw;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .lightBoxOn {
+        position: absolute;
+        inset: 0px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+
+    .lightBoxOff {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
     }
 
     .icon.active.close {
@@ -20,4 +32,14 @@
         top: 0;
         margin: 8px 16px 0px 0px;
     }
+    
+    .childStyle {
+        &.closed {
+            position:relative;
+        }
+    }
+
 }
+
+
+
