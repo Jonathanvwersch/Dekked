@@ -14,11 +14,6 @@ import StudyQueueBubble from "./components/General/StudyQueue/StudyQueueBubble/S
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
   const [sidebar, setSidebar] = useState<boolean>(true);
   const [hoverbar, setHoverbar] = useState<boolean>(false);
   const [deletedItems, setDeletedItems] = useState<Array<any>>([]);
@@ -63,6 +58,10 @@ const App: React.FC = () => {
       ],
     },
   ]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const addFolder = () => {
     const newFolderBlocksArray = folderBlocks.slice();
@@ -269,7 +268,6 @@ const App: React.FC = () => {
         <LoadingSpinner />
       ) : (
         <Router>
-
           <Sidebar
             sidebar={sidebar}
             hoverbar={hoverbar}
@@ -314,7 +312,7 @@ const App: React.FC = () => {
               />
             </Route>
           </Switch>
-          <StudyQueueBubble/>
+          <StudyQueueBubble />
         </Router>
       )}
     </>

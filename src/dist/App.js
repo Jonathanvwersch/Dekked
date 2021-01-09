@@ -31,6 +31,9 @@ var App = function () {
     react_1.useEffect(function () {
         setLoading(false);
     }, []);
+    react_1.useEffect(function () {
+        document.title = ;
+    }, []);
     var _b = react_1.useState(true), sidebar = _b[0], setSidebar = _b[1];
     var _c = react_1.useState(false), hoverbar = _c[0], setHoverbar = _c[1];
     var _d = react_1.useState([]), deletedItems = _d[0], setDeletedItems = _d[1];

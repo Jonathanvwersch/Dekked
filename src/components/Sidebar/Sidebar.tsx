@@ -83,7 +83,7 @@ const Sidebar: React.FC<Props> = ({
 }) => {
   const mousePosition = useMousePosition();
   const sidebarRef = useRef<any>(null);
-
+  
   useEffect(() => {
     if (document.getElementById("portal-overlay") && hoverbar)
       setHoverbar(true);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import TopBar from "./TopBar/TopBar";
 import { useLocation } from "react-router";
 import "./MainFrame.css";
@@ -66,6 +66,12 @@ const MainFrame: React.FC<Props> = ({
 }) => {
   let location = useLocation();
 
+  useEffect(() => {
+    if (location.state)
+      document.title = location.state.item.name ? location.state.item.name : "Untitled";
+  }, [location.state])
+  
+  
   return (
     <>
       <div className="dekked-frameContainer">
