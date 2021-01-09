@@ -1,14 +1,14 @@
 .dekked-settings {
-    filter:var(--drop-shadow);
-    width:850px;
+    filter: var(--drop-shadow);
+    width: 850px;
     max-width: calc(100vw - 100px);
-    height:calc(100vh - 100px);
+    height: calc(100vh - 100px);
     max-height: 600px;
-    overflow:hidden;
-    user-select:none;
-    display:flex;
-    flex-direction:row;
-    border-radius:var(--general-border-radius);
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    border-radius: var(--general-border-radius);
 
     .dekked-settingsSidebar {
         display: flex;
@@ -42,7 +42,7 @@
         height: 100%;
         background: var(--white);
 
-        #settingsContent {
+        .settingsContent {
             flex-grow: 1;
             padding: 36px 60px 36px 60px;
             margin-bottom: 0px;
@@ -50,7 +50,7 @@
             overflow: auto;
         }
 
-        #saveChanges {
+        .saveChanges {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -61,13 +61,3 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

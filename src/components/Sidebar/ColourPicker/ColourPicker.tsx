@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import { BlockPicker } from "react-color";
+import Portal from "../../General/Portal/Portal";
 import "./ColourPicker.css";
 
-// Colour picker take from https://casesandberg.github.io/react-color/
-
+// Colour picker taken from https://casesandberg.github.io/react-color/
 interface Props {
-  iconColour:string;
-  setIconColour: (colour:any) => void;
+  iconColour: string;
+  setIconColour: (colour: any) => void;
+  colourPicker: boolean;
+  handleColourPicker: () => void;
+  position: {
+    left: number;
+    top: number;
+  };
 }
 
-const ColourPicker:React.FC<Props>= ({ iconColour, setIconColour }) => {
+const ColourPicker: React.FC<Props> = ({
+  iconColour,
+  setIconColour,
+  colourPicker,
+  handleColourPicker,
+  position,
+}) => {
   const [colour, setColour] = useState({
     background: iconColour,
   });
 
-  const handleChange = (colour:any) => {
+  const handleChange = (colour: any) => {
     setColour({ background: colour });
     setIconColour(colour.hex);
   };
@@ -32,14 +44,18 @@ const ColourPicker:React.FC<Props>= ({ iconColour, setIconColour }) => {
     "#84939A",
   ];
 
-  return (
-      <BlockPicker
-        color={colour.background}
-        onChange={handleChange}
-        triangle="hide"
-        colors={defaultColors}
-      />
-  );
+  return colourPicker ? (
+    <Portal state={colourPicker} handleState={handleColourPicker}>
+      <div className="colourPicker" style={{...position}}>
+        <BlockPicker
+          color={colour.background}
+          onChange={handleChange}
+          triangle="hide"
+          colors={defaultColors}
+        />
+      </div>
+    </Portal>
+  ) : null;
 };
 
 export default ColourPicker;

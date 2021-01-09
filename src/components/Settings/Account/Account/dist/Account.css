@@ -1,0 +1,41 @@
+/* Title Styling */
+.account {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.account h3 {
+  border-bottom: 0.5px solid var(--grey-3);
+  display: flex;
+  justify-content: flex-start;
+}
+.account input {
+  width: 100%;
+}
+.account .accountAvatarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 0.5px solid var(--grey-3);
+  padding-bottom: 16px;
+}
+.account .accountAvatarContainer .accountAvatarButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+.account .accountAvatarContainer .accountAvatarButton .accountAvatar {
+  width: 54px;
+  height: 54px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border-bottom: 0.5px solid var(--grey-3);
+}
+.account .accountPersonalInfo {
+  border-bottom: 0.5px solid var(--grey-3);
+  padding-bottom: 16px;
+}
+.account .accountPassword button {
+  margin-top: 8px;
+}

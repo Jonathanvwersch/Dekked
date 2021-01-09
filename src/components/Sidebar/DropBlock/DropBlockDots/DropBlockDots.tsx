@@ -4,57 +4,56 @@ import Block from "../../../General/Block/Block";
 import Portal from "../../../General/Portal/Portal";
 import { NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import {MdMoreHoriz} from "react-icons/md";
+import { MdMoreHoriz } from "react-icons/md";
 import { FolderData, BinderData, StudySetData } from "./DropBlockMenuData";
 
 interface Props {
-  item:any;
-  handleFolderBlocks: (newFolderBlocksArray:any) => void;
-  studySetIndex?:number;
-  binderIndex?:number;
-  folderIndex:number;
-  iconColour:string;
+  item: any;
+  handleFolderBlocks: (newFolderBlocksArray: any) => void;
+  studySetIndex?: number;
+  binderIndex?: number;
+  folderIndex: number;
+  iconColour: string;
   setIconColour: React.Dispatch<any>;
   handleAddItem?: () => void;
   handleDelete: () => void;
   handleRename: () => void;
-  folderBlocks:{
+  folderBlocks: {
     name: string;
     type: string;
     id: string;
     iconColour: string;
     isOpen: boolean;
     binders: {
+      name: string;
+      type: string;
+      id: string;
+      folderId: string;
+      iconColour: string;
+      isOpen: boolean;
+      studySets: {
         name: string;
         type: string;
         id: string;
+        binderId: string;
         folderId: string;
         iconColour: string;
-        isOpen: boolean;
-        studySets: {
-            name: string;
-            type: string;
-            id: string;
-            binderId:string;
-            folderId:string;
-            iconColour:string;
-            tab:string;
-            flashcards:{
-              type: string;
-              id: string;
-              front:string;
-              back:string;
-              studySetId:string
-              binderId:string;
-              folderId:string;
-            }[];
+        tab: string;
+        flashcards: {
+          type: string;
+          id: string;
+          front: string;
+          back: string;
+          studySetId: string;
+          binderId: string;
+          folderId: string;
         }[];
+      }[];
     }[];
   }[];
-
 }
 
-const DropBlockDots:React.FC<Props> = ({
+const DropBlockDots: React.FC<Props> = ({
   item,
   handleFolderBlocks,
   folderBlocks,
@@ -67,17 +66,25 @@ const DropBlockDots:React.FC<Props> = ({
   folderIndex,
   binderIndex,
 }) => {
-  const dropBlockMenuData = item.type==="folder" ? FolderData : item.type==="binder" ? BinderData : StudySetData
-  const [coords, setCoords] = useState({left:0, top:0}); // Set mouse coordinates
+  const dropBlockMenuData =
+    item.type === "folder"
+      ? FolderData
+      : item.type === "binder"
+      ? BinderData
+      : StudySetData;
+  const [coords, setCoords] = useState({ left: 0, top: 0 }); // Set mouse coordinates
   const [dropdownMenu, setDropdownMenu] = useState(false); // Set dropdown menu visibility
   const [colourPicker, setColourPicker] = useState(false); // Set visibility of colour picker component
-  const [yPositionOfDropdownMenu, setYPositionofDropdownMenu] = useState<number>(0); // Set y position of dropdown menu
+  const [
+    yPositionOfDropdownMenu,
+    setYPositionofDropdownMenu,
+  ] = useState<number>(0); // Set y position of dropdown menu
   const heightOfDropdownMenu = 30 * dropBlockMenuData.length; // Value is necessary to position dropdown menu based on mouse coordinates
   const heightOfColourPicker = 220; // Value is necessary to position colour picker based on mouse coordinates
- 
-  const titleRef = useRef()
 
-  const positionComponents = (e:any, itemHeight:number) => {
+  const titleRef = useRef();
+
+  const positionComponents = (e: any, itemHeight: number) => {
     const rect = e.target.getBoundingClientRect();
     let bottomValue = window.innerHeight - rect.y; // distance from mouse click to bottom of window
     let topValue = rect.y; // distance from mouse click to top of window
@@ -100,14 +107,14 @@ const DropBlockDots:React.FC<Props> = ({
   };
 
   const handleIconColour = (
-    type:string,
-    folderIndex:number,
-    iconColour:string,
-    binderIndex:any,
-    studySetIndex:any,
+    type: string,
+    folderIndex: number,
+    iconColour: string,
+    binderIndex: any,
+    studySetIndex: any
   ) => {
     const newFolderBlocksArray = folderBlocks.slice();
-    if (type === "folder" ) {
+    if (type === "folder") {
       newFolderBlocksArray[folderIndex].iconColour = iconColour;
     } else if (type === "binder") {
       newFolderBlocksArray[folderIndex].binders[
@@ -129,16 +136,22 @@ const DropBlockDots:React.FC<Props> = ({
     setCoords(newCoords);
     setColourPicker((prevState) => !prevState);
   };
-  
-  const handleDropdownMenu = (e:any) => {
+
+  const handleDropdownMenu = (e: any) => {
     positionComponents(e, heightOfDropdownMenu);
     setDropdownMenu((prevState) => !prevState);
   };
-  
-  useEffect (() => {
-    handleIconColour(item.type, folderIndex, iconColour, binderIndex, studySetIndex)
-  }, [iconColour])
-  
+
+  useEffect(() => {
+    handleIconColour(
+      item.type,
+      folderIndex,
+      iconColour,
+      binderIndex,
+      studySetIndex
+    );
+  }, [iconColour]);
+
   return (
     <div id="dropBlockDots">
       <MdMoreHoriz
@@ -160,7 +173,10 @@ const DropBlockDots:React.FC<Props> = ({
                   to={{
                     pathname: `/${folderBlocks[0].type}/${folderBlocks[0].id}`,
                     state: {
-                      item: {name:folderBlocks[0].name, type:folderBlocks[0].type},
+                      item: {
+                        name: folderBlocks[0].name,
+                        type: folderBlocks[0].type,
+                      },
                       folderIndex: "0",
                     },
                   }}
@@ -188,18 +204,15 @@ const DropBlockDots:React.FC<Props> = ({
           </div>
         </Portal>
       ) : null}
-      {colourPicker ? (
-        <Portal state={colourPicker} handleState={handleColourPicker}>
-          <div style={{ ...coords }} className="colourPicker">
-            <ColourPicker
-              iconColour={iconColour}
-              setIconColour={setIconColour}
-            ></ColourPicker>
-          </div>
-        </Portal>
-      ) : null}
+      <ColourPicker
+        colourPicker={colourPicker}
+        handleColourPicker={handleColourPicker}
+        iconColour={iconColour}
+        setIconColour={setIconColour}
+        position={{ ...coords }}
+      ></ColourPicker>
     </div>
   );
-}
+};
 
 export default DropBlockDots;

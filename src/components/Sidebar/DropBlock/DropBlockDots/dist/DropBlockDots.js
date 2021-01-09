@@ -21,7 +21,11 @@ var md_1 = require("react-icons/md");
 var DropBlockMenuData_1 = require("./DropBlockMenuData");
 var DropBlockDots = function (_a) {
     var item = _a.item, handleFolderBlocks = _a.handleFolderBlocks, folderBlocks = _a.folderBlocks, handleRename = _a.handleRename, handleDelete = _a.handleDelete, handleAddItem = _a.handleAddItem, setIconColour = _a.setIconColour, iconColour = _a.iconColour, studySetIndex = _a.studySetIndex, folderIndex = _a.folderIndex, binderIndex = _a.binderIndex;
-    var dropBlockMenuData = item.type === "folder" ? DropBlockMenuData_1.FolderData : item.type === "binder" ? DropBlockMenuData_1.BinderData : DropBlockMenuData_1.StudySetData;
+    var dropBlockMenuData = item.type === "folder"
+        ? DropBlockMenuData_1.FolderData
+        : item.type === "binder"
+            ? DropBlockMenuData_1.BinderData
+            : DropBlockMenuData_1.StudySetData;
     var _b = react_1.useState({ left: 0, top: 0 }), coords = _b[0], setCoords = _b[1]; // Set mouse coordinates
     var _c = react_1.useState(false), dropdownMenu = _c[0], setDropdownMenu = _c[1]; // Set dropdown menu visibility
     var _d = react_1.useState(false), colourPicker = _d[0], setColourPicker = _d[1]; // Set visibility of colour picker component
@@ -82,14 +86,15 @@ var DropBlockDots = function (_a) {
                 return item.action === "Delete" ? (react_1["default"].createElement(react_router_dom_1.NavLink, { to: {
                         pathname: "/" + folderBlocks[0].type + "/" + folderBlocks[0].id,
                         state: {
-                            item: { name: folderBlocks[0].name, type: folderBlocks[0].type },
+                            item: {
+                                name: folderBlocks[0].name,
+                                type: folderBlocks[0].type
+                            },
                             folderIndex: "0"
                         }
                     } },
                     react_1["default"].createElement(Block_1["default"], { handleDelete: handleDelete, handleRename: handleRename, handleColourPicker: handleColourPicker, handleAddItem: handleAddItem, item: item, key: uuid_1.v4() }))) : (react_1["default"].createElement(Block_1["default"], { handleDelete: handleDelete, handleRename: handleRename, handleColourPicker: handleColourPicker, handleAddItem: handleAddItem, item: item, key: uuid_1.v4() }));
             })))) : null,
-        colourPicker ? (react_1["default"].createElement(Portal_1["default"], { state: colourPicker, handleState: handleColourPicker },
-            react_1["default"].createElement("div", { style: __assign({}, coords), className: "colourPicker" },
-                react_1["default"].createElement(ColourPicker_1["default"], { iconColour: iconColour, setIconColour: setIconColour })))) : null));
+        react_1["default"].createElement(ColourPicker_1["default"], { colourPicker: colourPicker, handleColourPicker: handleColourPicker, iconColour: iconColour, setIconColour: setIconColour, position: __assign({}, coords) })));
 };
 exports["default"] = DropBlockDots;
