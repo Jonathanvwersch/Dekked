@@ -12,17 +12,6 @@
 
 @media only screen and (max-width: 740px) {
 
-    .toolbarTab {
-        flex-direction: column-reverse;
-    }
-
-    .toolbarTab .toolbar {
-        padding-top: 32px;
-    }
-}
-
-@media only screen and (max-width: 740px) {
-
     .buttonQuantity.studySet {
         flex-direction: column;
         gap: 16px;

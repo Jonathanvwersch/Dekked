@@ -16,6 +16,12 @@
   max-width: 140px;
 }
 
+@media only screen and (max-width: 588px) {
+  .breadcrumbs span.p2 {
+    max-width: 60px;
+  }
+}
+
 .breadcrumbs #slash {
   margin-left: 4px;
   margin-right: 4px;

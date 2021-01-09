@@ -27,10 +27,4 @@
   padding-left: 16px;
   gap: 24px;
 }
-
-@media only screen and (max-width: 588px) {
-  .dekked-topBar span.p2 {
-    max-width: 60px;
-  }
-}
 /*# sourceMappingURL=TopBar.css.map */

@@ -18,18 +18,6 @@
 }
 
 @media only screen and (max-width: 740px) {
-  .toolbarTab {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-  }
-  .toolbarTab .toolbar {
-    padding-top: 32px;
-  }
-}
-
-@media only screen and (max-width: 740px) {
   .buttonQuantity.studySet {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
