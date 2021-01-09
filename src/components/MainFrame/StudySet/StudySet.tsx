@@ -1,5 +1,5 @@
 import "./StudySet.css";
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router";
 import Toolbar from "./Toolbar/Toolbar";
 import StudySetNotes from "./StudySetNotes/StudySetNotes";
@@ -52,14 +52,17 @@ interface Props {
     studySetIndex: any
   ) => void;
   handleFolderBlocks: (newFolderBlocksArray: any) => void;
+  sidebar:boolean;
 }
 const StudySet: React.FC<Props> = ({
   folderBlocks,
   handleNameChange,
   handleFolderBlocks,
+  sidebar,
 }) => {
   let location = useLocation();
   const tab = location.state.item.tab;
+  const [studySetNotesWidth, setStudySetNotesWidth] = useState<number>(0);
 
   const addFlashcard = () => {
     const newFlashcard = {
@@ -135,8 +138,10 @@ const StudySet: React.FC<Props> = ({
                 <StudySetNotes
                   handleFolderBlocks={handleFolderBlocks}
                   folderBlocks={folderBlocks}
+                  setStudySetNotesWidth={setStudySetNotesWidth}
+                  sidebar={sidebar}
                 />
-                <LinkedFlashcard />
+                <LinkedFlashcard width={studySetNotesWidth} />
               </>
             ) : (
               <StudySetFlashcards

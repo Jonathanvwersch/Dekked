@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect, useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import LinkedFlashcard from "../Linked Flashcard/LinkedFlashcard";
 import "./StudySetNotes.css";
+import { useResize } from "../../../../custom-hooks/UseResize";
 interface Props {
   folderBlocks: {
     name: string;
@@ -37,13 +37,23 @@ interface Props {
     }[];
   }[];
   handleFolderBlocks: (newFolderBlocksArray: any) => void;
+  setStudySetNotesWidth: any;
+  sidebar: boolean;
 }
 
 const StudySetNotes: React.FC<Props> = ({
   folderBlocks,
   handleFolderBlocks,
+  setStudySetNotesWidth,
+  sidebar,
 }) => {
   let location = useLocation<any>();
+  const ref = useRef<any>(null);
+  const { width } = useResize(ref, sidebar);
+
+  useLayoutEffect(() => {
+    setStudySetNotesWidth(width);
+  }, [width, setStudySetNotesWidth]);
 
   const handleTab = () => {
     const newFolderBlocksArray = folderBlocks.slice(); //make copy of array of folder blocks
@@ -59,8 +69,7 @@ const StudySetNotes: React.FC<Props> = ({
 
   return (
     <>
-      <div className="studySetNotes"></div>
-      {/* {location.state.item.tab === "notes" ? <LinkedFlashcard /> : null} */}
+      <div className="studySetNotes" ref={ref}></div>
     </>
   );
 };

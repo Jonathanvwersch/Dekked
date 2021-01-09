@@ -12,9 +12,10 @@ var uuid_1 = require("uuid");
 var StudySetTabs_1 = require("./StudySetTabs/StudySetTabs");
 var PageTitle_1 = require("../PageTitle/PageTitle");
 var StudySet = function (_a) {
-    var folderBlocks = _a.folderBlocks, handleNameChange = _a.handleNameChange, handleFolderBlocks = _a.handleFolderBlocks;
+    var folderBlocks = _a.folderBlocks, handleNameChange = _a.handleNameChange, handleFolderBlocks = _a.handleFolderBlocks, sidebar = _a.sidebar;
     var location = react_router_1.useLocation();
     var tab = location.state.item.tab;
+    var _b = react_1.useState(0), studySetNotesWidth = _b[0], setStudySetNotesWidth = _b[1];
     var addFlashcard = function () {
         var newFlashcard = {
             id: uuid_1.v4(),
@@ -46,7 +47,7 @@ var StudySet = function (_a) {
                     react_1["default"].createElement(Button_1["default"], { handleClick: addFlashcard, type: "secondary", action: "Add flashcard" }),
                     react_1["default"].createElement(Button_1["default"], { disabled: true, type: "primary", action: "Study" })))) : null),
         react_1["default"].createElement("div", { className: "dekked-pageContent" }, tab === "notes" ? (react_1["default"].createElement(react_1["default"].Fragment, null,
-            react_1["default"].createElement(StudySetNotes_1["default"], { handleFolderBlocks: handleFolderBlocks, folderBlocks: folderBlocks }),
-            react_1["default"].createElement(LinkedFlashcard_1["default"], null))) : (react_1["default"].createElement(StudySetFlashcards_1["default"], { handleFolderBlocks: handleFolderBlocks, folderBlocks: folderBlocks, deleteFlashcard: deleteFlashcard }))))) : null));
+            react_1["default"].createElement(StudySetNotes_1["default"], { handleFolderBlocks: handleFolderBlocks, folderBlocks: folderBlocks, setStudySetNotesWidth: setStudySetNotesWidth, sidebar: sidebar }),
+            react_1["default"].createElement(LinkedFlashcard_1["default"], { width: studySetNotesWidth }))) : (react_1["default"].createElement(StudySetFlashcards_1["default"], { handleFolderBlocks: handleFolderBlocks, folderBlocks: folderBlocks, deleteFlashcard: deleteFlashcard }))))) : null));
 };
 exports["default"] = StudySet;

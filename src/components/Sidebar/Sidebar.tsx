@@ -88,7 +88,7 @@ const Sidebar: React.FC<Props> = ({
     if (document.getElementById("portal-overlay") && hoverbar)
       setHoverbar(true);
     else {
-      if (!sidebar && mousePosition.x < 20 && !hoverbar) setHoverbar(true);
+      if (!sidebar && mousePosition.x < 16 && !hoverbar) setHoverbar(true);
       else if (hoverbar && mousePosition.x > sidebarRef.current.offsetWidth)
         setHoverbar(false);
     }

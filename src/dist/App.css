@@ -27,7 +27,6 @@ html.dekked-html,
 body.dekked-body,
 #dekked-app {
   height: 100vh;
-  position: relative;
   overflow: hidden;
   background-color: transparent;
 }
@@ -49,9 +48,7 @@ body.dekked-body,
 }
 
 #dekked-app-container {
-  width: 100vw;
-  height: 100%;
-  position: relative;
+  height: 100vh;
   display: flex;
   background: white;
   cursor: text;
@@ -161,10 +158,6 @@ h3 {
   cursor: pointer !important;
 }
 
-.dekked-app-inner {
-  height: 100%;
-}
-
 .icon {
   display: flex;
   align-items: center;
@@ -255,6 +248,7 @@ a {
 .dekked-pageContent {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   padding-left: calc(75px + env(safe-area-inset-left));
   padding-right: calc(75px + env(safe-area-inset-right));

@@ -260,6 +260,7 @@ a {
 .dekked-pageContent {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   padding-left: calc(75px + env(safe-area-inset-left));
   padding-right: calc(75px + env(safe-area-inset-right));

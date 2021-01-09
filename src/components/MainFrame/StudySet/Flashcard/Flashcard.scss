@@ -19,6 +19,8 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        user-select:none;
+
     }
 
     .flashcardText {

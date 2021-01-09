@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import TopBar from "./TopBar/TopBar";
 import { useLocation } from "react-router";
 import "./MainFrame.css";
@@ -6,49 +6,55 @@ import FolderBinder from "./FolderBinder/FolderBinder";
 import StudySet from "./StudySet/StudySet";
 
 interface Props {
-  sidebar:boolean;
+  sidebar: boolean;
   handleSidebar: () => void;
   setHoverbar: React.Dispatch<React.SetStateAction<boolean>>;
-  folderBlocks:{
+  folderBlocks: {
     name: string;
     type: string;
     id: string;
     iconColour: string;
     isOpen: boolean;
     binders: {
+      name: string;
+      type: string;
+      id: string;
+      folderId: string;
+      iconColour: string;
+      isOpen: boolean;
+      studySets: {
         name: string;
         type: string;
         id: string;
+        binderId: string;
         folderId: string;
         iconColour: string;
-        isOpen: boolean;
-        studySets: {
-            name: string;
-            type: string;
-            id: string;
-            binderId:string;
-            folderId:string;
-            iconColour:string;
-            tab:string;
-            flashcards:{
-              type: string;
-              id: string;
-              front:string;
-              back:string;
-              studySetId:string
-              binderId:string;
-              folderId:string;
-            }[];
+        tab: string;
+        flashcards: {
+          type: string;
+          id: string;
+          front: string;
+          back: string;
+          studySetId: string;
+          binderId: string;
+          folderId: string;
         }[];
+      }[];
     }[];
   }[];
-  handleFolderBlocks: (newFolderBlocksArray:any) => void;
-  handleNameChange:(type:string, folderIndex:number, blockName:string, binderIndex:any, studySetIndex:any ) => void;
+  handleFolderBlocks: (newFolderBlocksArray: any) => void;
+  handleNameChange: (
+    type: string,
+    folderIndex: number,
+    blockName: string,
+    binderIndex: any,
+    studySetIndex: any
+  ) => void;
   addBinder: (folderIndex: number) => void;
   addStudySet: (folderIndex: number, binderIndex: number) => void;
 }
 
-const MainFrame:React.FC<Props> = ({
+const MainFrame: React.FC<Props> = ({
   sidebar,
   handleSidebar,
   setHoverbar,
@@ -59,17 +65,16 @@ const MainFrame:React.FC<Props> = ({
   addStudySet,
 }) => {
   let location = useLocation();
-  const frameRef = useRef();
 
   return (
     <>
       <div className="dekked-frameContainer">
-          <TopBar
-            folderBlocks={folderBlocks}
-            sidebar={sidebar}
-            handleSidebar={handleSidebar}
-            setHoverbar={setHoverbar}
-          />
+        <TopBar
+          folderBlocks={folderBlocks}
+          sidebar={sidebar}
+          handleSidebar={handleSidebar}
+          setHoverbar={setHoverbar}
+        />
         <div className="dekked-frame">
           {location.state ? (
             location.state.item.type === "folder" ||
@@ -85,6 +90,7 @@ const MainFrame:React.FC<Props> = ({
                 folderBlocks={folderBlocks}
                 handleNameChange={handleNameChange}
                 handleFolderBlocks={handleFolderBlocks}
+                sidebar={sidebar}
               />
             )
           ) : null}
@@ -92,6 +98,6 @@ const MainFrame:React.FC<Props> = ({
       </div>
     </>
   );
-}
+};
 
 export default MainFrame;
