@@ -5,6 +5,6 @@
   display: grid;
   -ms-grid-columns: (minmax(185px, 1fr))[auto-fill];
       grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-  grid-row-gap: 16px;
+  grid-row-gap: 32px;
 }
 /*# sourceMappingURL=FolderBinder.css.map */

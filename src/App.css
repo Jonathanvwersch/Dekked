@@ -214,35 +214,21 @@ input {
 ::-webkit-input-placeholder {
   color: var(--grey-2);
   opacity: 1;
-  /* Firefox */
 }
 
 :-ms-input-placeholder {
   color: var(--grey-2);
   opacity: 1;
-  /* Firefox */
 }
 
 ::-ms-input-placeholder {
   color: var(--grey-2);
   opacity: 1;
-  /* Firefox */
 }
 
 ::placeholder {
   color: var(--grey-2);
   opacity: 1;
-  /* Firefox */
-}
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: var(--grey-2);
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: var(--grey-2);
 }
 
 .primary {
