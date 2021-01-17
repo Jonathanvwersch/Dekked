@@ -14,7 +14,7 @@
     &:hover {
         background: var(--off-beige-hover);
 
-        #dropBlockDots {
+        .dropBlockDots {
             opacity: 1;
         }
 
@@ -59,7 +59,7 @@
      
     }
 
-    #dropBlockDots {
+    .dropBlockDots {
         will-change: opacity;
         position: absolute;
         right: 8px;

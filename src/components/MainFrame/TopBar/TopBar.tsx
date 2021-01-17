@@ -40,6 +40,7 @@ interface Props {
         }[];
     }[];
   }[];
+  
 }
 const TopBar: React.FC<Props> = ({ sidebar, handleSidebar, folderBlocks, setHoverbar }) => {
   return (

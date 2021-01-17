@@ -105,7 +105,7 @@ export const SidebarWorkspace: React.FC<SidebarWorkspaceProps> = ({
 
                     {binder.isOpen ? (
                       binder.studySets.length === 0 ? (
-                        <span className="p2 noItems studySets">
+                        <span className="p2 noItems grey studySets">
                           No study sets inside
                         </span>
                       ) : (

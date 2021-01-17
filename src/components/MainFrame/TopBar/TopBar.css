@@ -27,4 +27,9 @@
   padding-left: 16px;
   gap: 24px;
 }
+
+.dekked-topBar.active {
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+}
 /*# sourceMappingURL=TopBar.css.map */

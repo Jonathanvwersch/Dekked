@@ -23,7 +23,7 @@
   background: var(--off-beige-hover);
 }
 
-.dekked-dropBlockContainer:hover #dropBlockDots {
+.dekked-dropBlockContainer:hover .dropBlockDots {
   opacity: 1;
 }
 
@@ -73,7 +73,7 @@
           transform: rotate(-90deg);
 }
 
-.dekked-dropBlockContainer #dropBlockDots {
+.dekked-dropBlockContainer .dropBlockDots {
   will-change: opacity;
   position: absolute;
   right: 8px;
